@@ -1,0 +1,2532 @@
+[
+  {
+    "id": "relation.requires.concept.square-root.concept.natural-square",
+    "type": "requires",
+    "sourceId": "concept.square-root",
+    "targetId": "concept.natural-square",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.requires.concept.pythagorean.concept.right-triangle",
+    "type": "requires",
+    "sourceId": "concept.pythagorean",
+    "targetId": "concept.right-triangle",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.requires.concept.pythagorean.concept.square-area",
+    "type": "requires",
+    "sourceId": "concept.pythagorean",
+    "targetId": "concept.square-area",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.requires.concept.pythagorean.concept.exponent-two",
+    "type": "requires",
+    "sourceId": "concept.pythagorean",
+    "targetId": "concept.exponent-two",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.requires.concept.missing-leg.concept.pythagorean",
+    "type": "requires",
+    "sourceId": "concept.missing-leg",
+    "targetId": "concept.pythagorean",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.requires.concept.missing-leg.concept.square-root",
+    "type": "requires",
+    "sourceId": "concept.missing-leg",
+    "targetId": "concept.square-root",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.extends.concept.point-distance.concept.pythagorean",
+    "type": "extends",
+    "sourceId": "concept.point-distance",
+    "targetId": "concept.pythagorean",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.extends.concept.rectangle-diagonal.concept.pythagorean",
+    "type": "extends",
+    "sourceId": "concept.rectangle-diagonal",
+    "targetId": "concept.pythagorean",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.alternative-to.exercise.identify-hypotenuse-01.exercise.identify-hypotenuse-02",
+    "type": "alternative-to",
+    "sourceId": "exercise.identify-hypotenuse-01",
+    "targetId": "exercise.identify-hypotenuse-02",
+    "dimensions": {
+      "similarity": 0.95
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.variant-of.lesson.grade8.04.variant.lesson.grade8.04",
+    "type": "variant-of",
+    "sourceId": "lesson.grade8.04.variant",
+    "targetId": "lesson.grade8.04",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.identify-hypotenuse-01.concept.hypotenuse",
+    "type": "covers",
+    "sourceId": "exercise.identify-hypotenuse-01",
+    "targetId": "concept.hypotenuse",
+    "dimensions": {
+      "contribution": 0.35
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.identify-hypotenuse-01.concept.identify-hypotenuse",
+    "type": "covers",
+    "sourceId": "exercise.identify-hypotenuse-01",
+    "targetId": "concept.identify-hypotenuse",
+    "dimensions": {
+      "contribution": 0.35
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.identify-hypotenuse-02.concept.hypotenuse",
+    "type": "covers",
+    "sourceId": "exercise.identify-hypotenuse-02",
+    "targetId": "concept.hypotenuse",
+    "dimensions": {
+      "contribution": 0.35
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.identify-hypotenuse-02.concept.identify-hypotenuse",
+    "type": "covers",
+    "sourceId": "exercise.identify-hypotenuse-02",
+    "targetId": "concept.identify-hypotenuse",
+    "dimensions": {
+      "contribution": 0.35
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.square-values-recap.concept.natural-square",
+    "type": "covers",
+    "sourceId": "exercise.square-values-recap",
+    "targetId": "concept.natural-square",
+    "dimensions": {
+      "contribution": 0.45
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.square-values-recap.concept.exponent-two",
+    "type": "covers",
+    "sourceId": "exercise.square-values-recap",
+    "targetId": "concept.exponent-two",
+    "dimensions": {
+      "contribution": 0.45
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.square-root-recap.concept.square-root",
+    "type": "covers",
+    "sourceId": "exercise.square-root-recap",
+    "targetId": "concept.square-root",
+    "dimensions": {
+      "contribution": 0.45
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.discover-3-4-5.concept.visual-area-proof",
+    "type": "covers",
+    "sourceId": "exercise.discover-3-4-5",
+    "targetId": "concept.visual-area-proof",
+    "dimensions": {
+      "contribution": 0.65
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.discover-3-4-5.concept.pythagorean",
+    "type": "covers",
+    "sourceId": "exercise.discover-3-4-5",
+    "targetId": "concept.pythagorean",
+    "dimensions": {
+      "contribution": 0.65
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.theorem-true-false.concept.pythagorean",
+    "type": "covers",
+    "sourceId": "exercise.theorem-true-false",
+    "targetId": "concept.pythagorean",
+    "dimensions": {
+      "contribution": 0.45
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.theorem-true-false.concept.right-triangle",
+    "type": "covers",
+    "sourceId": "exercise.theorem-true-false",
+    "targetId": "concept.right-triangle",
+    "dimensions": {
+      "contribution": 0.45
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.missing-hypotenuse-6-8.concept.missing-hypotenuse",
+    "type": "covers",
+    "sourceId": "exercise.missing-hypotenuse-6-8",
+    "targetId": "concept.missing-hypotenuse",
+    "dimensions": {
+      "contribution": 0.5
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.missing-hypotenuse-6-8.concept.pythagorean",
+    "type": "covers",
+    "sourceId": "exercise.missing-hypotenuse-6-8",
+    "targetId": "concept.pythagorean",
+    "dimensions": {
+      "contribution": 0.5
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.missing-hypotenuse-decimal.concept.missing-hypotenuse",
+    "type": "covers",
+    "sourceId": "exercise.missing-hypotenuse-decimal",
+    "targetId": "concept.missing-hypotenuse",
+    "dimensions": {
+      "contribution": 0.55
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.missing-hypotenuse-decimal.concept.approx-square-root",
+    "type": "covers",
+    "sourceId": "exercise.missing-hypotenuse-decimal",
+    "targetId": "concept.approx-square-root",
+    "dimensions": {
+      "contribution": 0.55
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.missing-hypotenuse-decimal.concept.plausibility",
+    "type": "covers",
+    "sourceId": "exercise.missing-hypotenuse-decimal",
+    "targetId": "concept.plausibility",
+    "dimensions": {
+      "contribution": 0.55
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.missing-leg-13-5.concept.missing-leg",
+    "type": "covers",
+    "sourceId": "exercise.missing-leg-13-5",
+    "targetId": "concept.missing-leg",
+    "dimensions": {
+      "contribution": 0.55
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.missing-leg-13-5.concept.pythagorean",
+    "type": "covers",
+    "sourceId": "exercise.missing-leg-13-5",
+    "targetId": "concept.pythagorean",
+    "dimensions": {
+      "contribution": 0.55
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.missing-leg-common-mistake.concept.missing-leg",
+    "type": "covers",
+    "sourceId": "exercise.missing-leg-common-mistake",
+    "targetId": "concept.missing-leg",
+    "dimensions": {
+      "contribution": 0.55
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.missing-leg-common-mistake.concept.plausibility",
+    "type": "covers",
+    "sourceId": "exercise.missing-leg-common-mistake",
+    "targetId": "concept.plausibility",
+    "dimensions": {
+      "contribution": 0.55
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.rectangle-diagonal.concept.rectangle-diagonal",
+    "type": "covers",
+    "sourceId": "exercise.rectangle-diagonal",
+    "targetId": "concept.rectangle-diagonal",
+    "dimensions": {
+      "contribution": 0.6
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.rectangle-diagonal.concept.missing-hypotenuse",
+    "type": "covers",
+    "sourceId": "exercise.rectangle-diagonal",
+    "targetId": "concept.missing-hypotenuse",
+    "dimensions": {
+      "contribution": 0.6
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.ladder-wall.concept.math-modelling",
+    "type": "covers",
+    "sourceId": "exercise.ladder-wall",
+    "targetId": "concept.math-modelling",
+    "dimensions": {
+      "contribution": 0.65
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.ladder-wall.concept.missing-leg",
+    "type": "covers",
+    "sourceId": "exercise.ladder-wall",
+    "targetId": "concept.missing-leg",
+    "dimensions": {
+      "contribution": 0.65
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.ladder-wall.concept.length-units",
+    "type": "covers",
+    "sourceId": "exercise.ladder-wall",
+    "targetId": "concept.length-units",
+    "dimensions": {
+      "contribution": 0.65
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.is-right-triangle.concept.validate-sides",
+    "type": "covers",
+    "sourceId": "exercise.is-right-triangle",
+    "targetId": "concept.validate-sides",
+    "dimensions": {
+      "contribution": 0.6
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.is-right-triangle.concept.converse",
+    "type": "covers",
+    "sourceId": "exercise.is-right-triangle",
+    "targetId": "concept.converse",
+    "dimensions": {
+      "contribution": 0.6
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.converse-explanation.concept.converse",
+    "type": "covers",
+    "sourceId": "exercise.converse-explanation",
+    "targetId": "concept.converse",
+    "dimensions": {
+      "contribution": 0.65
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.converse-explanation.concept.validate-sides",
+    "type": "covers",
+    "sourceId": "exercise.converse-explanation",
+    "targetId": "concept.validate-sides",
+    "dimensions": {
+      "contribution": 0.65
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.coordinate-distance-01.concept.point-distance",
+    "type": "covers",
+    "sourceId": "exercise.coordinate-distance-01",
+    "targetId": "concept.point-distance",
+    "dimensions": {
+      "contribution": 0.6
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.coordinate-distance-01.concept.coordinate-plane",
+    "type": "covers",
+    "sourceId": "exercise.coordinate-distance-01",
+    "targetId": "concept.coordinate-plane",
+    "dimensions": {
+      "contribution": 0.6
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.coordinate-distance-02.concept.point-distance",
+    "type": "covers",
+    "sourceId": "exercise.coordinate-distance-02",
+    "targetId": "concept.point-distance",
+    "dimensions": {
+      "contribution": 0.65
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.coordinate-distance-02.concept.approx-square-root",
+    "type": "covers",
+    "sourceId": "exercise.coordinate-distance-02",
+    "targetId": "concept.approx-square-root",
+    "dimensions": {
+      "contribution": 0.65
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.choose-method.concept.identify-hypotenuse",
+    "type": "covers",
+    "sourceId": "exercise.choose-method",
+    "targetId": "concept.identify-hypotenuse",
+    "dimensions": {
+      "contribution": 0.55
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.choose-method.concept.pythagorean",
+    "type": "covers",
+    "sourceId": "exercise.choose-method",
+    "targetId": "concept.pythagorean",
+    "dimensions": {
+      "contribution": 0.55
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.exit-ticket.concept.missing-hypotenuse",
+    "type": "covers",
+    "sourceId": "exercise.exit-ticket",
+    "targetId": "concept.missing-hypotenuse",
+    "dimensions": {
+      "contribution": 0.45
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.exit-ticket.concept.plausibility",
+    "type": "covers",
+    "sourceId": "exercise.exit-ticket",
+    "targetId": "concept.plausibility",
+    "dimensions": {
+      "contribution": 0.45
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.ambiguous-draft.concept.triangle",
+    "type": "covers",
+    "sourceId": "exercise.ambiguous-draft",
+    "targetId": "concept.triangle",
+    "dimensions": {
+      "contribution": 0.5
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.generated.pythagoras.a.concept.pythagorean",
+    "type": "covers",
+    "sourceId": "generated.pythagoras.a",
+    "targetId": "concept.pythagorean",
+    "dimensions": {
+      "contribution": 0.5
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.generated.pythagoras.a.concept.missing-hypotenuse",
+    "type": "covers",
+    "sourceId": "generated.pythagoras.a",
+    "targetId": "concept.missing-hypotenuse",
+    "dimensions": {
+      "contribution": 0.5
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.generated.pythagoras.b.concept.pythagorean",
+    "type": "covers",
+    "sourceId": "generated.pythagoras.b",
+    "targetId": "concept.pythagorean",
+    "dimensions": {
+      "contribution": 0.5
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.generated.pythagoras.b.concept.missing-leg",
+    "type": "covers",
+    "sourceId": "generated.pythagoras.b",
+    "targetId": "concept.missing-leg",
+    "dimensions": {
+      "contribution": 0.5
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.generated.pythagoras.c.concept.pythagorean",
+    "type": "covers",
+    "sourceId": "generated.pythagoras.c",
+    "targetId": "concept.pythagorean",
+    "dimensions": {
+      "contribution": 0.5
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.generated.pythagoras.c.concept.missing-leg",
+    "type": "covers",
+    "sourceId": "generated.pythagoras.c",
+    "targetId": "concept.missing-leg",
+    "dimensions": {
+      "contribution": 0.5
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.generated.pythagoras.d.concept.pythagorean",
+    "type": "covers",
+    "sourceId": "generated.pythagoras.d",
+    "targetId": "concept.pythagorean",
+    "dimensions": {
+      "contribution": 0.5
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.generated.pythagoras.d.concept.missing-hypotenuse",
+    "type": "covers",
+    "sourceId": "generated.pythagoras.d",
+    "targetId": "concept.missing-hypotenuse",
+    "dimensions": {
+      "contribution": 0.5
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.generated.pythagoras.e.concept.pythagorean",
+    "type": "covers",
+    "sourceId": "generated.pythagoras.e",
+    "targetId": "concept.pythagorean",
+    "dimensions": {
+      "contribution": 0.5
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.generated.pythagoras.e.concept.missing-hypotenuse",
+    "type": "covers",
+    "sourceId": "generated.pythagoras.e",
+    "targetId": "concept.missing-hypotenuse",
+    "dimensions": {
+      "contribution": 0.5
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.generated.pythagoras.f.concept.pythagorean",
+    "type": "covers",
+    "sourceId": "generated.pythagoras.f",
+    "targetId": "concept.pythagorean",
+    "dimensions": {
+      "contribution": 0.5
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.generated.pythagoras.f.concept.missing-hypotenuse",
+    "type": "covers",
+    "sourceId": "generated.pythagoras.f",
+    "targetId": "concept.missing-hypotenuse",
+    "dimensions": {
+      "contribution": 0.5
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.natural-square.concept.natural-square",
+    "type": "covers",
+    "sourceId": "requirement.natural-square",
+    "targetId": "concept.natural-square",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.exponent-two.concept.exponent-two",
+    "type": "covers",
+    "sourceId": "requirement.exponent-two",
+    "targetId": "concept.exponent-two",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.square-root.concept.square-root",
+    "type": "covers",
+    "sourceId": "requirement.square-root",
+    "targetId": "concept.square-root",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.approx-square-root.concept.approx-square-root",
+    "type": "covers",
+    "sourceId": "requirement.approx-square-root",
+    "targetId": "concept.approx-square-root",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.length-units.concept.length-units",
+    "type": "covers",
+    "sourceId": "requirement.length-units",
+    "targetId": "concept.length-units",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.unit-conversion.concept.unit-conversion",
+    "type": "covers",
+    "sourceId": "requirement.unit-conversion",
+    "targetId": "concept.unit-conversion",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.triangle.concept.triangle",
+    "type": "covers",
+    "sourceId": "requirement.triangle",
+    "targetId": "concept.triangle",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.right-angle.concept.right-angle",
+    "type": "covers",
+    "sourceId": "requirement.right-angle",
+    "targetId": "concept.right-angle",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.right-triangle.concept.right-triangle",
+    "type": "covers",
+    "sourceId": "requirement.right-triangle",
+    "targetId": "concept.right-triangle",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.leg.concept.leg",
+    "type": "covers",
+    "sourceId": "requirement.leg",
+    "targetId": "concept.leg",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.hypotenuse.concept.hypotenuse",
+    "type": "covers",
+    "sourceId": "requirement.hypotenuse",
+    "targetId": "concept.hypotenuse",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.square-area.concept.square-area",
+    "type": "covers",
+    "sourceId": "requirement.square-area",
+    "targetId": "concept.square-area",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.pythagorean.concept.pythagorean",
+    "type": "covers",
+    "sourceId": "requirement.pythagorean",
+    "targetId": "concept.pythagorean",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.identify-hypotenuse.concept.identify-hypotenuse",
+    "type": "covers",
+    "sourceId": "requirement.identify-hypotenuse",
+    "targetId": "concept.identify-hypotenuse",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.missing-hypotenuse.concept.missing-hypotenuse",
+    "type": "covers",
+    "sourceId": "requirement.missing-hypotenuse",
+    "targetId": "concept.missing-hypotenuse",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.missing-leg.concept.missing-leg",
+    "type": "covers",
+    "sourceId": "requirement.missing-leg",
+    "targetId": "concept.missing-leg",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.validate-sides.concept.validate-sides",
+    "type": "covers",
+    "sourceId": "requirement.validate-sides",
+    "targetId": "concept.validate-sides",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.converse.concept.converse",
+    "type": "covers",
+    "sourceId": "requirement.converse",
+    "targetId": "concept.converse",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.plausibility.concept.plausibility",
+    "type": "covers",
+    "sourceId": "requirement.plausibility",
+    "targetId": "concept.plausibility",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.math-modelling.concept.math-modelling",
+    "type": "covers",
+    "sourceId": "requirement.math-modelling",
+    "targetId": "concept.math-modelling",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.rectangle-diagonal.concept.rectangle-diagonal",
+    "type": "covers",
+    "sourceId": "requirement.rectangle-diagonal",
+    "targetId": "concept.rectangle-diagonal",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.coordinate-plane.concept.coordinate-plane",
+    "type": "covers",
+    "sourceId": "requirement.coordinate-plane",
+    "targetId": "concept.coordinate-plane",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.point-distance.concept.point-distance",
+    "type": "covers",
+    "sourceId": "requirement.point-distance",
+    "targetId": "concept.point-distance",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.requirement.visual-area-proof.concept.visual-area-proof",
+    "type": "covers",
+    "sourceId": "requirement.visual-area-proof",
+    "targetId": "concept.visual-area-proof",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.belongs-to.lesson.grade8.01.phase.grade8.pythagorean",
+    "type": "belongs-to",
+    "sourceId": "lesson.grade8.01",
+    "targetId": "phase.grade8.pythagorean",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.instantiates.lesson.grade8.01.blueprint.practice-45",
+    "type": "instantiates",
+    "sourceId": "lesson.grade8.01",
+    "targetId": "blueprint.practice-45",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.01.exercise.square-values-recap",
+    "type": "uses",
+    "sourceId": "lesson.grade8.01",
+    "targetId": "exercise.square-values-recap",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.01.exercise.square-root-recap",
+    "type": "uses",
+    "sourceId": "lesson.grade8.01",
+    "targetId": "exercise.square-root-recap",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.01.resource.right-triangle-vocabulary",
+    "type": "uses",
+    "sourceId": "lesson.grade8.01",
+    "targetId": "resource.right-triangle-vocabulary",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.01.exercise.identify-hypotenuse-01",
+    "type": "uses",
+    "sourceId": "lesson.grade8.01",
+    "targetId": "exercise.identify-hypotenuse-01",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.01.exercise.exit-ticket",
+    "type": "uses",
+    "sourceId": "lesson.grade8.01",
+    "targetId": "exercise.exit-ticket",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.belongs-to.lesson.grade8.02.phase.grade8.pythagorean",
+    "type": "belongs-to",
+    "sourceId": "lesson.grade8.02",
+    "targetId": "phase.grade8.pythagorean",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.instantiates.lesson.grade8.02.blueprint.introduction-45",
+    "type": "instantiates",
+    "sourceId": "lesson.grade8.02",
+    "targetId": "blueprint.introduction-45",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.02.resource.right-triangle-vocabulary",
+    "type": "uses",
+    "sourceId": "lesson.grade8.02",
+    "targetId": "resource.right-triangle-vocabulary",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.02.exercise.identify-hypotenuse-02",
+    "type": "uses",
+    "sourceId": "lesson.grade8.02",
+    "targetId": "exercise.identify-hypotenuse-02",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.02.exercise.discover-3-4-5",
+    "type": "uses",
+    "sourceId": "lesson.grade8.02",
+    "targetId": "exercise.discover-3-4-5",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.02.resource.pythagorean-visual-proof",
+    "type": "uses",
+    "sourceId": "lesson.grade8.02",
+    "targetId": "resource.pythagorean-visual-proof",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.02.exercise.exit-ticket",
+    "type": "uses",
+    "sourceId": "lesson.grade8.02",
+    "targetId": "exercise.exit-ticket",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.belongs-to.lesson.grade8.03.phase.grade8.pythagorean",
+    "type": "belongs-to",
+    "sourceId": "lesson.grade8.03",
+    "targetId": "phase.grade8.pythagorean",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.instantiates.lesson.grade8.03.blueprint.practice-45",
+    "type": "instantiates",
+    "sourceId": "lesson.grade8.03",
+    "targetId": "blueprint.practice-45",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.03.exercise.identify-hypotenuse-01",
+    "type": "uses",
+    "sourceId": "lesson.grade8.03",
+    "targetId": "exercise.identify-hypotenuse-01",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.03.resource.pythagorean-visual-proof",
+    "type": "uses",
+    "sourceId": "lesson.grade8.03",
+    "targetId": "resource.pythagorean-visual-proof",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.03.resource.missing-hypotenuse-worked-example",
+    "type": "uses",
+    "sourceId": "lesson.grade8.03",
+    "targetId": "resource.missing-hypotenuse-worked-example",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.03.exercise.theorem-true-false",
+    "type": "uses",
+    "sourceId": "lesson.grade8.03",
+    "targetId": "exercise.theorem-true-false",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.03.exercise.discover-3-4-5",
+    "type": "uses",
+    "sourceId": "lesson.grade8.03",
+    "targetId": "exercise.discover-3-4-5",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.belongs-to.lesson.grade8.04.phase.grade8.pythagorean",
+    "type": "belongs-to",
+    "sourceId": "lesson.grade8.04",
+    "targetId": "phase.grade8.pythagorean",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.instantiates.lesson.grade8.04.blueprint.practice-45",
+    "type": "instantiates",
+    "sourceId": "lesson.grade8.04",
+    "targetId": "blueprint.practice-45",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.04.exercise.theorem-true-false",
+    "type": "uses",
+    "sourceId": "lesson.grade8.04",
+    "targetId": "exercise.theorem-true-false",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.04.resource.missing-hypotenuse-worked-example",
+    "type": "uses",
+    "sourceId": "lesson.grade8.04",
+    "targetId": "resource.missing-hypotenuse-worked-example",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.04.exercise.missing-hypotenuse-6-8",
+    "type": "uses",
+    "sourceId": "lesson.grade8.04",
+    "targetId": "exercise.missing-hypotenuse-6-8",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.04.generated.pythagoras.a",
+    "type": "uses",
+    "sourceId": "lesson.grade8.04",
+    "targetId": "generated.pythagoras.a",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.04.exercise.missing-hypotenuse-decimal",
+    "type": "uses",
+    "sourceId": "lesson.grade8.04",
+    "targetId": "exercise.missing-hypotenuse-decimal",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.04.exercise.exit-ticket",
+    "type": "uses",
+    "sourceId": "lesson.grade8.04",
+    "targetId": "exercise.exit-ticket",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.belongs-to.lesson.grade8.05.phase.grade8.pythagorean",
+    "type": "belongs-to",
+    "sourceId": "lesson.grade8.05",
+    "targetId": "phase.grade8.pythagorean",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.instantiates.lesson.grade8.05.blueprint.practice-45",
+    "type": "instantiates",
+    "sourceId": "lesson.grade8.05",
+    "targetId": "blueprint.practice-45",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.05.exercise.missing-hypotenuse-6-8",
+    "type": "uses",
+    "sourceId": "lesson.grade8.05",
+    "targetId": "exercise.missing-hypotenuse-6-8",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.05.resource.missing-leg-worked-example",
+    "type": "uses",
+    "sourceId": "lesson.grade8.05",
+    "targetId": "resource.missing-leg-worked-example",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.05.exercise.missing-leg-13-5",
+    "type": "uses",
+    "sourceId": "lesson.grade8.05",
+    "targetId": "exercise.missing-leg-13-5",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.05.exercise.missing-leg-common-mistake",
+    "type": "uses",
+    "sourceId": "lesson.grade8.05",
+    "targetId": "exercise.missing-leg-common-mistake",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.05.exercise.choose-method",
+    "type": "uses",
+    "sourceId": "lesson.grade8.05",
+    "targetId": "exercise.choose-method",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.05.exercise.exit-ticket",
+    "type": "uses",
+    "sourceId": "lesson.grade8.05",
+    "targetId": "exercise.exit-ticket",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.belongs-to.lesson.grade8.06.phase.grade8.pythagorean",
+    "type": "belongs-to",
+    "sourceId": "lesson.grade8.06",
+    "targetId": "phase.grade8.pythagorean",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.instantiates.lesson.grade8.06.blueprint.practice-45",
+    "type": "instantiates",
+    "sourceId": "lesson.grade8.06",
+    "targetId": "blueprint.practice-45",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.06.exercise.rectangle-diagonal",
+    "type": "uses",
+    "sourceId": "lesson.grade8.06",
+    "targetId": "exercise.rectangle-diagonal",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.06.exercise.ladder-wall",
+    "type": "uses",
+    "sourceId": "lesson.grade8.06",
+    "targetId": "exercise.ladder-wall",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.06.generated.pythagoras.d",
+    "type": "uses",
+    "sourceId": "lesson.grade8.06",
+    "targetId": "generated.pythagoras.d",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.06.generated.pythagoras.f",
+    "type": "uses",
+    "sourceId": "lesson.grade8.06",
+    "targetId": "generated.pythagoras.f",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.06.exercise.choose-method",
+    "type": "uses",
+    "sourceId": "lesson.grade8.06",
+    "targetId": "exercise.choose-method",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.belongs-to.lesson.grade8.07.phase.grade8.pythagorean",
+    "type": "belongs-to",
+    "sourceId": "lesson.grade8.07",
+    "targetId": "phase.grade8.pythagorean",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.instantiates.lesson.grade8.07.blueprint.practice-45",
+    "type": "instantiates",
+    "sourceId": "lesson.grade8.07",
+    "targetId": "blueprint.practice-45",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.07.resource.coordinate-distance-bridge",
+    "type": "uses",
+    "sourceId": "lesson.grade8.07",
+    "targetId": "resource.coordinate-distance-bridge",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.07.exercise.coordinate-distance-01",
+    "type": "uses",
+    "sourceId": "lesson.grade8.07",
+    "targetId": "exercise.coordinate-distance-01",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.07.exercise.coordinate-distance-02",
+    "type": "uses",
+    "sourceId": "lesson.grade8.07",
+    "targetId": "exercise.coordinate-distance-02",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.07.exercise.exit-ticket",
+    "type": "uses",
+    "sourceId": "lesson.grade8.07",
+    "targetId": "exercise.exit-ticket",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.belongs-to.lesson.grade8.08.phase.grade8.pythagorean",
+    "type": "belongs-to",
+    "sourceId": "lesson.grade8.08",
+    "targetId": "phase.grade8.pythagorean",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.instantiates.lesson.grade8.08.blueprint.practice-45",
+    "type": "instantiates",
+    "sourceId": "lesson.grade8.08",
+    "targetId": "blueprint.practice-45",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.08.exercise.choose-method",
+    "type": "uses",
+    "sourceId": "lesson.grade8.08",
+    "targetId": "exercise.choose-method",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.08.generated.pythagoras.b",
+    "type": "uses",
+    "sourceId": "lesson.grade8.08",
+    "targetId": "generated.pythagoras.b",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.08.generated.pythagoras.c",
+    "type": "uses",
+    "sourceId": "lesson.grade8.08",
+    "targetId": "generated.pythagoras.c",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.08.exercise.converse-explanation",
+    "type": "uses",
+    "sourceId": "lesson.grade8.08",
+    "targetId": "exercise.converse-explanation",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.08.exercise.is-right-triangle",
+    "type": "uses",
+    "sourceId": "lesson.grade8.08",
+    "targetId": "exercise.is-right-triangle",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.belongs-to.lesson.grade8.09.phase.grade8.pythagorean",
+    "type": "belongs-to",
+    "sourceId": "lesson.grade8.09",
+    "targetId": "phase.grade8.pythagorean",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.instantiates.lesson.grade8.09.blueprint.recap-20",
+    "type": "instantiates",
+    "sourceId": "lesson.grade8.09",
+    "targetId": "blueprint.recap-20",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.09.exercise.identify-hypotenuse-01",
+    "type": "uses",
+    "sourceId": "lesson.grade8.09",
+    "targetId": "exercise.identify-hypotenuse-01",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.09.exercise.missing-hypotenuse-6-8",
+    "type": "uses",
+    "sourceId": "lesson.grade8.09",
+    "targetId": "exercise.missing-hypotenuse-6-8",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.09.exercise.missing-leg-13-5",
+    "type": "uses",
+    "sourceId": "lesson.grade8.09",
+    "targetId": "exercise.missing-leg-13-5",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.09.exercise.theorem-true-false",
+    "type": "uses",
+    "sourceId": "lesson.grade8.09",
+    "targetId": "exercise.theorem-true-false",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.09.exercise.missing-leg-common-mistake",
+    "type": "uses",
+    "sourceId": "lesson.grade8.09",
+    "targetId": "exercise.missing-leg-common-mistake",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.09.exercise.exit-ticket",
+    "type": "uses",
+    "sourceId": "lesson.grade8.09",
+    "targetId": "exercise.exit-ticket",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.belongs-to.lesson.grade8.10.phase.grade8.pythagorean",
+    "type": "belongs-to",
+    "sourceId": "lesson.grade8.10",
+    "targetId": "phase.grade8.pythagorean",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.instantiates.lesson.grade8.10.blueprint.practice-45",
+    "type": "instantiates",
+    "sourceId": "lesson.grade8.10",
+    "targetId": "blueprint.practice-45",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.10.exercise.square-root-recap",
+    "type": "uses",
+    "sourceId": "lesson.grade8.10",
+    "targetId": "exercise.square-root-recap",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.10.exercise.missing-leg-common-mistake",
+    "type": "uses",
+    "sourceId": "lesson.grade8.10",
+    "targetId": "exercise.missing-leg-common-mistake",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.10.generated.pythagoras.e",
+    "type": "uses",
+    "sourceId": "lesson.grade8.10",
+    "targetId": "generated.pythagoras.e",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.10.exercise.exit-ticket",
+    "type": "uses",
+    "sourceId": "lesson.grade8.10",
+    "targetId": "exercise.exit-ticket",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.belongs-to.lesson.grade8.11.phase.grade8.pythagorean",
+    "type": "belongs-to",
+    "sourceId": "lesson.grade8.11",
+    "targetId": "phase.grade8.pythagorean",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.instantiates.lesson.grade8.11.blueprint.practice-45",
+    "type": "instantiates",
+    "sourceId": "lesson.grade8.11",
+    "targetId": "blueprint.practice-45",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.11.assessment.grade8.phase-closing",
+    "type": "uses",
+    "sourceId": "lesson.grade8.11",
+    "targetId": "assessment.grade8.phase-closing",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.belongs-to.lesson.grade8.12.phase.grade8.pythagorean",
+    "type": "belongs-to",
+    "sourceId": "lesson.grade8.12",
+    "targetId": "phase.grade8.pythagorean",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.instantiates.lesson.grade8.12.blueprint.practice-45",
+    "type": "instantiates",
+    "sourceId": "lesson.grade8.12",
+    "targetId": "blueprint.practice-45",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.belongs-to.lesson.grade8.04.variant.phase.grade8.pythagorean",
+    "type": "belongs-to",
+    "sourceId": "lesson.grade8.04.variant",
+    "targetId": "phase.grade8.pythagorean",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.instantiates.lesson.grade8.04.variant.blueprint.practice-45",
+    "type": "instantiates",
+    "sourceId": "lesson.grade8.04.variant",
+    "targetId": "blueprint.practice-45",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.04.variant.exercise.theorem-true-false",
+    "type": "uses",
+    "sourceId": "lesson.grade8.04.variant",
+    "targetId": "exercise.theorem-true-false",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.04.variant.resource.missing-hypotenuse-worked-example",
+    "type": "uses",
+    "sourceId": "lesson.grade8.04.variant",
+    "targetId": "resource.missing-hypotenuse-worked-example",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.04.variant.exercise.missing-hypotenuse-6-8",
+    "type": "uses",
+    "sourceId": "lesson.grade8.04.variant",
+    "targetId": "exercise.missing-hypotenuse-6-8",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.04.variant.exercise.choose-method",
+    "type": "uses",
+    "sourceId": "lesson.grade8.04.variant",
+    "targetId": "exercise.choose-method",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.04.variant.exercise.missing-hypotenuse-decimal",
+    "type": "uses",
+    "sourceId": "lesson.grade8.04.variant",
+    "targetId": "exercise.missing-hypotenuse-decimal",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade8.04.variant.exercise.exit-ticket",
+    "type": "uses",
+    "sourceId": "lesson.grade8.04.variant",
+    "targetId": "exercise.exit-ticket",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.belongs-to.phase.grade8.pythagorean.annual-plan.grade8.demo",
+    "type": "belongs-to",
+    "sourceId": "phase.grade8.pythagorean",
+    "targetId": "annual-plan.grade8.demo",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.contains.annual-plan.grade8.demo.phase.grade8.pythagorean",
+    "type": "contains",
+    "sourceId": "annual-plan.grade8.demo",
+    "targetId": "phase.grade8.pythagorean",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  }
+]

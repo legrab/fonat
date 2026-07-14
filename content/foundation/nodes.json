@@ -1,0 +1,58 @@
+[
+  {
+    "id": "subject.math",
+    "type": "subject",
+    "title": { "canonicalLanguage": "hu", "values": { "hu": "Matematika", "en": "Mathematics" } },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "matematika mathematics matek",
+    "payload": {
+      "code": "math",
+      "aliases": ["matek"],
+      "gradeApplicability": ["1-12"],
+      "conceptNamespace": "concept.math",
+      "terminology": {},
+      "capabilityModuleIds": ["math"]
+    },
+    "extensions": {},
+    "provenance": { "origin": "seed", "packageId": "fonat.foundation", "localKey": "subject.math" },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat",
+      "redistributionAllowed": true
+    },
+    "tags": [],
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "updatedAt": "2026-09-15T06:00:00.000Z"
+  },
+  {
+    "id": "profile.balanced",
+    "type": "teaching-profile",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": { "hu": "Kiegyensúlyozott alapbeállítás", "en": "Balanced default" }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "kiegyensúlyozott balanced",
+    "payload": { "participationVariety": true, "evidenceIntensity": "standard", "difficultyTarget": 3 },
+    "extensions": {},
+    "provenance": { "origin": "seed", "packageId": "fonat.foundation", "localKey": "profile.balanced" },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat",
+      "redistributionAllowed": true
+    },
+    "tags": [],
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "updatedAt": "2026-09-15T06:00:00.000Z"
+  }
+]

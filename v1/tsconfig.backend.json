@@ -1,0 +1,12 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/contracts" },
+    { "path": "./packages/domain" },
+    { "path": "./packages/content-contracts" },
+    { "path": "./packages/content-cli" },
+    { "path": "./modules/core" },
+    { "path": "./modules/math" },
+    { "path": "./apps/server" }
+  ]
+}

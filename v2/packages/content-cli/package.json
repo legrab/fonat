@@ -1,0 +1,28 @@
+{
+  "name": "@fonat/content-cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "fonat-content": "dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "validate": "tsx src/cli.ts validate",
+    "test:content": "tsx src/cli.ts test",
+    "pack:example": "tsx src/cli.ts pack ../../content/demo"
+  },
+  "dependencies": {
+    "@fonat/content-contracts": "0.1.0",
+    "@fonat/contracts": "0.1.0",
+    "archiver": "^7.0.1",
+    "commander": "^14.0.2"
+  },
+  "devDependencies": {
+    "@types/archiver": "^6.0.3",
+    "tsx": "^4.21.0"
+  }
+}

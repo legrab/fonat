@@ -1,0 +1,260 @@
+[
+  {
+    "id": "relation.covers.exercise.probability.sample-space-die.concept.probability.sample-space",
+    "type": "covers",
+    "sourceId": "exercise.probability.sample-space-die",
+    "targetId": "concept.probability.sample-space",
+    "dimensions": {
+      "contribution": 0.45
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade11"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.probability.even-die.concept.probability.classical",
+    "type": "covers",
+    "sourceId": "exercise.probability.even-die",
+    "targetId": "concept.probability.classical",
+    "dimensions": {
+      "contribution": 0.5
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade11"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.probability.even-die.concept.probability.favorable",
+    "type": "covers",
+    "sourceId": "exercise.probability.even-die",
+    "targetId": "concept.probability.favorable",
+    "dimensions": {
+      "contribution": 0.5
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade11"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.probability.complement.concept.probability.complement",
+    "type": "covers",
+    "sourceId": "exercise.probability.complement",
+    "targetId": "concept.probability.complement",
+    "dimensions": {
+      "contribution": 0.45
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade11"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.probability.coin-two.concept.probability.event",
+    "type": "covers",
+    "sourceId": "exercise.probability.coin-two",
+    "targetId": "concept.probability.event",
+    "dimensions": {
+      "contribution": 0.55
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade11"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.probability.coin-two.concept.probability.repeated",
+    "type": "covers",
+    "sourceId": "exercise.probability.coin-two",
+    "targetId": "concept.probability.repeated",
+    "dimensions": {
+      "contribution": 0.55
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade11"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.probability.addition.concept.probability.addition",
+    "type": "covers",
+    "sourceId": "exercise.probability.addition",
+    "targetId": "concept.probability.addition",
+    "dimensions": {
+      "contribution": 0.5
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade11"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.probability.addition.concept.probability.mutually-exclusive",
+    "type": "covers",
+    "sourceId": "exercise.probability.addition",
+    "targetId": "concept.probability.mutually-exclusive",
+    "dimensions": {
+      "contribution": 0.5
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade11"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.probability.tree-manual.concept.probability.tree",
+    "type": "covers",
+    "sourceId": "exercise.probability.tree-manual",
+    "targetId": "concept.probability.tree",
+    "dimensions": {
+      "contribution": 0.75
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade11"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.covers.exercise.probability.tree-manual.concept.probability.repeated",
+    "type": "covers",
+    "sourceId": "exercise.probability.tree-manual",
+    "targetId": "concept.probability.repeated",
+    "dimensions": {
+      "contribution": 0.75
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade11"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.belongs-to.lesson.grade11.01.phase.grade11.probability",
+    "type": "belongs-to",
+    "sourceId": "lesson.grade11.01",
+    "targetId": "phase.grade11.probability",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade11"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade11.01.resource.probability-basics",
+    "type": "uses",
+    "sourceId": "lesson.grade11.01",
+    "targetId": "resource.probability-basics",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade11"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade11.01.exercise.probability.sample-space-die",
+    "type": "uses",
+    "sourceId": "lesson.grade11.01",
+    "targetId": "exercise.probability.sample-space-die",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade11"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade11.01.exercise.probability.coin-two",
+    "type": "uses",
+    "sourceId": "lesson.grade11.01",
+    "targetId": "exercise.probability.coin-two",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade11"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.belongs-to.lesson.grade11.02.phase.grade11.probability",
+    "type": "belongs-to",
+    "sourceId": "lesson.grade11.02",
+    "targetId": "phase.grade11.probability",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade11"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.uses.lesson.grade11.02.exercise.probability.even-die",
+    "type": "uses",
+    "sourceId": "lesson.grade11.02",
+    "targetId": "exercise.probability.even-die",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade11"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.contains.annual-plan.grade11.demo.phase.grade11.probability",
+    "type": "contains",
+    "sourceId": "annual-plan.grade11.demo",
+    "targetId": "phase.grade11.probability",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade11"
+    },
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "version": 0
+  }
+]

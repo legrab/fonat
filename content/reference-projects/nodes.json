@@ -1,0 +1,747 @@
+[
+  {
+    "id": "subject.informatics",
+    "type": "subject",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Informatika"
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Adatábrázolás, algoritmikus gondolkodás és egyszerű programalkotás."
+      }
+    },
+    "lifecycle": "published",
+    "quality": "experimental",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.informatics"],
+    "searchText": "Informatika Adatábrázolás, algoritmikus gondolkodás és egyszerű programalkotás.",
+    "payload": {
+      "code": "informatics",
+      "aliases": ["digitális kultúra"],
+      "gradeApplicability": ["5-12"],
+      "conceptNamespace": "concept.informatics",
+      "terminology": {},
+      "capabilityModuleIds": []
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "subject.informatics"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["subject"],
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "updatedAt": "2026-09-15T06:00:00.000Z"
+  },
+  {
+    "id": "concept.binary-numbers",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Bináris számábrázolás"
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Mennyiségek és kódok ábrázolása 0 és 1 jelekkel."
+      }
+    },
+    "lifecycle": "published",
+    "quality": "experimental",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.informatics", "subject.math"],
+    "searchText": "Bináris számábrázolás Mennyiségek és kódok ábrázolása 0 és 1 jelekkel.",
+    "payload": {
+      "aliases": ["kettes számrendszer"],
+      "conceptSubtype": "representation"
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "concept.binary-numbers"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["project", "binary"],
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "updatedAt": "2026-09-15T06:00:00.000Z"
+  },
+  {
+    "id": "concept.pattern-matching",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Mintázatfelismerés"
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Ismétlődés, eltérés és folytatási szabály felismerése."
+      }
+    },
+    "lifecycle": "published",
+    "quality": "experimental",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.informatics", "subject.math"],
+    "searchText": "Mintázatfelismerés Ismétlődés, eltérés és folytatási szabály felismerése.",
+    "payload": {
+      "aliases": ["szabályfelismerés"],
+      "conceptSubtype": "computational-thinking"
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "concept.pattern-matching"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["project", "pattern"],
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "updatedAt": "2026-09-15T06:00:00.000Z"
+  },
+  {
+    "id": "concept.fractions",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Törtek mint részek"
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Az egész egyenlő részeinek értelmezése és összehasonlítása."
+      }
+    },
+    "lifecycle": "published",
+    "quality": "experimental",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Törtek mint részek Az egész egyenlő részeinek értelmezése és összehasonlítása.",
+    "payload": {
+      "aliases": ["egész részei"],
+      "conceptSubtype": "number"
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "concept.fractions"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["project", "fractions"],
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "updatedAt": "2026-09-15T06:00:00.000Z"
+  },
+  {
+    "id": "resource.project.mushroom-story",
+    "type": "resource",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "A gombakert történetkártyája"
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Rövid eredeti történet és a négy erdei állat bemutatása."
+      }
+    },
+    "lifecycle": "published",
+    "quality": "experimental",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.informatics", "subject.math"],
+    "searchText": "A gombakert történetkártyája Rövid eredeti történet és a négy erdei állat bemutatása.",
+    "payload": {
+      "kind": "markdown",
+      "markdown": "## Szökés a gombakertből\n\nMakk, Boróka, Csipke és Füles egy különös gombakert közepén ébrednek. A kijárat három rövid próbával nyílik ki. Mindegyikük másban erős, ezért csak együtt találhatják meg az utat.\n\nA szereplők, a szöveg és a feladatok eredeti Fonat referenciaanyagok."
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "resource.project.mushroom-story"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["project", "story"],
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "updatedAt": "2026-09-15T06:00:00.000Z"
+  },
+  {
+    "id": "exercise.project.binary-gate",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "A harmatkapu kódja"
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Rövid bináris dekódoló kihívás."
+      }
+    },
+    "lifecycle": "published",
+    "quality": "experimental",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.informatics", "subject.math"],
+    "searchText": "A harmatkapu kódja Rövid bináris dekódoló kihívás.",
+    "payload": {
+      "exerciseType": "single-choice",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "A gombák fénye ezt mutatja: 1 0 1 0. Melyik tízes számot jelöli?"
+        }
+      },
+      "options": [
+        {
+          "id": "8",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "8"
+            }
+          },
+          "correct": false
+        },
+        {
+          "id": "10",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "10"
+            }
+          },
+          "correct": true
+        },
+        {
+          "id": "12",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "12"
+            }
+          },
+          "correct": false
+        },
+        {
+          "id": "14",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "14"
+            }
+          },
+          "correct": false
+        }
+      ],
+      "expected": "10",
+      "acceptedAnswers": [],
+      "durationMinutes": 4,
+      "difficulty": 2,
+      "evidenceIntensity": "light",
+      "concepts": ["concept.binary-numbers"],
+      "purpose": ["project-challenge"],
+      "scaffold": [
+        {
+          "level": 1,
+          "label": "Helyiértékek",
+          "content": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Olvasd balról jobbra a 8, 4, 2, 1 helyiértékeket."
+            }
+          }
+        }
+      ],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "exercise.project.binary-gate"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["project", "exercise"],
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "updatedAt": "2026-09-15T06:00:00.000Z"
+  },
+  {
+    "id": "exercise.project.pattern-path",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "A mintázatos ösvény"
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Ismétlődő szerkezet felismerése történetbe ágyazva."
+      }
+    },
+    "lifecycle": "published",
+    "quality": "experimental",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.informatics", "subject.math"],
+    "searchText": "A mintázatos ösvény Ismétlődő szerkezet felismerése történetbe ágyazva.",
+    "payload": {
+      "exerciseType": "single-choice",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "A jelzőgombák sorrendje: piros, kék, kék, piros, kék, kék, … Mi következik?"
+        }
+      },
+      "options": [
+        {
+          "id": "red",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "piros"
+            }
+          },
+          "correct": true
+        },
+        {
+          "id": "blue",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "kék"
+            }
+          },
+          "correct": false
+        },
+        {
+          "id": "green",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "zöld"
+            }
+          },
+          "correct": false
+        }
+      ],
+      "expected": "red",
+      "acceptedAnswers": [],
+      "durationMinutes": 3,
+      "difficulty": 1,
+      "evidenceIntensity": "light",
+      "concepts": ["concept.pattern-matching"],
+      "purpose": ["project-challenge"],
+      "scaffold": [
+        {
+          "level": 1,
+          "label": "Csoportosítás",
+          "content": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Jelöld meg a háromelemes ismétlődő blokkokat."
+            }
+          }
+        }
+      ],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "exercise.project.pattern-path"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["project", "exercise"],
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "updatedAt": "2026-09-15T06:00:00.000Z"
+  },
+  {
+    "id": "exercise.project.fraction-baskets",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "A törtes gombakosarak"
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "A részek és az egész kapcsolatát használó prototípus."
+      }
+    },
+    "lifecycle": "published",
+    "quality": "experimental",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "A törtes gombakosarak A részek és az egész kapcsolatát használó prototípus.",
+    "payload": {
+      "exerciseType": "numeric",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Tizenkét gombából a készlet 3/4 részét kell elhelyezni. Hány gombát tegyenek le?"
+        }
+      },
+      "options": [],
+      "expected": 9,
+      "acceptedAnswers": ["9"],
+      "tolerance": 0,
+      "unit": "gomba",
+      "durationMinutes": 5,
+      "difficulty": 2,
+      "evidenceIntensity": "standard",
+      "concepts": ["concept.fractions"],
+      "purpose": ["project-challenge"],
+      "scaffold": [
+        {
+          "level": 1,
+          "label": "Negyedek",
+          "content": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Előbb számold ki 12 egynegyedét."
+            }
+          }
+        },
+        {
+          "level": 2,
+          "label": "Három rész",
+          "content": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Az egynegyed eredményét vedd háromszor."
+            }
+          }
+        }
+      ],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "exercise.project.fraction-baskets"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["project", "exercise"],
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "updatedAt": "2026-09-15T06:00:00.000Z"
+  },
+  {
+    "id": "activity-template.project.binary-gate",
+    "type": "activity-template",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Bináris kapunyitó próba"
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Újrahasználható páros projekttevékenység."
+      }
+    },
+    "lifecycle": "published",
+    "quality": "experimental",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.informatics", "subject.math"],
+    "searchText": "Bináris kapunyitó próba Újrahasználható páros projekttevékenység.",
+    "payload": {
+      "exerciseIds": ["exercise.project.binary-gate"],
+      "defaultDurationMinutes": 6,
+      "grouping": "pairs",
+      "teacherInstructions": "Boróka rövid történeti bevezetője után a párok indokolják a választ.",
+      "evidencePolicy": "one-decision-explanation"
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "activity-template.project.binary-gate"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["project", "activity-template"],
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "updatedAt": "2026-09-15T06:00:00.000Z"
+  },
+  {
+    "id": "activity-template.project.pattern-path",
+    "type": "activity-template",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Mintázatos ösvény próba"
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Gyors csoportos mintázatfelismerő tevékenység."
+      }
+    },
+    "lifecycle": "published",
+    "quality": "experimental",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.informatics", "subject.math"],
+    "searchText": "Mintázatos ösvény próba Gyors csoportos mintázatfelismerő tevékenység.",
+    "payload": {
+      "exerciseIds": ["exercise.project.pattern-path"],
+      "defaultDurationMinutes": 5,
+      "grouping": "small-groups",
+      "teacherInstructions": "Makk szerepében egy tanuló rámutat az ismétlődő blokkra.",
+      "evidencePolicy": "oral-demonstration"
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "activity-template.project.pattern-path"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["project", "activity-template"],
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "updatedAt": "2026-09-15T06:00:00.000Z"
+  },
+  {
+    "id": "activity-template.project.fraction-baskets",
+    "type": "activity-template",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Törtes gombakosár próba"
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Manipulatív törtes projekttevékenység."
+      }
+    },
+    "lifecycle": "published",
+    "quality": "experimental",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Törtes gombakosár próba Manipulatív törtes projekttevékenység.",
+    "payload": {
+      "exerciseIds": ["exercise.project.fraction-baskets"],
+      "defaultDurationMinutes": 8,
+      "grouping": "physical-manipulative",
+      "teacherInstructions": "Csipke kosarait korongokkal vagy papírgombákkal modellezzék.",
+      "evidencePolicy": "show-steps"
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "activity-template.project.fraction-baskets"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["project", "activity-template"],
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "updatedAt": "2026-09-15T06:00:00.000Z"
+  },
+  {
+    "id": "project.mushroom-yard",
+    "type": "project",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Szökés a gombakertből"
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Kis, szándékosan befejezetlen projekt erdei állatokkal, bináris számokkal, mintázatokkal és törtekkel."
+      }
+    },
+    "lifecycle": "published",
+    "quality": "experimental",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math", "subject.informatics"],
+    "searchText": "Szökés a gombakertből Kis, szándékosan befejezetlen projekt erdei állatokkal, bináris számokkal, mintázatokkal és törtekkel.",
+    "payload": {
+      "subjectIds": ["subject.math", "subject.informatics"],
+      "courseIds": ["course.grade8.math"],
+      "learnerGroupIds": ["group.grade8-a"],
+      "conceptIds": ["concept.binary-numbers", "concept.pattern-matching", "concept.fractions"],
+      "curriculumRequirementIds": [],
+      "resourceIds": ["resource.project.mushroom-story"],
+      "activityTemplateIds": [
+        "activity-template.project.binary-gate",
+        "activity-template.project.pattern-path",
+        "activity-template.project.fraction-baskets"
+      ],
+      "assignmentIds": [],
+      "expectedOutputs": ["Egy 10–15 perces, papíron vagy egyszerű webes felületen végigjátszható próba"],
+      "equipment": ["nyomtatható kártyák", "gombajelző korongok", "opcionális egyszerű webes felület"],
+      "preparationNotes": "Az eredeti erdei állatszereplők a gombakertből próbálnak kijutni. A feladatok rövidek, történetbe ágyazottak és Bebras-jellegű gondolkodást kérnek, de nem másolnak Bebras-feladatot.",
+      "characters": [
+        {
+          "id": "makk",
+          "name": "Makk",
+          "species": "mókus",
+          "strength": "gyorsan észreveszi az ismétlődő mintákat",
+          "storyRole": "ő fedezi fel a gombák közötti rejtett ösvényt"
+        },
+        {
+          "id": "boroka",
+          "name": "Boróka",
+          "species": "borz",
+          "strength": "türelmesen átváltja és rendszerezi a jeleket",
+          "storyRole": "ő fejti meg a bináris kapu kódját"
+        },
+        {
+          "id": "csipke",
+          "name": "Csipke",
+          "species": "sün",
+          "strength": "pontosan osztja részekre a készleteket",
+          "storyRole": "ő rendezi helyre a törtes gombakosarakat"
+        },
+        {
+          "id": "fules",
+          "name": "Füles",
+          "species": "erdei nyúl",
+          "strength": "összeköti a többiek részmegoldásait",
+          "storyRole": "ő vezeti át a csapatot a kijárathoz"
+        }
+      ],
+      "challengeSequence": [
+        {
+          "id": "binary-gate",
+          "title": "A harmatkapu kódja",
+          "kind": "binary",
+          "summary": "A világító gombák 0 és 1 jeleiből kell összeállítani a kapunyitó számot.",
+          "exerciseId": "exercise.project.binary-gate",
+          "status": "ready"
+        },
+        {
+          "id": "pattern-path",
+          "title": "A mintázatos ösvény",
+          "kind": "pattern-matching",
+          "summary": "A csapatnak fel kell ismernie, melyik gombasor folytatja a szabályt.",
+          "exerciseId": "exercise.project.pattern-path",
+          "status": "ready"
+        },
+        {
+          "id": "fraction-baskets",
+          "title": "A törtes gombakosarak",
+          "kind": "fractions",
+          "summary": "A kijárathoz a kosarak megfelelő hányadát kell a három jelölt helyre tenni.",
+          "exerciseId": "exercise.project.fraction-baskets",
+          "status": "draft"
+        }
+      ],
+      "contributorOpportunities": [
+        "Készíts új, eredeti bináris rejtvényt.",
+        "Adj külön döntési pontot Füles szerepéhez.",
+        "Fejezd be és teszteld a törtes gombakosár kihívást.",
+        "Készíts akadálymentes, billentyűzettel használható webes prototípust."
+      ]
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "project.mushroom-yard"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["project", "computational-thinking"],
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "updatedAt": "2026-09-15T06:00:00.000Z"
+  }
+]

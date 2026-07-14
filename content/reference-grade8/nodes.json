@@ -1,0 +1,6529 @@
+[
+  {
+    "id": "concept.natural-square",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Természetes szám négyzete",
+        "en": "Natural-number square"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Természetes szám négyzete Natural-number square",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.natural-square"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.exponent-two",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Második hatvány",
+        "en": "Exponent with exponent two"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Második hatvány Exponent with exponent two",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.exponent-two"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.square-root",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Négyzetgyök",
+        "en": "Square root"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Négyzetgyök Square root",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.square-root"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.approx-square-root",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Közelítő négyzetgyök",
+        "en": "Approximate square root"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Közelítő négyzetgyök Approximate square root",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.approx-square-root"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.length-units",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Hosszúság és mértékegységek",
+        "en": "Length and units"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Hosszúság és mértékegységek Length and units",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.length-units"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.unit-conversion",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Mértékegység-átváltás",
+        "en": "Unit conversion"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Mértékegység-átváltás Unit conversion",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.unit-conversion"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.triangle",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Háromszög",
+        "en": "Triangle"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Háromszög Triangle",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.triangle"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.right-angle",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Derékszög",
+        "en": "Right angle"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Derékszög Right angle",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.right-angle"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.right-triangle",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Derékszögű háromszög",
+        "en": "Right triangle"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Derékszögű háromszög Right triangle",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.right-triangle"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.leg",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Befogó",
+        "en": "Leg of a right triangle"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Befogó Leg of a right triangle",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.leg"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.hypotenuse",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Átfogó",
+        "en": "Hypotenuse"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Átfogó Hypotenuse",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.hypotenuse"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.square-area",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Négyzet területe",
+        "en": "Square area"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Négyzet területe Square area",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.square-area"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.pythagorean",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Pitagorasz-tétel",
+        "en": "Pythagorean theorem"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Pitagorasz-tétel Pythagorean theorem",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.pythagorean"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.identify-hypotenuse",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Az átfogó felismerése",
+        "en": "Identify the hypotenuse"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Az átfogó felismerése Identify the hypotenuse",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.identify-hypotenuse"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.missing-hypotenuse",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Hiányzó átfogó kiszámítása",
+        "en": "Calculate a missing hypotenuse"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Hiányzó átfogó kiszámítása Calculate a missing hypotenuse",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.missing-hypotenuse"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.missing-leg",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Hiányzó befogó kiszámítása",
+        "en": "Calculate a missing leg"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Hiányzó befogó kiszámítása Calculate a missing leg",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.missing-leg"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.validate-sides",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Háromszög oldalainak ellenőrzése",
+        "en": "Validate triangle side lengths"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Háromszög oldalainak ellenőrzése Validate triangle side lengths",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.validate-sides"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.converse",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "A Pitagorasz-tétel megfordítása",
+        "en": "Converse of the Pythagorean theorem"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "A Pitagorasz-tétel megfordítása Converse of the Pythagorean theorem",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.converse"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.plausibility",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Becslés és valószerűségi ellenőrzés",
+        "en": "Estimation and plausibility check"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Becslés és valószerűségi ellenőrzés Estimation and plausibility check",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.plausibility"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.math-modelling",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Matematikai modell szövegből",
+        "en": "Mathematical modelling from text"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Matematikai modell szövegből Mathematical modelling from text",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.math-modelling"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.rectangle-diagonal",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Téglalap átlója",
+        "en": "Rectangle diagonal"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Téglalap átlója Rectangle diagonal",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.rectangle-diagonal"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.coordinate-plane",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Koordináta-rendszer",
+        "en": "Coordinate plane"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Koordináta-rendszer Coordinate plane",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.coordinate-plane"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.point-distance",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Két pont távolsága",
+        "en": "Distance between two points"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Két pont távolsága Distance between two points",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.point-distance"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "concept.visual-area-proof",
+    "type": "concept",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "A tétel területi szemléltetése",
+        "en": "Visual area interpretation"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "A tétel területi szemléltetése Visual area interpretation",
+    "payload": {},
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "concept.visual-area-proof"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "geometria"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "resource.right-triangle-vocabulary",
+    "type": "resource",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Derékszögű háromszög szókincse",
+        "en": "Right-triangle vocabulary"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Derékszögű háromszög szókincse Right-triangle vocabulary",
+    "payload": {
+      "kind": "markdown",
+      "markdown": "## Befogók és átfogó\nA derékszöget közrefogó oldalak a **befogók**. A derékszöggel szemközti oldal az **átfogó**.",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 220\" role=\"img\"><title>Derékszögű háromszög befogókkal és átfogóval</title><path d=\"M40 180 L40 40 L270 180 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"5\"/><path d=\"M40 160 h20 v20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\"/><text x=\"20\" y=\"110\" font-size=\"20\">a</text><text x=\"145\" y=\"205\" font-size=\"20\">b</text><text x=\"170\" y=\"95\" font-size=\"20\">c</text></svg>",
+      "altHu": "Derékszögű háromszög a, b befogókkal és c átfogóval."
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "resource.right-triangle-vocabulary"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["geometria", "szókincs"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "resource.pythagorean-visual-proof",
+    "type": "resource",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "A Pitagorasz-tétel területi képe",
+        "en": "Area-based Pythagorean proof"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "A Pitagorasz-tétel területi képe Area-based Pythagorean proof",
+    "payload": {
+      "kind": "markdown",
+      "markdown": "A befogókra rajzolt négyzetek területének összege megegyezik az átfogóra rajzolt négyzet területével.",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 250\" role=\"img\"><title>A Pitagorasz-tétel területi szemléltetése</title><path d=\"M90 190 L90 70 L250 190 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\"/><rect x=\"40\" y=\"70\" width=\"50\" height=\"120\" fill=\"none\" stroke=\"currentColor\"/><rect x=\"90\" y=\"190\" width=\"160\" height=\"45\" fill=\"none\" stroke=\"currentColor\"/><text x=\"130\" y=\"130\" font-size=\"22\">a² + b² = c²</text></svg>",
+      "altHu": "Négyzetekkel szemléltetett Pitagorasz-tétel."
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "resource.pythagorean-visual-proof"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["bizonyítás", "vizualizáció"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "resource.missing-hypotenuse-worked-example",
+    "type": "resource",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Hiányzó átfogó: kidolgozott példa"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Hiányzó átfogó: kidolgozott példa",
+    "payload": {
+      "kind": "markdown",
+      "markdown": "1. Jelöld az átfogót.\n2. Írd fel: $a^2+b^2=c^2$.\n3. Helyettesíts be.\n4. Vonj gyököt.\n\nPélda: $6^2+8^2=c^2$, ezért $c=10$."
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "resource.missing-hypotenuse-worked-example"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["lépésről-lépésre"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "resource.missing-leg-worked-example",
+    "type": "resource",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Hiányzó befogó: kidolgozott példa"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Hiányzó befogó: kidolgozott példa",
+    "payload": {
+      "kind": "markdown",
+      "markdown": "Ha az átfogó ismert: $a^2=c^2-b^2$. Gyakori hiba, hogy a kivonás sorrendje megfordul."
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "resource.missing-leg-worked-example"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["lépésről-lépésre", "gyakori-hiba"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "resource.coordinate-distance-bridge",
+    "type": "resource",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Koordinátakülönbségekből derékszögű háromszög"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Koordinátakülönbségekből derékszögű háromszög",
+    "payload": {
+      "kind": "math.2d-plot",
+      "viewport": {
+        "x": [-1, 8],
+        "y": [-1, 7]
+      },
+      "axes": true,
+      "points": [
+        {
+          "x": 1,
+          "y": 1,
+          "label": "A"
+        },
+        {
+          "x": 7,
+          "y": 5,
+          "label": "B"
+        }
+      ],
+      "segments": [
+        {
+          "from": [1, 1],
+          "to": [7, 1],
+          "label": "Δx"
+        },
+        {
+          "from": [7, 1],
+          "to": [7, 5],
+          "label": "Δy"
+        },
+        {
+          "from": [1, 1],
+          "to": [7, 5],
+          "label": "d"
+        }
+      ]
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "resource.coordinate-distance-bridge"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["koordináta", "mafs"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "resource.wolfram-pythagorean-exploration",
+    "type": "resource",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Pitagorasz-tétel felfedezése a WolframAlpha segítségével"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Pitagorasz-tétel felfedezése a WolframAlpha segítségével",
+    "payload": {
+      "kind": "external-link",
+      "provider": "wolfram-alpha",
+      "labelHu": "Nyisd meg az interaktív példát",
+      "expression": "3^2+4^2=5^2",
+      "url": "https://www.wolframalpha.com/input?i=3%5E2%2B4%5E2%3D5%5E2",
+      "externallyHosted": true
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "resource.wolfram-pythagorean-exploration"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["külső", "wolfram"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "exercise.identify-hypotenuse-01",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Melyik oldal az átfogó a derékszögű háromszögben?",
+        "en": "Which side is the hypotenuse?"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 2,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Melyik oldal az átfogó a derékszögű háromszögben? Which side is the hypotenuse?",
+    "payload": {
+      "exerciseType": "single-choice",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Melyik oldal az átfogó a derékszögű háromszögben?",
+          "en": "Which side is the hypotenuse?"
+        }
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Az a oldal"
+            }
+          },
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "A b oldal"
+            }
+          },
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "A c oldal"
+            }
+          },
+          "correct": true
+        }
+      ],
+      "acceptedAnswers": [],
+      "durationMinutes": 2,
+      "difficulty": {
+        "cognitive": 1,
+        "prerequisites": 1,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "none",
+      "concepts": ["concept.hypotenuse", "concept.identify-hypotenuse"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "exercise.identify-hypotenuse-01"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "hypotenuse", "identify-hypotenuse"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "exercise.identify-hypotenuse-02",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "A háromszöget elforgattuk. Jelöld ki az átfogót!"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "A háromszöget elforgattuk. Jelöld ki az átfogót!",
+    "payload": {
+      "exerciseType": "single-choice",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "A háromszöget elforgattuk. Jelöld ki az átfogót!"
+        }
+      },
+      "options": [
+        {
+          "id": "p",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "A derékszöget közrefogó rövidebb oldal"
+            }
+          },
+          "correct": false
+        },
+        {
+          "id": "q",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "A derékszöggel szemközti oldal"
+            }
+          },
+          "correct": true
+        },
+        {
+          "id": "r",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Bármelyik leghosszabbnak tűnő oldal"
+            }
+          },
+          "correct": false
+        }
+      ],
+      "acceptedAnswers": [],
+      "durationMinutes": 2,
+      "difficulty": {
+        "cognitive": 1,
+        "prerequisites": 1,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "none",
+      "concepts": ["concept.hypotenuse", "concept.identify-hypotenuse"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "exercise.identify-hypotenuse-02"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "hypotenuse", "identify-hypotenuse"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "exercise.square-values-recap",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Rendezd növekvő sorrendbe: 3², 6², 4², 5²."
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Rendezd növekvő sorrendbe: 3², 6², 4², 5².",
+    "payload": {
+      "exerciseType": "ordered",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Rendezd növekvő sorrendbe: 3², 6², 4², 5²."
+        }
+      },
+      "options": [],
+      "expected": ["3²", "4²", "5²", "6²"],
+      "acceptedAnswers": [],
+      "durationMinutes": 4,
+      "difficulty": {
+        "cognitive": 1,
+        "prerequisites": 1,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "none",
+      "concepts": ["concept.natural-square", "concept.exponent-two"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "exercise.square-values-recap"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "natural-square", "exponent-two"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "exercise.square-root-recap",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Mennyi $\\sqrt{144}$?"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Mennyi $\\sqrt{144}$?",
+    "payload": {
+      "exerciseType": "numeric",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Mennyi $\\sqrt{144}$?"
+        }
+      },
+      "options": [],
+      "expected": 12,
+      "acceptedAnswers": [],
+      "durationMinutes": 4,
+      "difficulty": {
+        "cognitive": 1,
+        "prerequisites": 1,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "none",
+      "concepts": ["concept.square-root"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "exercise.square-root-recap"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "square-root"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "exercise.discover-3-4-5",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Hasonlítsd össze a 3, 4 és 5 oldalú derékszögű háromszög oldalaira raj"
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Felfedeztető területi feladat."
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Hasonlítsd össze a 3, 4 és 5 oldalú derékszögű háromszög oldalaira raj  Felfedeztető területi feladat.",
+    "payload": {
+      "exerciseType": "manual-explanation",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Hasonlítsd össze a 3, 4 és 5 oldalú derékszögű háromszög oldalaira rajzolt négyzetek területét. Mit veszel észre?"
+        }
+      },
+      "options": [],
+      "acceptedAnswers": [],
+      "durationMinutes": 8,
+      "difficulty": {
+        "cognitive": 2,
+        "prerequisites": 2,
+        "independence": 2,
+        "teacherPreparation": 1,
+        "collaboration": 3
+      },
+      "evidenceIntensity": "light",
+      "concepts": ["concept.visual-area-proof", "concept.pythagorean"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "exercise.discover-3-4-5"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "visual-area-proof", "pythagorean"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "exercise.theorem-true-false",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Igaz vagy hamis: a Pitagorasz-tétel minden háromszögre alkalmazható."
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Igaz vagy hamis: a Pitagorasz-tétel minden háromszögre alkalmazható.",
+    "payload": {
+      "exerciseType": "true-false",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Igaz vagy hamis: a Pitagorasz-tétel minden háromszögre alkalmazható."
+        }
+      },
+      "options": [
+        {
+          "id": "true",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Igaz"
+            }
+          },
+          "correct": false
+        },
+        {
+          "id": "false",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Hamis"
+            }
+          },
+          "correct": true
+        }
+      ],
+      "acceptedAnswers": [],
+      "durationMinutes": 4,
+      "difficulty": {
+        "cognitive": 2,
+        "prerequisites": 2,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "none",
+      "concepts": ["concept.pythagorean", "concept.right-triangle"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "exercise.theorem-true-false"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "pythagorean", "right-triangle"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "exercise.missing-hypotenuse-6-8",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Egy derékszögű háromszög befogói 6 cm és 8 cm hosszúak. Mekkora az átf"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Egy derékszögű háromszög befogói 6 cm és 8 cm hosszúak. Mekkora az átf",
+    "payload": {
+      "exerciseType": "numeric",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Egy derékszögű háromszög befogói 6 cm és 8 cm hosszúak. Mekkora az átfogó?"
+        }
+      },
+      "options": [],
+      "expected": 10,
+      "acceptedAnswers": [],
+      "unit": "cm",
+      "durationMinutes": 5,
+      "difficulty": {
+        "cognitive": 2,
+        "prerequisites": 2,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "none",
+      "concepts": ["concept.missing-hypotenuse", "concept.pythagorean"],
+      "purpose": ["practice"],
+      "scaffold": [
+        {
+          "level": 1,
+          "label": "Első tipp",
+          "content": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Először keresd meg a derékszöggel szemközti oldalt."
+            }
+          }
+        },
+        {
+          "level": 2,
+          "label": "Képlet",
+          "content": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Használd: $a^2+b^2=c^2$."
+            }
+          }
+        },
+        {
+          "level": 3,
+          "label": "Első lépés",
+          "content": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Számítsd ki külön a két befogó négyzetét."
+            }
+          }
+        },
+        {
+          "level": 4,
+          "label": "Teljes magyarázat",
+          "content": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Add össze a négyzeteket, majd vond ki a négyzetgyököt."
+            }
+          }
+        }
+      ],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "exercise.missing-hypotenuse-6-8"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "missing-hypotenuse", "pythagorean"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "exercise.missing-hypotenuse-decimal",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Egy derékszögű háromszög befogói 5 cm és 7 cm. Add meg az átfogót két "
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 2,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Egy derékszögű háromszög befogói 5 cm és 7 cm. Add meg az átfogót két",
+    "payload": {
+      "exerciseType": "numeric",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Egy derékszögű háromszög befogói 5 cm és 7 cm. Add meg az átfogót két tizedesre kerekítve!"
+        }
+      },
+      "options": [],
+      "expected": 8.6,
+      "acceptedAnswers": [],
+      "tolerance": 0.02,
+      "unit": "cm",
+      "durationMinutes": 6,
+      "difficulty": {
+        "cognitive": 3,
+        "prerequisites": 3,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "light",
+      "concepts": ["concept.missing-hypotenuse", "concept.approx-square-root", "concept.plausibility"],
+      "purpose": ["practice"],
+      "scaffold": [
+        {
+          "level": 1,
+          "label": "Első tipp",
+          "content": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Először keresd meg a derékszöggel szemközti oldalt."
+            }
+          }
+        },
+        {
+          "level": 2,
+          "label": "Képlet",
+          "content": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Használd: $a^2+b^2=c^2$."
+            }
+          }
+        },
+        {
+          "level": 3,
+          "label": "Első lépés",
+          "content": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Számítsd ki külön a két befogó négyzetét."
+            }
+          }
+        },
+        {
+          "level": 4,
+          "label": "Teljes magyarázat",
+          "content": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Add össze a négyzeteket, majd vond ki a négyzetgyököt."
+            }
+          }
+        }
+      ],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "exercise.missing-hypotenuse-decimal"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "missing-hypotenuse", "approx-square-root", "plausibility"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "exercise.missing-leg-13-5",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Egy derékszögű háromszög átfogója 13 cm, egyik befogója 5 cm. Mekkora "
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Egy derékszögű háromszög átfogója 13 cm, egyik befogója 5 cm. Mekkora",
+    "payload": {
+      "exerciseType": "numeric",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Egy derékszögű háromszög átfogója 13 cm, egyik befogója 5 cm. Mekkora a másik befogó?"
+        }
+      },
+      "options": [],
+      "expected": 12,
+      "acceptedAnswers": [],
+      "unit": "cm",
+      "durationMinutes": 6,
+      "difficulty": {
+        "cognitive": 3,
+        "prerequisites": 3,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "none",
+      "concepts": ["concept.missing-leg", "concept.pythagorean"],
+      "purpose": ["practice"],
+      "scaffold": [
+        {
+          "level": 1,
+          "label": "Első tipp",
+          "content": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Először keresd meg a derékszöggel szemközti oldalt."
+            }
+          }
+        },
+        {
+          "level": 2,
+          "label": "Képlet",
+          "content": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Használd: $a^2+b^2=c^2$."
+            }
+          }
+        },
+        {
+          "level": 3,
+          "label": "Első lépés",
+          "content": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Számítsd ki külön a két befogó négyzetét."
+            }
+          }
+        },
+        {
+          "level": 4,
+          "label": "Teljes magyarázat",
+          "content": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Add össze a négyzeteket, majd vond ki a négyzetgyököt."
+            }
+          }
+        }
+      ],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "exercise.missing-leg-13-5"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "missing-leg", "pythagorean"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "exercise.missing-leg-common-mistake",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Egy tanuló ezt írta: $a^2=5^2-13^2$. Melyik az első hibás lépés, és ho"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Egy tanuló ezt írta: $a^2=5^2-13^2$. Melyik az első hibás lépés, és ho",
+    "payload": {
+      "exerciseType": "manual-explanation",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Egy tanuló ezt írta: $a^2=5^2-13^2$. Melyik az első hibás lépés, és hogyan javítanád?"
+        }
+      },
+      "options": [],
+      "acceptedAnswers": [],
+      "durationMinutes": 6,
+      "difficulty": {
+        "cognitive": 3,
+        "prerequisites": 3,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "standard",
+      "concepts": ["concept.missing-leg", "concept.plausibility"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "exercise.missing-leg-common-mistake"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "missing-leg", "plausibility"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "exercise.rectangle-diagonal",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Egy téglalap oldalai 9 cm és 12 cm. Mekkora az átlója?"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Egy téglalap oldalai 9 cm és 12 cm. Mekkora az átlója?",
+    "payload": {
+      "exerciseType": "numeric",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Egy téglalap oldalai 9 cm és 12 cm. Mekkora az átlója?"
+        }
+      },
+      "options": [],
+      "expected": 15,
+      "acceptedAnswers": [],
+      "unit": "cm",
+      "durationMinutes": 7,
+      "difficulty": {
+        "cognitive": 2,
+        "prerequisites": 2,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "none",
+      "concepts": ["concept.rectangle-diagonal", "concept.missing-hypotenuse"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "exercise.rectangle-diagonal"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "rectangle-diagonal", "missing-hypotenuse"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "exercise.ladder-wall",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Egy 10 m hosszú létra alja 6 m-re van a faltól. Milyen magasra ér fel?"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Egy 10 m hosszú létra alja 6 m-re van a faltól. Milyen magasra ér fel?",
+    "payload": {
+      "exerciseType": "numeric",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Egy 10 m hosszú létra alja 6 m-re van a faltól. Milyen magasra ér fel?"
+        }
+      },
+      "options": [],
+      "expected": 8,
+      "acceptedAnswers": [],
+      "unit": "m",
+      "durationMinutes": 8,
+      "difficulty": {
+        "cognitive": 3,
+        "prerequisites": 3,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "light",
+      "concepts": ["concept.math-modelling", "concept.missing-leg", "concept.length-units"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "exercise.ladder-wall"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "math-modelling", "missing-leg", "length-units"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "exercise.is-right-triangle",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Mely oldalhármasok alkothatnak derékszögű háromszöget?"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Mely oldalhármasok alkothatnak derékszögű háromszöget?",
+    "payload": {
+      "exerciseType": "multi-select",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Mely oldalhármasok alkothatnak derékszögű háromszöget?"
+        }
+      },
+      "options": [
+        {
+          "id": "345",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "3, 4, 5"
+            }
+          },
+          "correct": true
+        },
+        {
+          "id": "5610",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "5, 6, 10"
+            }
+          },
+          "correct": false
+        },
+        {
+          "id": "51213",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "5, 12, 13"
+            }
+          },
+          "correct": true
+        },
+        {
+          "id": "7810",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "7, 8, 10"
+            }
+          },
+          "correct": false
+        }
+      ],
+      "acceptedAnswers": [],
+      "durationMinutes": 7,
+      "difficulty": {
+        "cognitive": 3,
+        "prerequisites": 3,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "none",
+      "concepts": ["concept.validate-sides", "concept.converse"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "exercise.is-right-triangle"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "validate-sides", "converse"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "exercise.converse-explanation",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Mutasd meg számítással, hogy az 8, 15, 17 oldalhármas derékszögű három"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Mutasd meg számítással, hogy az 8, 15, 17 oldalhármas derékszögű három",
+    "payload": {
+      "exerciseType": "manual-explanation",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Mutasd meg számítással, hogy az 8, 15, 17 oldalhármas derékszögű háromszöget ad!"
+        }
+      },
+      "options": [],
+      "acceptedAnswers": [],
+      "durationMinutes": 8,
+      "difficulty": {
+        "cognitive": 4,
+        "prerequisites": 4,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "deep",
+      "concepts": ["concept.converse", "concept.validate-sides"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "exercise.converse-explanation"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "converse", "validate-sides"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "exercise.coordinate-distance-01",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Mekkora az A(1;1) és B(7;9) pontok távolsága?"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Mekkora az A(1;1) és B(7;9) pontok távolsága?",
+    "payload": {
+      "exerciseType": "numeric",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Mekkora az A(1;1) és B(7;9) pontok távolsága?"
+        }
+      },
+      "options": [],
+      "expected": 10,
+      "acceptedAnswers": [],
+      "durationMinutes": 7,
+      "difficulty": {
+        "cognitive": 3,
+        "prerequisites": 3,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "none",
+      "concepts": ["concept.point-distance", "concept.coordinate-plane"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "exercise.coordinate-distance-01"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "point-distance", "coordinate-plane"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "exercise.coordinate-distance-02",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Mekkora az A(-1;2) és B(4;8) pontok távolsága két tizedesre?"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Mekkora az A(-1;2) és B(4;8) pontok távolsága két tizedesre?",
+    "payload": {
+      "exerciseType": "numeric",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Mekkora az A(-1;2) és B(4;8) pontok távolsága két tizedesre?"
+        }
+      },
+      "options": [],
+      "expected": 7.81,
+      "acceptedAnswers": [],
+      "tolerance": 0.02,
+      "durationMinutes": 8,
+      "difficulty": {
+        "cognitive": 4,
+        "prerequisites": 4,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "none",
+      "concepts": ["concept.point-distance", "concept.approx-square-root"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "exercise.coordinate-distance-02"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "point-distance", "approx-square-root"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "exercise.choose-method",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Melyik módszer kell: hiányzó átfogó, hiányzó befogó vagy nem alkalmazh"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Melyik módszer kell: hiányzó átfogó, hiányzó befogó vagy nem alkalmazh",
+    "payload": {
+      "exerciseType": "single-choice",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Melyik módszer kell: hiányzó átfogó, hiányzó befogó vagy nem alkalmazható a tétel?"
+        }
+      },
+      "options": [
+        {
+          "id": "hypotenuse",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Hiányzó átfogó"
+            }
+          },
+          "correct": true
+        },
+        {
+          "id": "leg",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Hiányzó befogó"
+            }
+          },
+          "correct": false
+        },
+        {
+          "id": "na",
+          "text": {
+            "canonicalLanguage": "hu",
+            "values": {
+              "hu": "Nem alkalmazható"
+            }
+          },
+          "correct": false
+        }
+      ],
+      "acceptedAnswers": [],
+      "durationMinutes": 6,
+      "difficulty": {
+        "cognitive": 2,
+        "prerequisites": 2,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "light",
+      "concepts": ["concept.identify-hypotenuse", "concept.pythagorean"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "exercise.choose-method"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "identify-hypotenuse", "pythagorean"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "exercise.exit-ticket",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Egy 9 és 12 egység hosszú befogójú háromszög átfogója? Add meg a válas"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Egy 9 és 12 egység hosszú befogójú háromszög átfogója? Add meg a válas",
+    "payload": {
+      "exerciseType": "exit-ticket",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Egy 9 és 12 egység hosszú befogójú háromszög átfogója? Add meg a választ, majd jelöld a magabiztosságodat."
+        }
+      },
+      "options": [],
+      "expected": 15,
+      "acceptedAnswers": [],
+      "durationMinutes": 4,
+      "difficulty": {
+        "cognitive": 2,
+        "prerequisites": 2,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "light",
+      "concepts": ["concept.missing-hypotenuse", "concept.plausibility"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "exercise.exit-ticket"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "missing-hypotenuse", "plausibility"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "exercise.ambiguous-draft",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Számítsd ki a háromszöget!"
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Szándékosan kétértelmű demófeladat."
+      }
+    },
+    "lifecycle": "draft",
+    "quality": "experimental",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Számítsd ki a háromszöget!  Szándékosan kétértelmű demófeladat.",
+    "payload": {
+      "exerciseType": "manual-explanation",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Számítsd ki a háromszöget!"
+        }
+      },
+      "options": [],
+      "acceptedAnswers": [],
+      "durationMinutes": 5,
+      "difficulty": {
+        "cognitive": 2,
+        "prerequisites": 2,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "none",
+      "concepts": ["concept.triangle"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "exercise.ambiguous-draft"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "triangle"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "generated.pythagoras.a",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Egy derékszögű háromszög befogói 7 cm és 24 cm hosszúak. Mekkora az át"
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Reprodukálható generált példány: alpha"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Egy derékszögű háromszög befogói 7 cm és 24 cm hosszúak. Mekkora az át  Reprodukálható generált példány: alpha",
+    "payload": {
+      "exerciseType": "numeric",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Egy derékszögű háromszög befogói 7 cm és 24 cm hosszúak. Mekkora az átfogó?"
+        }
+      },
+      "options": [],
+      "expected": 25,
+      "acceptedAnswers": [],
+      "unit": "cm",
+      "durationMinutes": 5,
+      "difficulty": {
+        "cognitive": 2,
+        "prerequisites": 2,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "none",
+      "concepts": ["concept.pythagorean", "concept.missing-hypotenuse"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "generated.pythagoras.a"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "pythagorean", "missing-hypotenuse"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "generated.pythagoras.b",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Egy derékszögű háromszög átfogója 25 cm, egyik befogója 24 cm. Mekkora"
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Reprodukálható generált példány: beta"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Egy derékszögű háromszög átfogója 25 cm, egyik befogója 24 cm. Mekkora  Reprodukálható generált példány: beta",
+    "payload": {
+      "exerciseType": "numeric",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Egy derékszögű háromszög átfogója 25 cm, egyik befogója 24 cm. Mekkora a másik befogó?"
+        }
+      },
+      "options": [],
+      "expected": 7,
+      "acceptedAnswers": [],
+      "unit": "cm",
+      "durationMinutes": 5,
+      "difficulty": {
+        "cognitive": 2,
+        "prerequisites": 2,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "none",
+      "concepts": ["concept.pythagorean", "concept.missing-leg"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "generated.pythagoras.b"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "pythagorean", "missing-leg"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "generated.pythagoras.c",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Egy derékszögű háromszög átfogója 15 cm, egyik befogója 9 cm. Mekkora "
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Reprodukálható generált példány: gamma"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Egy derékszögű háromszög átfogója 15 cm, egyik befogója 9 cm. Mekkora   Reprodukálható generált példány: gamma",
+    "payload": {
+      "exerciseType": "numeric",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Egy derékszögű háromszög átfogója 15 cm, egyik befogója 9 cm. Mekkora a másik befogó?"
+        }
+      },
+      "options": [],
+      "expected": 12,
+      "acceptedAnswers": [],
+      "unit": "cm",
+      "durationMinutes": 5,
+      "difficulty": {
+        "cognitive": 2,
+        "prerequisites": 2,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "none",
+      "concepts": ["concept.pythagorean", "concept.missing-leg"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "generated.pythagoras.c"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "pythagorean", "missing-leg"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "generated.pythagoras.d",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Egy 5 m széles és 12 m hosszú téglalap alakú udvaron átlósan vezetünk "
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Reprodukálható generált példány: delta"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Egy 5 m széles és 12 m hosszú téglalap alakú udvaron átlósan vezetünk   Reprodukálható generált példány: delta",
+    "payload": {
+      "exerciseType": "numeric",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Egy 5 m széles és 12 m hosszú téglalap alakú udvaron átlósan vezetünk át egy kábelt. Milyen hosszú a kábel?"
+        }
+      },
+      "options": [],
+      "expected": 13,
+      "acceptedAnswers": [],
+      "unit": "m",
+      "durationMinutes": 5,
+      "difficulty": {
+        "cognitive": 2,
+        "prerequisites": 2,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "none",
+      "concepts": ["concept.pythagorean", "concept.missing-hypotenuse"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "generated.pythagoras.d"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "pythagorean", "missing-hypotenuse"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "generated.pythagoras.e",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Egy derékszögű háromszög befogói 8 cm és 15 cm hosszúak. Mekkora az át"
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Reprodukálható generált példány: epsilon"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Egy derékszögű háromszög befogói 8 cm és 15 cm hosszúak. Mekkora az át  Reprodukálható generált példány: epsilon",
+    "payload": {
+      "exerciseType": "numeric",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Egy derékszögű háromszög befogói 8 cm és 15 cm hosszúak. Mekkora az átfogó?"
+        }
+      },
+      "options": [],
+      "expected": 17,
+      "acceptedAnswers": [],
+      "unit": "cm",
+      "durationMinutes": 5,
+      "difficulty": {
+        "cognitive": 2,
+        "prerequisites": 2,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "none",
+      "concepts": ["concept.pythagorean", "concept.missing-hypotenuse"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "generated.pythagoras.e"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "pythagorean", "missing-hypotenuse"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "generated.pythagoras.f",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Egy 5 m széles és 12 m hosszú téglalap alakú udvaron átlósan vezetünk "
+      }
+    },
+    "summary": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Reprodukálható generált példány: zeta"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Egy 5 m széles és 12 m hosszú téglalap alakú udvaron átlósan vezetünk   Reprodukálható generált példány: zeta",
+    "payload": {
+      "exerciseType": "numeric",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": {
+          "hu": "Egy 5 m széles és 12 m hosszú téglalap alakú udvaron átlósan vezetünk át egy kábelt. Milyen hosszú a kábel?"
+        }
+      },
+      "options": [],
+      "expected": 13,
+      "acceptedAnswers": [],
+      "unit": "m",
+      "durationMinutes": 5,
+      "difficulty": {
+        "cognitive": 2,
+        "prerequisites": 2,
+        "independence": 3,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "none",
+      "concepts": ["concept.pythagorean", "concept.missing-hypotenuse"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "generated.pythagoras.f"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "pythagorean", "missing-hypotenuse"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "family.pythagorean-integer-triples",
+    "type": "exercise-family",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Egész Pitagoraszi számhármasok"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Egész Pitagoraszi számhármasok",
+    "payload": {
+      "generator": "math.pythagorean-integer-triples",
+      "forms": ["missing-hypotenuse", "missing-first-leg", "missing-second-leg", "context"],
+      "seeds": ["alpha", "beta", "gamma", "delta", "epsilon", "zeta"]
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "family.pythagorean-integer-triples"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["generátor", "pitagorasz"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "profile.balanced",
+    "type": "teaching-profile",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Kiegyensúlyozott normál osztály"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Kiegyensúlyozott normál osztály",
+    "payload": {
+      "targetDifficulty": 3,
+      "repetition": "moderate",
+      "evidenceIntensity": "light",
+      "participation": ["individual", "pair", "whole-class", "phone"],
+      "feedback": "scaffold-first"
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "profile.balanced"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": [],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "profile.advanced",
+    "type": "teaching-profile",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Kis haladó csoport"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Kis haladó csoport",
+    "payload": {
+      "targetDifficulty": 4,
+      "repetition": "low",
+      "transferRatio": 0.3,
+      "evidenceIntensity": "standard",
+      "participation": ["independent", "discussion"],
+      "feedback": "delayed-answer"
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "profile.advanced"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": [],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "profile.support",
+    "type": "teaching-profile",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Támogató fókuszú osztály"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Támogató fókuszú osztály",
+    "payload": {
+      "targetDifficulty": 2,
+      "repetition": "high",
+      "evidenceIntensity": "light",
+      "participation": ["guided", "pair", "quiet"],
+      "feedback": "scaffold-first"
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "profile.support"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": [],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "blueprint.introduction-45",
+    "type": "lesson-blueprint",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "45 perces bevezető óra"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "45 perces bevezető óra",
+    "payload": {
+      "durationMinutes": 45,
+      "sections": [
+        ["Előkészítés és felidézés", 5],
+        ["Problémafelvetés", 8],
+        ["Irányított felfedezés", 12],
+        ["Formalizálás", 10],
+        ["Gyakorlás", 7],
+        ["Lezárás", 3]
+      ]
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "blueprint.introduction-45"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": [],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "blueprint.practice-45",
+    "type": "lesson-blueprint",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "45 perces gyakorló és megszilárdító óra"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "45 perces gyakorló és megszilárdító óra",
+    "payload": {
+      "durationMinutes": 45,
+      "sections": [
+        ["Felidézés", 5],
+        ["Kidolgozott példa", 8],
+        ["Differenciált gyakorlás", 20],
+        ["Interaktív ellenőrzés", 7],
+        ["Lezárás és házi feladat", 5]
+      ]
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "blueprint.practice-45"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": [],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "blueprint.recap-20",
+    "type": "lesson-blueprint",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "20 perces ismétlés vagy formatív ellenőrzés"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "20 perces ismétlés vagy formatív ellenőrzés",
+    "payload": {
+      "durationMinutes": 20,
+      "sections": [
+        ["Felidézés", 3],
+        ["Kvíz", 10],
+        ["Javítás", 5],
+        ["Kilépőkártya", 2]
+      ]
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "blueprint.recap-20"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": [],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "layout.compact",
+    "type": "lesson-layout",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Tömör egyoldalas tanári lap"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Tömör egyoldalas tanári lap",
+    "payload": {
+      "template": "compact",
+      "fields": ["objective", "timeline", "prompts", "resources", "answers", "notes"]
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "layout.compact"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": [],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "layout.detailed",
+    "type": "lesson-layout",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Részletes tanári útmutató"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Részletes tanári útmutató",
+    "payload": {
+      "template": "detailed",
+      "fields": ["instructions", "differentiation", "answers", "misconceptions", "slides", "follow-up"]
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "layout.detailed"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": [],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "classroom.grade8.demo",
+    "type": "classroom",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "8. évfolyam – Pitagorasz demó"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "8. évfolyam – Pitagorasz demó",
+    "payload": {
+      "schoolSystem": "hu",
+      "grade": 8,
+      "subject": "mathematics",
+      "code": "FONAT8",
+      "demo": true,
+      "style": "approachable"
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "classroom.grade8.demo"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": [],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "curriculum.hu.math.grade8",
+    "type": "curriculum",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Magyar matematika 8. évfolyam"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Magyar matematika 8. évfolyam",
+    "payload": {
+      "schoolSystem": "hu",
+      "grade": 8,
+      "subject": "mathematics",
+      "requirementIds": [
+        "requirement.natural-square",
+        "requirement.exponent-two",
+        "requirement.square-root",
+        "requirement.approx-square-root",
+        "requirement.length-units",
+        "requirement.unit-conversion",
+        "requirement.triangle",
+        "requirement.right-angle",
+        "requirement.right-triangle",
+        "requirement.leg",
+        "requirement.hypotenuse",
+        "requirement.square-area",
+        "requirement.pythagorean",
+        "requirement.identify-hypotenuse",
+        "requirement.missing-hypotenuse",
+        "requirement.missing-leg",
+        "requirement.validate-sides",
+        "requirement.converse",
+        "requirement.plausibility",
+        "requirement.math-modelling",
+        "requirement.rectangle-diagonal",
+        "requirement.coordinate-plane",
+        "requirement.point-distance",
+        "requirement.visual-area-proof"
+      ]
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "curriculum.hu.math.grade8"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": [],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.natural-square",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Természetes szám négyzete – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Természetes szám négyzete – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.natural-square"],
+      "requiredDepth": "required",
+      "targetPeriod": "first-semester",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.natural-square"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.exponent-two",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Második hatvány – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Második hatvány – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.exponent-two"],
+      "requiredDepth": "required",
+      "targetPeriod": "first-semester",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.exponent-two"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.square-root",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Négyzetgyök – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Négyzetgyök – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.square-root"],
+      "requiredDepth": "required",
+      "targetPeriod": "first-semester",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.square-root"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.approx-square-root",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Közelítő négyzetgyök – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Közelítő négyzetgyök – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.approx-square-root"],
+      "requiredDepth": "required",
+      "targetPeriod": "first-semester",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.approx-square-root"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.length-units",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Hosszúság és mértékegységek – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Hosszúság és mértékegységek – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.length-units"],
+      "requiredDepth": "required",
+      "targetPeriod": "first-semester",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.length-units"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.unit-conversion",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Mértékegység-átváltás – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Mértékegység-átváltás – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.unit-conversion"],
+      "requiredDepth": "required",
+      "targetPeriod": "first-semester",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.unit-conversion"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.triangle",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Háromszög – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Háromszög – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.triangle"],
+      "requiredDepth": "required",
+      "targetPeriod": "first-semester",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.triangle"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.right-angle",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Derékszög – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Derékszög – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.right-angle"],
+      "requiredDepth": "required",
+      "targetPeriod": "first-semester",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.right-angle"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.right-triangle",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Derékszögű háromszög – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Derékszögű háromszög – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.right-triangle"],
+      "requiredDepth": "required",
+      "targetPeriod": "first-semester",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.right-triangle"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.leg",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Befogó – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Befogó – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.leg"],
+      "requiredDepth": "required",
+      "targetPeriod": "first-semester",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.leg"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.hypotenuse",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Átfogó – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Átfogó – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.hypotenuse"],
+      "requiredDepth": "required",
+      "targetPeriod": "first-semester",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.hypotenuse"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.square-area",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Négyzet területe – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Négyzet területe – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.square-area"],
+      "requiredDepth": "required",
+      "targetPeriod": "first-semester",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.square-area"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.pythagorean",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Pitagorasz-tétel – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Pitagorasz-tétel – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.pythagorean"],
+      "requiredDepth": "required",
+      "targetPeriod": "first-semester",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.pythagorean"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.identify-hypotenuse",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Az átfogó felismerése – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Az átfogó felismerése – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.identify-hypotenuse"],
+      "requiredDepth": "extension",
+      "targetPeriod": "first-semester",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.identify-hypotenuse"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.missing-hypotenuse",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Hiányzó átfogó kiszámítása – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Hiányzó átfogó kiszámítása – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.missing-hypotenuse"],
+      "requiredDepth": "extension",
+      "targetPeriod": "first-semester",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.missing-hypotenuse"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.missing-leg",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Hiányzó befogó kiszámítása – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Hiányzó befogó kiszámítása – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.missing-leg"],
+      "requiredDepth": "extension",
+      "targetPeriod": "first-semester",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.missing-leg"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.validate-sides",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Háromszög oldalainak ellenőrzése – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Háromszög oldalainak ellenőrzése – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.validate-sides"],
+      "requiredDepth": "extension",
+      "targetPeriod": "open",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.validate-sides"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.converse",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "A Pitagorasz-tétel megfordítása – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "A Pitagorasz-tétel megfordítása – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.converse"],
+      "requiredDepth": "extension",
+      "targetPeriod": "open",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.converse"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.plausibility",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Becslés és valószerűségi ellenőrzés – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Becslés és valószerűségi ellenőrzés – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.plausibility"],
+      "requiredDepth": "extension",
+      "targetPeriod": "open",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.plausibility"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.math-modelling",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Matematikai modell szövegből – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Matematikai modell szövegből – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.math-modelling"],
+      "requiredDepth": "extension",
+      "targetPeriod": "open",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.math-modelling"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.rectangle-diagonal",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Téglalap átlója – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Téglalap átlója – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.rectangle-diagonal"],
+      "requiredDepth": "extension",
+      "targetPeriod": "open",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.rectangle-diagonal"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.coordinate-plane",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Koordináta-rendszer – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Koordináta-rendszer – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.coordinate-plane"],
+      "requiredDepth": "extension",
+      "targetPeriod": "open",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.coordinate-plane"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.point-distance",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Két pont távolsága – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Két pont távolsága – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.point-distance"],
+      "requiredDepth": "extension",
+      "targetPeriod": "open",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.point-distance"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "requirement.visual-area-proof",
+    "type": "curriculum-requirement",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "A tétel területi szemléltetése – tantervi elvárás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "A tétel területi szemléltetése – tantervi elvárás",
+    "payload": {
+      "conceptIds": ["concept.visual-area-proof"],
+      "requiredDepth": "extension",
+      "targetPeriod": "open",
+      "weight": 1
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "requirement.visual-area-proof"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["tanterv"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "annual-plan.grade8.demo",
+    "type": "annual-plan",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "8. évfolyam 2026/27 – demó éves terv"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "8. évfolyam 2026/27 – demó éves terv",
+    "payload": {
+      "classroomId": "classroom.grade8.demo",
+      "curriculumId": "curriculum.hu.math.grade8",
+      "schoolYear": "2026/27",
+      "weeklyLessons": 3,
+      "teachingProfileId": "profile.balanced",
+      "phaseIds": ["phase.grade8.pythagorean"],
+      "omittedRequirements": [
+        {
+          "requirementId": "requirement.visual-area-proof",
+          "justification": "Másik matematika projektben részletesen feldolgozva."
+        }
+      ]
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "annual-plan.grade8.demo"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": [],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "phase.grade8.pythagorean",
+    "type": "phase",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Derékszögű háromszögek és Pitagorasz-tétel"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Derékszögű háromszögek és Pitagorasz-tétel",
+    "payload": {
+      "annualPlanId": "annual-plan.grade8.demo",
+      "approximateLessons": 12,
+      "conceptIds": [
+        "concept.natural-square",
+        "concept.exponent-two",
+        "concept.square-root",
+        "concept.approx-square-root",
+        "concept.length-units",
+        "concept.unit-conversion",
+        "concept.triangle",
+        "concept.right-angle",
+        "concept.right-triangle",
+        "concept.leg",
+        "concept.hypotenuse",
+        "concept.square-area",
+        "concept.pythagorean",
+        "concept.identify-hypotenuse",
+        "concept.missing-hypotenuse",
+        "concept.missing-leg",
+        "concept.validate-sides",
+        "concept.converse",
+        "concept.plausibility",
+        "concept.math-modelling",
+        "concept.rectangle-diagonal",
+        "concept.coordinate-plane",
+        "concept.point-distance",
+        "concept.visual-area-proof"
+      ],
+      "status": "active"
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "phase.grade8.pythagorean"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": [],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "lesson.grade8.01",
+    "type": "lesson",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Előismeretek felidézése"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Előismeretek felidézése",
+    "payload": {
+      "classroomId": "classroom.grade8.demo",
+      "annualPlanId": "annual-plan.grade8.demo",
+      "phaseId": "phase.grade8.pythagorean",
+      "date": "2026-09-01",
+      "durationMinutes": 45,
+      "intent": "revision",
+      "teachingProfileId": "profile.balanced",
+      "blueprintId": "blueprint.practice-45",
+      "layoutId": "layout.compact",
+      "conceptIds": ["concept.pythagorean"],
+      "sections": [
+        {
+          "id": "lesson.grade8.01.section.1",
+          "title": "Négyzetek",
+          "durationMinutes": 10,
+          "purpose": "négyzetek",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.square-values-recap"],
+          "slides": [
+            {
+              "id": "lesson.grade8.01.slide.1.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Négyzetek",
+              "content": "## Négyzetek"
+            },
+            {
+              "id": "lesson.grade8.01.slide.1.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.square-values-recap"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.01.section.2",
+          "title": "Négyzetgyökök",
+          "durationMinutes": 12,
+          "purpose": "négyzetgyökök",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.square-root-recap"],
+          "slides": [
+            {
+              "id": "lesson.grade8.01.slide.2.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Négyzetgyökök",
+              "content": "## Négyzetgyökök"
+            },
+            {
+              "id": "lesson.grade8.01.slide.2.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.square-root-recap"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.01.section.3",
+          "title": "Háromszög-szókincs",
+          "durationMinutes": 15,
+          "purpose": "háromszög-szókincs",
+          "requiredActivityKinds": [],
+          "activityIds": ["resource.right-triangle-vocabulary", "exercise.identify-hypotenuse-01"],
+          "slides": [
+            {
+              "id": "lesson.grade8.01.slide.3.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Háromszög-szókincs",
+              "content": "## Háromszög-szókincs"
+            },
+            {
+              "id": "lesson.grade8.01.slide.3.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "resource.right-triangle-vocabulary"
+            },
+            {
+              "id": "lesson.grade8.01.slide.3.2",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.identify-hypotenuse-01"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.01.section.4",
+          "title": "Lezárás",
+          "durationMinutes": 8,
+          "purpose": "lezárás",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.exit-ticket"],
+          "slides": [
+            {
+              "id": "lesson.grade8.01.slide.4.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Lezárás",
+              "content": "## Lezárás"
+            },
+            {
+              "id": "lesson.grade8.01.slide.4.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.exit-ticket"
+            }
+          ]
+        }
+      ],
+      "pinnedRevisions": {
+        "exercise.square-values-recap": 1,
+        "exercise.square-root-recap": 1,
+        "resource.right-triangle-vocabulary": 1,
+        "exercise.identify-hypotenuse-01": 1,
+        "exercise.exit-ticket": 1
+      },
+      "status": "scheduled",
+      "teacherNotes": "",
+      "runtimeSummary": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "lesson.grade8.01"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["óra", "pitagorasz"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "lesson.grade8.02",
+    "type": "lesson",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "A kapcsolat felfedezése"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "A kapcsolat felfedezése",
+    "payload": {
+      "classroomId": "classroom.grade8.demo",
+      "annualPlanId": "annual-plan.grade8.demo",
+      "phaseId": "phase.grade8.pythagorean",
+      "date": "2026-09-03",
+      "durationMinutes": 45,
+      "intent": "introduction",
+      "teachingProfileId": "profile.balanced",
+      "blueprintId": "blueprint.introduction-45",
+      "layoutId": "layout.compact",
+      "conceptIds": ["concept.pythagorean"],
+      "sections": [
+        {
+          "id": "lesson.grade8.02.section.1",
+          "title": "Szókincs",
+          "durationMinutes": 5,
+          "purpose": "szókincs",
+          "requiredActivityKinds": [],
+          "activityIds": ["resource.right-triangle-vocabulary"],
+          "slides": [
+            {
+              "id": "lesson.grade8.02.slide.1.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Szókincs",
+              "content": "## Szókincs"
+            },
+            {
+              "id": "lesson.grade8.02.slide.1.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "resource.right-triangle-vocabulary"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.02.section.2",
+          "title": "Átfogó felismerése",
+          "durationMinutes": 8,
+          "purpose": "átfogó felismerése",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.identify-hypotenuse-02"],
+          "slides": [
+            {
+              "id": "lesson.grade8.02.slide.2.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Átfogó felismerése",
+              "content": "## Átfogó felismerése"
+            },
+            {
+              "id": "lesson.grade8.02.slide.2.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.identify-hypotenuse-02"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.02.section.3",
+          "title": "3–4–5 felfedezés",
+          "durationMinutes": 15,
+          "purpose": "3–4–5 felfedezés",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.discover-3-4-5"],
+          "slides": [
+            {
+              "id": "lesson.grade8.02.slide.3.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "3–4–5 felfedezés",
+              "content": "## 3–4–5 felfedezés"
+            },
+            {
+              "id": "lesson.grade8.02.slide.3.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.discover-3-4-5"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.02.section.4",
+          "title": "Területi kép",
+          "durationMinutes": 12,
+          "purpose": "területi kép",
+          "requiredActivityKinds": [],
+          "activityIds": ["resource.pythagorean-visual-proof"],
+          "slides": [
+            {
+              "id": "lesson.grade8.02.slide.4.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Területi kép",
+              "content": "## Területi kép"
+            },
+            {
+              "id": "lesson.grade8.02.slide.4.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "resource.pythagorean-visual-proof"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.02.section.5",
+          "title": "Bizalomjelzés",
+          "durationMinutes": 5,
+          "purpose": "bizalomjelzés",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.exit-ticket"],
+          "slides": [
+            {
+              "id": "lesson.grade8.02.slide.5.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Bizalomjelzés",
+              "content": "## Bizalomjelzés"
+            },
+            {
+              "id": "lesson.grade8.02.slide.5.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.exit-ticket"
+            }
+          ]
+        }
+      ],
+      "pinnedRevisions": {
+        "resource.right-triangle-vocabulary": 1,
+        "exercise.identify-hypotenuse-02": 1,
+        "exercise.discover-3-4-5": 1,
+        "resource.pythagorean-visual-proof": 1,
+        "exercise.exit-ticket": 1
+      },
+      "status": "scheduled",
+      "teacherNotes": "",
+      "runtimeSummary": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "lesson.grade8.02"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["óra", "pitagorasz"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "lesson.grade8.03",
+    "type": "lesson",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "A tétel és jelölése"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "A tétel és jelölése",
+    "payload": {
+      "classroomId": "classroom.grade8.demo",
+      "annualPlanId": "annual-plan.grade8.demo",
+      "phaseId": "phase.grade8.pythagorean",
+      "date": "2026-09-05",
+      "durationMinutes": 45,
+      "intent": "formalization",
+      "teachingProfileId": "profile.balanced",
+      "blueprintId": "blueprint.practice-45",
+      "layoutId": "layout.compact",
+      "conceptIds": ["concept.pythagorean"],
+      "sections": [
+        {
+          "id": "lesson.grade8.03.section.1",
+          "title": "Felidézés",
+          "durationMinutes": 5,
+          "purpose": "felidézés",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.identify-hypotenuse-01"],
+          "slides": [
+            {
+              "id": "lesson.grade8.03.slide.1.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Felidézés",
+              "content": "## Felidézés"
+            },
+            {
+              "id": "lesson.grade8.03.slide.1.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.identify-hypotenuse-01"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.03.section.2",
+          "title": "Tétel",
+          "durationMinutes": 10,
+          "purpose": "tétel",
+          "requiredActivityKinds": [],
+          "activityIds": ["resource.pythagorean-visual-proof"],
+          "slides": [
+            {
+              "id": "lesson.grade8.03.slide.2.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Tétel",
+              "content": "## Tétel"
+            },
+            {
+              "id": "lesson.grade8.03.slide.2.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "resource.pythagorean-visual-proof"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.03.section.3",
+          "title": "Kidolgozott példa",
+          "durationMinutes": 10,
+          "purpose": "kidolgozott példa",
+          "requiredActivityKinds": [],
+          "activityIds": ["resource.missing-hypotenuse-worked-example"],
+          "slides": [
+            {
+              "id": "lesson.grade8.03.slide.3.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Kidolgozott példa",
+              "content": "## Kidolgozott példa"
+            },
+            {
+              "id": "lesson.grade8.03.slide.3.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "resource.missing-hypotenuse-worked-example"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.03.section.4",
+          "title": "Igaz-hamis",
+          "durationMinutes": 10,
+          "purpose": "igaz-hamis",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.theorem-true-false"],
+          "slides": [
+            {
+              "id": "lesson.grade8.03.slide.4.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Igaz-hamis",
+              "content": "## Igaz-hamis"
+            },
+            {
+              "id": "lesson.grade8.03.slide.4.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.theorem-true-false"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.03.section.5",
+          "title": "Magyarázat és házi",
+          "durationMinutes": 10,
+          "purpose": "magyarázat és házi",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.discover-3-4-5"],
+          "slides": [
+            {
+              "id": "lesson.grade8.03.slide.5.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Magyarázat és házi",
+              "content": "## Magyarázat és házi"
+            },
+            {
+              "id": "lesson.grade8.03.slide.5.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.discover-3-4-5"
+            }
+          ]
+        }
+      ],
+      "pinnedRevisions": {
+        "exercise.identify-hypotenuse-01": 1,
+        "resource.pythagorean-visual-proof": 1,
+        "resource.missing-hypotenuse-worked-example": 1,
+        "exercise.theorem-true-false": 1,
+        "exercise.discover-3-4-5": 1
+      },
+      "status": "scheduled",
+      "teacherNotes": "",
+      "runtimeSummary": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "lesson.grade8.03"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["óra", "pitagorasz"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "lesson.grade8.04",
+    "type": "lesson",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Hiányzó átfogó"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Hiányzó átfogó",
+    "payload": {
+      "classroomId": "classroom.grade8.demo",
+      "annualPlanId": "annual-plan.grade8.demo",
+      "phaseId": "phase.grade8.pythagorean",
+      "date": "2026-09-08",
+      "durationMinutes": 45,
+      "intent": "practice",
+      "teachingProfileId": "profile.balanced",
+      "blueprintId": "blueprint.practice-45",
+      "layoutId": "layout.compact",
+      "conceptIds": ["concept.pythagorean"],
+      "sections": [
+        {
+          "id": "lesson.grade8.04.section.1",
+          "title": "Felidézés",
+          "durationMinutes": 5,
+          "purpose": "felidézés",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.theorem-true-false"],
+          "slides": [
+            {
+              "id": "lesson.grade8.04.slide.1.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Felidézés",
+              "content": "## Felidézés"
+            },
+            {
+              "id": "lesson.grade8.04.slide.1.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.theorem-true-false"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.04.section.2",
+          "title": "Kidolgozott példa",
+          "durationMinutes": 8,
+          "purpose": "kidolgozott példa",
+          "requiredActivityKinds": [],
+          "activityIds": ["resource.missing-hypotenuse-worked-example"],
+          "slides": [
+            {
+              "id": "lesson.grade8.04.slide.2.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Kidolgozott példa",
+              "content": "## Kidolgozott példa"
+            },
+            {
+              "id": "lesson.grade8.04.slide.2.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "resource.missing-hypotenuse-worked-example"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.04.section.3",
+          "title": "Egész eredmény",
+          "durationMinutes": 12,
+          "purpose": "egész eredmény",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.missing-hypotenuse-6-8", "generated.pythagoras.a"],
+          "slides": [
+            {
+              "id": "lesson.grade8.04.slide.3.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Egész eredmény",
+              "content": "## Egész eredmény"
+            },
+            {
+              "id": "lesson.grade8.04.slide.3.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.missing-hypotenuse-6-8"
+            },
+            {
+              "id": "lesson.grade8.04.slide.3.2",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "generated.pythagoras.a"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.04.section.4",
+          "title": "Közelítő eredmény",
+          "durationMinutes": 15,
+          "purpose": "közelítő eredmény",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.missing-hypotenuse-decimal"],
+          "slides": [
+            {
+              "id": "lesson.grade8.04.slide.4.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Közelítő eredmény",
+              "content": "## Közelítő eredmény"
+            },
+            {
+              "id": "lesson.grade8.04.slide.4.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.missing-hypotenuse-decimal"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.04.section.5",
+          "title": "Kilépőkártya",
+          "durationMinutes": 5,
+          "purpose": "kilépőkártya",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.exit-ticket"],
+          "slides": [
+            {
+              "id": "lesson.grade8.04.slide.5.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Kilépőkártya",
+              "content": "## Kilépőkártya"
+            },
+            {
+              "id": "lesson.grade8.04.slide.5.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.exit-ticket"
+            }
+          ]
+        }
+      ],
+      "pinnedRevisions": {
+        "exercise.theorem-true-false": 1,
+        "resource.missing-hypotenuse-worked-example": 1,
+        "exercise.missing-hypotenuse-6-8": 1,
+        "generated.pythagoras.a": 1,
+        "exercise.missing-hypotenuse-decimal": 1,
+        "exercise.exit-ticket": 1
+      },
+      "status": "completed",
+      "teacherNotes": "",
+      "runtimeSummary": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "lesson.grade8.04"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["óra", "pitagorasz"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "lesson.grade8.05",
+    "type": "lesson",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Hiányzó befogó"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Hiányzó befogó",
+    "payload": {
+      "classroomId": "classroom.grade8.demo",
+      "annualPlanId": "annual-plan.grade8.demo",
+      "phaseId": "phase.grade8.pythagorean",
+      "date": "2026-09-10",
+      "durationMinutes": 45,
+      "intent": "practice",
+      "teachingProfileId": "profile.balanced",
+      "blueprintId": "blueprint.practice-45",
+      "layoutId": "layout.compact",
+      "conceptIds": ["concept.pythagorean"],
+      "sections": [
+        {
+          "id": "lesson.grade8.05.section.1",
+          "title": "Felidézés",
+          "durationMinutes": 5,
+          "purpose": "felidézés",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.missing-hypotenuse-6-8"],
+          "slides": [
+            {
+              "id": "lesson.grade8.05.slide.1.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Felidézés",
+              "content": "## Felidézés"
+            },
+            {
+              "id": "lesson.grade8.05.slide.1.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.missing-hypotenuse-6-8"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.05.section.2",
+          "title": "Példa",
+          "durationMinutes": 8,
+          "purpose": "példa",
+          "requiredActivityKinds": [],
+          "activityIds": ["resource.missing-leg-worked-example"],
+          "slides": [
+            {
+              "id": "lesson.grade8.05.slide.2.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Példa",
+              "content": "## Példa"
+            },
+            {
+              "id": "lesson.grade8.05.slide.2.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "resource.missing-leg-worked-example"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.05.section.3",
+          "title": "Gyakorlás",
+          "durationMinutes": 20,
+          "purpose": "gyakorlás",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.missing-leg-13-5", "exercise.missing-leg-common-mistake"],
+          "slides": [
+            {
+              "id": "lesson.grade8.05.slide.3.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Gyakorlás",
+              "content": "## Gyakorlás"
+            },
+            {
+              "id": "lesson.grade8.05.slide.3.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.missing-leg-13-5"
+            },
+            {
+              "id": "lesson.grade8.05.slide.3.2",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.missing-leg-common-mistake"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.05.section.4",
+          "title": "Ellenőrzés",
+          "durationMinutes": 7,
+          "purpose": "ellenőrzés",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.choose-method"],
+          "slides": [
+            {
+              "id": "lesson.grade8.05.slide.4.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Ellenőrzés",
+              "content": "## Ellenőrzés"
+            },
+            {
+              "id": "lesson.grade8.05.slide.4.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.choose-method"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.05.section.5",
+          "title": "Lezárás",
+          "durationMinutes": 5,
+          "purpose": "lezárás",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.exit-ticket"],
+          "slides": [
+            {
+              "id": "lesson.grade8.05.slide.5.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Lezárás",
+              "content": "## Lezárás"
+            },
+            {
+              "id": "lesson.grade8.05.slide.5.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.exit-ticket"
+            }
+          ]
+        }
+      ],
+      "pinnedRevisions": {
+        "exercise.missing-hypotenuse-6-8": 1,
+        "resource.missing-leg-worked-example": 1,
+        "exercise.missing-leg-13-5": 1,
+        "exercise.missing-leg-common-mistake": 1,
+        "exercise.choose-method": 1,
+        "exercise.exit-ticket": 1
+      },
+      "status": "scheduled",
+      "teacherNotes": "",
+      "runtimeSummary": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "lesson.grade8.05"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["óra", "pitagorasz"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "lesson.grade8.06",
+    "type": "lesson",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Gyakorlati szöveges feladatok"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Gyakorlati szöveges feladatok",
+    "payload": {
+      "classroomId": "classroom.grade8.demo",
+      "annualPlanId": "annual-plan.grade8.demo",
+      "phaseId": "phase.grade8.pythagorean",
+      "date": "2026-09-12",
+      "durationMinutes": 45,
+      "intent": "application",
+      "teachingProfileId": "profile.balanced",
+      "blueprintId": "blueprint.practice-45",
+      "layoutId": "layout.compact",
+      "conceptIds": ["concept.pythagorean"],
+      "sections": [
+        {
+          "id": "lesson.grade8.06.section.1",
+          "title": "Modellezés",
+          "durationMinutes": 10,
+          "purpose": "modellezés",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.rectangle-diagonal"],
+          "slides": [
+            {
+              "id": "lesson.grade8.06.slide.1.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Modellezés",
+              "content": "## Modellezés"
+            },
+            {
+              "id": "lesson.grade8.06.slide.1.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.rectangle-diagonal"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.06.section.2",
+          "title": "Létra",
+          "durationMinutes": 15,
+          "purpose": "létra",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.ladder-wall"],
+          "slides": [
+            {
+              "id": "lesson.grade8.06.slide.2.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Létra",
+              "content": "## Létra"
+            },
+            {
+              "id": "lesson.grade8.06.slide.2.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.ladder-wall"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.06.section.3",
+          "title": "Csoportmunka",
+          "durationMinutes": 20,
+          "purpose": "csoportmunka",
+          "requiredActivityKinds": [],
+          "activityIds": ["generated.pythagoras.d", "generated.pythagoras.f"],
+          "slides": [
+            {
+              "id": "lesson.grade8.06.slide.3.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Csoportmunka",
+              "content": "## Csoportmunka"
+            },
+            {
+              "id": "lesson.grade8.06.slide.3.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "generated.pythagoras.d"
+            },
+            {
+              "id": "lesson.grade8.06.slide.3.2",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "generated.pythagoras.f"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.06.section.4",
+          "title": "Megbeszélés",
+          "durationMinutes": 10,
+          "purpose": "megbeszélés",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.choose-method"],
+          "slides": [
+            {
+              "id": "lesson.grade8.06.slide.4.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Megbeszélés",
+              "content": "## Megbeszélés"
+            },
+            {
+              "id": "lesson.grade8.06.slide.4.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.choose-method"
+            }
+          ]
+        }
+      ],
+      "pinnedRevisions": {
+        "exercise.rectangle-diagonal": 1,
+        "exercise.ladder-wall": 1,
+        "generated.pythagoras.d": 1,
+        "generated.pythagoras.f": 1,
+        "exercise.choose-method": 1
+      },
+      "status": "scheduled",
+      "teacherNotes": "",
+      "runtimeSummary": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "lesson.grade8.06"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["óra", "pitagorasz"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "lesson.grade8.07",
+    "type": "lesson",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Koordinátageometriai kapcsolat"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Koordinátageometriai kapcsolat",
+    "payload": {
+      "classroomId": "classroom.grade8.demo",
+      "annualPlanId": "annual-plan.grade8.demo",
+      "phaseId": "phase.grade8.pythagorean",
+      "date": "2026-09-15",
+      "durationMinutes": 45,
+      "intent": "connection",
+      "teachingProfileId": "profile.balanced",
+      "blueprintId": "blueprint.practice-45",
+      "layoutId": "layout.compact",
+      "conceptIds": ["concept.pythagorean"],
+      "sections": [
+        {
+          "id": "lesson.grade8.07.section.1",
+          "title": "Híd",
+          "durationMinutes": 10,
+          "purpose": "híd",
+          "requiredActivityKinds": [],
+          "activityIds": ["resource.coordinate-distance-bridge"],
+          "slides": [
+            {
+              "id": "lesson.grade8.07.slide.1.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Híd",
+              "content": "## Híd"
+            },
+            {
+              "id": "lesson.grade8.07.slide.1.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "resource.coordinate-distance-bridge"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.07.section.2",
+          "title": "Egész távolság",
+          "durationMinutes": 12,
+          "purpose": "egész távolság",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.coordinate-distance-01"],
+          "slides": [
+            {
+              "id": "lesson.grade8.07.slide.2.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Egész távolság",
+              "content": "## Egész távolság"
+            },
+            {
+              "id": "lesson.grade8.07.slide.2.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.coordinate-distance-01"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.07.section.3",
+          "title": "Közelítő távolság",
+          "durationMinutes": 15,
+          "purpose": "közelítő távolság",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.coordinate-distance-02"],
+          "slides": [
+            {
+              "id": "lesson.grade8.07.slide.3.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Közelítő távolság",
+              "content": "## Közelítő távolság"
+            },
+            {
+              "id": "lesson.grade8.07.slide.3.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.coordinate-distance-02"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.07.section.4",
+          "title": "Lezárás",
+          "durationMinutes": 8,
+          "purpose": "lezárás",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.exit-ticket"],
+          "slides": [
+            {
+              "id": "lesson.grade8.07.slide.4.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Lezárás",
+              "content": "## Lezárás"
+            },
+            {
+              "id": "lesson.grade8.07.slide.4.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.exit-ticket"
+            }
+          ]
+        }
+      ],
+      "pinnedRevisions": {
+        "resource.coordinate-distance-bridge": 1,
+        "exercise.coordinate-distance-01": 1,
+        "exercise.coordinate-distance-02": 1,
+        "exercise.exit-ticket": 1
+      },
+      "status": "scheduled",
+      "teacherNotes": "",
+      "runtimeSummary": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "lesson.grade8.07"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["óra", "pitagorasz"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "lesson.grade8.08",
+    "type": "lesson",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Differenciált gyakorlás"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Differenciált gyakorlás",
+    "payload": {
+      "classroomId": "classroom.grade8.demo",
+      "annualPlanId": "annual-plan.grade8.demo",
+      "phaseId": "phase.grade8.pythagorean",
+      "date": "2026-09-17",
+      "durationMinutes": 45,
+      "intent": "practice",
+      "teachingProfileId": "profile.balanced",
+      "blueprintId": "blueprint.practice-45",
+      "layoutId": "layout.compact",
+      "conceptIds": ["concept.pythagorean"],
+      "sections": [
+        {
+          "id": "lesson.grade8.08.section.1",
+          "title": "Választás",
+          "durationMinutes": 5,
+          "purpose": "választás",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.choose-method"],
+          "slides": [
+            {
+              "id": "lesson.grade8.08.slide.1.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Választás",
+              "content": "## Választás"
+            },
+            {
+              "id": "lesson.grade8.08.slide.1.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.choose-method"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.08.section.2",
+          "title": "Alap",
+          "durationMinutes": 15,
+          "purpose": "alap",
+          "requiredActivityKinds": [],
+          "activityIds": ["generated.pythagoras.b", "generated.pythagoras.c"],
+          "slides": [
+            {
+              "id": "lesson.grade8.08.slide.2.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Alap",
+              "content": "## Alap"
+            },
+            {
+              "id": "lesson.grade8.08.slide.2.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "generated.pythagoras.b"
+            },
+            {
+              "id": "lesson.grade8.08.slide.2.2",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "generated.pythagoras.c"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.08.section.3",
+          "title": "Haladó",
+          "durationMinutes": 15,
+          "purpose": "haladó",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.converse-explanation"],
+          "slides": [
+            {
+              "id": "lesson.grade8.08.slide.3.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Haladó",
+              "content": "## Haladó"
+            },
+            {
+              "id": "lesson.grade8.08.slide.3.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.converse-explanation"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.08.section.4",
+          "title": "Páros ellenőrzés",
+          "durationMinutes": 10,
+          "purpose": "páros ellenőrzés",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.is-right-triangle"],
+          "slides": [
+            {
+              "id": "lesson.grade8.08.slide.4.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Páros ellenőrzés",
+              "content": "## Páros ellenőrzés"
+            },
+            {
+              "id": "lesson.grade8.08.slide.4.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.is-right-triangle"
+            }
+          ]
+        }
+      ],
+      "pinnedRevisions": {
+        "exercise.choose-method": 1,
+        "generated.pythagoras.b": 1,
+        "generated.pythagoras.c": 1,
+        "exercise.converse-explanation": 1,
+        "exercise.is-right-triangle": 1
+      },
+      "status": "scheduled",
+      "teacherNotes": "",
+      "runtimeSummary": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "lesson.grade8.08"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["óra", "pitagorasz"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "lesson.grade8.09",
+    "type": "lesson",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Formatív ellenőrzés"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Formatív ellenőrzés",
+    "payload": {
+      "classroomId": "classroom.grade8.demo",
+      "annualPlanId": "annual-plan.grade8.demo",
+      "phaseId": "phase.grade8.pythagorean",
+      "date": "2026-09-19",
+      "durationMinutes": 20,
+      "intent": "formative-assessment",
+      "teachingProfileId": "profile.balanced",
+      "blueprintId": "blueprint.recap-20",
+      "layoutId": "layout.compact",
+      "conceptIds": ["concept.pythagorean"],
+      "sections": [
+        {
+          "id": "lesson.grade8.09.section.1",
+          "title": "Felidézés",
+          "durationMinutes": 3,
+          "purpose": "felidézés",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.identify-hypotenuse-01"],
+          "slides": [
+            {
+              "id": "lesson.grade8.09.slide.1.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Felidézés",
+              "content": "## Felidézés"
+            },
+            {
+              "id": "lesson.grade8.09.slide.1.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.identify-hypotenuse-01"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.09.section.2",
+          "title": "Kvíz",
+          "durationMinutes": 10,
+          "purpose": "kvíz",
+          "requiredActivityKinds": [],
+          "activityIds": [
+            "exercise.missing-hypotenuse-6-8",
+            "exercise.missing-leg-13-5",
+            "exercise.theorem-true-false"
+          ],
+          "slides": [
+            {
+              "id": "lesson.grade8.09.slide.2.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Kvíz",
+              "content": "## Kvíz"
+            },
+            {
+              "id": "lesson.grade8.09.slide.2.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.missing-hypotenuse-6-8"
+            },
+            {
+              "id": "lesson.grade8.09.slide.2.2",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.missing-leg-13-5"
+            },
+            {
+              "id": "lesson.grade8.09.slide.2.3",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.theorem-true-false"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.09.section.3",
+          "title": "Javítás",
+          "durationMinutes": 5,
+          "purpose": "javítás",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.missing-leg-common-mistake"],
+          "slides": [
+            {
+              "id": "lesson.grade8.09.slide.3.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Javítás",
+              "content": "## Javítás"
+            },
+            {
+              "id": "lesson.grade8.09.slide.3.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.missing-leg-common-mistake"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.09.section.4",
+          "title": "Kilépőkártya",
+          "durationMinutes": 2,
+          "purpose": "kilépőkártya",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.exit-ticket"],
+          "slides": [
+            {
+              "id": "lesson.grade8.09.slide.4.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Kilépőkártya",
+              "content": "## Kilépőkártya"
+            },
+            {
+              "id": "lesson.grade8.09.slide.4.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.exit-ticket"
+            }
+          ]
+        }
+      ],
+      "pinnedRevisions": {
+        "exercise.identify-hypotenuse-01": 1,
+        "exercise.missing-hypotenuse-6-8": 1,
+        "exercise.missing-leg-13-5": 1,
+        "exercise.theorem-true-false": 1,
+        "exercise.missing-leg-common-mistake": 1,
+        "exercise.exit-ticket": 1
+      },
+      "status": "completed",
+      "teacherNotes": "",
+      "runtimeSummary": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "lesson.grade8.09"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["óra", "pitagorasz"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "lesson.grade8.10",
+    "type": "lesson",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Javítás és célzott ismétlés"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Javítás és célzott ismétlés",
+    "payload": {
+      "classroomId": "classroom.grade8.demo",
+      "annualPlanId": "annual-plan.grade8.demo",
+      "phaseId": "phase.grade8.pythagorean",
+      "durationMinutes": 45,
+      "intent": "follow-up",
+      "teachingProfileId": "profile.balanced",
+      "blueprintId": "blueprint.practice-45",
+      "layoutId": "layout.compact",
+      "conceptIds": ["concept.pythagorean"],
+      "sections": [
+        {
+          "id": "lesson.grade8.10.section.1",
+          "title": "Négyzetgyök",
+          "durationMinutes": 10,
+          "purpose": "négyzetgyök",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.square-root-recap"],
+          "slides": [
+            {
+              "id": "lesson.grade8.10.slide.1.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Négyzetgyök",
+              "content": "## Négyzetgyök"
+            },
+            {
+              "id": "lesson.grade8.10.slide.1.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.square-root-recap"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.10.section.2",
+          "title": "Hibajavítás",
+          "durationMinutes": 15,
+          "purpose": "hibajavítás",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.missing-leg-common-mistake"],
+          "slides": [
+            {
+              "id": "lesson.grade8.10.slide.2.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Hibajavítás",
+              "content": "## Hibajavítás"
+            },
+            {
+              "id": "lesson.grade8.10.slide.2.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.missing-leg-common-mistake"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.10.section.3",
+          "title": "Célzott gyakorlás",
+          "durationMinutes": 15,
+          "purpose": "célzott gyakorlás",
+          "requiredActivityKinds": [],
+          "activityIds": ["generated.pythagoras.e"],
+          "slides": [
+            {
+              "id": "lesson.grade8.10.slide.3.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Célzott gyakorlás",
+              "content": "## Célzott gyakorlás"
+            },
+            {
+              "id": "lesson.grade8.10.slide.3.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "generated.pythagoras.e"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.10.section.4",
+          "title": "Lezárás",
+          "durationMinutes": 5,
+          "purpose": "lezárás",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.exit-ticket"],
+          "slides": [
+            {
+              "id": "lesson.grade8.10.slide.4.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Lezárás",
+              "content": "## Lezárás"
+            },
+            {
+              "id": "lesson.grade8.10.slide.4.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.exit-ticket"
+            }
+          ]
+        }
+      ],
+      "pinnedRevisions": {
+        "exercise.square-root-recap": 1,
+        "exercise.missing-leg-common-mistake": 1,
+        "generated.pythagoras.e": 1,
+        "exercise.exit-ticket": 1
+      },
+      "status": "draft",
+      "teacherNotes": "",
+      "runtimeSummary": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "lesson.grade8.10"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["óra", "pitagorasz"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "lesson.grade8.11",
+    "type": "lesson",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Témazáró értékelés"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Témazáró értékelés",
+    "payload": {
+      "classroomId": "classroom.grade8.demo",
+      "annualPlanId": "annual-plan.grade8.demo",
+      "phaseId": "phase.grade8.pythagorean",
+      "date": "2026-09-24",
+      "durationMinutes": 45,
+      "intent": "assessment",
+      "teachingProfileId": "profile.balanced",
+      "blueprintId": "blueprint.practice-45",
+      "layoutId": "layout.compact",
+      "conceptIds": ["concept.pythagorean"],
+      "sections": [
+        {
+          "id": "lesson.grade8.11.section.1",
+          "title": "Értékelés",
+          "durationMinutes": 40,
+          "purpose": "értékelés",
+          "requiredActivityKinds": [],
+          "activityIds": ["assessment.grade8.phase-closing"],
+          "slides": [
+            {
+              "id": "lesson.grade8.11.slide.1.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Értékelés",
+              "content": "## Értékelés"
+            },
+            {
+              "id": "lesson.grade8.11.slide.1.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "assessment.grade8.phase-closing"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.11.section.2",
+          "title": "Lezárás",
+          "durationMinutes": 5,
+          "purpose": "lezárás",
+          "requiredActivityKinds": [],
+          "activityIds": [],
+          "slides": [
+            {
+              "id": "lesson.grade8.11.slide.2.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Lezárás",
+              "content": "## Lezárás"
+            }
+          ]
+        }
+      ],
+      "pinnedRevisions": {
+        "assessment.grade8.phase-closing": 1
+      },
+      "status": "scheduled",
+      "teacherNotes": "",
+      "runtimeSummary": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "lesson.grade8.11"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["óra", "pitagorasz"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "lesson.grade8.12",
+    "type": "lesson",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Következő lépés az eredmények alapján"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Következő lépés az eredmények alapján",
+    "payload": {
+      "classroomId": "classroom.grade8.demo",
+      "annualPlanId": "annual-plan.grade8.demo",
+      "phaseId": "phase.grade8.pythagorean",
+      "durationMinutes": 45,
+      "intent": "follow-up",
+      "teachingProfileId": "profile.balanced",
+      "blueprintId": "blueprint.practice-45",
+      "layoutId": "layout.compact",
+      "conceptIds": ["concept.pythagorean"],
+      "sections": [
+        {
+          "id": "lesson.grade8.12.section.1",
+          "title": "Célzott ismétlés",
+          "durationMinutes": 15,
+          "purpose": "célzott ismétlés",
+          "requiredActivityKinds": [],
+          "activityIds": [],
+          "slides": [
+            {
+              "id": "lesson.grade8.12.slide.1.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Célzott ismétlés",
+              "content": "## Célzott ismétlés"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.12.section.2",
+          "title": "Új kapcsolat",
+          "durationMinutes": 20,
+          "purpose": "új kapcsolat",
+          "requiredActivityKinds": [],
+          "activityIds": [],
+          "slides": [
+            {
+              "id": "lesson.grade8.12.slide.2.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Új kapcsolat",
+              "content": "## Új kapcsolat"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.12.section.3",
+          "title": "Lezárás",
+          "durationMinutes": 10,
+          "purpose": "lezárás",
+          "requiredActivityKinds": [],
+          "activityIds": [],
+          "slides": [
+            {
+              "id": "lesson.grade8.12.slide.3.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Lezárás",
+              "content": "## Lezárás"
+            }
+          ]
+        }
+      ],
+      "pinnedRevisions": {},
+      "status": "draft",
+      "teacherNotes": "",
+      "runtimeSummary": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "lesson.grade8.12"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["óra", "pitagorasz"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "lesson.grade8.04.variant",
+    "type": "lesson",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Hiányzó átfogó – javított párhuzamos változat"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": [],
+    "searchText": "Hiányzó átfogó – javított párhuzamos változat",
+    "payload": {
+      "classroomId": "classroom.grade8.demo",
+      "annualPlanId": "annual-plan.grade8.demo",
+      "phaseId": "phase.grade8.pythagorean",
+      "date": "2026-09-08",
+      "durationMinutes": 45,
+      "intent": "practice",
+      "teachingProfileId": "profile.balanced",
+      "blueprintId": "blueprint.practice-45",
+      "layoutId": "layout.compact",
+      "conceptIds": ["concept.pythagorean"],
+      "sections": [
+        {
+          "id": "lesson.grade8.04.variant.section.1",
+          "title": "Felidézés",
+          "durationMinutes": 5,
+          "purpose": "felidézés",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.theorem-true-false"],
+          "slides": [
+            {
+              "id": "lesson.grade8.04.variant.slide.1.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Felidézés",
+              "content": "## Felidézés"
+            },
+            {
+              "id": "lesson.grade8.04.variant.slide.1.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.theorem-true-false"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.04.variant.section.2",
+          "title": "Kidolgozott példa",
+          "durationMinutes": 8,
+          "purpose": "kidolgozott példa",
+          "requiredActivityKinds": [],
+          "activityIds": ["resource.missing-hypotenuse-worked-example"],
+          "slides": [
+            {
+              "id": "lesson.grade8.04.variant.slide.2.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Kidolgozott példa",
+              "content": "## Kidolgozott példa"
+            },
+            {
+              "id": "lesson.grade8.04.variant.slide.2.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "resource.missing-hypotenuse-worked-example"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.04.variant.section.3",
+          "title": "Egész eredmény",
+          "durationMinutes": 10,
+          "purpose": "egész eredmény",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.missing-hypotenuse-6-8"],
+          "slides": [
+            {
+              "id": "lesson.grade8.04.variant.slide.3.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Egész eredmény",
+              "content": "## Egész eredmény"
+            },
+            {
+              "id": "lesson.grade8.04.variant.slide.3.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.missing-hypotenuse-6-8"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.04.variant.section.4",
+          "title": "Becslés",
+          "durationMinutes": 5,
+          "purpose": "becslés",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.choose-method"],
+          "slides": [
+            {
+              "id": "lesson.grade8.04.variant.slide.4.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Becslés",
+              "content": "## Becslés"
+            },
+            {
+              "id": "lesson.grade8.04.variant.slide.4.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.choose-method"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.04.variant.section.5",
+          "title": "Közelítő eredmény",
+          "durationMinutes": 12,
+          "purpose": "közelítő eredmény",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.missing-hypotenuse-decimal"],
+          "slides": [
+            {
+              "id": "lesson.grade8.04.variant.slide.5.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Közelítő eredmény",
+              "content": "## Közelítő eredmény"
+            },
+            {
+              "id": "lesson.grade8.04.variant.slide.5.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.missing-hypotenuse-decimal"
+            }
+          ]
+        },
+        {
+          "id": "lesson.grade8.04.variant.section.6",
+          "title": "Kilépőkártya",
+          "durationMinutes": 5,
+          "purpose": "kilépőkártya",
+          "requiredActivityKinds": [],
+          "activityIds": ["exercise.exit-ticket"],
+          "slides": [
+            {
+              "id": "lesson.grade8.04.variant.slide.6.intro",
+              "type": "section-intro",
+              "teacherOnly": false,
+              "title": "Kilépőkártya",
+              "content": "## Kilépőkártya"
+            },
+            {
+              "id": "lesson.grade8.04.variant.slide.6.1",
+              "type": "exercise",
+              "teacherOnly": false,
+              "exerciseId": "exercise.exit-ticket"
+            }
+          ]
+        }
+      ],
+      "pinnedRevisions": {
+        "exercise.theorem-true-false": 1,
+        "resource.missing-hypotenuse-worked-example": 1,
+        "exercise.missing-hypotenuse-6-8": 1,
+        "generated.pythagoras.a": 1,
+        "exercise.missing-hypotenuse-decimal": 1,
+        "exercise.exit-ticket": 1
+      },
+      "status": "draft",
+      "teacherNotes": "A tizedes feladat előtt rövid becslési lépés került be.",
+      "runtimeSummary": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "lesson.grade8.04.variant"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": ["óra", "változat"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "assessment.grade8.formative",
+    "type": "assessment",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Formatív kvíz: szókincs és hiányzó oldal"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Formatív kvíz: szókincs és hiányzó oldal",
+    "payload": {
+      "classroomId": "classroom.grade8.demo",
+      "phaseId": "phase.grade8.pythagorean",
+      "kind": "formative",
+      "blueprintSlots": [
+        {
+          "id": "vocab",
+          "conceptIds": ["concept.hypotenuse"],
+          "points": 1
+        },
+        {
+          "id": "hyp",
+          "conceptIds": ["concept.missing-hypotenuse"],
+          "points": 2
+        },
+        {
+          "id": "leg",
+          "conceptIds": ["concept.missing-leg"],
+          "points": 2
+        }
+      ],
+      "exerciseIds": [
+        "exercise.identify-hypotenuse-01",
+        "exercise.missing-hypotenuse-6-8",
+        "exercise.missing-leg-13-5"
+      ],
+      "maxPoints": 5
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "assessment.grade8.formative"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": [],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "assessment.grade8.phase-closing",
+    "type": "assessment",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Pitagorasz-tétel témazáró"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Pitagorasz-tétel témazáró",
+    "payload": {
+      "classroomId": "classroom.grade8.demo",
+      "phaseId": "phase.grade8.pythagorean",
+      "kind": "phase-closing",
+      "generationProfile": "phase-closing",
+      "blueprintSlots": [
+        {
+          "id": "elements",
+          "conceptIds": ["concept.identify-hypotenuse"],
+          "points": 2
+        },
+        {
+          "id": "hypotenuse",
+          "conceptIds": ["concept.missing-hypotenuse"],
+          "points": 3
+        },
+        {
+          "id": "leg",
+          "conceptIds": ["concept.missing-leg"],
+          "points": 3
+        },
+        {
+          "id": "word",
+          "conceptIds": ["concept.math-modelling"],
+          "points": 4
+        },
+        {
+          "id": "validation",
+          "conceptIds": ["concept.converse"],
+          "points": 3
+        },
+        {
+          "id": "reasoning",
+          "conceptIds": ["concept.pythagorean"],
+          "points": 5
+        }
+      ],
+      "variants": {
+        "A": [
+          "exercise.identify-hypotenuse-01",
+          "exercise.missing-hypotenuse-6-8",
+          "exercise.missing-leg-13-5",
+          "exercise.ladder-wall",
+          "exercise.is-right-triangle",
+          "exercise.converse-explanation"
+        ],
+        "B": [
+          "exercise.identify-hypotenuse-02",
+          "generated.pythagoras.e",
+          "generated.pythagoras.b",
+          "exercise.rectangle-diagonal",
+          "generated.pythagoras.c",
+          "exercise.missing-leg-common-mistake"
+        ]
+      },
+      "deferredCoverage": [],
+      "maxPoints": 20
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "assessment.grade8.phase-closing"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": [],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "assessment.grade8.reduced",
+    "type": "assessment",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Rövidített ellenőrzés – halasztott lefedettséggel"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Rövidített ellenőrzés – halasztott lefedettséggel",
+    "payload": {
+      "classroomId": "classroom.grade8.demo",
+      "phaseId": "phase.grade8.pythagorean",
+      "kind": "reduced",
+      "exerciseIds": [
+        "exercise.identify-hypotenuse-01",
+        "exercise.missing-hypotenuse-6-8",
+        "exercise.missing-leg-13-5"
+      ],
+      "fulfilledSlots": ["elements", "hypotenuse", "leg"],
+      "deferredCoverage": ["word", "validation", "reasoning"],
+      "maxPoints": 8,
+      "disclaimer": "Ez a rövidített értékelés nem teljesíti a teljes témazáró specifikációt."
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "assessment.grade8.reduced"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": [],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "resource.math.polynomial-demo",
+    "type": "resource",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Polinomgrafikon képességdemó"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Polinomgrafikon képességdemó",
+    "payload": {
+      "kind": "math.2d-plot",
+      "viewport": {
+        "x": [-5, 5],
+        "y": [-5, 10]
+      },
+      "axes": true,
+      "points": [],
+      "segments": [],
+      "polynomials": [
+        {
+          "coefficients": [-2, 1, 1],
+          "label": "x²+x−2"
+        }
+      ],
+      "trig": []
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "resource.math.polynomial-demo"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": [],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  },
+  {
+    "id": "resource.math.trig-demo",
+    "type": "resource",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": {
+        "hu": "Trigonometrikus grafikon képességdemó"
+      }
+    },
+    "lifecycle": "published",
+    "quality": "classroom-tested",
+    "currentRevision": 1,
+    "version": 0,
+    "subjectIds": ["subject.math"],
+    "searchText": "Trigonometrikus grafikon képességdemó",
+    "payload": {
+      "kind": "math.2d-plot",
+      "viewport": {
+        "x": [-6.3, 6.3],
+        "y": [-3, 3]
+      },
+      "axes": true,
+      "points": [],
+      "segments": [],
+      "polynomials": [],
+      "trig": [
+        {
+          "function": "sin",
+          "amplitude": 2,
+          "period": 6.283185307179586,
+          "phase": 0,
+          "verticalShift": 0,
+          "label": "2 sin(x)"
+        }
+      ]
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.grade8",
+      "localKey": "resource.math.trig-demo"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat reference content",
+      "redistributionAllowed": true
+    },
+    "tags": [],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:05:00.000Z"
+  }
+]

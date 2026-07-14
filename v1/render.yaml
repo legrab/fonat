@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: fonat
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: PERSISTENCE_MODE
+        value: mongo
+      - key: ASSET_PROFILE
+        value: hosted-restricted
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DB
+        value: fonat
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: WEB_ORIGIN
+        sync: false
+      - key: PUBLIC_BASE_URL
+        sync: false

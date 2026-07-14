@@ -1,0 +1,173 @@
+[
+  {
+    "id": "relation.project.subject-informatics",
+    "type": "project-connects",
+    "sourceId": "project.mushroom-yard",
+    "targetId": "subject.informatics",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "relation.project.subject-informatics"
+    },
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.project.concept-binary-numbers",
+    "type": "project-connects",
+    "sourceId": "project.mushroom-yard",
+    "targetId": "concept.binary-numbers",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "relation.project.concept-binary-numbers"
+    },
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.project.concept-pattern-matching",
+    "type": "project-connects",
+    "sourceId": "project.mushroom-yard",
+    "targetId": "concept.pattern-matching",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "relation.project.concept-pattern-matching"
+    },
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.project.concept-fractions",
+    "type": "project-connects",
+    "sourceId": "project.mushroom-yard",
+    "targetId": "concept.fractions",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "relation.project.concept-fractions"
+    },
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.project.resource-project-mushroom-story",
+    "type": "project-connects",
+    "sourceId": "project.mushroom-yard",
+    "targetId": "resource.project.mushroom-story",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "relation.project.resource-project-mushroom-story"
+    },
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.project.activity-template-project-binary-gate",
+    "type": "project-connects",
+    "sourceId": "project.mushroom-yard",
+    "targetId": "activity-template.project.binary-gate",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "relation.project.activity-template-project-binary-gate"
+    },
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.project.activity-template-project-pattern-path",
+    "type": "project-connects",
+    "sourceId": "project.mushroom-yard",
+    "targetId": "activity-template.project.pattern-path",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "relation.project.activity-template-project-pattern-path"
+    },
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.project.activity-template-project-fraction-baskets",
+    "type": "project-connects",
+    "sourceId": "project.mushroom-yard",
+    "targetId": "activity-template.project.fraction-baskets",
+    "dimensions": {},
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "relation.project.activity-template-project-fraction-baskets"
+    },
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.exercise-project-binary-gate.covers",
+    "type": "covers",
+    "sourceId": "exercise.project.binary-gate",
+    "targetId": "concept.binary-numbers",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "relation.exercise-project-binary-gate.covers"
+    },
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.exercise-project-pattern-path.covers",
+    "type": "covers",
+    "sourceId": "exercise.project.pattern-path",
+    "targetId": "concept.pattern-matching",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "relation.exercise-project-pattern-path.covers"
+    },
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "version": 0
+  },
+  {
+    "id": "relation.exercise-project-fraction-baskets.covers",
+    "type": "covers",
+    "sourceId": "exercise.project.fraction-baskets",
+    "targetId": "concept.fractions",
+    "dimensions": {
+      "contribution": 1
+    },
+    "metadata": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.reference.projects",
+      "localKey": "relation.exercise-project-fraction-baskets.covers"
+    },
+    "createdAt": "2026-09-15T06:00:00.000Z",
+    "version": 0
+  }
+]

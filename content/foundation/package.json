@@ -1,0 +1,21 @@
+{
+  "contractVersion": "1.0.0",
+  "packageId": "fonat.foundation",
+  "name": "Fonat Foundation",
+  "version": "2.0.0",
+  "description": "Minimum usable school-system, profile, blueprint, layout, subject, and relation vocabulary.",
+  "language": "hu",
+  "license": "CC BY-NC-SA 4.0",
+  "dependencies": {},
+  "capabilities": [
+    "core"
+  ],
+  "entrypoints": {
+    "nodes": [
+      "nodes.json"
+    ],
+    "relations": [
+      "relations.json"
+    ]
+  }
+}
