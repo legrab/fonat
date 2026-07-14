@@ -52,6 +52,7 @@ export class MongoStatePersistence implements StatePersistence {
   }
 }
 export class WorkspaceStore {
+  private static readonly maxSaveAttempts = 3;
   private state!: WorkspaceState;
   private queue = Promise.resolve();
   constructor(
@@ -75,15 +76,26 @@ export class WorkspaceStore {
       reject = rej;
     });
     this.queue = this.queue.then(async () => {
-      const before = this.state.version;
-      const draft = structuredClone(this.state);
       try {
-        const value = await fn(draft);
-        draft.version = before + 1;
-        if (!(await this.persistence.save(before, draft)))
-          throw new Error("Concurrent workspace update");
-        this.state = draft;
-        resolve(value);
+        for (
+          let attempt = 1;
+          attempt <= WorkspaceStore.maxSaveAttempts;
+          attempt++
+        ) {
+          const before = this.state.version;
+          const draft = structuredClone(this.state);
+          const value = await fn(draft);
+          draft.version = before + 1;
+          if (await this.persistence.save(before, draft)) {
+            this.state = draft;
+            resolve(value);
+            return;
+          }
+          const latest = await this.persistence.load();
+          if (!latest) throw new Error("Workspace disappeared during update");
+          this.state = latest;
+        }
+        throw new Error("Concurrent workspace update");
       } catch (e) {
         reject(e);
       }

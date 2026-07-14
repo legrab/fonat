@@ -13,7 +13,7 @@ for (const file of [
 const packageJson = JSON.parse(read("package.json"));
 const vercel = JSON.parse(read("vercel.json"));
 const docker = read("Dockerfile");
-const vercelEntry = read("api/index.ts");
+const vercelEntry = read("api/index.js");
 const expectedNodeEngine = "24.x";
 const expectedDockerNode = "24.18.0";
 const errors = [];
@@ -21,7 +21,7 @@ if (packageJson.engines.node !== expectedNodeEngine)
   errors.push("package.json Node mismatch");
 if (!docker.includes(`node:${expectedDockerNode}-bookworm-slim`))
   errors.push("Docker Node mismatch");
-if (vercel.functions?.["api/index.ts"]?.runtime)
+if (vercel.functions?.["api/index.js"]?.runtime)
   errors.push(
     "Vercel Node runtime must be selected through package.json engines",
   );

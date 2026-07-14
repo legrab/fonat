@@ -21,6 +21,11 @@ if (/(?:from\s*|import\s*\()["']@fonat\//.test(source)) {
   process.exit(1);
 }
 
+if (/(?:from\s*|import\s*\()["']@fastify\/cookie["']/.test(source)) {
+  console.error("Vercel server bundle externalizes @fastify/cookie");
+  process.exit(1);
+}
+
 await import(pathToFileURL(entry).href);
 console.log(
   "Vercel server bundle imports successfully without workspace runtime imports.",

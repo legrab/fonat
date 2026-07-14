@@ -3,7 +3,6 @@ import Fastify, {
   type FastifyReply,
   type FastifyRequest,
 } from "fastify";
-import cookie from "@fastify/cookie";
 import cors from "@fastify/cors";
 import rateLimit from "@fastify/rate-limit";
 import swagger from "@fastify/swagger";
@@ -95,6 +94,50 @@ const cookieOptions = (config: AppConfig) => ({
   secure: config.RUNTIME_PROFILE === "production",
   maxAge: 8 * 60 * 60,
 });
+const sessionCookie = (request: FastifyRequest) => {
+  const header = request.headers.cookie;
+  if (!header) return undefined;
+  for (const part of header.split(";")) {
+    const separator = part.indexOf("=");
+    if (separator < 0) continue;
+    const name = part.slice(0, separator).trim();
+    if (name === "fonat_session")
+      return decodeURIComponent(part.slice(separator + 1).trim());
+  }
+  return undefined;
+};
+const setSessionCookie = (
+  reply: FastifyReply,
+  value: string,
+  config: AppConfig,
+) => {
+  const options = cookieOptions(config);
+  reply.header(
+    "Set-Cookie",
+    [
+      `fonat_session=${encodeURIComponent(value)}`,
+      `Max-Age=${options.maxAge}`,
+      `Path=${options.path}`,
+      "HttpOnly",
+      `SameSite=${options.sameSite}`,
+      ...(options.secure ? ["Secure"] : []),
+    ].join("; "),
+  );
+};
+const clearSessionCookie = (reply: FastifyReply, config: AppConfig) => {
+  const options = cookieOptions(config);
+  reply.header(
+    "Set-Cookie",
+    [
+      "fonat_session=",
+      "Max-Age=0",
+      `Path=${options.path}`,
+      "HttpOnly",
+      `SameSite=${options.sameSite}`,
+      ...(options.secure ? ["Secure"] : []),
+    ].join("; "),
+  );
+};
 
 export async function createApp(
   options: {
@@ -117,17 +160,15 @@ export async function createApp(
       createDemoState(clock),
     ).init());
   if (options.store) await options.store.init().catch(() => undefined);
-  await store
-    .mutate((state) => {
+  if (store.snapshot().features.projects !== config.projectsEnabled)
+    await store.mutate((state) => {
       state.features.projects = config.projectsEnabled;
-    })
-    .catch(() => undefined);
+    });
   const app = Fastify({
     logger: options.logger ?? false,
     trustProxy: true,
     bodyLimit: 2_000_000,
   });
-  await app.register(cookie, { secret: config.SESSION_SECRET });
   await app.register(cors, {
     origin: (origin, cb) => {
       if (!origin || config.allowedOrigins.includes(origin)) cb(null, true);
@@ -154,7 +195,7 @@ export async function createApp(
       publicPrefixes.some((p) => req.url.startsWith(p))
     )
       return;
-    const sid = req.cookies.fonat_session;
+    const sid = sessionCookie(req);
     if (!sid) {
       return reply.code(401).send(err("AUTH_REQUIRED", "auth.required"));
     }
@@ -167,7 +208,7 @@ export async function createApp(
       ? state.users.find((u) => u.id === session.userId && !u.disabled)
       : undefined;
     if (!user) {
-      reply.clearCookie("fonat_session", cookieOptions(config));
+      clearSessionCookie(reply, config);
       return reply
         .code(401)
         .send(err("SESSION_EXPIRED", "auth.sessionExpired"));
@@ -244,11 +285,7 @@ export async function createApp(
         ),
       );
       if (result.ok) {
-        reply.setCookie(
-          "fonat_session",
-          result.value.session.id,
-          cookieOptions(config),
-        );
+        setSessionCookie(reply, result.value.session.id, config);
         return ok({ user: result.value.user });
       }
       return reply.code(401).send(result);
@@ -256,7 +293,7 @@ export async function createApp(
   );
   app.get("/api/auth/me", async (req) => ok((req as any).auth.user));
   app.post("/api/auth/logout", async (req, reply) => {
-    const sid = req.cookies.fonat_session;
+    const sid = sessionCookie(req);
     if (sid)
       await store.mutate((state) => {
         const s = state.sessions.find((x) => x.id === sid);
@@ -268,7 +305,7 @@ export async function createApp(
           userId: (req as any).auth?.user?.id,
         });
       });
-    reply.clearCookie("fonat_session", cookieOptions(config));
+    clearSessionCookie(reply, config);
     return ok({ loggedOut: true });
   });
 
