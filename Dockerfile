@@ -1,4 +1,4 @@
-FROM node:22-bookworm-slim AS build
+FROM node:24-bookworm-slim AS build
 WORKDIR /app
 COPY package.json package-lock.json* tsconfig.base.json tsconfig.backend.json eslint.config.mjs .prettierrc.json ./
 COPY scripts ./scripts
@@ -9,7 +9,7 @@ COPY content ./content
 RUN npm ci --ignore-scripts --no-audit --no-fund
 RUN npm run build
 
-FROM node:22-bookworm-slim AS runtime
+FROM node:24-bookworm-slim AS runtime
 ENV NODE_ENV=production
 WORKDIR /app
 COPY --from=build /app/package.json /app/package-lock.json* ./
@@ -20,5 +20,5 @@ COPY --from=build /app/apps/web/dist ./apps/web/dist
 COPY --from=build /app/packages ./packages
 COPY --from=build /app/modules ./modules
 COPY --from=build /app/content ./content
-EXPOSE 3000
+EXPOSE 6000
 CMD ["node", "apps/server/dist/index.js"]

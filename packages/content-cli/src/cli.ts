@@ -2,7 +2,7 @@
 import { createWriteStream } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
-import archiver from 'archiver';
+import { ZipArchive } from 'archiver';
 import { Command } from 'commander';
 import { validateDirectory } from './index.js';
 
@@ -36,7 +36,7 @@ program
     if (!validation.valid) throw new Error('Package is invalid. Run validate first.');
     const output = path.resolve(options.output ?? `${path.basename(source)}.zip`);
     const stream = createWriteStream(output);
-    const archive = archiver('zip', { zlib: { level: 9 } });
+    const archive = new ZipArchive({ zlib: { level: 9 } });
     archive.pipe(stream);
     archive.directory(source, false);
     await archive.finalize();
