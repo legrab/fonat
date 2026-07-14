@@ -10,7 +10,7 @@
     "modules/*"
   ],
   "engines": {
-    "node": ">=22.0.0"
+    "node": "24.x"
   },
   "scripts": {
     "dev": "concurrently -k -n server,web -c auto \"npm run dev -w @fonat/server\" \"npm run dev -w @fonat/web\"",

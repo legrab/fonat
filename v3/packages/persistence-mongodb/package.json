@@ -1,0 +1,19 @@
+{
+  "name": "@fonat/persistence-mongodb",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@fonat/application": "0.3.0",
+    "mongodb": "7.0.0"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

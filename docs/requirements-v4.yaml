@@ -1,0 +1,55 @@
+requirements:
+  P0-NAV:
+    must: "Every full-screen or modal workflow has a working exit and safe return."
+    evidence: [browser]
+  P0-LOGOUT:
+    must: "Logout invalidates the server session, clears client state, and rejects the old cookie."
+    evidence: [api, browser]
+  P0-EXERCISES:
+    must: "Teacher can create and use manual, single-choice, multiple-choice, boolean, numeric, and accepted-text Exercises."
+    evidence: [unit, api, browser]
+  P0-PRESENTATION:
+    must: "Presentation supports leave, resume, complete, concept/task/quiz/result/leaderboard/solution/homework sequence."
+    evidence: [api, browser]
+  P0-LIVE:
+    must: "Learner answers are accepted idempotently and appear in teacher results without reload."
+    evidence: [mongo, api, browser]
+  CORE-BLANK:
+    must: "Blank onboarding creates the first Course, learners, Concept, Exercise, and Lesson without demo IDs."
+    evidence: [browser]
+  CORE-RELATIONS:
+    must: "Typed Relations are authorable through guided selectors."
+    evidence: [mongo, api, browser]
+  CORE-REVISIONS:
+    must: "Scheduled and delivered content resolves exact revisions or immutable snapshots."
+    evidence: [unit, mongo, api, browser]
+  CORE-ASSIGNMENTS:
+    must: "Server-side drafts, immutable attempts, correction, and resubmission work."
+    evidence: [mongo, api, browser]
+  CORE-ASSESSMENTS:
+    must: "Blueprint generation, stable Deliveries, grading, and findings work."
+    evidence: [unit, mongo, api, browser]
+  CORE-PACKAGES:
+    must: "Package staging and bounded transactional apply are atomic and reference fixtures use the same path."
+    evidence: [mongo, api]
+  OPS-DOCKER:
+    must: "Docker Compose starts app plus MongoDB replica set."
+    evidence: [build, smoke]
+  OPS-DOCS:
+    must: "README contains truthful step-by-step local, Docker, Vercel, and Render setup."
+    evidence: [manual, config-test]
+  OPS-NODE24:
+    must: "The final repository and all deployment surfaces use one exact tested Node.js 24 version."
+    evidence: [toolchain, build, smoke]
+  OPS-LOCK-PORTABLE:
+    must: "The committed lockfile and generated artifacts contain no private agent registry URLs, credentials, or machine-local paths."
+    evidence: [unit, clean-install, artifact-scan]
+  OPS-PRODUCTION-SMOKE:
+    must: "The built production server starts without workspace TypeScript source or development-only loaders and passes health/auth/static smoke checks."
+    evidence: [build, api, smoke]
+  OPS-ARCHIVE-DEPS:
+    must: "ZIP creation and extraction use current Node.js 24-compatible maintained packages with explicit bounded safety controls."
+    evidence: [dependency-review, unit, package-integration]
+  OPS-CLEAN-ARTIFACT:
+    must: "The extracted final ZIP installs, builds, and starts in a fresh directory using npm ci."
+    evidence: [clean-install, build, smoke]

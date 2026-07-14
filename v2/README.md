@@ -199,15 +199,17 @@ In Vercel:
 
 Use these values if Vercel does not adopt the checked-in configuration automatically:
 
-| Setting          | Value           |
-| ---------------- | --------------- |
-| Framework Preset | **Other**       |
-| Node.js Version  | **22.x**        |
-| Install Command  | `npm ci`        |
-| Build Command    | `npm run build` |
-| Output Directory | `apps/web/dist` |
+| Setting          | Value                  |
+| ---------------- | ---------------------- |
+| Framework Preset | **Other**              |
+| Node.js Version  | **24.x**               |
+| Install Command  | `npm ci --include=dev` |
+| Build Command    | `npm run build`        |
+| Output Directory | `apps/web/dist`        |
 
 Do not select the Vite preset for this combined project. The repository contains both a Vite frontend and a Fastify backend, and the checked-in `vercel.json` is the authoritative adapter.
+
+No Development Command is required for deployment. `--include=dev` is intentional because the build uses TypeScript and declaration packages from `devDependencies`, while `NODE_ENV=production` would otherwise make npm omit them.
 
 ### 3. Add environment variables
 

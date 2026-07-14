@@ -1,0 +1,14 @@
+requirements:
+  P0-NAV: { status: implemented, evidence: [web, browser-spec] }
+  P0-LOGOUT: { status: implemented, evidence: [api, integration, browser-spec] }
+  P0-EXERCISES: { status: implemented, evidence: [web, api] }
+  P0-PRESENTATION: { status: implemented, evidence: [web, api, browser-spec] }
+  P0-LIVE: { status: implemented, evidence: [api, integration, browser-spec] }
+  CORE-BLANK: { status: partial, evidence: [reset-api] }
+  CORE-RELATIONS: { status: implemented, evidence: [web, api] }
+  CORE-REVISIONS: { status: partial, evidence: [delivery-snapshots] }
+  CORE-ASSIGNMENTS: { status: implemented, evidence: [web, api] }
+  CORE-ASSESSMENTS: { status: implemented, evidence: [web, api] }
+  CORE-PACKAGES: { status: partial, evidence: [manifest-validator, reset-api] }
+  OPS-DOCKER: { status: configured, evidence: [compose] }
+  OPS-DOCS: { status: implemented, evidence: [readme, config] }

@@ -23,8 +23,8 @@ The step-by-step operator guide is maintained in the root [README](../README.md)
 
 - Repository root is the Vercel project root.
 - Framework Preset is `Other`.
-- Node.js is 22.x.
-- Install command is `npm ci`.
+- Node.js is 24.x, matching the root package engine.
+- Install command is `npm ci --include=dev`; the build requires TypeScript and declaration packages even when `NODE_ENV=production`.
 - Build command is `npm run build`.
 - Output directory is `apps/web/dist`.
 - `vercel.json` maps `/api/*` to one Fastify Function and serves the Vite SPA for other paths.

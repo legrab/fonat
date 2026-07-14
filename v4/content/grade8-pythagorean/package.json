@@ -1,0 +1,18 @@
+{
+  "packageId": "org.fonat.grade8-pythagorean",
+  "version": "1.0.0",
+  "contractVersion": "1",
+  "requiredCapabilities": [
+    "core",
+    "mathematics",
+    "math-2d-plot"
+  ],
+  "locales": [
+    "hu",
+    "en"
+  ],
+  "rights": {
+    "license": "CC-BY-NC-SA-4.0",
+    "author": "Fonat project"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@fonat/contracts",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./*": "./src/*.ts",
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "zod": "4.1.11"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}
