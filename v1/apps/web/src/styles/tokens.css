@@ -1,8 +1,0 @@
-:root {
-  --fonat-sidebar-width: 250px;
-  --fonat-content-max: 1480px;
-  --fonat-panel-radius: 12px;
-  --fonat-gap: 16px;
-  --fonat-muted: #667085;
-  --fonat-border: color-mix(in srgb, var(--gray-7) 70%, transparent);
-}
