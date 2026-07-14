@@ -1,0 +1,15 @@
+{
+  "name": "fonat-content-repository",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "validate": "fonat-content validate ./content/example",
+    "test": "fonat-content test ./content/example"
+  },
+  "devDependencies": {
+    "@fonat/content-cli": "0.1.0"
+  }
+}
