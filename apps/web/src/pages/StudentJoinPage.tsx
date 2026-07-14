@@ -16,7 +16,21 @@ type Participant = {
   badgeColor: string;
   claimCode?: string;
 };
-type JoinResult = { participant: Participant; session: { code: string; status: string; mode: string } };
+function getJoinKey(code: string) {
+  const key = `fonat-live-join:${code}`;
+  const existing = sessionStorage.getItem(key);
+  if (existing) return existing;
+  const created = crypto.randomUUID();
+  sessionStorage.setItem(key, created);
+  return created;
+}
+
+type JoinResult = {
+  participant: Participant;
+  participantToken: string;
+  expiresAt: string;
+  session: { code: string; status: string; mode: string };
+};
 type Poll = {
   session: {
     id: string;
@@ -35,10 +49,14 @@ type Poll = {
 export function StudentJoinPage() {
   const { code } = useParams();
   const storageKey = `fonat.participant.${code}`;
+  const tokenKey = `fonat.participant-token.${code}`;
   const [participant, setParticipant] = useState<Participant | null>(() => {
     const raw = localStorage.getItem(storageKey);
     return raw ? (JSON.parse(raw) as Participant) : null;
   });
+  const [participantToken, setParticipantToken] = useState<string | null>(() =>
+    localStorage.getItem(tokenKey)
+  );
   const [selected, setSelected] = useState<string[]>([]);
   const [answer, setAnswer] = useState('');
   const [confidence, setConfidence] = useState(3);
@@ -50,19 +68,26 @@ export function StudentJoinPage() {
     mutationFn: () =>
       api<JoinResult>(`/api/live-sessions/${code}/join`, {
         method: 'POST',
-        body: JSON.stringify({ guest: true })
+        body: JSON.stringify({ guest: true, clientJoinKey: getJoinKey(code!) })
       }),
     onSuccess: (value) => {
       setParticipant(value.participant);
       localStorage.setItem(storageKey, JSON.stringify(value.participant));
+      localStorage.setItem(tokenKey, value.participantToken);
+      setParticipantToken(value.participantToken);
     }
   });
   const joinLearner = useMutation({
     mutationFn: (values: { classroomCode: string; learnerId: string; secret: string }) =>
-      api<JoinResult>(`/api/live-sessions/${code}/join`, { method: 'POST', body: JSON.stringify(values) }),
+      api<JoinResult>(`/api/live-sessions/${code}/join`, {
+        method: 'POST',
+        body: JSON.stringify({ ...values, clientJoinKey: getJoinKey(code!) })
+      }),
     onSuccess: (value) => {
       setParticipant(value.participant);
       localStorage.setItem(storageKey, JSON.stringify(value.participant));
+      localStorage.setItem(tokenKey, value.participantToken);
+      setParticipantToken(value.participantToken);
     }
   });
   const poll = useQuery({
@@ -93,7 +118,13 @@ export function StudentJoinPage() {
             : answer;
       return api(`/api/live-sessions/${code}/answer`, {
         method: 'POST',
-        body: JSON.stringify({ participantId: participant.id, answer: response, evidence: { confidence } })
+        headers: participantToken ? { Authorization: `Bearer ${participantToken}` } : undefined,
+        body: JSON.stringify({
+          participantId: participant.id,
+          participantToken,
+          answer: response,
+          evidence: { confidence }
+        })
       });
     }
   });

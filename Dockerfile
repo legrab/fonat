@@ -5,6 +5,7 @@ COPY scripts ./scripts
 COPY apps ./apps
 COPY packages ./packages
 COPY modules ./modules
+COPY content ./content
 RUN npm ci --ignore-scripts --no-audit --no-fund
 RUN npm run build
 
@@ -18,5 +19,6 @@ COPY --from=build /app/apps/server/dist ./apps/server/dist
 COPY --from=build /app/apps/web/dist ./apps/web/dist
 COPY --from=build /app/packages ./packages
 COPY --from=build /app/modules ./modules
+COPY --from=build /app/content ./content
 EXPOSE 3000
 CMD ["node", "apps/server/dist/index.js"]

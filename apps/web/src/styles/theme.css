@@ -378,3 +378,83 @@ select {
     padding: 18px 14px 36px;
   }
 }
+
+body {
+  background: var(--fonat-background);
+  color: var(--fonat-text);
+}
+.sidebar,
+.panel,
+.rt-Card {
+  background: var(--fonat-surface);
+}
+.brand {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  column-gap: 10px;
+  align-items: center;
+}
+.brand-mark {
+  width: 38px;
+  height: 46px;
+  grid-row: 1 / span 2;
+}
+.brand-motto {
+  grid-column: 2;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.form-grid label,
+.source-editor label {
+  display: grid;
+  gap: 6px;
+}
+.span-2 {
+  grid-column: 1 / -1;
+}
+.content-editor .milkdown {
+  min-height: 320px;
+}
+.crepe-host {
+  min-height: 320px;
+  border: 1px solid var(--fonat-border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--fonat-surface);
+}
+.source-editor textarea {
+  width: 100%;
+  resize: vertical;
+  border: 1px solid var(--fonat-border);
+  border-radius: 8px;
+  padding: 12px;
+  color: inherit;
+  background: var(--fonat-background);
+}
+.error-text {
+  color: var(--red-10);
+}
+@media (max-width: 760px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .span-2 {
+    grid-column: 1;
+  }
+}
+.drag-handle {
+  float: left;
+  margin: 0 0.6rem 0.4rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--gray-10);
+  cursor: grab;
+  font-size: 1.25rem;
+  touch-action: none;
+}
+.drag-handle:active {
+  cursor: grabbing;
+}

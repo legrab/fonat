@@ -1,14 +1,18 @@
-# Implementation deviations
+# Implementation deviations and bounded foundations
 
-The following reductions preserve the golden workflow while avoiding fragile one-shot complexity.
+The repository implements the v2 golden workflow and records the following deliberate boundaries honestly.
 
-1. **Markdown editor fallback:** The repository ships a Markdown textarea with live KaTeX preview rather than Milkdown Crepe. The editor boundary is isolated, so Milkdown can replace it after a dedicated round-trip spike. No custom rich-text engine was created.
-2. **Seed implementation:** The full reference workspace is generated from typed seed code. A package CLI and template are included, but the full demo is not duplicated as thousands of lines of static package JSON.
-3. **Import transactions:** Packages validate completely and apply at package granularity. MongoDB writes are ordered but not wrapped in a multi-document transaction, keeping Atlas Free compatibility and implementation simplicity.
-4. **Drag and drop:** Lesson ordering has accessible move controls. Pointer-based drag and drop is deferred so it cannot become a prerequisite for the core workflow.
-5. **Server-generated PDF:** Browser print and Save as PDF are complete. Local Chromium PDF generation is left as a foundation.
-6. **Offline Presentation Mode:** Loaded slides and local timers continue, but queued state reconciliation is deferred.
-7. **Guest claims:** Claim codes are generated and persisted in the live session. A full conflict-resolution UI is deferred.
-8. **Cloud assets:** The hosted MVP uses tiny bundled SVGs and external links. Cloud object storage is deferred.
-
-9. **Password hashing:** The implementation uses Node's built-in `scrypt` with per-password salts instead of a native Argon2 dependency. This avoids native-binary deployment friction while retaining a memory-hard password derivation function.
+1. **Public GitHub Content Source:** ZIP package import/export, contracts, CLI, repository template, and CI example are present. The public GitHub browsing UI remains a Functional Foundation.
+2. **Rubrics:** the registered Node type and lightweight grading contract are present. A broad reusable rubric library and analytics remain post-MVP.
+3. **Projects:** the isolated, feature-toggled Project slice has schema, package, relation support, minimal editor/detail UI, and the Mushroom Yard fixture. It intentionally has no custom scheduling, progress engine, room allocation, or collaborative canvas.
+4. **Revision propagation:** exact revisions, snapshots, impact information, and manual updates are implemented. Automatic and bulk propagation remain deferred.
+5. **Rich media:** bundled SVGs, small images, external providers, and local asset contracts are supported. Cloud object storage, uploaded video, transcoding, and thumbnail pipelines are deferred.
+6. **PDF:** print-ready HTML and browser Save as PDF are the guaranteed path. Server-side Chromium PDF remains a local deployment foundation.
+7. **Offline behavior:** loaded Presentation content and local timers remain usable during a brief interruption. A general offline write queue and reconciliation engine are deferred.
+8. **Multi-teacher scope:** account creation, role assignment, disable/reset, ownership fields, and capability checks are present. Simultaneous collaborative editing and granular per-node ACLs are deferred.
+9. **Guest identity claiming:** live guests receive scoped session credentials. Merging guest history into a permanent Learner Profile is deferred.
+10. **Assessment optimization:** deterministic constrained selection, stable deliveries, reduced coverage, and explicit shortfalls are implemented. Global optimization and sophisticated multi-assessment balancing are deferred.
+11. **Analyzer breadth:** the pipeline is deliberately small and deterministic. It is designed for additional analyzers rather than claiming comprehensive educational diagnosis.
+12. **Legacy compatibility slice:** a limited set of v1 routes and seed identifiers remains so the mature lesson, presentation, live-quiz, and analyzer workflows can coexist with the v2 organization model. New teacher-facing organization UI uses Course, Learner Group, Enrollment, and Teaching Location. The legacy compatibility layer is isolated and documented for later removal after package migration.
+13. **OpenAPI coverage:** a generated OpenAPI artifact and Swagger endpoint are included. New feature slices use runtime Zod validation, but not every retained compatibility route has exhaustive response schemas yet.
+14. **Password hashing:** Node `scrypt` is used with versioned algorithm parameters, random salts, constant-time comparison, and opportunistic rehashing. This avoids native-binary deployment risk while retaining a memory-hard password derivation function.

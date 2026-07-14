@@ -58,6 +58,9 @@ export function QuickLessonPage() {
         lifecycle: 'draft',
         quality: 'experimental',
         currentRevision: 1,
+        version: 0,
+        subjectIds: [],
+        searchText: '',
         payload: {
           durationMinutes: values.duration,
           intent: values.intent,

@@ -24,3 +24,13 @@ services:
         sync: false
       - key: PUBLIC_BASE_URL
         sync: false
+      - key: SCHOOL_TIMEZONE
+        value: Europe/Budapest
+      - key: DEFAULT_LOCALE
+        value: hu
+      - key: DEMO_CLOCK
+        value: 2026-09-15T08:00:00+02:00
+      - key: FEATURE_PROJECTS
+        value: false
+      - key: ENABLE_SWAGGER
+        value: false

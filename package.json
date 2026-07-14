@@ -10,7 +10,7 @@
     "modules/*"
   ],
   "engines": {
-    "node": "24.x"
+    "node": ">=22.0.0"
   },
   "scripts": {
     "dev": "concurrently -k -n server,web -c auto \"npm run dev -w @fonat/server\" \"npm run dev -w @fonat/web\"",
@@ -30,7 +30,9 @@
     "package:test": "tsx packages/content-cli/src/cli.ts test",
     "content:pack": "tsx packages/content-cli/src/cli.ts pack content/demo",
     "start": "npm run start -w @fonat/server",
-    "build:packages": "node scripts/build.mjs"
+    "build:packages": "node scripts/build.mjs",
+    "generate:modules": "node scripts/generate-module-registry.mjs",
+    "generate:openapi": "npm run build:packages && npm run openapi -w @fonat/server"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",

@@ -1,5 +1,59 @@
-import type { GraphNode } from '@fonat/contracts';
+import {
+  exercisePayloadSchema,
+  lessonPayloadSchema,
+  subjectPayloadSchema,
+  assessmentBlueprintPayloadV2Schema,
+  type GraphNode
+} from '@fonat/contracts';
+import { z } from 'zod';
 import { validateLesson } from '@fonat/domain';
+
+const genericPayloadSchema = z.object({}).passthrough();
+const conceptPayloadSchema = z
+  .object({
+    aliases: z.array(z.string()).optional(),
+    conceptSubtype: z.string().optional()
+  })
+  .passthrough();
+const curriculumRequirementPayloadSchema = z
+  .object({
+    conceptIds: z.array(z.string()).default([]),
+    requiredDepth: z.string().optional(),
+    targetPeriod: z.string().optional(),
+    weight: z.number().optional()
+  })
+  .passthrough();
+const resourcePayloadSchema = z
+  .object({
+    kind: z.string().min(1),
+    markdown: z.string().optional(),
+    url: z.string().url().optional()
+  })
+  .passthrough();
+const teachingProfilePayloadSchema = z
+  .object({
+    evidenceIntensity: z.string().optional()
+  })
+  .passthrough();
+const lessonBlueprintPayloadSchema = z
+  .object({
+    durationMinutes: z.number().int().positive(),
+    sections: z.array(z.record(z.string(), z.unknown())).default([])
+  })
+  .passthrough();
+const annualPlanPayloadSchema = z
+  .object({
+    schoolYear: z.string().min(4),
+    phaseIds: z.array(z.string()).default([])
+  })
+  .passthrough();
+const phasePayloadSchema = z
+  .object({
+    annualPlanId: z.string(),
+    conceptIds: z.array(z.string()).default([]),
+    approximateLessons: z.number().int().nonnegative().optional()
+  })
+  .passthrough();
 
 export type CapabilityState = 'stable' | 'preview' | 'experimental' | 'deferred' | 'rejected';
 export type CapabilityEntry = {
@@ -122,9 +176,11 @@ export const coreModuleManifest = {
   version: '0.1.0',
   title: 'Fonat Core',
   nodeTypes: [
+    'subject',
     'concept',
     'curriculum-requirement',
     'curriculum',
+    'collection',
     'resource',
     'exercise',
     'teaching-profile',
@@ -133,12 +189,43 @@ export const coreModuleManifest = {
     'annual-plan',
     'phase',
     'lesson',
-    'activity',
+    'activity-template',
+    'rubric',
     'assessment',
-    'classroom'
+    'assessment-blueprint',
+    'exercise-family',
+    'classroom',
+    'learner-group',
+    'course',
+    'teaching-location'
   ],
   relationTypes: relationContracts.map((relation) => relation.type),
   validators: ['lesson.default'],
+  capabilities: ['content.manage', 'planning.manage', 'assignments.manage', 'assessment.manage'],
+  payloadSchemas: {
+    subject: subjectPayloadSchema,
+    concept: conceptPayloadSchema,
+    'curriculum-requirement': curriculumRequirementPayloadSchema,
+    curriculum: genericPayloadSchema,
+    collection: genericPayloadSchema,
+    resource: resourcePayloadSchema,
+    exercise: exercisePayloadSchema,
+    'exercise-family': genericPayloadSchema,
+    classroom: genericPayloadSchema,
+    'teaching-profile': teachingProfilePayloadSchema,
+    'lesson-blueprint': lessonBlueprintPayloadSchema,
+    'lesson-layout': genericPayloadSchema,
+    'annual-plan': annualPlanPayloadSchema,
+    phase: phasePayloadSchema,
+    lesson: lessonPayloadSchema,
+    'activity-template': genericPayloadSchema,
+    rubric: genericPayloadSchema,
+    assessment: genericPayloadSchema,
+    'assessment-blueprint': assessmentBlueprintPayloadV2Schema,
+    'learner-group': genericPayloadSchema,
+    course: genericPayloadSchema,
+    'teaching-location': genericPayloadSchema
+  },
   exerciseTypes: [
     'single-choice',
     'multi-select',

@@ -1,4 +1,6 @@
 import { randomUUID } from 'node:crypto';
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
 import type {
   ExercisePayload,
   GraphNode,
@@ -18,6 +20,41 @@ import type {
   LiveSessionRecord,
   NotificationRecord
 } from './repository/types.js';
+
+async function loadReferenceEducationalContent() {
+  const roots = [process.cwd(), path.resolve(process.cwd(), '../..')];
+  for (const root of roots) {
+    try {
+      const grade8Nodes = JSON.parse(
+        await readFile(path.join(root, 'content/reference-grade8/nodes.json'), 'utf8')
+      ) as GraphNode[];
+      const grade11Nodes = JSON.parse(
+        await readFile(path.join(root, 'content/reference-grade11/nodes.json'), 'utf8')
+      ) as GraphNode[];
+      const projectNodes = JSON.parse(
+        await readFile(path.join(root, 'content/reference-projects/nodes.json'), 'utf8')
+      ) as GraphNode[];
+      const grade8Relations = JSON.parse(
+        await readFile(path.join(root, 'content/reference-grade8/relations.json'), 'utf8')
+      ) as GraphRelation[];
+      const grade11Relations = JSON.parse(
+        await readFile(path.join(root, 'content/reference-grade11/relations.json'), 'utf8')
+      ) as GraphRelation[];
+      const projectRelations = JSON.parse(
+        await readFile(path.join(root, 'content/reference-projects/relations.json'), 'utf8')
+      ) as GraphRelation[];
+      return {
+        nodes: [...grade8Nodes, ...grade11Nodes, ...projectNodes],
+        relations: [...grade8Relations, ...grade11Relations, ...projectRelations]
+      };
+    } catch {
+      // Try the next supported repository root.
+    }
+  }
+  throw new Error(
+    'Reference content packages are missing. Expected content/reference-grade8, content/reference-grade11, and content/reference-projects.'
+  );
+}
 
 const packageId = 'fonat.demo.grade8';
 const probabilityPackageId = 'fonat.demo.grade11';
@@ -55,6 +92,15 @@ function node(input: {
     lifecycle: input.lifecycle ?? 'published',
     quality: input.quality ?? 'classroom-tested',
     currentRevision: input.revision ?? 1,
+    version: 0,
+    subjectIds:
+      input.type === 'concept' ||
+      input.type === 'resource' ||
+      input.type === 'exercise' ||
+      input.type === 'assessment'
+        ? ['subject.math']
+        : [],
+    searchText: `${input.hu} ${input.en ?? ''} ${input.summaryHu ?? ''}`.trim(),
     payload: input.payload ?? {},
     extensions: {},
     provenance: { origin: 'seed', packageId: input.pkg ?? packageId, localKey: input.id },
@@ -80,7 +126,8 @@ function relation(
     dimensions,
     metadata: {},
     provenance: { origin: 'seed', packageId: pkg },
-    createdAt: now
+    createdAt: now,
+    version: 0
   };
 }
 
@@ -1417,7 +1464,7 @@ export async function buildDemoSeed(hashSecret: (value: string) => Promise<strin
   for (let index = 0; index < learners.length; index++) {
     const learner = learners[index]!;
     classroomAccess.push({
-      classroomId: learner.classroomId,
+      classroomId: learner.classroomId!,
       classroomCode: learner.classroomId === classroom8.id ? 'FONAT8' : 'FONAT11',
       learnerId: learner.id,
       secretHash: await hashSecret(`demo${index + 1}`),
@@ -1634,6 +1681,10 @@ export async function buildDemoSeed(hashSecret: (value: string) => Promise<strin
     status: 'assigned',
     createdAt: now
   }));
+
+  const packagedContent = await loadReferenceEducationalContent();
+  nodes.splice(0, nodes.length, ...packagedContent.nodes);
+  relations.splice(0, relations.length, ...packagedContent.relations);
 
   return {
     nodes,

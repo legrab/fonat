@@ -12,6 +12,14 @@ type Health = {
   modules: Array<{ id: string; version: string; title: string }>;
   capabilities: Array<{ id: string; title: string; state: string; description: string }>;
 };
+type AdminUser = {
+  id: string;
+  username: string;
+  displayName: string;
+  roles: string[];
+  mustChangePassword: boolean;
+  disabled: boolean;
+};
 type StageResult = {
   validation: { valid: boolean; issues: Array<{ severity: string; code: string; message: string }> };
   summary: { additions: number; updates: number; relations: number };
@@ -20,6 +28,33 @@ type StageResult = {
 
 export function AdminPage() {
   const client = useQueryClient();
+  const users = useQuery({ queryKey: ['admin-users'], queryFn: () => api<AdminUser[]>('/api/admin/users') });
+  const [newUser, setNewUser] = useState({
+    username: '',
+    displayName: '',
+    temporaryPassword: '',
+    roles: ['teacher']
+  });
+  const createUser = useMutation({
+    mutationFn: () => api('/api/admin/users', { method: 'POST', body: JSON.stringify(newUser) }),
+    onSuccess: async () => {
+      setNewUser({ username: '', displayName: '', temporaryPassword: '', roles: ['teacher'] });
+      await client.invalidateQueries({ queryKey: ['admin-users'] });
+    }
+  });
+  const setDisabled = useMutation({
+    mutationFn: ({ id, disabled }: { id: string; disabled: boolean }) =>
+      api(`/api/admin/users/${id}/disabled`, { method: 'POST', body: JSON.stringify({ disabled }) }),
+    onSuccess: () => client.invalidateQueries({ queryKey: ['admin-users'] })
+  });
+  const resetUser = useMutation({
+    mutationFn: ({ id, password }: { id: string; password: string }) =>
+      api(`/api/admin/users/${id}/reset-password`, {
+        method: 'POST',
+        body: JSON.stringify({ temporaryPassword: password })
+      }),
+    onSuccess: () => client.invalidateQueries({ queryKey: ['admin-users'] })
+  });
   const health = useQuery({ queryKey: ['admin-health'], queryFn: () => api<Health>('/api/admin/health') });
   const reset = useMutation({
     mutationFn: () => api('/api/admin/demo/reset', { method: 'POST' }),
@@ -172,6 +207,75 @@ export function AdminPage() {
           </div>
         </section>
       </div>
+      <section className="panel" style={{ marginTop: 16 }}>
+        <h2>Tanári fiókok</h2>
+        <div className="grid grid-2">
+          <div className="stack">
+            {users.data?.map((user) => (
+              <div className="data-row" key={user.id}>
+                <div>
+                  <strong>{user.displayName}</strong>
+                  <div className="muted small">
+                    {user.username} · {user.roles.join(', ')}
+                    {user.mustChangePassword ? ' · jelszócsere szükséges' : ''}
+                  </div>
+                </div>
+                <div className="toolbar">
+                  <Button
+                    size="1"
+                    variant="soft"
+                    onClick={() => {
+                      const password = window.prompt('Új ideiglenes jelszó (legalább 10 karakter)');
+                      if (password) resetUser.mutate({ id: user.id, password });
+                    }}
+                  >
+                    Jelszó reset
+                  </Button>
+                  <Button
+                    size="1"
+                    color={user.disabled ? 'green' : 'red'}
+                    variant="soft"
+                    onClick={() => setDisabled.mutate({ id: user.id, disabled: !user.disabled })}
+                  >
+                    {user.disabled ? 'Engedélyezés' : 'Letiltás'}
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="stack">
+            <label>
+              Felhasználónév
+              <TextField.Root
+                value={newUser.username}
+                onChange={(e) => setNewUser({ ...newUser, username: e.target.value })}
+              />
+            </label>
+            <label>
+              Megjelenített név
+              <TextField.Root
+                value={newUser.displayName}
+                onChange={(e) => setNewUser({ ...newUser, displayName: e.target.value })}
+              />
+            </label>
+            <label>
+              Ideiglenes jelszó
+              <TextField.Root
+                type="password"
+                value={newUser.temporaryPassword}
+                onChange={(e) => setNewUser({ ...newUser, temporaryPassword: e.target.value })}
+              />
+            </label>
+            {createUser.error ? <ErrorState error={createUser.error} /> : null}
+            <Button
+              disabled={!newUser.username || !newUser.displayName || newUser.temporaryPassword.length < 10}
+              onClick={() => createUser.mutate()}
+            >
+              Tanár létrehozása
+            </Button>
+          </div>
+        </div>
+      </section>
       <div className="grid grid-2" style={{ marginTop: 16 }}>
         <section className="panel">
           <h2>Tartalomcsomag import</h2>

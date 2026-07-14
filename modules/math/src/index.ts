@@ -88,6 +88,9 @@ export const mathModuleManifest = {
   id: 'math',
   version: '0.1.0',
   title: 'Mathematics',
+  nodeTypes: [],
+  relationTypes: [],
+  exerciseTypes: ['numeric', 'manual-explanation'],
   capabilities: ['math.katex', 'math.numeric-grading', 'math.pythagorean-family', 'math.2d-plot'],
   resourceTypes: ['math.2d-plot'],
   exerciseFamilies: ['family.pythagorean-integer-triples']

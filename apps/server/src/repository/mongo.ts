@@ -1,4 +1,13 @@
-import { MongoClient, type Collection, type Db, type Document, type Filter, type Sort } from 'mongodb';
+import { AsyncLocalStorage } from 'node:async_hooks';
+import {
+  MongoClient,
+  type ClientSession,
+  type Collection,
+  type Db,
+  type Document,
+  type Filter,
+  type Sort
+} from 'mongodb';
 import type { GraphNode, GraphRelation, LearnerProfile, NodeRevision, Submission } from '@fonat/contracts';
 import type {
   ActivityRecord,
@@ -10,6 +19,8 @@ import type {
   LiveSessionRecord,
   NotificationRecord,
   Paged,
+  RecordQuery,
+  IdempotencyRecord,
   SessionRecord,
   UserRecord
 } from './types.js';
@@ -26,13 +37,11 @@ function restore<T extends Identified>(value: Stored<T> | null): T | null {
   delete rest._id;
   return rest as unknown as T;
 }
-function cursorFilter(cursor?: string): Document {
-  return cursor ? { updatedAt: { $lt: Buffer.from(cursor, 'base64url').toString('utf8') } } : {};
-}
 
 export class MongoFonatRepository implements FonatRepository {
   private readonly client: MongoClient;
   private db?: Db;
+  private readonly transactionSession = new AsyncLocalStorage<ClientSession>();
 
   constructor(
     uri: string,
@@ -44,6 +53,7 @@ export class MongoFonatRepository implements FonatRepository {
   async init() {
     await this.client.connect();
     this.db = this.client.db(this.databaseName);
+    await this.runMigrations();
     await this.createIndexes();
   }
   async close() {
@@ -58,19 +68,51 @@ export class MongoFonatRepository implements FonatRepository {
   }
   private async upsert<T extends Identified>(name: string, value: T) {
     await this.collection<T>(name).replaceOne({ _id: value.id } as Filter<Stored<T>>, store(value), {
-      upsert: true
+      upsert: true,
+      session: this.transactionSession.getStore()
     });
   }
   private async byId<T extends Identified>(name: string, id: string) {
-    return restore(await this.collection<T>(name).findOne({ _id: id } as Filter<Stored<T>>));
+    return restore(
+      await this.collection<T>(name).findOne({ _id: id } as Filter<Stored<T>>, {
+        session: this.transactionSession.getStore()
+      })
+    );
   }
   private async all<T extends Identified>(
     name: string,
     filter: Filter<Stored<T>> = {},
     sort: Sort = { createdAt: -1 }
   ) {
-    const values = await this.collection<T>(name).find(filter).sort(sort).toArray();
+    const values = await this.collection<T>(name)
+      .find(filter, { session: this.transactionSession.getStore() })
+      .sort(sort)
+      .toArray();
     return values.map((value) => restore(value) as T);
+  }
+
+  private async runMigrations() {
+    const migrations = [
+      {
+        id: '0001-v2-baseline',
+        up: async () => {
+          await this.database()
+            .collection<{ _id: string; version?: number; name?: string; updatedAt?: string }>('metadata')
+            .updateOne(
+              { _id: 'schema' },
+              { $set: { version: 1, name: 'Fonat v2', updatedAt: new Date().toISOString() } },
+              { upsert: true }
+            );
+        }
+      }
+    ];
+    const applied = this.database().collection('schemaMigrations');
+    await applied.createIndex({ id: 1 }, { unique: true, name: 'migration_id' });
+    for (const migration of migrations) {
+      if (await applied.findOne({ id: migration.id })) continue;
+      await migration.up();
+      await applied.insertOne({ id: migration.id, appliedAt: new Date().toISOString() });
+    }
   }
 
   async createIndexes() {
@@ -81,7 +123,7 @@ export class MongoFonatRepository implements FonatRepository {
         { key: { tags: 1 }, name: 'tags' },
         { key: { 'provenance.packageId': 1 }, name: 'package' },
         {
-          key: { 'title.values.hu': 'text', 'title.values.en': 'text', tags: 'text' },
+          key: { searchText: 'text', 'title.values.hu': 'text', 'title.values.en': 'text', tags: 'text' },
           name: 'node_text',
           default_language: 'none'
         }
@@ -118,6 +160,10 @@ export class MongoFonatRepository implements FonatRepository {
         { key: { conceptIds: 1 }, name: 'concepts' }
       ]),
       db.collection('activity').createIndex({ createdAt: -1 }, { name: 'created' }),
+      db.collection('idempotency').createIndexes([
+        { key: { operation: 1, key: 1 }, unique: true, name: 'operation_key' },
+        { key: { expiresAt: 1 }, expireAfterSeconds: 0, name: 'expires' }
+      ]),
       db
         .collection('notifications')
         .createIndex({ userId: 1, read: 1, createdAt: -1 }, { name: 'user_read_created' }),
@@ -138,7 +184,17 @@ export class MongoFonatRepository implements FonatRepository {
     limit?: number;
     cursor?: string;
   }): Promise<Paged<GraphNode>> {
-    const filter: Document = { ...cursorFilter(input.cursor) };
+    const filter: Document = {};
+    if (input.cursor) {
+      const cursor = JSON.parse(Buffer.from(input.cursor, 'base64url').toString('utf8')) as {
+        updatedAt: string;
+        id: string;
+      };
+      filter.$or = [
+        { updatedAt: { $lt: cursor.updatedAt } },
+        { updatedAt: cursor.updatedAt, _id: { $gt: cursor.id } }
+      ];
+    }
     if (input.type) filter.type = input.type;
     if (input.lifecycle) filter.lifecycle = input.lifecycle;
     if (input.ids) filter.id = { $in: input.ids };
@@ -154,13 +210,24 @@ export class MongoFonatRepository implements FonatRepository {
     const page = documents.slice(0, limit).map((value) => restore(value) as GraphNode);
     const nextCursor =
       hasNext && page.length
-        ? Buffer.from(page[page.length - 1]!.updatedAt).toString('base64url')
+        ? Buffer.from(
+            JSON.stringify({ updatedAt: page[page.length - 1]!.updatedAt, id: page[page.length - 1]!.id })
+          ).toString('base64url')
         : undefined;
     const total = await collection.countDocuments(filter as Filter<Stored<GraphNode>>);
     return { items: page, total, nextCursor };
   }
   async upsertNode(node: GraphNode) {
     await this.upsert('nodes', node);
+  }
+  async compareAndSwapNode(node: GraphNode, expectedVersion: number) {
+    const next = { ...node, version: expectedVersion + 1 };
+    const result = await this.collection<GraphNode>('nodes').replaceOne(
+      { _id: node.id, version: expectedVersion } as never,
+      store(next),
+      { upsert: false, session: this.transactionSession.getStore() }
+    );
+    return result.modifiedCount === 1;
   }
   async deleteNodesByPackage(packageId: string) {
     const result = await this.collection<GraphNode>('nodes').deleteMany({
@@ -186,6 +253,9 @@ export class MongoFonatRepository implements FonatRepository {
     await this.upsert('revisions', revision);
   }
 
+  async getRelation(id: string) {
+    return this.byId<GraphRelation>('relations', id);
+  }
   async listRelations(input: { sourceId?: string; targetId?: string; type?: string; nodeIds?: string[] }) {
     const filter: Document = {};
     if (input.sourceId) filter.sourceId = input.sourceId;
@@ -197,6 +267,21 @@ export class MongoFonatRepository implements FonatRepository {
   }
   async upsertRelation(relation: GraphRelation) {
     await this.upsert('relations', relation);
+  }
+  async compareAndSwapRelation(relation: GraphRelation, expectedVersion: number) {
+    const { id, ...value } = relation;
+    const result = await this.collection<GraphRelation>('relations').replaceOne(
+      { _id: id, version: expectedVersion } as never,
+      { _id: id, ...value } as never,
+      { session: this.transactionSession.getStore() }
+    );
+    return result.modifiedCount === 1;
+  }
+  async deleteRelation(id: string) {
+    const result = await this.collection<GraphRelation>('relations').deleteOne({ _id: id } as never, {
+      session: this.transactionSession.getStore()
+    });
+    return result.deletedCount === 1;
   }
   async deleteRelationsByPackage(packageId: string) {
     const result = await this.collection<GraphRelation>('relations').deleteMany({
@@ -377,6 +462,121 @@ export class MongoFonatRepository implements FonatRepository {
   }
   async upsertAssessmentInstance(instance: AssessmentInstanceRecord) {
     await this.upsert('assessmentInstances', instance);
+  }
+
+  private safeCollectionName(name: string) {
+    if (!/^[a-zA-Z][a-zA-Z0-9_-]{1,60}$/.test(name)) throw new Error(`Invalid collection name: ${name}`);
+    return name;
+  }
+
+  async getRecord<T>(collection: string, id: string): Promise<T | null> {
+    return restore(
+      await this.collection<T & Identified>(this.safeCollectionName(collection)).findOne(
+        { _id: id } as never,
+        { session: this.transactionSession.getStore() }
+      )
+    ) as T | null;
+  }
+
+  async listRecords<T>(collection: string, input: RecordQuery = {}): Promise<Paged<T>> {
+    const name = this.safeCollectionName(collection);
+    const filter: Document = {};
+    for (const [key, expected] of Object.entries(input.filters ?? {})) {
+      filter[key] =
+        typeof expected === 'object' && expected && '$in' in expected ? { $in: expected.$in } : expected;
+    }
+    if (input.query)
+      filter.searchText = { $regex: input.query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), $options: 'i' };
+    const field = input.sortField ?? 'updatedAt';
+    const direction = input.sortDirection === 'asc' ? 1 : -1;
+    if (input.cursor) {
+      const cursor = JSON.parse(Buffer.from(input.cursor, 'base64url').toString('utf8')) as {
+        value: string;
+        id: string;
+      };
+      filter.$or =
+        direction === 1
+          ? [{ [field]: { $gt: cursor.value } }, { [field]: cursor.value, _id: { $gt: cursor.id } }]
+          : [{ [field]: { $lt: cursor.value } }, { [field]: cursor.value, _id: { $gt: cursor.id } }];
+    }
+    const limit = Math.min(input.limit ?? 50, 200);
+    const values = await this.collection<T & Identified>(name)
+      .find(filter as never, { session: this.transactionSession.getStore() })
+      .sort({ [field]: direction, _id: 1 })
+      .limit(limit + 1)
+      .toArray();
+    const hasMore = values.length > limit;
+    const page = values.slice(0, limit).map((value) => restore(value) as T);
+    const last = page.at(-1) as Record<string, unknown> | undefined;
+    const nextCursor =
+      hasMore && last
+        ? Buffer.from(JSON.stringify({ value: String(last[field] ?? ''), id: String(last.id) })).toString(
+            'base64url'
+          )
+        : undefined;
+    return { items: page, nextCursor, total: page.length };
+  }
+
+  async insertRecord<T extends { id: string }>(collection: string, value: T): Promise<void> {
+    await this.collection<T>(this.safeCollectionName(collection)).insertOne(store(value) as never, {
+      session: this.transactionSession.getStore()
+    });
+  }
+
+  async upsertRecord<T extends { id: string }>(collection: string, value: T): Promise<void> {
+    await this.upsert(this.safeCollectionName(collection), value);
+  }
+
+  async compareAndSwapRecord<T extends { id: string; version: number }>(
+    collection: string,
+    value: T,
+    expectedVersion: number
+  ) {
+    const next = { ...value, version: expectedVersion + 1 };
+    const result = await this.collection<T>(this.safeCollectionName(collection)).replaceOne(
+      { _id: value.id, version: expectedVersion } as never,
+      store(next as T),
+      { upsert: false, session: this.transactionSession.getStore() }
+    );
+    return result.modifiedCount === 1;
+  }
+
+  async deleteRecord(collection: string, id: string) {
+    const result = await this.collection<Identified>(this.safeCollectionName(collection)).deleteOne(
+      { _id: id } as never,
+      { session: this.transactionSession.getStore() }
+    );
+    return result.deletedCount === 1;
+  }
+
+  async getIdempotency(operation: string, key: string) {
+    const value = await this.database()
+      .collection<IdempotencyRecord>('idempotency')
+      .findOne({ operation, key, expiresAt: { $gt: new Date().toISOString() } });
+    return value ? structuredClone(value) : null;
+  }
+
+  async putIdempotency(record: IdempotencyRecord) {
+    await this.database()
+      .collection<IdempotencyRecord>('idempotency')
+      .updateOne(
+        { operation: record.operation, key: record.key },
+        { $setOnInsert: record },
+        { upsert: true, session: this.transactionSession.getStore() }
+      );
+  }
+
+  async runAtomic<T>(work: () => Promise<T>): Promise<T> {
+    const session = this.client.startSession();
+    try {
+      let output!: T;
+      await session.withTransaction(async () => {
+        output = await this.transactionSession.run(session, work);
+      });
+      return output;
+    } finally {
+      await session.endSession();
+    }
   }
 
   async resetAll(data: Parameters<FonatRepository['resetAll']>[0]) {

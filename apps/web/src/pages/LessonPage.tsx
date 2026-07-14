@@ -1,5 +1,8 @@
 import type { Finding, GraphNode, GraphRelation, LessonPayload, NodeRevision } from '@fonat/contracts';
 import { Badge, Button, Dialog } from '@radix-ui/themes';
+import { DndContext, closestCenter, type DragEndEvent } from '@dnd-kit/core';
+import { SortableContext, arrayMove, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
@@ -15,6 +18,19 @@ type Detail = {
   related: GraphNode[];
 };
 type Recommendation = { node: GraphNode; score: number; reasons: string[]; rejected: string[] };
+
+function SortableSection({ id, children }: { id: string; children: React.ReactNode }) {
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
+  const style = { transform: CSS.Transform.toString(transform), transition };
+  return (
+    <div ref={setNodeRef} style={style} className="lesson-section">
+      <button className="drag-handle" aria-label="Szakasz húzása" {...attributes} {...listeners}>
+        ⠿
+      </button>
+      {children}
+    </div>
+  );
+}
 
 export function LessonPage() {
   const { id } = useParams();
@@ -81,6 +97,14 @@ export function LessonPage() {
     [sections[index], sections[target]] = [sections[target]!, sections[index]!];
     setLesson({ ...lesson, payload: { ...payload, sections } });
   };
+  const dragSection = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+    const from = payload.sections.findIndex((section) => section.id === active.id);
+    const to = payload.sections.findIndex((section) => section.id === over.id);
+    if (from < 0 || to < 0) return;
+    setLesson({ ...lesson, payload: { ...payload, sections: arrayMove(payload.sections, from, to) } });
+  };
   const addCandidate = (sectionId: string, node: GraphNode) => {
     const sections = payload.sections.map((section) =>
       section.id === sectionId
@@ -132,99 +156,108 @@ export function LessonPage() {
               {total}/{payload.durationMinutes} perc
             </Badge>
           </div>
-          <div className="lesson-sections">
-            {payload.sections.map((section, index) => (
-              <div key={section.id} className="lesson-section">
-                <div className="row-between">
-                  <div>
-                    <strong>{section.title}</strong>
-                    <div className="muted small">
-                      {section.durationMinutes} perc · {section.purpose}
-                    </div>
-                  </div>
-                  <div className="toolbar">
-                    <Button size="1" variant="ghost" onClick={() => moveSection(index, -1)}>
-                      ↑
-                    </Button>
-                    <Button size="1" variant="ghost" onClick={() => moveSection(index, 1)}>
-                      ↓
-                    </Button>
-                    <Dialog.Root
-                      open={candidateSection === section.id}
-                      onOpenChange={(open) => setCandidateSection(open ? section.id : null)}
-                    >
-                      <Dialog.Trigger>
-                        <Button size="1" variant="soft">
-                          Tartalom hozzáadása
+          <DndContext collisionDetection={closestCenter} onDragEnd={dragSection}>
+            <SortableContext
+              items={payload.sections.map((section) => section.id)}
+              strategy={verticalListSortingStrategy}
+            >
+              <div className="lesson-sections">
+                {payload.sections.map((section, index) => (
+                  <SortableSection key={section.id} id={section.id}>
+                    <div className="row-between">
+                      <div>
+                        <strong>{section.title}</strong>
+                        <div className="muted small">
+                          {section.durationMinutes} perc · {section.purpose}
+                        </div>
+                      </div>
+                      <div className="toolbar">
+                        <Button size="1" variant="ghost" onClick={() => moveSection(index, -1)}>
+                          ↑
                         </Button>
-                      </Dialog.Trigger>
-                      <Dialog.Content maxWidth="720px">
-                        <Dialog.Title>Ajánlott tartalmak</Dialog.Title>
-                        <Dialog.Description>
-                          Az óra fogalmai, időkerete és nehézsége alapján, magyarázható pontszámmal.
-                        </Dialog.Description>
-                        {recommendations.isLoading ? (
-                          <Loading />
-                        ) : recommendations.error ? (
-                          <ErrorState error={recommendations.error} />
-                        ) : recommendations.data?.length ? (
-                          <div className="data-list" style={{ marginTop: 16 }}>
-                            {recommendations.data.map((candidate) => (
-                              <div className="data-row" key={candidate.node.id}>
-                                <div>
-                                  <strong>{title(candidate.node)}</strong>
-                                  <div className="muted small">
-                                    {candidate.reasons.join(' · ')} · pont: {candidate.score}
-                                  </div>
-                                </div>
-                                <Button onClick={() => addCandidate(section.id, candidate.node)}>
-                                  Hozzáadás
-                                </Button>
-                              </div>
-                            ))}
-                          </div>
-                        ) : (
-                          <Empty>Nincs megfelelő jelölt.</Empty>
-                        )}
-                      </Dialog.Content>
-                    </Dialog.Root>
-                  </div>
-                </div>
-                <div>
-                  {section.activityIds.length ? (
-                    section.activityIds.map((activityId) => (
-                      <span className="activity-chip" key={activityId}>
-                        {activityNames.get(activityId) ?? activityId}
-                        <button
-                          aria-label="Eltávolítás"
-                          onClick={() =>
-                            setLesson({
-                              ...lesson,
-                              payload: {
-                                ...payload,
-                                sections: payload.sections.map((item) =>
-                                  item.id === section.id
-                                    ? {
-                                        ...item,
-                                        activityIds: item.activityIds.filter((value) => value !== activityId)
-                                      }
-                                    : item
-                                )
-                              }
-                            })
-                          }
+                        <Button size="1" variant="ghost" onClick={() => moveSection(index, 1)}>
+                          ↓
+                        </Button>
+                        <Dialog.Root
+                          open={candidateSection === section.id}
+                          onOpenChange={(open) => setCandidateSection(open ? section.id : null)}
                         >
-                          ×
-                        </button>
-                      </span>
-                    ))
-                  ) : (
-                    <span className="muted small">Még nincs tartalom.</span>
-                  )}
-                </div>
+                          <Dialog.Trigger>
+                            <Button size="1" variant="soft">
+                              Tartalom hozzáadása
+                            </Button>
+                          </Dialog.Trigger>
+                          <Dialog.Content maxWidth="720px">
+                            <Dialog.Title>Ajánlott tartalmak</Dialog.Title>
+                            <Dialog.Description>
+                              Az óra fogalmai, időkerete és nehézsége alapján, magyarázható pontszámmal.
+                            </Dialog.Description>
+                            {recommendations.isLoading ? (
+                              <Loading />
+                            ) : recommendations.error ? (
+                              <ErrorState error={recommendations.error} />
+                            ) : recommendations.data?.length ? (
+                              <div className="data-list" style={{ marginTop: 16 }}>
+                                {recommendations.data.map((candidate) => (
+                                  <div className="data-row" key={candidate.node.id}>
+                                    <div>
+                                      <strong>{title(candidate.node)}</strong>
+                                      <div className="muted small">
+                                        {candidate.reasons.join(' · ')} · pont: {candidate.score}
+                                      </div>
+                                    </div>
+                                    <Button onClick={() => addCandidate(section.id, candidate.node)}>
+                                      Hozzáadás
+                                    </Button>
+                                  </div>
+                                ))}
+                              </div>
+                            ) : (
+                              <Empty>Nincs megfelelő jelölt.</Empty>
+                            )}
+                          </Dialog.Content>
+                        </Dialog.Root>
+                      </div>
+                    </div>
+                    <div>
+                      {section.activityIds.length ? (
+                        section.activityIds.map((activityId) => (
+                          <span className="activity-chip" key={activityId}>
+                            {activityNames.get(activityId) ?? activityId}
+                            <button
+                              aria-label="Eltávolítás"
+                              onClick={() =>
+                                setLesson({
+                                  ...lesson,
+                                  payload: {
+                                    ...payload,
+                                    sections: payload.sections.map((item) =>
+                                      item.id === section.id
+                                        ? {
+                                            ...item,
+                                            activityIds: item.activityIds.filter(
+                                              (value) => value !== activityId
+                                            )
+                                          }
+                                        : item
+                                    )
+                                  }
+                                })
+                              }
+                            >
+                              ×
+                            </button>
+                          </span>
+                        ))
+                      ) : (
+                        <span className="muted small">Még nincs tartalom.</span>
+                      )}
+                    </div>
+                  </SortableSection>
+                ))}
               </div>
-            ))}
-          </div>
+            </SortableContext>
+          </DndContext>
         </section>
         <aside className="stack">
           <section className="panel">

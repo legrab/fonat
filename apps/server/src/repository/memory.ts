@@ -9,19 +9,11 @@ import type {
   LiveSessionRecord,
   NotificationRecord,
   Paged,
+  RecordQuery,
+  IdempotencyRecord,
   SessionRecord,
   UserRecord
 } from './types.js';
-
-function paginate<T>(items: T[], limit = 50, cursor?: string): Paged<T> {
-  const start = cursor ? Number(Buffer.from(cursor, 'base64url').toString('utf8')) : 0;
-  const page = items.slice(start, start + limit);
-  const next =
-    start + page.length < items.length
-      ? Buffer.from(String(start + page.length)).toString('base64url')
-      : undefined;
-  return { items: structuredClone(page), total: items.length, nextCursor: next };
-}
 
 export class MemoryFonatRepository implements FonatRepository {
   private nodes = new Map<string, GraphNode>();
@@ -38,6 +30,9 @@ export class MemoryFonatRepository implements FonatRepository {
   private activities = new Map<string, ActivityRecord>();
   private notifications = new Map<string, NotificationRecord>();
   private assessmentInstances = new Map<string, AssessmentInstanceRecord>();
+  private records = new Map<string, Map<string, unknown>>();
+  private idempotency = new Map<string, IdempotencyRecord>();
+  private atomicQueue: Promise<void> = Promise.resolve();
 
   async init() {}
   async close() {}
@@ -70,10 +65,32 @@ export class MemoryFonatRepository implements FonatRepository {
       );
     }
     items.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt) || a.id.localeCompare(b.id));
-    return paginate(items, input.limit, input.cursor);
+    const limit = Math.min(input.limit ?? 50, 100);
+    let start = 0;
+    if (input.cursor) {
+      const cursor = JSON.parse(Buffer.from(input.cursor, 'base64url').toString('utf8')) as {
+        updatedAt: string;
+        id: string;
+      };
+      const index = items.findIndex((item) => item.updatedAt === cursor.updatedAt && item.id === cursor.id);
+      start = index < 0 ? 0 : index + 1;
+    }
+    const page = items.slice(start, start + limit);
+    const last = page.at(-1);
+    const nextCursor =
+      start + page.length < items.length && last
+        ? Buffer.from(JSON.stringify({ updatedAt: last.updatedAt, id: last.id })).toString('base64url')
+        : undefined;
+    return { items: structuredClone(page), total: items.length, nextCursor };
   }
   async upsertNode(node: GraphNode) {
     this.nodes.set(node.id, structuredClone(node));
+  }
+  async compareAndSwapNode(node: GraphNode, expectedVersion: number) {
+    const current = this.nodes.get(node.id);
+    if (!current || (current.version ?? 0) !== expectedVersion) return false;
+    this.nodes.set(node.id, structuredClone({ ...node, version: expectedVersion + 1 }));
+    return true;
   }
   async deleteNodesByPackage(packageId: string) {
     let count = 0;
@@ -101,6 +118,9 @@ export class MemoryFonatRepository implements FonatRepository {
     this.revisions.set(`${revision.nodeId}:${revision.revision}`, structuredClone(revision));
   }
 
+  async getRelation(id: string) {
+    return structuredClone(this.relations.get(id) ?? null);
+  }
   async listRelations(input: { sourceId?: string; targetId?: string; type?: string; nodeIds?: string[] }) {
     const nodeIds = input.nodeIds ? new Set(input.nodeIds) : undefined;
     return [...this.relations.values()]
@@ -115,6 +135,15 @@ export class MemoryFonatRepository implements FonatRepository {
   }
   async upsertRelation(relation: GraphRelation) {
     this.relations.set(relation.id, structuredClone(relation));
+  }
+  async compareAndSwapRelation(relation: GraphRelation, expectedVersion: number) {
+    const current = this.relations.get(relation.id);
+    if (!current || current.version !== expectedVersion) return false;
+    this.relations.set(relation.id, structuredClone(relation));
+    return true;
+  }
+  async deleteRelation(id: string) {
+    return this.relations.delete(id);
   }
   async deleteRelationsByPackage(packageId: string) {
     let count = 0;
@@ -291,6 +320,128 @@ export class MemoryFonatRepository implements FonatRepository {
     this.assessmentInstances.set(instance.id, structuredClone(instance));
   }
 
+  async getRecord<T>(collection: string, id: string): Promise<T | null> {
+    return structuredClone((this.records.get(collection)?.get(id) as T | undefined) ?? null);
+  }
+
+  async listRecords<T>(collection: string, input: RecordQuery = {}): Promise<Paged<T>> {
+    let items = [...(this.records.get(collection)?.values() ?? [])] as Array<Record<string, unknown>>;
+    for (const [key, expected] of Object.entries(input.filters ?? {})) {
+      items = items.filter((item) => {
+        const actual = item[key];
+        if (typeof expected === 'object' && expected && '$in' in expected)
+          return expected.$in.includes(actual);
+        return actual === expected;
+      });
+    }
+    if (input.query) {
+      const query = input.query.toLocaleLowerCase('hu-HU');
+      items = items.filter((item) => JSON.stringify(item).toLocaleLowerCase('hu-HU').includes(query));
+    }
+    const field = input.sortField ?? 'updatedAt';
+    const direction = input.sortDirection === 'asc' ? 1 : -1;
+    items.sort((a, b) => {
+      const av = String(a[field] ?? '');
+      const bv = String(b[field] ?? '');
+      return direction * (av.localeCompare(bv) || String(a.id).localeCompare(String(b.id)));
+    });
+    const limit = Math.min(input.limit ?? 50, 200);
+    let start = 0;
+    if (input.cursor) {
+      const decoded = JSON.parse(Buffer.from(input.cursor, 'base64url').toString('utf8')) as {
+        value: string;
+        id: string;
+      };
+      start =
+        items.findIndex((item) => String(item[field] ?? '') === decoded.value && item.id === decoded.id) + 1;
+      if (start < 0) start = 0;
+    }
+    const page = items.slice(start, start + limit);
+    const last = page.at(-1);
+    const nextCursor =
+      start + page.length < items.length && last
+        ? Buffer.from(JSON.stringify({ value: String(last[field] ?? ''), id: String(last.id) })).toString(
+            'base64url'
+          )
+        : undefined;
+    return { items: structuredClone(page) as T[], total: items.length, nextCursor };
+  }
+
+  async insertRecord<T extends { id: string }>(collection: string, value: T): Promise<void> {
+    const map = this.records.get(collection) ?? new Map<string, unknown>();
+    if (map.has(value.id)) throw new Error(`Duplicate record ${collection}/${value.id}`);
+    map.set(value.id, structuredClone(value));
+    this.records.set(collection, map);
+  }
+
+  async upsertRecord<T extends { id: string }>(collection: string, value: T): Promise<void> {
+    const map = this.records.get(collection) ?? new Map<string, unknown>();
+    map.set(value.id, structuredClone(value));
+    this.records.set(collection, map);
+  }
+
+  async compareAndSwapRecord<T extends { id: string; version: number }>(
+    collection: string,
+    value: T,
+    expectedVersion: number
+  ) {
+    const map = this.records.get(collection) ?? new Map<string, unknown>();
+    const current = map.get(value.id) as { version?: number } | undefined;
+    if (!current || current.version !== expectedVersion) return false;
+    map.set(value.id, structuredClone({ ...value, version: expectedVersion + 1 }));
+    this.records.set(collection, map);
+    return true;
+  }
+
+  async deleteRecord(collection: string, id: string) {
+    return this.records.get(collection)?.delete(id) ?? false;
+  }
+
+  async getIdempotency(operation: string, key: string) {
+    const record = this.idempotency.get(`${operation}:${key}`);
+    if (!record || record.expiresAt < new Date().toISOString()) return null;
+    return structuredClone(record);
+  }
+
+  async putIdempotency(record: IdempotencyRecord) {
+    this.idempotency.set(`${record.operation}:${record.key}`, structuredClone(record));
+  }
+
+  async runAtomic<T>(work: () => Promise<T>): Promise<T> {
+    let release!: () => void;
+    const wait = this.atomicQueue;
+    this.atomicQueue = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    await wait;
+    const snapshot = structuredClone({
+      nodes: this.nodes,
+      relations: this.relations,
+      revisions: this.revisions,
+      users: this.users,
+      sessions: this.sessions,
+      learners: this.learners,
+      classroomAccess: this.classroomAccess,
+      lessonRuns: this.lessonRuns,
+      liveSessions: this.liveSessions,
+      submissions: this.submissions,
+      evidence: this.evidence,
+      activities: this.activities,
+      notifications: this.notifications,
+      assessmentInstances: this.assessmentInstances,
+      records: this.records,
+      idempotency: this.idempotency
+    });
+    try {
+      return await work();
+    } catch (error) {
+      Object.assign(this, snapshot);
+      throw error;
+    } finally {
+      release();
+    }
+  }
+
   async resetAll(data: Parameters<FonatRepository['resetAll']>[0]) {
     this.nodes = new Map(data.nodes.map((value) => [value.id, structuredClone(value)]));
     this.relations = new Map(data.relations.map((value) => [value.id, structuredClone(value)]));
@@ -310,5 +461,7 @@ export class MemoryFonatRepository implements FonatRepository {
     this.assessmentInstances = new Map(
       data.assessmentInstances.map((value) => [value.id, structuredClone(value)])
     );
+    this.records = new Map();
+    this.idempotency = new Map();
   }
 }

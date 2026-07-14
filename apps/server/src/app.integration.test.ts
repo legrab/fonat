@@ -16,6 +16,11 @@ const config: AppConfig = {
   LOCAL_ASSET_DIR: './local-assets',
   MAX_PACKAGE_BYTES: 4_194_304,
   MAX_UPLOAD_BYTES: 2_097_152,
+  DEMO_CLOCK: '2026-09-15T08:00:00+02:00',
+  SCHOOL_TIMEZONE: 'Europe/Budapest',
+  DEFAULT_LOCALE: 'hu',
+  FEATURE_PROJECTS: true,
+  ENABLE_SWAGGER: false,
   BOOTSTRAP_ADMIN_USERNAME: undefined,
   BOOTSTRAP_ADMIN_PASSWORD: undefined
 };
@@ -80,10 +85,11 @@ describe('Fonat API golden workflow', () => {
       payload: { guest: true }
     });
     const participantId = joined.json().value.participant.id as string;
+    const participantToken = joined.json().value.participantToken as string;
     const answer = await app.inject({
       method: 'POST',
       url: `/api/live-sessions/${live.code}/answer`,
-      payload: { participantId, answer: 10, evidence: { confidence: 4 } }
+      payload: { participantId, participantToken, answer: 10, evidence: { confidence: 4 } }
     });
     expect(answer.statusCode).toBe(200);
     expect(answer.json().value.submission.automaticScore).toBe(1);

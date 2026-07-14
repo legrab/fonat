@@ -12,6 +12,21 @@ import { NodeRenderer, title } from '../components/NodeRenderer';
 type LessonRun = {
   id: string;
   lessonId: string;
+  lessonRevision?: number;
+  lessonSnapshot?: {
+    nodeId: string;
+    type: string;
+    revision: number;
+    title: GraphNode['title'];
+    payload: Record<string, unknown>;
+  };
+  contentSnapshots?: Array<{
+    nodeId: string;
+    type: string;
+    revision: number;
+    title: GraphNode['title'];
+    payload: Record<string, unknown>;
+  }>;
   startedAt: string;
   finishedAt?: string;
   currentSectionIndex: number;
@@ -61,7 +76,7 @@ export function PresentationPage() {
   });
   const lessonQuery = useQuery({
     queryKey: ['presentation-lesson', runQuery.data?.lessonId],
-    enabled: Boolean(runQuery.data?.lessonId),
+    enabled: Boolean(runQuery.data?.lessonId && !runQuery.data.lessonSnapshot),
     queryFn: () => api<Detail>(`/api/nodes/${runQuery.data!.lessonId}`)
   });
   const update = useMutation({
@@ -81,14 +96,29 @@ export function PresentationPage() {
     }, 1000);
     return () => window.clearInterval(interval);
   }, [runQuery.data]);
-  const lesson = lessonQuery.data?.node;
-  const payload = lesson?.payload as LessonPayload | undefined;
   const run = runQuery.data;
+  const lesson = run?.lessonSnapshot
+    ? ({
+        id: run.lessonSnapshot.nodeId,
+        type: run.lessonSnapshot.type,
+        title: run.lessonSnapshot.title,
+        payload: run.lessonSnapshot.payload
+      } as GraphNode)
+    : lessonQuery.data?.node;
+  const payload = lesson?.payload as LessonPayload | undefined;
   const section = run && payload ? payload.sections[run.currentSectionIndex] : undefined;
   const slide = section?.slides[run?.currentSlideIndex ?? 0];
   const related = useMemo(
-    () => new Map(lessonQuery.data?.related.map((item) => [item.id, item]) ?? []),
-    [lessonQuery.data]
+    () =>
+      new Map(
+        run?.contentSnapshots?.map((item) => [
+          item.nodeId,
+          { id: item.nodeId, type: item.type, title: item.title, payload: item.payload } as GraphNode
+        ]) ??
+          lessonQuery.data?.related.map((item) => [item.id, item]) ??
+          []
+      ),
+    [lessonQuery.data, run?.contentSnapshots]
   );
   const launchQuiz = useMutation({
     mutationFn: () => {
@@ -113,13 +143,20 @@ export function PresentationPage() {
       });
     }
   });
-  if (runQuery.isLoading || lessonQuery.isLoading)
+  if (runQuery.isLoading || (lessonQuery.isLoading && !runQuery.data?.lessonSnapshot))
     return (
       <div className="student-shell">
         <Loading />
       </div>
     );
-  if (runQuery.error || lessonQuery.error || !run || !lesson || !payload || !section)
+  if (
+    runQuery.error ||
+    (!run?.lessonSnapshot && lessonQuery.error) ||
+    !run ||
+    !lesson ||
+    !payload ||
+    !section
+  )
     return (
       <div className="student-shell">
         <ErrorState error={runQuery.error ?? lessonQuery.error ?? new Error('Az óra nem tölthető be.')} />

@@ -11,7 +11,8 @@ services:
       test: ['CMD', 'mongosh', '--quiet', '--eval', "db.adminCommand('ping').ok"]
       interval: 5s
       timeout: 5s
-      retries: 20
+      retries: 30
+
   mongo-init:
     image: mongo:8.0
     depends_on:
@@ -19,11 +20,14 @@ services:
         condition: service_healthy
     restart: 'no'
     entrypoint:
-      [
-        'bash',
-        '-lc',
-        'mongosh --host mongodb:27017 --eval ''try { rs.status() } catch (e) { rs.initiate({_id:"rs0",members:[{_id:0,host:"mongodb:27017"}]}) }'''
-      ]
+      - bash
+      - -lc
+      - >-
+        mongosh --host mongodb:27017 --eval '
+          try { rs.status() }
+          catch (e) { rs.initiate({_id:"rs0",members:[{_id:0,host:"mongodb:27017"}]}) }
+        '
+
   fonat:
     build: .
     depends_on:
@@ -37,14 +41,20 @@ services:
       PORT: 3000
       WEB_ORIGIN: http://localhost:3000
       PUBLIC_BASE_URL: http://localhost:3000
-      MONGODB_URI: mongodb://mongodb:27017/?replicaSet=rs0
+      MONGODB_URI: mongodb://mongodb:27017/fonat?replicaSet=rs0
       MONGODB_DB: fonat
-      SESSION_SECRET: ${SESSION_SECRET:-replace-this-development-secret-please}
+      SESSION_SECRET: ${SESSION_SECRET:?Set SESSION_SECRET in .env to at least 32 random characters}
       PERSISTENCE_MODE: mongo
       ASSET_PROFILE: local-rich
       LOCAL_ASSET_DIR: /app/local-assets
+      DEMO_CLOCK: ${DEMO_CLOCK:-2026-09-15T08:00:00+02:00}
+      SCHOOL_TIMEZONE: ${SCHOOL_TIMEZONE:-Europe/Budapest}
+      DEFAULT_LOCALE: ${DEFAULT_LOCALE:-hu}
+      FEATURE_PROJECTS: ${FEATURE_PROJECTS:-true}
+      ENABLE_SWAGGER: ${ENABLE_SWAGGER:-true}
     volumes:
       - fonat-assets:/app/local-assets
+
 volumes:
   fonat-mongo:
   fonat-assets:

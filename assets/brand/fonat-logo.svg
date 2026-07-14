@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 128" role="img" aria-labelledby="title desc">
+  <title id="title">Fonat</title><desc id="desc">Fonat logo with a three-strand braided F mark and the word Fonat.</desc>
+  <g transform="translate(0 0)"><path d="M34 116 C34 97 54 92 54 73 C54 56 34 50 34 32 C34 21 40 14 47 9" fill="none" stroke="#A9571E" stroke-width="12" stroke-linecap="round"/><path d="M48 116 C48 99 29 92 29 74 C29 57 49 50 49 32 C49 21 55 14 62 9 C70 6 79 7 88 7" fill="none" stroke="#817888" stroke-width="12" stroke-linecap="round"/><path d="M62 116 C62 99 44 93 44 76 C44 59 63 52 63 36 C63 30 61 25 58 21 M61 62 C70 60 79 60 88 60" fill="none" stroke="#486B91" stroke-width="12" stroke-linecap="round"/></g>
+  <text x="118" y="83" font-family="Inter,Segoe UI,sans-serif" font-size="66" font-weight="720" fill="#29232F">Fonat</text>
+</svg>

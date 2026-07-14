@@ -39,23 +39,10 @@ export const revisionCompatibilitySchema = z.enum([
 ]);
 export type RevisionCompatibility = z.infer<typeof revisionCompatibilitySchema>;
 
-export const nodeTypeSchema = z.enum([
-  'concept',
-  'curriculum-requirement',
-  'curriculum',
-  'resource',
-  'exercise',
-  'exercise-family',
-  'teaching-profile',
-  'lesson-blueprint',
-  'lesson-layout',
-  'annual-plan',
-  'phase',
-  'lesson',
-  'activity',
-  'assessment',
-  'classroom'
-]);
+export const nodeTypeSchema = z
+  .string()
+  .min(1)
+  .regex(/^[a-z0-9][a-z0-9.-]+$/);
 export type NodeType = z.infer<typeof nodeTypeSchema>;
 
 export const provenanceSchema = z.object({
@@ -100,6 +87,10 @@ export const nodeSchema = z.object({
   lifecycle: lifecycleSchema.default('draft'),
   quality: qualitySchema.default('experimental'),
   currentRevision: z.number().int().positive().default(1),
+  version: z.number().int().nonnegative().default(0),
+  ownerId: z.string().optional(),
+  subjectIds: z.array(z.string()).default([]),
+  searchText: z.string().default(''),
   payload: z.record(z.string(), z.unknown()).default({}),
   extensions: z.record(z.string(), z.record(z.string(), z.unknown())).default({}),
   provenance: provenanceSchema,
@@ -125,21 +116,10 @@ export const revisionSchema = z.object({
 });
 export type NodeRevision = z.infer<typeof revisionSchema>;
 
-export const relationTypeSchema = z.enum([
-  'requires',
-  'extends',
-  'covers',
-  'alternative-to',
-  'uses',
-  'instantiates',
-  'belongs-to',
-  'satisfies',
-  'assesses',
-  'demonstrates',
-  'follows',
-  'variant-of',
-  'contains'
-]);
+export const relationTypeSchema = z
+  .string()
+  .min(1)
+  .regex(/^[a-z0-9][a-z0-9.-]+$/);
 export type RelationType = z.infer<typeof relationTypeSchema>;
 
 export const relationSchema = z.object({
@@ -151,7 +131,8 @@ export const relationSchema = z.object({
   confidence: z.number().min(0).max(1).optional(),
   metadata: z.record(z.string(), z.unknown()).default({}),
   provenance: provenanceSchema,
-  createdAt: z.string().datetime()
+  createdAt: z.string().datetime(),
+  version: z.number().int().nonnegative().default(0)
 });
 export type GraphRelation = z.infer<typeof relationSchema>;
 
@@ -177,17 +158,10 @@ export const difficultySchema = z.object({
 });
 export type DifficultyProfile = z.infer<typeof difficultySchema>;
 
-export const exerciseTypeSchema = z.enum([
-  'single-choice',
-  'multi-select',
-  'true-false',
-  'numeric',
-  'short-text',
-  'ordered',
-  'manual-explanation',
-  'confidence-vote',
-  'exit-ticket'
-]);
+export const exerciseTypeSchema = z
+  .string()
+  .min(1)
+  .regex(/^[a-z0-9][a-z0-9.-]+$/);
 export type ExerciseType = z.infer<typeof exerciseTypeSchema>;
 
 export const evidenceIntensitySchema = z.enum(['none', 'light', 'standard', 'deep']);
@@ -270,7 +244,7 @@ export type LessonPayload = z.infer<typeof lessonPayloadSchema>;
 
 export const learnerSchema = z.object({
   id: z.string(),
-  classroomId: z.string(),
+  classroomId: z.string().optional(),
   nickname: z.string(),
   badgeIcon: z.string(),
   badgeColor: z.string(),
@@ -331,3 +305,5 @@ export type SessionUser = {
   capabilities: string[];
   mustChangePassword: boolean;
 };
+
+export * from './v2.js';

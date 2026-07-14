@@ -8,6 +8,7 @@ export type UserRecord = {
   roles: string[];
   capabilities: string[];
   mustChangePassword: boolean;
+  disabled?: boolean;
   createdAt: string;
   updatedAt: string;
 };
@@ -28,9 +29,21 @@ export type ClassroomAccess = {
   mustChangePassword: boolean;
 };
 
+export type LessonContentSnapshot = {
+  nodeId: string;
+  type: string;
+  revision: number;
+  title: GraphNode['title'];
+  summary?: GraphNode['summary'];
+  payload: Record<string, unknown>;
+};
+
 export type LessonRunRecord = {
   id: string;
   lessonId: string;
+  lessonRevision?: number;
+  lessonSnapshot?: LessonContentSnapshot;
+  contentSnapshots?: LessonContentSnapshot[];
   startedAt: string;
   finishedAt?: string;
   currentSectionIndex: number;
@@ -63,6 +76,8 @@ export type LiveSessionRecord = {
     badgeIcon: string;
     badgeColor: string;
     claimCode?: string;
+    credentialHash?: string;
+    credentialExpiresAt?: string;
     joinedAt: string;
   }>;
   createdAt: string;
@@ -119,7 +134,7 @@ export type ArchiveCandidate = {
 
 export type Paged<T> = { items: T[]; total: number; nextCursor?: string };
 
-export interface FonatRepository {
+export interface FonatRepository extends V2RecordRepository {
   init(): Promise<void>;
   close(): Promise<void>;
   createIndexes(): Promise<void>;
@@ -134,6 +149,7 @@ export interface FonatRepository {
     cursor?: string;
   }): Promise<Paged<GraphNode>>;
   upsertNode(node: GraphNode): Promise<void>;
+  compareAndSwapNode(node: GraphNode, expectedVersion: number): Promise<boolean>;
   deleteNodesByPackage(packageId: string): Promise<number>;
   countNodes(): Promise<number>;
 
@@ -141,6 +157,7 @@ export interface FonatRepository {
   listRevisions(nodeId: string): Promise<NodeRevision[]>;
   insertRevision(revision: NodeRevision): Promise<void>;
 
+  getRelation(id: string): Promise<GraphRelation | null>;
   listRelations(input: {
     sourceId?: string;
     targetId?: string;
@@ -148,6 +165,8 @@ export interface FonatRepository {
     nodeIds?: string[];
   }): Promise<GraphRelation[]>;
   upsertRelation(relation: GraphRelation): Promise<void>;
+  compareAndSwapRelation(relation: GraphRelation, expectedVersion: number): Promise<boolean>;
+  deleteRelation(id: string): Promise<boolean>;
   deleteRelationsByPackage(packageId: string): Promise<number>;
 
   getUserByUsername(username: string): Promise<UserRecord | null>;
@@ -213,4 +232,38 @@ export interface FonatRepository {
     notifications: NotificationRecord[];
     assessmentInstances: AssessmentInstanceRecord[];
   }): Promise<void>;
+}
+
+export type RecordQuery = {
+  filters?: Record<string, string | number | boolean | { $in: unknown[] }>;
+  query?: string;
+  limit?: number;
+  cursor?: string;
+  sortField?: string;
+  sortDirection?: 'asc' | 'desc';
+};
+
+export type IdempotencyRecord = {
+  id: string;
+  operation: string;
+  key: string;
+  result: unknown;
+  createdAt: string;
+  expiresAt: string;
+};
+
+export interface V2RecordRepository {
+  getRecord<T>(collection: string, id: string): Promise<T | null>;
+  listRecords<T>(collection: string, input?: RecordQuery): Promise<Paged<T>>;
+  insertRecord<T extends { id: string }>(collection: string, value: T): Promise<void>;
+  upsertRecord<T extends { id: string }>(collection: string, value: T): Promise<void>;
+  compareAndSwapRecord<T extends { id: string; version: number }>(
+    collection: string,
+    value: T,
+    expectedVersion: number
+  ): Promise<boolean>;
+  deleteRecord(collection: string, id: string): Promise<boolean>;
+  getIdempotency(operation: string, key: string): Promise<IdempotencyRecord | null>;
+  putIdempotency(record: IdempotencyRecord): Promise<void>;
+  runAtomic<T>(work: () => Promise<T>): Promise<T>;
 }

@@ -14,5 +14,8 @@
     "@fonat/contracts": "0.1.0",
     "@fonat/domain": "0.1.0",
     "zod": "^4.4.3"
+  },
+  "fonatModule": {
+    "manifestExport": "coreModuleManifest"
   }
 }

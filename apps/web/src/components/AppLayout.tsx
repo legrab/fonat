@@ -1,5 +1,5 @@
 import { Button, DropdownMenu, Text } from '@radix-ui/themes';
-import { useQueryClient } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { api } from '../api';
@@ -7,14 +7,21 @@ import { api } from '../api';
 const items = [
   ['/today', 'today'],
   ['/planning', 'planning'],
+  ['/timetable', 'timetable'],
   ['/library', 'library'],
   ['/classes', 'classes'],
+  ['/assignments', 'assignments'],
   ['/assessments', 'assessments'],
+  ['/projects', 'projects'],
   ['/guide', 'guide'],
   ['/admin', 'admin']
 ] as const;
 
 export function AppLayout({ user }: { user: { displayName: string } }) {
+  const capabilities = useQuery({
+    queryKey: ['v2-capabilities'],
+    queryFn: () => api<{ projects: boolean }>('/api/v2/capabilities')
+  });
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -27,19 +34,22 @@ export function AppLayout({ user }: { user: { displayName: string } }) {
     <div className="app-shell">
       <aside className="sidebar">
         <div className="brand">
+          <img src="/assets/brand/fonat-mark.svg" alt="" className="brand-mark" />
           <div className="brand-title">{t('brand')}</div>
           <div className="brand-motto">{t('motto')}</div>
         </div>
         <nav className="nav-list">
-          {items.map(([href, key]) => (
-            <NavLink
-              key={href}
-              to={href}
-              className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
-            >
-              {t(key)}
-            </NavLink>
-          ))}
+          {items
+            .filter(([href]) => href !== '/projects' || capabilities.data?.projects)
+            .map(([href, key]) => (
+              <NavLink
+                key={href}
+                to={href}
+                className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
+              >
+                {t(key)}
+              </NavLink>
+            ))}
         </nav>
         <div className="sidebar-footer">
           <Text size="2" color="gray">

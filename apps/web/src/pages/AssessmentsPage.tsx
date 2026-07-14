@@ -1,17 +1,24 @@
-import type { Finding, GraphNode, Page } from '@fonat/contracts';
-import { Badge, Button, Card, Dialog } from '@radix-ui/themes';
+import type {
+  AssessmentDelivery,
+  Course,
+  Finding,
+  GraphNode,
+  LearnerProfileV2,
+  Page
+} from '@fonat/contracts';
+import { Badge, Button, Card, Checkbox, Dialog, Select, Table, Text, TextField } from '@radix-ui/themes';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useForm } from 'react-hook-form';
+import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { api } from '../api';
 import { Empty, ErrorState, Loading } from '../components/AsyncState';
 import { PageHeader } from '../components/PageHeader';
 import { title } from '../components/NodeRenderer';
 
-type GenerateForm = {
+type GenerateInput = {
   title: string;
-  classroomId: string;
-  conceptIds: string;
+  courseId: string;
+  conceptIds: string[];
   questionCount: number;
   variants: number;
   allowReduced: boolean;
@@ -19,95 +26,140 @@ type GenerateForm = {
 
 export function AssessmentsPage() {
   const client = useQueryClient();
-  const query = useQuery({
-    queryKey: ['assessments'],
-    queryFn: () => api<Page<GraphNode>>('/api/nodes?type=assessment&limit=100')
+  const [form, setForm] = useState<GenerateInput>({
+    title: 'Új rövid ellenőrzés',
+    courseId: '',
+    conceptIds: [],
+    questionCount: 6,
+    variants: 2,
+    allowReduced: true
   });
-  const form = useForm<GenerateForm>({
-    defaultValues: {
-      title: 'Új rövid ellenőrzés',
-      classroomId: 'classroom.grade8.demo',
-      conceptIds: 'concept.pythagorean,concept.missing-hypotenuse,concept.missing-leg',
-      questionCount: 6,
-      variants: 2,
-      allowReduced: true
-    }
+  const assessments = useQuery({
+    queryKey: ['assessments'],
+    queryFn: () => api<Page<GraphNode>>('/api/nodes?type=assessment&limit=30')
+  });
+  const courses = useQuery({
+    queryKey: ['courses-v2'],
+    queryFn: () => api<{ items: Course[] }>('/api/v2/courses')
+  });
+  const concepts = useQuery({
+    queryKey: ['assessment-concepts'],
+    queryFn: () => api<Page<GraphNode>>('/api/nodes?type=concept&limit=100')
   });
   const generate = useMutation({
-    mutationFn: (values: GenerateForm) =>
+    mutationFn: () =>
       api('/api/assessments/generate', {
         method: 'POST',
         body: JSON.stringify({
-          ...values,
-          conceptIds: values.conceptIds
-            .split(',')
-            .map((value) => value.trim())
-            .filter(Boolean),
+          ...form,
           allowAlternatives: true
         })
       }),
     onSuccess: () => client.invalidateQueries({ queryKey: ['assessments'] })
   });
+  const toggleConcept = (id: string) =>
+    setForm((current) => ({
+      ...current,
+      conceptIds: current.conceptIds.includes(id)
+        ? current.conceptIds.filter((item) => item !== id)
+        : [...current.conceptIds, id]
+    }));
+
   return (
     <div className="page">
       <PageHeader
         title="Értékelések"
-        subtitle="Átlátható forrásválasztás, A/B változatok, kisebb értékelés és halasztott lefedettség."
+        subtitle="Blueprint-alapú kiválasztás, stabil tanulói kiosztások és megőrzött kérdéssnapshotok."
         actions={
           <Dialog.Root>
             <Dialog.Trigger>
               <Button>Értékelés generálása</Button>
             </Dialog.Trigger>
-            <Dialog.Content>
+            <Dialog.Content maxWidth="720px">
               <Dialog.Title>Új értékelés</Dialog.Title>
-              <form className="input-grid" onSubmit={form.handleSubmit((values) => generate.mutate(values))}>
+              <div className="stack">
                 <label>
                   Cím
-                  <input className="input" {...form.register('title')} />
-                </label>
-                <label>
-                  Osztályazonosító
-                  <input className="input" {...form.register('classroomId')} />
-                </label>
-                <label>
-                  Fogalmak, vesszővel
-                  <input className="input" {...form.register('conceptIds')} />
-                </label>
-                <label>
-                  Kérdések száma
-                  <input
-                    className="input"
-                    type="number"
-                    {...form.register('questionCount', { valueAsNumber: true })}
+                  <TextField.Root
+                    value={form.title}
+                    onChange={(event) => setForm({ ...form, title: event.target.value })}
                   />
                 </label>
                 <label>
-                  Változatok
-                  <input
-                    className="input"
-                    type="number"
-                    {...form.register('variants', { valueAsNumber: true })}
-                  />
+                  Kurzus
+                  <Select.Root
+                    value={form.courseId}
+                    onValueChange={(courseId) => setForm({ ...form, courseId })}
+                  >
+                    <Select.Trigger placeholder="Válassz kurzust" />
+                    <Select.Content>
+                      {courses.data?.items.map((course) => (
+                        <Select.Item value={course.id} key={course.id}>
+                          {course.name}
+                        </Select.Item>
+                      ))}
+                    </Select.Content>
+                  </Select.Root>
                 </label>
+                <fieldset className="panel">
+                  <legend>Fogalmak</legend>
+                  <div className="chip-list">
+                    {concepts.data?.items.map((concept) => (
+                      <label className="chip" key={concept.id}>
+                        <Checkbox
+                          checked={form.conceptIds.includes(concept.id)}
+                          onCheckedChange={() => toggleConcept(concept.id)}
+                        />{' '}
+                        {title(concept)}
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+                <div className="input-grid">
+                  <label>
+                    Kérdések száma
+                    <TextField.Root
+                      type="number"
+                      value={String(form.questionCount)}
+                      onChange={(event) => setForm({ ...form, questionCount: Number(event.target.value) })}
+                    />
+                  </label>
+                  <label>
+                    Változatok
+                    <TextField.Root
+                      type="number"
+                      value={String(form.variants)}
+                      onChange={(event) => setForm({ ...form, variants: Number(event.target.value) })}
+                    />
+                  </label>
+                </div>
                 <label className="row">
-                  <input type="checkbox" {...form.register('allowReduced')} /> Kisebb értékelés engedélyezése
+                  <Checkbox
+                    checked={form.allowReduced}
+                    onCheckedChange={(checked) => setForm({ ...form, allowReduced: Boolean(checked) })}
+                  />{' '}
+                  Kisebb, hiányosan lefedő értékelés engedélyezése
                 </label>
                 {generate.error ? <ErrorState error={generate.error} /> : null}
-                <Button type="submit" loading={generate.isPending}>
+                <Button
+                  disabled={!form.courseId || !form.conceptIds.length}
+                  loading={generate.isPending}
+                  onClick={() => generate.mutate()}
+                >
                   Generálás
                 </Button>
-              </form>
+              </div>
             </Dialog.Content>
           </Dialog.Root>
         }
       />
-      {query.isLoading ? (
+      {assessments.isLoading ? (
         <Loading />
-      ) : query.error ? (
-        <ErrorState error={query.error} />
-      ) : query.data?.items.length ? (
+      ) : assessments.error ? (
+        <ErrorState error={assessments.error} />
+      ) : assessments.data?.items.length ? (
         <div className="grid grid-2">
-          {query.data.items.map((assessment) => (
+          {assessments.data.items.map((assessment) => (
             <Link to={`/assessments/${assessment.id}`} key={assessment.id}>
               <Card>
                 <h2>{title(assessment)}</h2>
@@ -115,13 +167,9 @@ export function AssessmentsPage() {
                   <Badge>{String(assessment.payload.kind ?? 'generated')}</Badge>
                   {assessment.payload.reduced ? <Badge color="amber">rövidített</Badge> : null}
                   <Badge color="gray">
-                    {String(
-                      (assessment.payload.exerciseIds as string[] | undefined)?.length ??
-                        Object.values(
-                          (assessment.payload.variants as Record<string, string[]> | undefined) ?? {}
-                        )[0]?.length ??
-                        0
-                    )}{' '}
+                    {Object.values(
+                      (assessment.payload.variants as Record<string, string[]> | undefined) ?? {}
+                    )[0]?.length ?? 0}{' '}
                     kérdés
                   </Badge>
                 </div>
@@ -150,6 +198,8 @@ type Analysis = {
 
 export function AssessmentPage() {
   const { id } = useParams();
+  const client = useQueryClient();
+  const [learnerId, setLearnerId] = useState('');
   const detail = useQuery({
     queryKey: ['assessment', id],
     queryFn: () => api<{ node: GraphNode; related: GraphNode[] }>(`/api/nodes/${id}`)
@@ -158,6 +208,34 @@ export function AssessmentPage() {
     queryKey: ['assessment-analysis', id],
     queryFn: () => api<Analysis>(`/api/assessments/${id}/analysis`)
   });
+  const learners = useQuery({
+    queryKey: ['learners-v2'],
+    queryFn: () => api<{ items: LearnerProfileV2[] }>('/api/v2/learners-v2')
+  });
+  const deliveries = useQuery({
+    queryKey: ['assessment-deliveries', id],
+    enabled: Boolean(id),
+    queryFn: () =>
+      api<{ items: AssessmentDelivery[] }>(
+        `/api/v2/assessment-deliveries?assessmentId=${encodeURIComponent(id!)}`
+      )
+  });
+  const deliver = useMutation({
+    mutationFn: () =>
+      api<AssessmentDelivery>(`/api/v2/assessments/${id}/deliveries`, {
+        method: 'POST',
+        headers: { 'Idempotency-Key': crypto.randomUUID() },
+        body: JSON.stringify({ learnerId })
+      }),
+    onSuccess: () => {
+      setLearnerId('');
+      void client.invalidateQueries({ queryKey: ['assessment-deliveries', id] });
+    }
+  });
+  const learnerMap = useMemo(
+    () => new Map(learners.data?.items.map((learner) => [learner.id, learner.nickname])),
+    [learners.data]
+  );
   if (detail.isLoading || analysis.isLoading)
     return (
       <div className="page">
@@ -176,7 +254,7 @@ export function AssessmentPage() {
     <div className="page">
       <PageHeader
         title={title(detail.data.node)}
-        subtitle="Az elemzők megfigyeléseket adnak, nem írják át az eredményeket."
+        subtitle="Az elemzők megfigyeléseket adnak, a tanulói kiosztások pedig pontos feladatrevíziókat őriznek."
         actions={
           <Button variant="soft" onClick={() => window.print()}>
             Nyomtatás / PDF
@@ -191,7 +269,7 @@ export function AssessmentPage() {
               <div key={variant} className="stack">
                 <h3>{variant} változat</h3>
                 {ids.map((exerciseId, index) => (
-                  <div className="data-row" key={exerciseId}>
+                  <div className="data-row" key={`${variant}:${exerciseId}`}>
                     <span>
                       {index + 1}.{' '}
                       {detail.data.related.find((item) => item.id === exerciseId)?.title.values.hu ??
@@ -213,6 +291,47 @@ export function AssessmentPage() {
           ) : null}
         </section>
         <section className="panel">
+          <h2>Tanulói kiosztás</h2>
+          <div className="row">
+            <Select.Root value={learnerId} onValueChange={setLearnerId}>
+              <Select.Trigger placeholder="Válassz tanulót" />
+              <Select.Content>
+                {learners.data?.items.map((learner) => (
+                  <Select.Item key={learner.id} value={learner.id}>
+                    {learner.nickname}
+                  </Select.Item>
+                ))}
+              </Select.Content>
+            </Select.Root>
+            <Button disabled={!learnerId} loading={deliver.isPending} onClick={() => deliver.mutate()}>
+              Kiosztás
+            </Button>
+          </div>
+          {deliver.error ? <ErrorState error={deliver.error} /> : null}
+          <Table.Root>
+            <Table.Header>
+              <Table.Row>
+                <Table.ColumnHeaderCell>Tanuló</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>Változat</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>Állapot</Table.ColumnHeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {deliveries.data?.items.map((delivery) => (
+                <Table.Row key={delivery.id}>
+                  <Table.Cell>{learnerMap.get(delivery.learnerId) ?? delivery.learnerId}</Table.Cell>
+                  <Table.Cell>{delivery.variantKey}</Table.Cell>
+                  <Table.Cell>
+                    <Badge>{delivery.status}</Badge>
+                  </Table.Cell>
+                </Table.Row>
+              ))}
+            </Table.Body>
+          </Table.Root>
+        </section>
+      </div>
+      <div className="grid grid-2" style={{ marginTop: 16 }}>
+        <section className="panel">
           <h2>Elemzési megállapítások</h2>
           {analysis.data.findings.length ? (
             <div className="stack">
@@ -227,25 +346,32 @@ export function AssessmentPage() {
             <Empty>Még nincs értékelhető eredmény.</Empty>
           )}
         </section>
-      </div>
-      <section className="panel" style={{ marginTop: 16 }}>
-        <h2>Kérdésstatisztikák</h2>
-        <div className="data-list">
-          {analysis.data.questionStats.map((stat) => (
-            <div className="data-row" key={stat.exerciseId}>
-              <div>
-                <strong>{stat.exerciseId}</strong>
-                <div className="muted small">
-                  {stat.attempts} próbálkozás · {stat.omissions} kihagyás
+        <section className="panel">
+          <h2>Kérdésstatisztikák</h2>
+          {analysis.data.questionStats.length ? (
+            <div className="data-list">
+              {analysis.data.questionStats.map((stat) => (
+                <div className="data-row" key={stat.exerciseId}>
+                  <div>
+                    <strong>
+                      {detail.data.related.find((item) => item.id === stat.exerciseId)?.title.values.hu ??
+                        stat.exerciseId}
+                    </strong>
+                    <div className="muted small">
+                      {stat.attempts} próbálkozás · {stat.omissions} kihagyás
+                    </div>
+                  </div>
+                  <Badge color={stat.average >= 0.75 ? 'green' : stat.average < 0.5 ? 'red' : 'amber'}>
+                    {(stat.average * 100).toFixed(0)}%
+                  </Badge>
                 </div>
-              </div>
-              <Badge color={stat.average >= 0.75 ? 'green' : stat.average < 0.5 ? 'red' : 'amber'}>
-                {(stat.average * 100).toFixed(0)}%
-              </Badge>
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
+          ) : (
+            <Text color="gray">Még nincs kérdésstatisztika.</Text>
+          )}
+        </section>
+      </div>
     </div>
   );
 }

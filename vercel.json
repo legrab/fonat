@@ -5,11 +5,18 @@
   "functions": {
     "api/index.ts": {
       "maxDuration": 300,
-      "includeFiles": "apps/web/dist/**"
+      "includeFiles": "{apps/web/dist/**,content/**}"
     }
   },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index" },
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
-  ]
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "installCommand": "npm ci"
 }

@@ -1,10 +1,14 @@
-import { randomInt, randomUUID } from 'node:crypto';
+import { createHash, randomBytes, randomInt, randomUUID, timingSafeEqual } from 'node:crypto';
 import { access } from 'node:fs/promises';
 import path from 'node:path';
 import cookie from '@fastify/cookie';
 import cors from '@fastify/cors';
 import multipart from '@fastify/multipart';
 import fastifyStatic from '@fastify/static';
+import rateLimit from '@fastify/rate-limit';
+import swagger from '@fastify/swagger';
+import swaggerUi from '@fastify/swagger-ui';
+import { jsonSchemaTransform, serializerCompiler, validatorCompiler } from 'fastify-type-provider-zod';
 import Fastify, { type FastifyInstance, type FastifyReply, type FastifyRequest } from 'fastify';
 import AdmZip from 'adm-zip';
 import { z } from 'zod';
@@ -14,6 +18,8 @@ import {
   ok,
   err,
   type ExercisePayload,
+  type GraphNode,
+  type LearnerProfileV2,
   type LessonPayload,
   type SessionUser,
   type Submission,
@@ -34,11 +40,27 @@ import {
   recommendExercises
 } from '@fonat/domain';
 import { mathModuleManifest } from '@fonat/math-module';
+import { isRegisteredRelationType, validateRegisteredNodePayload } from '@fonat/module-registry';
 import type { AppConfig } from './config.js';
-import { clearSession, createSession, hashPassword, resolveUser, verifyPassword } from './auth.js';
+import {
+  clearSession,
+  createSession,
+  hashPassword,
+  passwordNeedsRehash,
+  resolveUser,
+  verifyPassword
+} from './auth.js';
 import type { FonatRepository, LiveSessionRecord, UserRecord } from './repository/index.js';
 import { buildDemoSeed, newActivity } from './seed.js';
+import { applyFoundation, applyV2Demo } from './seed-v2.js';
 import { analyzeAssessment, stableShuffle } from './services/assessment.js';
+import { createClock } from './clock.js';
+import { registerOrganizationRoutes } from './features/organization/routes.js';
+import { registerOnboardingRoutes } from './features/onboarding/routes.js';
+import { registerAssignmentRoutes } from './features/assignments/routes.js';
+import { registerAssessmentV2Routes } from './features/assessments/routes.js';
+import { registerProjectRoutes } from './features/projects/routes.js';
+import { registerRelationRoutes } from './features/relations/routes.js';
 
 const commonCapabilities = {
   admin: [
@@ -120,8 +142,68 @@ async function record(
   await repository.insertActivity(newActivity(type, message, targetId, severity));
 }
 
-function packageFromZip(buffer: Buffer): ContentPackage {
+async function resolveContentSnapshot(
+  repository: FonatRepository,
+  node: GraphNode,
+  revisionNumber = node.currentRevision
+) {
+  const revision = await repository.getRevision(node.id, revisionNumber);
+  return {
+    nodeId: node.id,
+    type: node.type,
+    revision: revision?.revision ?? revisionNumber,
+    title: revision?.title ?? node.title,
+    summary: revision?.summary ?? node.summary,
+    payload: structuredClone(revision?.payload ?? node.payload)
+  };
+}
+
+async function buildLessonRunSnapshots(repository: FonatRepository, lesson: GraphNode) {
+  const lessonSnapshot = await resolveContentSnapshot(repository, lesson, lesson.currentRevision);
+  const payload = lessonSnapshot.payload as LessonPayload;
+  const referencedIds = new Set<string>();
+  for (const section of payload.sections ?? []) {
+    for (const id of section.activityIds ?? []) referencedIds.add(id);
+    for (const slide of section.slides ?? []) {
+      if (slide.exerciseId) referencedIds.add(slide.exerciseId);
+      if (slide.resourceId) referencedIds.add(slide.resourceId);
+    }
+  }
+  const pinned = payload.pinnedRevisions ?? {};
+  const nodes = referencedIds.size
+    ? (await repository.listNodes({ ids: [...referencedIds], limit: 100 })).items
+    : [];
+  const contentSnapshots = await Promise.all(
+    nodes.map((node) => resolveContentSnapshot(repository, node, pinned[node.id] ?? node.currentRevision))
+  );
+  return { lessonSnapshot, contentSnapshots };
+}
+
+function packageFromZip(
+  buffer: Buffer,
+  limits = { maxEntries: 300, maxUncompressedBytes: 12_000_000, maxEntryBytes: 2_000_000, maxDepth: 8 }
+): ContentPackage {
   const zip = new AdmZip(buffer);
+  const entries = zip.getEntries();
+  if (entries.length > limits.maxEntries) throw new Error(`Too many archive entries: ${entries.length}`);
+  const normalized = new Set<string>();
+  let total = 0;
+  for (const entry of entries) {
+    const raw = entry.entryName.replaceAll('\\', '/');
+    const name = path.posix.normalize(raw);
+    if (raw.startsWith('/') || name.startsWith('../') || name.includes('/../') || name === '..')
+      throw new Error(`Unsafe archive path: ${raw}`);
+    if (name.split('/').length > limits.maxDepth) throw new Error(`Archive path is too deep: ${name}`);
+    if (normalized.has(name.toLocaleLowerCase())) throw new Error(`Duplicate normalized path: ${name}`);
+    normalized.add(name.toLocaleLowerCase());
+    if (entry.header.size > limits.maxEntryBytes) throw new Error(`Archive entry is too large: ${name}`);
+    total += entry.header.size;
+    if (total > limits.maxUncompressedBytes) throw new Error('Archive expands beyond the configured limit.');
+    const mode = (entry.attr >>> 16) & 0o170000;
+    if (mode === 0o120000) throw new Error(`Symbolic links are not allowed: ${name}`);
+    if (/\.(exe|dll|so|dylib|bat|cmd|ps1|sh|js|mjs|cjs)$/i.test(name))
+      throw new Error(`Executable content is not allowed: ${name}`);
+  }
   const readJson = <T>(name: string): T => {
     const entry = zip.getEntry(name);
     if (!entry) throw new Error(`Missing ${name}`);
@@ -133,10 +215,32 @@ function packageFromZip(buffer: Buffer): ContentPackage {
     readJson<ContentPackage['relations']>(file)
   );
   const markdown: Record<string, string> = {};
-  for (const entry of zip.getEntries())
-    if (!entry.isDirectory && entry.entryName.startsWith('content/'))
-      markdown[entry.entryName.slice('content/'.length)] = entry.getData().toString('utf8');
+  for (const entry of entries) {
+    if (entry.isDirectory || !entry.entryName.startsWith('content/')) continue;
+    markdown[entry.entryName.slice('content/'.length)] = entry.getData().toString('utf8');
+  }
+  for (const entry of entries.filter((entry) => /\.svg$/i.test(entry.entryName))) {
+    const svg = entry.getData().toString('utf8');
+    if (/<script|on\w+\s*=|<foreignObject|(?:href|src)\s*=\s*["']https?:/i.test(svg))
+      throw new Error(`Unsafe SVG content: ${entry.entryName}`);
+  }
   return { manifest, nodes, relations, markdown, assets: {} };
+}
+
+function validateInstalledPackageContracts(pkg: ContentPackage) {
+  const issues: Array<{ path: string; message: string }> = [];
+  for (const [index, node] of pkg.nodes.entries()) {
+    const result = validateRegisteredNodePayload(node.type, node.payload);
+    if (!result.success) issues.push({ path: `nodes[${index}].payload`, message: result.reason });
+  }
+  for (const [index, relation] of pkg.relations.entries()) {
+    if (!isRegisteredRelationType(relation.type))
+      issues.push({
+        path: `relations[${index}].type`,
+        message: `Unregistered relation type: ${relation.type}`
+      });
+  }
+  return issues;
 }
 
 function packageToZip(pkg: ContentPackage): Buffer {
@@ -155,6 +259,23 @@ function packageToZip(pkg: ContentPackage): Buffer {
   for (const [name, content] of Object.entries(pkg.markdown))
     zip.addFile(`content/${name}`, Buffer.from(content));
   return zip.toBuffer();
+}
+
+function participantCredential() {
+  const token = randomBytes(32).toString('base64url');
+  const hash = createHash('sha256').update(token).digest('hex');
+  return { token, hash, expiresAt: new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString() };
+}
+
+function verifyParticipantCredential(
+  token: string | undefined,
+  hash: string | undefined,
+  expiresAt: string | undefined
+) {
+  if (!token || !hash || !expiresAt || expiresAt < new Date().toISOString()) return false;
+  const actual = Buffer.from(createHash('sha256').update(token).digest('hex'));
+  const expected = Buffer.from(hash);
+  return actual.length === expected.length && timingSafeEqual(actual, expected);
 }
 
 function createGuestIdentity(existing: LiveSessionRecord['participants']) {
@@ -177,7 +298,26 @@ function createGuestIdentity(existing: LiveSessionRecord['participants']) {
 export async function createApp(config: AppConfig, repository: FonatRepository): Promise<FastifyInstance> {
   const app = Fastify({
     logger: { level: config.NODE_ENV === 'test' ? 'silent' : 'info' },
-    bodyLimit: config.MAX_PACKAGE_BYTES
+    bodyLimit: config.MAX_PACKAGE_BYTES,
+    trustProxy: config.NODE_ENV === 'production'
+  });
+  app.setValidatorCompiler(validatorCompiler);
+  app.setSerializerCompiler(serializerCompiler);
+  await app.register(swagger, {
+    openapi: {
+      info: { title: 'Fonat API', version: '0.2.0', description: 'Connected teacher workspace API.' },
+      tags: [
+        { name: 'core', description: 'Fonat core API' },
+        { name: 'v2', description: 'Version 2 feature-slice API' }
+      ]
+    },
+    transform: jsonSchemaTransform
+  });
+  if (config.ENABLE_SWAGGER) await app.register(swaggerUi, { routePrefix: '/api/docs' });
+  await app.register(rateLimit, {
+    global: true,
+    max: config.NODE_ENV === 'test' ? 10_000 : 300,
+    timeWindow: '1 minute'
   });
   await app.register(cookie, { secret: config.SESSION_SECRET });
   await app.register(cors, {
@@ -185,14 +325,31 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
     credentials: true
   });
   await app.register(multipart, { limits: { fileSize: config.MAX_PACKAGE_BYTES, files: 1 } });
+  const clock = createClock(config.NODE_ENV, config.DEMO_CLOCK);
   app.decorateRequest('user', null);
   app.addHook('onRequest', async (request) => {
     request.user = await resolveUser(repository, request);
+  });
+  app.addHook('preValidation', async (request, reply) => {
+    if (!['POST', 'PUT', 'PATCH', 'DELETE'].includes(request.method)) return;
+    const origin = request.headers.origin;
+    if (!origin) return;
+    const allowed = config.WEB_ORIGIN.split(',').map((value) => value.trim());
+    if (!allowed.includes(origin)) {
+      return reply
+        .code(403)
+        .send(err({ code: 'permission_denied', message: 'A kérés eredete nem engedélyezett.' }));
+    }
   });
   app.addHook('onSend', async (_request, reply, payload) => {
     reply.header('X-Content-Type-Options', 'nosniff');
     reply.header('Referrer-Policy', 'same-origin');
     reply.header('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+    const scriptPolicy = config.ENABLE_SWAGGER ? "'self' 'unsafe-inline'" : "'self'";
+    reply.header(
+      'Content-Security-Policy',
+      `default-src 'self'; script-src ${scriptPolicy}; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' ${config.WEB_ORIGIN.split(',').join(' ')}; frame-src https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; frame-ancestors 'self'`
+    );
     return payload;
   });
 
@@ -201,7 +358,10 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
       status: 'ok',
       persistence: config.PERSISTENCE_MODE,
       assetProfile: config.ASSET_PROFILE,
-      time: new Date().toISOString()
+      time: clock.iso(),
+      demoClock: config.DEMO_CLOCK,
+      schoolTimezone: config.SCHOOL_TIMEZONE,
+      features: { projects: config.FEATURE_PROJECTS }
     })
   );
   app.get('/api/setup/status', async () => ok({ requiresBootstrap: (await repository.countUsers()) === 0 }));
@@ -232,33 +392,47 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
       updatedAt: new Date().toISOString()
     };
     await repository.upsertUser(user);
-    if (body.loadDemo) await repository.resetAll(await buildDemoSeed(hashPassword));
+    if (body.loadDemo) {
+      await repository.resetAll(await buildDemoSeed(hashPassword));
+      await applyV2Demo(repository, config, clock);
+    } else {
+      await applyFoundation(repository, clock);
+    }
     await createSession(repository, user, reply, config.NODE_ENV === 'production');
     await record(repository, 'user.bootstrap', 'A Fonat első adminisztrátora létrejött.', user.id, 'success');
     return ok({ user: { ...user, passwordHash: undefined }, demoLoaded: body.loadDemo });
   });
 
-  app.post('/api/auth/login', async (request, reply) => {
-    const body = parseBody(z.object({ username: z.string(), password: z.string() }), request, reply);
-    if (!body) return;
-    const user = await repository.getUserByUsername(body.username);
-    if (!user || !(await verifyPassword(user.passwordHash, body.password)))
-      return sendResult(
-        reply,
-        err({ code: 'permission_denied', message: 'Hibás felhasználónév vagy jelszó.' })
-      );
-    await createSession(repository, user, reply, config.NODE_ENV === 'production');
-    return ok({
-      user: {
-        id: user.id,
-        username: user.username,
-        displayName: user.displayName,
-        roles: user.roles,
-        capabilities: user.capabilities,
-        mustChangePassword: user.mustChangePassword
+  app.post(
+    '/api/auth/login',
+    { config: { rateLimit: { max: 12, timeWindow: '1 minute' } } },
+    async (request, reply) => {
+      const body = parseBody(z.object({ username: z.string(), password: z.string() }), request, reply);
+      if (!body) return;
+      const user = await repository.getUserByUsername(body.username);
+      if (!user || user.disabled || !(await verifyPassword(user.passwordHash, body.password)))
+        return sendResult(
+          reply,
+          err({ code: 'permission_denied', message: 'Hibás felhasználónév vagy jelszó.' })
+        );
+      if (passwordNeedsRehash(user.passwordHash)) {
+        user.passwordHash = await hashPassword(body.password);
+        user.updatedAt = clock.iso();
+        await repository.upsertUser(user);
       }
-    });
-  });
+      await createSession(repository, user, reply, config.NODE_ENV === 'production');
+      return ok({
+        user: {
+          id: user.id,
+          username: user.username,
+          displayName: user.displayName,
+          roles: user.roles,
+          capabilities: user.capabilities,
+          mustChangePassword: user.mustChangePassword
+        }
+      });
+    }
+  );
   app.post('/api/auth/logout', async (request, reply) => {
     await clearSession(repository, request, reply);
     return ok({ loggedOut: true });
@@ -292,8 +466,12 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
   app.get('/api/today', async (request, reply) => {
     if (!requireCapability(request, reply, 'lessons.manage')) return;
     const lessons = await repository.listNodes({ type: 'lesson', limit: 100 });
+    const today = clock.today(config.SCHOOL_TIMEZONE).toString();
     const upcoming = lessons.items
-      .filter((item) => (item.payload as LessonPayload).status === 'scheduled')
+      .filter((item) => {
+        const payload = item.payload as LessonPayload;
+        return payload.status === 'scheduled' && (!payload.date || payload.date >= today);
+      })
       .sort((a, b) =>
         String((a.payload as LessonPayload).date ?? '').localeCompare(
           String((b.payload as LessonPayload).date ?? '')
@@ -376,8 +554,19 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
         reply,
         err({ code: 'validation_failure', message: 'A tartalom hibás.', details: parsed.error.flatten() })
       );
+    const payloadValidation = validateRegisteredNodePayload(parsed.data.type, parsed.data.payload);
+    if (!payloadValidation.success)
+      return sendResult(
+        reply,
+        err({
+          code: 'validation_failure',
+          message: payloadValidation.reason,
+          details: payloadValidation.details
+        })
+      );
     if (await repository.getNode(parsed.data.id))
       return sendResult(reply, err({ code: 'conflict', message: 'Ez az azonosító már létezik.' }));
+    parsed.data.payload = payloadValidation.data as Record<string, unknown>;
     await repository.upsertNode(parsed.data);
     await record(
       repository,
@@ -400,10 +589,38 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
         reply,
         err({ code: 'validation_failure', message: 'A tartalom hibás.', details: parsed.error.flatten() })
       );
-    parsed.data.updatedAt = new Date().toISOString();
-    await repository.upsertNode(parsed.data);
-    await record(repository, 'content.updated', `${localize(parsed.data)} mentve.`, id);
-    return ok(parsed.data);
+    const payloadValidation = validateRegisteredNodePayload(parsed.data.type, parsed.data.payload);
+    if (!payloadValidation.success)
+      return sendResult(
+        reply,
+        err({
+          code: 'validation_failure',
+          message: payloadValidation.reason,
+          details: payloadValidation.details
+        })
+      );
+    parsed.data.payload = payloadValidation.data as Record<string, unknown>;
+    const expectedVersion = Number(request.headers['if-match'] ?? parsed.data.version);
+    if (!Number.isInteger(expectedVersion))
+      return sendResult(reply, err({ code: 'validation_failure', message: 'If-Match verzió szükséges.' }));
+    const next = {
+      ...parsed.data,
+      version: expectedVersion + 1,
+      updatedAt: clock.iso(),
+      searchText:
+        `${Object.values(parsed.data.title.values).join(' ')} ${Object.values(parsed.data.summary?.values ?? {}).join(' ')} ${parsed.data.tags.join(' ')}`.trim()
+    };
+    if (!(await repository.compareAndSwapNode(next, expectedVersion)))
+      return sendResult(
+        reply,
+        err({
+          code: 'conflict',
+          message: 'A tartalom egy másik lapon megváltozott.',
+          details: { current: existing }
+        })
+      );
+    await record(repository, 'content.updated', `${localize(next)} mentve.`, id);
+    return ok(next);
   });
   app.post('/api/nodes/:id/publish', async (request, reply) => {
     const user = requireCapability(request, reply, 'content.manage');
@@ -432,7 +649,8 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
     const revisionNumber = previousRevision ? existing.currentRevision + 1 : existing.currentRevision;
     existing.lifecycle = 'published';
     existing.currentRevision = revisionNumber;
-    existing.updatedAt = new Date().toISOString();
+    existing.updatedAt = clock.iso();
+    existing.version = (existing.version ?? 0) + 1;
     await repository.upsertNode(existing);
     await repository.insertRevision({
       id: `${id}:${revisionNumber}`,
@@ -498,10 +716,14 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
     const lesson = await repository.getNode(body.lessonId);
     if (!lesson || lesson.type !== 'lesson')
       return sendResult(reply, err({ code: 'not_found', message: 'Az óra nem található.' }));
-    const first = (lesson.payload as LessonPayload).sections[0];
+    const snapshots = await buildLessonRunSnapshots(repository, lesson);
+    const first = (snapshots.lessonSnapshot.payload as LessonPayload).sections[0];
     const run = {
       id: randomUUID(),
       lessonId: lesson.id,
+      lessonRevision: snapshots.lessonSnapshot.revision,
+      lessonSnapshot: snapshots.lessonSnapshot,
+      contentSnapshots: snapshots.contentSnapshots,
       startedAt: new Date().toISOString(),
       currentSectionIndex: 0,
       currentSlideIndex: 0,
@@ -546,7 +768,10 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
     );
     if (!body) return;
     const lesson = await repository.getNode(run.lessonId);
-    const sections = lesson?.type === 'lesson' ? (lesson.payload as LessonPayload).sections : [];
+    const runLessonPayload = run.lessonSnapshot?.payload as LessonPayload | undefined;
+    const sections =
+      runLessonPayload?.sections ??
+      (lesson?.type === 'lesson' ? (lesson.payload as LessonPayload).sections : []);
     if (body.action === 'next') {
       const current = sections[run.currentSectionIndex];
       if (current && !run.completedSectionIds.includes(current.id)) run.completedSectionIds.push(current.id);
@@ -628,58 +853,86 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
     await repository.upsertLiveSession(session);
     return ok({ ...session, joinUrl: `${config.WEB_ORIGIN.split(',')[0]}/student/join/${code}` });
   });
-  app.post('/api/live-sessions/:code/join', async (request, reply) => {
-    const code = (request.params as { code: string }).code;
-    const session = await repository.getLiveSessionByCode(code);
-    if (!session || session.status === 'closed')
-      return sendResult(reply, err({ code: 'not_found', message: 'A munkamenet nem érhető el.' }));
-    const body = parseBody(
-      z.object({
-        learnerId: z.string().optional(),
-        classroomCode: z.string().optional(),
-        secret: z.string().optional(),
-        guest: z.boolean().default(false)
-      }),
-      request,
-      reply
-    );
-    if (!body) return;
-    let participant: LiveSessionRecord['participants'][number];
-    if (body.learnerId && body.classroomCode && body.secret) {
-      const accesses = await repository.findClassroomAccess(body.classroomCode, body.learnerId);
-      const learner = await repository.getLearner(body.learnerId);
-      if (!accesses[0] || !learner || !(await verifyPassword(accesses[0].secretHash, body.secret)))
-        return sendResult(
-          reply,
-          err({ code: 'permission_denied', message: 'A tanulói azonosítás sikertelen.' })
-        );
-      participant = {
-        id: randomUUID(),
-        learnerId: learner.id,
-        nickname: learner.nickname,
-        badgeIcon: learner.badgeIcon,
-        badgeColor: learner.badgeColor,
-        joinedAt: new Date().toISOString()
-      };
-    } else {
-      if (!session.allowGuest || !body.guest)
-        return sendResult(
-          reply,
-          err({ code: 'permission_denied', message: 'Vendégként nem lehet csatlakozni.' })
-        );
-      const identity = createGuestIdentity(session.participants);
-      participant = {
-        id: randomUUID(),
-        ...identity,
-        claimCode: String(randomInt(100000, 999999)),
-        joinedAt: new Date().toISOString()
-      };
+  app.post(
+    '/api/live-sessions/:code/join',
+    { config: { rateLimit: { max: 40, timeWindow: '1 minute' } } },
+    async (request, reply) => {
+      const code = (request.params as { code: string }).code;
+      const session = await repository.getLiveSessionByCode(code);
+      if (!session || session.status === 'closed')
+        return sendResult(reply, err({ code: 'not_found', message: 'A munkamenet nem érhető el.' }));
+      const body = parseBody(
+        z.object({
+          learnerId: z.string().optional(),
+          classroomCode: z.string().optional(),
+          secret: z.string().optional(),
+          guest: z.boolean().default(false),
+          clientJoinKey: z.string().min(8).max(128).optional()
+        }),
+        request,
+        reply
+      );
+      if (!body) return;
+      let participant: LiveSessionRecord['participants'][number];
+      const credential = participantCredential();
+      if (body.learnerId && body.classroomCode && body.secret) {
+        const accesses = await repository.findClassroomAccess(body.classroomCode, body.learnerId);
+        const learner = await repository.getLearner(body.learnerId);
+        if (!accesses[0] || !learner || !(await verifyPassword(accesses[0].secretHash, body.secret)))
+          return sendResult(
+            reply,
+            err({ code: 'permission_denied', message: 'A tanulói azonosítás sikertelen.' })
+          );
+        participant = {
+          id: `participant.${session.id}.learner.${learner.id}`,
+          learnerId: learner.id,
+          nickname: learner.nickname,
+          badgeIcon: learner.badgeIcon,
+          badgeColor: learner.badgeColor,
+          credentialHash: credential.hash,
+          credentialExpiresAt: credential.expiresAt,
+          joinedAt: clock.iso()
+        };
+      } else {
+        if (!session.allowGuest || !body.guest)
+          return sendResult(
+            reply,
+            err({ code: 'permission_denied', message: 'Vendégként nem lehet csatlakozni.' })
+          );
+        const identity = createGuestIdentity(session.participants);
+        participant = {
+          id: body.clientJoinKey
+            ? `participant.${session.id}.guest.${createHash('sha256').update(body.clientJoinKey).digest('hex').slice(0, 16)}`
+            : randomUUID(),
+          ...identity,
+          claimCode: String(randomInt(100000, 999999)),
+          credentialHash: credential.hash,
+          credentialExpiresAt: credential.expiresAt,
+          joinedAt: clock.iso()
+        };
+      }
+      await repository.runAtomic(async () => {
+        const latest = await repository.getLiveSessionByCode(code);
+        if (!latest) throw new Error('Live session disappeared during join.');
+        const existingIndex = latest.participants.findIndex((item) => item.id === participant.id);
+        if (existingIndex >= 0) latest.participants[existingIndex] = participant;
+        else latest.participants.push(participant);
+        latest.updatedAt = clock.iso();
+        await repository.upsertLiveSession(latest);
+      });
+      const publicParticipant = Object.fromEntries(
+        Object.entries(participant).filter(
+          ([key]) => !['credentialHash', 'credentialExpiresAt', 'claimCode'].includes(key)
+        )
+      );
+      return ok({
+        participant: publicParticipant,
+        participantToken: credential.token,
+        expiresAt: credential.expiresAt,
+        session: { code: session.code, status: session.status, mode: session.mode }
+      });
     }
-    session.participants.push(participant);
-    session.updatedAt = new Date().toISOString();
-    await repository.upsertLiveSession(session);
-    return ok({ participant, session: { code: session.code, status: session.status, mode: session.mode } });
-  });
+  );
   app.get('/api/live-sessions/:code/poll', async (request, reply) => {
     const session = await repository.getLiveSessionByCode((request.params as { code: string }).code);
     if (!session)
@@ -768,6 +1021,7 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
     const body = parseBody(
       z.object({
         participantId: z.string(),
+        participantToken: z.string().optional(),
         answer: z.unknown(),
         evidence: z.record(z.string(), z.unknown()).default({})
       }),
@@ -776,30 +1030,40 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
     );
     if (!body) return;
     const participant = session.participants.find((item) => item.id === body.participantId);
-    if (!participant)
+    const headerToken = Array.isArray(request.headers['x-participant-token'])
+      ? request.headers['x-participant-token'][0]
+      : request.headers['x-participant-token'];
+    if (
+      !participant ||
+      !verifyParticipantCredential(
+        body.participantToken ?? headerToken,
+        participant.credentialHash,
+        participant.credentialExpiresAt
+      )
+    )
       return sendResult(
         reply,
-        err({ code: 'permission_denied', message: 'A résztvevő nem tartozik ehhez a munkamenethez.' })
+        err({ code: 'permission_denied', message: 'A résztvevő hitelesítése sikertelen.' })
       );
     const exerciseId = session.exerciseIds[session.currentIndex];
     const exerciseNode = await repository.getNode(exerciseId!);
     if (!exerciseNode || exerciseNode.type !== 'exercise')
       return sendResult(reply, err({ code: 'not_found', message: 'A kérdés nem érhető el.' }));
-    const existing = (
-      await repository.listSubmissions({
-        liveSessionId: session.id,
-        exerciseId,
-        learnerId: participant.learnerId ?? participant.id
-      })
-    ).length;
+    const existing = await repository.listSubmissions({
+      liveSessionId: session.id,
+      exerciseId,
+      learnerId: participant.learnerId ?? participant.id
+    });
+    if (existing[0])
+      return ok({ submission: existing[0], immediateFeedback: undefined, idempotentReplay: true });
     const graded = gradeExercise(exercisePayloadSchema.parse(exerciseNode.payload), body.answer);
     const submission: Submission = {
-      id: randomUUID(),
+      id: `live-answer.${session.id}.${exerciseId}.${participant.id}`,
       learnerId: participant.learnerId ?? participant.id,
       exerciseId: exerciseId!,
       assessmentId: session.assessmentId,
       liveSessionId: session.id,
-      attempt: existing + 1,
+      attempt: 1,
       answer: body.answer,
       normalizedAnswer: graded.ok ? graded.value.normalizedAnswer : body.answer,
       automaticScore: graded.ok ? graded.value.score : undefined,
@@ -814,7 +1078,7 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
     if (participant.learnerId)
       for (const conceptId of (exerciseNode.payload as ExercisePayload).concepts)
         await repository.upsertEvidence({
-          id: randomUUID(),
+          id: `evidence.${submission.id}.${conceptId}`,
           learnerId: participant.learnerId,
           conceptIds: [conceptId],
           submissionId: submission.id,
@@ -831,7 +1095,10 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
   });
   app.get('/api/learners/:id/overview', async (request, reply) => {
     if (!requireUser(request, reply)) return;
-    const learner = await repository.getLearner((request.params as { id: string }).id);
+    const learnerId = (request.params as { id: string }).id;
+    const legacyLearner = await repository.getLearner(learnerId);
+    const v2Learner = await repository.getRecord<LearnerProfileV2>('learnerProfiles', learnerId);
+    const learner = v2Learner ?? legacyLearner;
     if (!learner) return sendResult(reply, err({ code: 'not_found', message: 'A tanuló nem található.' }));
     const [submissions, evidence] = await Promise.all([
       repository.listSubmissions({ learnerId: learner.id }),
@@ -853,7 +1120,7 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
     const body = parseBody(
       z.object({
         title: z.string(),
-        classroomId: z.string(),
+        courseId: z.string(),
         phaseId: z.string().optional(),
         conceptIds: z.array(z.string()).min(1),
         questionCount: z.number().int().min(1).max(20),
@@ -909,7 +1176,7 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
       quality: 'experimental',
       currentRevision: 1,
       payload: {
-        classroomId: body.classroomId,
+        courseId: body.courseId,
         phaseId: body.phaseId,
         conceptIds: body.conceptIds,
         variants,
@@ -994,6 +1261,97 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
     return ok(await repository.listNotifications(user.id));
   });
 
+  app.get('/api/admin/users', async (request, reply) => {
+    if (!requireCapability(request, reply, 'users.manage')) return;
+    const users = await repository.listUsers();
+    return ok(
+      users.map((user) => ({
+        id: user.id,
+        username: user.username,
+        displayName: user.displayName,
+        roles: user.roles,
+        capabilities: user.capabilities,
+        mustChangePassword: user.mustChangePassword,
+        disabled: Boolean(user.disabled),
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt
+      }))
+    );
+  });
+  app.post('/api/admin/users', async (request, reply) => {
+    if (!requireCapability(request, reply, 'users.manage')) return;
+    const body = parseBody(
+      z.object({
+        username: z.string().min(3),
+        displayName: z.string().min(1),
+        temporaryPassword: z.string().min(10),
+        roles: z.array(z.enum(['admin', 'teacher'])).min(1)
+      }),
+      request,
+      reply
+    );
+    if (!body) return;
+    if (await repository.getUserByUsername(body.username))
+      return sendResult(reply, err({ code: 'conflict', message: 'A felhasználónév már foglalt.' }));
+    const capabilities = [...new Set(body.roles.flatMap((role) => commonCapabilities[role]))];
+    const createdAt = clock.iso();
+    const user = {
+      id: randomUUID(),
+      username: body.username,
+      displayName: body.displayName,
+      passwordHash: await hashPassword(body.temporaryPassword),
+      roles: body.roles,
+      capabilities,
+      mustChangePassword: true,
+      disabled: false,
+      createdAt,
+      updatedAt: createdAt
+    };
+    await repository.upsertUser(user);
+    return ok({
+      id: user.id,
+      username: user.username,
+      displayName: user.displayName,
+      roles: user.roles,
+      capabilities: user.capabilities,
+      mustChangePassword: user.mustChangePassword,
+      disabled: Boolean(user.disabled),
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt
+    });
+  });
+  app.post('/api/admin/users/:id/reset-password', async (request, reply) => {
+    if (!requireCapability(request, reply, 'users.manage')) return;
+    const body = parseBody(z.object({ temporaryPassword: z.string().min(10) }), request, reply);
+    if (!body) return;
+    const user = await repository.getUser((request.params as { id: string }).id);
+    if (!user) return sendResult(reply, err({ code: 'not_found', message: 'A felhasználó nem található.' }));
+    user.passwordHash = await hashPassword(body.temporaryPassword);
+    user.mustChangePassword = true;
+    user.updatedAt = clock.iso();
+    await repository.upsertUser(user);
+    await repository.deleteSessionsForUser(user.id);
+    return ok({ reset: true });
+  });
+  app.post('/api/admin/users/:id/disabled', async (request, reply) => {
+    const actor = requireCapability(request, reply, 'users.manage');
+    if (!actor) return;
+    const body = parseBody(z.object({ disabled: z.boolean() }), request, reply);
+    if (!body) return;
+    const user = await repository.getUser((request.params as { id: string }).id);
+    if (!user) return sendResult(reply, err({ code: 'not_found', message: 'A felhasználó nem található.' }));
+    if (user.id === actor.id && body.disabled)
+      return sendResult(
+        reply,
+        err({ code: 'validation_failure', message: 'A saját aktív admin fiókod nem tilthatod le.' })
+      );
+    user.disabled = body.disabled;
+    user.updatedAt = clock.iso();
+    await repository.upsertUser(user);
+    if (body.disabled) await repository.deleteSessionsForUser(user.id);
+    return ok({ disabled: user.disabled });
+  });
+
   app.get('/api/admin/health', async (request, reply) => {
     if (!requireCapability(request, reply, 'health.read')) return;
     return ok({
@@ -1012,6 +1370,7 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
   app.post('/api/admin/demo/reset', async (request, reply) => {
     if (!requireCapability(request, reply, 'seeds.manage')) return;
     await repository.resetAll(await buildDemoSeed(hashPassword));
+    await applyV2Demo(repository, config, clock);
     await record(
       repository,
       'demo.reset',
@@ -1078,18 +1437,27 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
     }
     const validation = validateContentPackage(pkg, {
       maxAssetBytes: config.MAX_UPLOAD_BYTES,
-      allowedCapabilities: ['math.katex', 'math.2d-plot', 'math.numeric-grading']
+      allowedCapabilities: [
+        'math.katex',
+        'math.2d-plot',
+        'math.numeric-grading',
+        ...(config.FEATURE_PROJECTS ? ['fonat.projects'] : [])
+      ]
     });
+    const registryIssues = validation.valid ? validateInstalledPackageContracts(pkg) : [];
+    const effectiveValidation = registryIssues.length
+      ? { ...validation, valid: false, issues: [...validation.issues, ...registryIssues] }
+      : validation;
     const existing = await repository.listNodes({ ids: pkg.nodes.map((item) => item.id), limit: 100 });
     const existingIds = new Set(existing.items.map((item) => item.id));
     return ok({
-      validation,
+      validation: effectiveValidation,
       summary: {
         additions: pkg.nodes.filter((item) => !existingIds.has(item.id)).length,
         updates: pkg.nodes.filter((item) => existingIds.has(item.id)).length,
         relations: pkg.relations.length
       },
-      stagedPackage: validation.valid ? pkg : undefined
+      stagedPackage: effectiveValidation.valid ? pkg : undefined
     });
   });
   app.post('/api/packages/apply', async (request, reply) => {
@@ -1098,26 +1466,66 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
     if (!body) return;
     const validation = validateContentPackage(body.package, {
       maxAssetBytes: config.MAX_UPLOAD_BYTES,
-      allowedCapabilities: ['math.katex', 'math.2d-plot', 'math.numeric-grading']
+      allowedCapabilities: [
+        'math.katex',
+        'math.2d-plot',
+        'math.numeric-grading',
+        ...(config.FEATURE_PROJECTS ? ['fonat.projects'] : [])
+      ]
     });
-    if (!validation.valid || !validation.package)
+    const registryIssues =
+      validation.valid && validation.package ? validateInstalledPackageContracts(validation.package) : [];
+    if (!validation.valid || !validation.package || registryIssues.length)
       return sendResult(
         reply,
-        err({ code: 'validation_failure', message: 'A csomag már nem érvényes.', details: validation.issues })
+        err({
+          code: 'validation_failure',
+          message: 'A csomag már nem érvényes.',
+          details: [...validation.issues, ...registryIssues]
+        })
       );
-    for (const item of validation.package.nodes) await repository.upsertNode(item);
-    for (const relation of validation.package.relations) await repository.upsertRelation(relation);
-    await record(
-      repository,
-      'package.imported',
-      `${validation.package.manifest.name} importálva.`,
-      validation.package.manifest.packageId,
-      'success'
-    );
+    const packageData = validation.package;
+    await repository.runAtomic(async () => {
+      for (const incoming of packageData.nodes) {
+        const current = await repository.getNode(incoming.id);
+        if (current && current.lifecycle === 'published') {
+          const revision = current.currentRevision + 1;
+          const compatibility = classifyRevision(current, incoming);
+          await repository.insertRevision({
+            id: `${incoming.id}:${revision}`,
+            nodeId: incoming.id,
+            revision,
+            compatibility,
+            compatibilityReason: `Package update ${packageData.manifest.packageId}@${packageData.manifest.version}`,
+            payload: incoming.payload,
+            title: incoming.title,
+            summary: incoming.summary,
+            createdAt: clock.iso(),
+            createdBy: `package:${packageData.manifest.packageId}`
+          });
+          await repository.upsertNode({
+            ...incoming,
+            currentRevision: revision,
+            version: (current.version ?? 0) + 1,
+            updatedAt: clock.iso()
+          });
+        } else {
+          await repository.upsertNode(incoming);
+        }
+      }
+      for (const relation of packageData.relations) await repository.upsertRelation(relation);
+      await record(
+        repository,
+        'package.imported',
+        `${packageData.manifest.name} importálva.`,
+        packageData.manifest.packageId,
+        'success'
+      );
+    });
     return ok({
       applied: true,
-      nodes: validation.package.nodes.length,
-      relations: validation.package.relations.length
+      nodes: packageData.nodes.length,
+      relations: packageData.relations.length
     });
   });
 
@@ -1331,6 +1739,22 @@ export async function createApp(config: AppConfig, repository: FonatRepository):
       ]
     });
   });
+
+  await registerOrganizationRoutes(app, repository, clock);
+  await registerOnboardingRoutes(app, repository, clock);
+  await registerAssignmentRoutes(app, repository, clock);
+  await registerAssessmentV2Routes(app, repository, clock);
+  if (config.FEATURE_PROJECTS) await registerProjectRoutes(app, repository, config, clock);
+  await registerRelationRoutes(app, repository, clock);
+
+  app.get('/api/v2/capabilities', async () =>
+    ok({
+      projects: config.FEATURE_PROJECTS,
+      demoClock: config.DEMO_CLOCK,
+      schoolTimezone: config.SCHOOL_TIMEZONE
+    })
+  );
+  app.get('/api/openapi.json', async () => app.swagger());
 
   const webDist = path.resolve(process.cwd(), 'apps/web/dist');
   try {
