@@ -1,0 +1,21 @@
+{
+  "contractVersion": "1.0.0",
+  "packageId": "fonat.example.minimum",
+  "name": "Fonat minimal content example",
+  "version": "1.0.0",
+  "description": "A minimal valid package used by the CLI and import tests.",
+  "language": "hu",
+  "license": "CC BY-NC-SA 4.0",
+  "dependencies": {},
+  "capabilities": [
+    "math.katex"
+  ],
+  "entrypoints": {
+    "nodes": [
+      "nodes.json"
+    ],
+    "relations": [
+      "relations.json"
+    ]
+  }
+}

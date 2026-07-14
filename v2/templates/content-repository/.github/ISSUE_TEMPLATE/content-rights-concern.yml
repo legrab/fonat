@@ -1,0 +1,35 @@
+name: Content Rights Concern
+description: Report educational material that may have been included without suitable permission.
+title: '[Content rights] '
+labels: [content-rights]
+body:
+  - type: input
+    id: content
+    attributes:
+      label: Affected content identifier or path
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Original source
+    validations:
+      required: true
+  - type: textarea
+    id: relationship
+    attributes:
+      label: Your relationship to the material
+    validations:
+      required: true
+  - type: textarea
+    id: concern
+    attributes:
+      label: Why you believe the use is unauthorized
+    validations:
+      required: true
+  - type: textarea
+    id: action
+    attributes:
+      label: Requested action
+    validations:
+      required: true

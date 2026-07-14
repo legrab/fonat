@@ -1,0 +1,31 @@
+@media print {
+  .sidebar,
+  .no-print,
+  .rt-Button {
+    display: none !important;
+  }
+  .app-shell {
+    display: block;
+  }
+  .page {
+    max-width: none;
+    padding: 0;
+  }
+  .panel {
+    border: 0;
+    padding: 0;
+  }
+  .print-only {
+    display: block;
+  }
+  body {
+    background: white;
+    color: black;
+  }
+  a {
+    text-decoration: none;
+  }
+  @page {
+    margin: 14mm;
+  }
+}

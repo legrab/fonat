@@ -1,0 +1,46 @@
+{
+  "name": "@fonat/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "dev:e2e": "cross-env PORT=3100 WEB_ORIGIN=http://127.0.0.1:4173 PUBLIC_BASE_URL=http://127.0.0.1:3100 PERSISTENCE_MODE=memory SESSION_SECRET=e2e-session-secret-long-enough-for-tests tsx src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "start": "node dist/index.js",
+    "demo:reset": "tsx src/commands.ts demo-reset",
+    "db:indexes": "tsx src/commands.ts indexes",
+    "test": "vitest run src",
+    "openapi": "tsx src/commands.ts openapi"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^11.0.2",
+    "@fastify/cors": "^11.1.0",
+    "@fastify/multipart": "^9.2.1",
+    "@fastify/rate-limit": "^11.1.0",
+    "@fastify/static": "^10.1.0",
+    "@fastify/swagger": "^9.8.1",
+    "@fastify/swagger-ui": "^6.1.0",
+    "@fonat/application": "0.2.0",
+    "@fonat/content-contracts": "0.1.0",
+    "@fonat/contracts": "0.1.0",
+    "@fonat/core-module": "0.1.0",
+    "@fonat/domain": "0.1.0",
+    "@fonat/math-module": "0.1.0",
+    "@fonat/module-registry": "0.2.0",
+    "@fonat/projects-module": "0.2.0",
+    "@js-temporal/polyfill": "^0.5.1",
+    "adm-zip": "^0.5.16",
+    "fastify": "^5.7.4",
+    "fastify-type-provider-zod": "^7.0.0",
+    "mongodb": "^7.0.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/adm-zip": "^0.5.7",
+    "cross-env": "^10.1.0",
+    "tsx": "^4.21.0"
+  }
+}

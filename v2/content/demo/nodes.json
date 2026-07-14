@@ -1,0 +1,78 @@
+[
+  {
+    "id": "example.concept.fraction",
+    "type": "concept",
+    "title": { "canonicalLanguage": "hu", "values": { "hu": "Tört", "en": "Fraction" } },
+    "summary": { "canonicalLanguage": "hu", "values": { "hu": "Az egész egyenlő részeinek leírása." } },
+    "lifecycle": "published",
+    "quality": "experimental",
+    "currentRevision": 1,
+    "payload": { "conceptSubtype": "definition" },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.example.minimum",
+      "localKey": "example.concept.fraction"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:00:00.000Z"
+  },
+  {
+    "id": "example.exercise.half",
+    "type": "exercise",
+    "title": {
+      "canonicalLanguage": "hu",
+      "values": { "hu": "Egy fél felismerése", "en": "Recognising one half" }
+    },
+    "lifecycle": "published",
+    "quality": "experimental",
+    "currentRevision": 1,
+    "payload": {
+      "exerciseType": "numeric",
+      "prompt": {
+        "canonicalLanguage": "hu",
+        "values": { "hu": "Írd fel tizedes tört alakban: $\\frac{1}{2}$." }
+      },
+      "options": [],
+      "expected": 0.5,
+      "acceptedAnswers": [],
+      "tolerance": 0,
+      "durationMinutes": 2,
+      "difficulty": {
+        "cognitive": 1,
+        "prerequisites": 1,
+        "independence": 2,
+        "teacherPreparation": 1,
+        "collaboration": 1
+      },
+      "evidenceIntensity": "none",
+      "concepts": ["example.concept.fraction"],
+      "purpose": ["practice"],
+      "scaffold": [],
+      "grading": {},
+      "presentation": {}
+    },
+    "extensions": {},
+    "provenance": {
+      "origin": "seed",
+      "packageId": "fonat.example.minimum",
+      "localKey": "example.exercise.half"
+    },
+    "rights": {
+      "status": "project-owned",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Fonat",
+      "redistributionAllowed": true
+    },
+    "tags": ["matematika", "tört"],
+    "createdAt": "2026-07-13T12:00:00.000Z",
+    "updatedAt": "2026-07-13T12:00:00.000Z"
+  }
+]

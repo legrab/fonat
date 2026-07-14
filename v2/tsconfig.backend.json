@@ -1,0 +1,35 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./packages/contracts"
+    },
+    {
+      "path": "./packages/domain"
+    },
+    {
+      "path": "./packages/content-contracts"
+    },
+    {
+      "path": "./packages/content-cli"
+    },
+    {
+      "path": "./modules/core"
+    },
+    {
+      "path": "./modules/math"
+    },
+    {
+      "path": "./packages/application"
+    },
+    {
+      "path": "./modules/projects"
+    },
+    {
+      "path": "./packages/module-registry"
+    },
+    {
+      "path": "./apps/server"
+    }
+  ]
+}
