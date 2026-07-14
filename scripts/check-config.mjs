@@ -13,14 +13,20 @@ for (const file of [
 const packageJson = JSON.parse(read("package.json"));
 const vercel = JSON.parse(read("vercel.json"));
 const docker = read("Dockerfile");
-const expected = "24.18.0";
+const vercelEntry = read("api/index.ts");
+const expectedNodeEngine = "24.x";
+const expectedDockerNode = "24.18.0";
 const errors = [];
-if (packageJson.engines.node !== expected)
+if (packageJson.engines.node !== expectedNodeEngine)
   errors.push("package.json Node mismatch");
-if (!docker.includes(`node:${expected}-bookworm-slim`))
+if (!docker.includes(`node:${expectedDockerNode}-bookworm-slim`))
   errors.push("Docker Node mismatch");
-if (vercel.functions?.["api/index.ts"]?.runtime !== "nodejs24.x")
-  errors.push("Vercel runtime mismatch");
+if (vercel.functions?.["api/index.ts"]?.runtime)
+  errors.push(
+    "Vercel Node runtime must be selected through package.json engines",
+  );
+if (!vercelEntry.includes("../apps/server/dist/vercel.js"))
+  errors.push("Vercel function must import the bundled server artifact");
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);

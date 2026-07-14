@@ -6,7 +6,7 @@ Fonat is a source-available, single-teacher-first educational operating system. 
 
 ## Fastest local start
 
-Requirements: Node.js **24.18.0**, npm **11.16.0**, and optionally Docker. The exact versions are pinned in `.nvmrc`, `.node-version`, `packageManager`, and `engines`.
+Requirements: Node.js **24.18.0**, npm **11.16.0**, and optionally Docker. Local, CI, and Docker use those exact tested versions; package engines permit compatible Node 24/npm 11 releases for hosted builds.
 
 ```bash
 cp .env.example .env
@@ -88,28 +88,32 @@ Production refuses memory persistence and the checked-in development session sec
 
 1. Import the repository and use **Other** as Framework Preset.
 2. Keep Root Directory at repository root.
-3. Install Command: `npm ci`.
+3. Install Command: `npm ci --include=dev`.
 4. Build Command: `npm run build`.
 5. Output Directory: `apps/web/dist`.
-6. Set Node.js to **24.18.0**.
+6. Set Node.js to **24.x**; the repository's package engine selects that major.
 7. Create a MongoDB Atlas database user and network rule, preferably restricted to Vercel egress where practical.
 8. Set `RUNTIME_PROFILE=production`, `MONGODB_URI`, `SESSION_SECRET`, `PUBLIC_APP_URL`, and `ALLOWED_ORIGINS`.
 9. Use a separate Atlas database name for Preview deployments to prevent demo and production data mixing.
 10. Check `/api/health`, Function logs, and the first-run login after deployment.
 
-`vercel.json` routes `/api/*` to the single Fastify function and all other paths to the built SPA. The filesystem is ephemeral. Assets in hosted mode must be bundled or external-provider records. Roll back by promoting the preceding Vercel deployment.
+`vercel.json` routes `/api/*` to the single Fastify function and all other paths to the built SPA. The function entry imports the prebuilt `apps/server/dist/vercel.js` artifact so workspace packages are bundled rather than loaded as TypeScript at runtime. The filesystem is ephemeral. Assets in hosted mode must be bundled or external-provider records. Roll back by promoting the preceding Vercel deployment.
+
+No Development Command is required for deployment. `--include=dev` is intentional because the build uses TypeScript and bundler packages from `devDependencies`; it keeps the build working if the Vercel project exposes `NODE_ENV=production` during dependency installation.
 
 ## Render
 
 1. Choose **New → Blueprint** and connect the repository.
 2. Render reads `render.yaml` and builds the root Dockerfile.
-3. Set secret `MONGODB_URI`, `SESSION_SECRET`, `PUBLIC_APP_URL`, and `ALLOWED_ORIGINS`.
+3. Set secret `MONGODB_URI` and `SESSION_SECRET`. The default `onrender.com` origin is detected from Render's `RENDER_EXTERNAL_URL`.
 4. The service binds `0.0.0.0:$PORT` and exposes `/api/health`.
 5. Complete first-run bootstrap or use the seeded demo login when starting from a fresh demo database.
 6. Free services may sleep, and the local filesystem is ephemeral.
 7. Redeploy from a prior commit or image to roll back.
 
 Manual fallback: create a Docker Web Service from the root Dockerfile with the same variables and health path.
+
+For a custom Render domain, set `PUBLIC_APP_URL` to that HTTPS origin and include it in `ALLOWED_ORIGINS`. Origins are normalized, so a trailing slash is accepted. Existing deployments may temporarily retain the legacy `PUBLIC_BASE_URL` and `WEB_ORIGIN` names; v4 accepts them as migration aliases. Client IP addresses must not be added to the origin allowlist.
 
 ## Repository map
 

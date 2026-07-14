@@ -8,7 +8,7 @@ npm: 11.16.0
 Platform: linux x64
 Application version: 0.4.0
 Server bundle target: node24
-Vercel runtime: nodejs24.x
+Vercel runtime: Node 24.x selected through the root package engine
 Docker base image: node:24.18.0-bookworm-slim
 ```
 

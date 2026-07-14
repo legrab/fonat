@@ -4,8 +4,7 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": "24.18.0",
-    "npm": "11.16.0"
+    "node": "24.x"
   },
   "workspaces": [
     "apps/*",
@@ -28,6 +27,7 @@
     "toolchain:check": "node scripts/check-toolchain.mjs",
     "lockfile:check": "node scripts/check-lockfile-portability.mjs",
     "config:check": "node scripts/check-config.mjs",
+    "vercel:check": "node scripts/check-vercel-bundle.mjs",
     "smoke:production": "node scripts/smoke-production.mjs",
     "artifact:verify": "node scripts/verify-artifact.mjs"
   },

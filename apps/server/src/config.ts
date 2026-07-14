@@ -25,8 +25,21 @@ export type AppConfig = z.infer<typeof schema> & {
   allowedOrigins: string[];
   projectsEnabled: boolean;
 };
+const toOrigin = (value: string) => new URL(value).origin;
 export function readConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
-  const parsed = schema.parse(env);
+  const parsed = schema.parse({
+    ...env,
+    PUBLIC_APP_URL:
+      env.PUBLIC_APP_URL ??
+      env.PUBLIC_BASE_URL ??
+      env.WEB_ORIGIN ??
+      env.RENDER_EXTERNAL_URL,
+    ALLOWED_ORIGINS:
+      env.ALLOWED_ORIGINS ??
+      env.WEB_ORIGIN ??
+      env.PUBLIC_BASE_URL ??
+      env.RENDER_EXTERNAL_URL,
+  });
   if (
     parsed.RUNTIME_PROFILE === "production" &&
     (!parsed.MONGODB_URI || parsed.SESSION_SECRET.includes("development-only"))
@@ -34,11 +47,16 @@ export function readConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
     throw new Error(
       "Production requires MongoDB and a strong non-default SESSION_SECRET",
     );
+  const publicAppOrigin = toOrigin(parsed.PUBLIC_APP_URL);
+  const allowedOrigins = [publicAppOrigin, ...parsed.ALLOWED_ORIGINS.split(",")]
+    .map((value) => value.trim())
+    .filter(Boolean)
+    .map(toOrigin);
   return {
     ...parsed,
-    allowedOrigins: parsed.ALLOWED_ORIGINS.split(",")
-      .map((x) => x.trim())
-      .filter(Boolean),
+    PUBLIC_APP_URL: publicAppOrigin,
+    ALLOWED_ORIGINS: [...new Set(allowedOrigins)].join(","),
+    allowedOrigins: [...new Set(allowedOrigins)],
     projectsEnabled: parsed.FEATURE_PROJECTS !== "false",
   };
 }
