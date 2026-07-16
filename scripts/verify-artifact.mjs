@@ -13,6 +13,7 @@ const forbiddenDirs = new Set([
 ]);
 const selfDescribingFiles = new Set([
   "docs/SPEC-v4.md",
+  "fonat-one-shot-mvp-spec-v4.md",
   "scripts/check-lockfile-portability.mjs",
   "scripts/verify-artifact.mjs",
 ]);
@@ -29,7 +30,7 @@ function walk(dir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     if (forbiddenDirs.has(entry.name)) continue;
     const full = path.join(dir, entry.name);
-    const rel = path.relative(root, full);
+    const rel = path.relative(root, full).split(path.sep).join("/");
     if (entry.isDirectory()) {
       walk(full);
       continue;

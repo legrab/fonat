@@ -6,7 +6,7 @@ Fonat is a source-available, single-teacher-first educational operating system. 
 
 ## Fastest local start
 
-Requirements: Node.js **24.18.0**, npm **11.16.0**, and optionally Docker. Local, CI, and Docker use those exact tested versions; package engines permit compatible Node 24/npm 11 releases for hosted builds.
+Requirements: Node.js **24.18.0**, npm **11.16.0**, and optionally Docker. Local version files, CI, Docker, and `packageManager` use those exact tested versions. The package engine intentionally selects compatible Node 24 releases so hosted platforms such as Vercel can supply their supported patch version.
 
 ```bash
 cp .env.example .env

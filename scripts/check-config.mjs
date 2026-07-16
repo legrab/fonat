@@ -14,12 +14,17 @@ const packageJson = JSON.parse(read("package.json"));
 const vercel = JSON.parse(read("vercel.json"));
 const docker = read("Dockerfile");
 const vercelEntry = read("api/index.js");
-const expectedNodeEngine = "24.x";
-const expectedDockerNode = "24.18.0";
+const expectedNode = read(".node-version").trim();
+const expectedNpm = packageJson.packageManager?.match(
+  /^npm@(\d+\.\d+\.\d+)$/,
+)?.[1];
+const expectedNodeEngine = `${expectedNode.split(".")[0]}.x`;
 const errors = [];
 if (packageJson.engines.node !== expectedNodeEngine)
   errors.push("package.json Node mismatch");
-if (!docker.includes(`node:${expectedDockerNode}-bookworm-slim`))
+if (!expectedNpm || packageJson.engines.npm !== undefined)
+  errors.push("package.json npm mismatch");
+if (!docker.includes(`node:${expectedNode}-bookworm-slim`))
   errors.push("Docker Node mismatch");
 if (vercel.functions?.["api/index.js"]?.runtime)
   errors.push(
