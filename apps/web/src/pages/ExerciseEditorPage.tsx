@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { api, patch, post } from "../api";
+import { ApiError, api, patch, post } from "../api";
 import { ContentEditor } from "../components/ContentEditor";
 import { Markdown } from "../components/Markdown";
 const types = [
@@ -40,6 +40,7 @@ export function ExerciseEditorPage() {
   });
   const [prompt, setPrompt] = useState("Írd ide a feladat szövegét.");
   const [solution, setSolution] = useState("");
+  const [hydrated, setHydrated] = useState(!id);
   const form = useForm<any>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -66,6 +67,7 @@ export function ExerciseEditorPage() {
         optionsText: (e.options || []).map((o: any) => o.text).join("\n"),
         correctOptionIds: (e.correctOptionIds || []).join(","),
       });
+      setHydrated(true);
     }
   }, [existing.data]);
   const selected = form.watch("exerciseType");
@@ -105,6 +107,14 @@ export function ExerciseEditorPage() {
     },
     onSuccess: () => nav("/library"),
   });
+  if (id && (existing.isLoading || !hydrated))
+    return <div className="loading">Feladat betöltése…</div>;
+  if (existing.error)
+    return (
+      <section className="panel error" role="alert">
+        A feladat nem tölthető be: {existing.error.message}
+      </section>
+    );
   return (
     <>
       <div className="page-title">
@@ -152,11 +162,19 @@ export function ExerciseEditorPage() {
           </div>
           <label>
             Feladatszöveg
-            <ContentEditor value={prompt} onChange={setPrompt} />
+            <ContentEditor
+              value={prompt}
+              onChange={setPrompt}
+              ariaLabel="Feladatszöveg szerkesztő"
+            />
           </label>
           <label>
             Megoldás / magyarázat
-            <ContentEditor value={solution} onChange={setSolution} />
+            <ContentEditor
+              value={solution}
+              onChange={setSolution}
+              ariaLabel="Megoldás szerkesztő"
+            />
           </label>
           {(selected === "single-choice" || selected === "multiple-choice") && (
             <>
@@ -221,6 +239,13 @@ export function ExerciseEditorPage() {
           </button>
           {Object.keys(form.formState.errors).length > 0 && (
             <div className="error">Ellenőrizd a megjelölt mezőket.</div>
+          )}
+          {save.error && (
+            <div className="error" role="alert">
+              {save.error instanceof ApiError && save.error.code === "CONFLICT"
+                ? "A feladatot közben más módosította. Töltsd újra az oldalt, majd ellenőrizd a változásokat."
+                : `A mentés sikertelen: ${save.error.message}`}
+            </div>
           )}
         </section>
         <section className="panel preview">
