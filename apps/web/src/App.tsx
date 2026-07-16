@@ -25,6 +25,7 @@ import { NodeDetailPage } from "./pages/NodeDetailPage";
 import { MaterialEditorPage } from "./pages/MaterialEditorPage";
 import { OrganizationEditorPage } from "./pages/OrganizationEditorPage";
 import { SetupPage } from "./pages/SetupPage";
+import { AnnualPlanEditorPage } from "./pages/AnnualPlanEditorPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 function Protected() {
   const location = useLocation();
@@ -120,6 +121,8 @@ export function App() {
             path="annual-plans"
             element={<EntityListPage route="annual-plans" />}
           />
+          <Route path="annual-plans/new" element={<AnnualPlanEditorPage />} />
+          <Route path="annual-plans/:id" element={<AnnualPlanEditorPage />} />
           <Route path="assignments" element={<AssignmentsPage />} />
           <Route path="assessments" element={<AssessmentsPage />} />
           <Route path="insights" element={<InsightsPage />} />

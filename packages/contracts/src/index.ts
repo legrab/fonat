@@ -131,9 +131,12 @@ export type LessonSlide = {
 export type Lesson = Entity & {
   title: string;
   courseId: string;
+  locationId?: string;
   status: "draft" | "published" | "archived";
   slides: LessonSlide[];
   scheduledDate?: string;
+  durationMinutes?: number;
+  teacherNotes?: string;
 };
 export type LiveAnswer = {
   id: string;

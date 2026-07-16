@@ -154,4 +154,53 @@ describe("critical API workflow", () => {
     expect(state.enrollments).toHaveLength(2);
     expect(JSON.stringify(onboarding.json().value)).not.toContain("demo");
   });
+  it("persists the exact edited lesson activity order and teacher-only fields", async () => {
+    const cookie = await login();
+    const create = await ctx.app.inject({
+      method: "POST",
+      url: "/api/lessons",
+      cookies: { fonat_session: cookie },
+      payload: {
+        title: "Saját szerkesztett óra",
+        courseId: "course.grade8-math",
+        locationId: "location.math-room",
+        scheduledDate: "2026-10-01",
+        durationMinutes: 45,
+        teacherNotes: "Csak a tanár láthatja.",
+        status: "draft",
+        slides: [
+          {
+            id: "activity.intro",
+            type: "section-intro",
+            title: "Kezdés",
+            body: "Ráhangolás",
+          },
+          {
+            id: "activity.quiz",
+            type: "live-quiz",
+            title: "Ellenőrzés",
+            body: "Válaszolj!",
+            exerciseId: "exercise.missing-hypotenuse-6-8",
+          },
+          {
+            id: "activity.homework",
+            type: "homework",
+            title: "Lezárás",
+            body: "Gyakorolj!",
+          },
+        ],
+      },
+    });
+    expect(create.statusCode).toBe(201);
+    const lesson = create.json().value;
+    const read = await ctx.app.inject({
+      method: "GET",
+      url: `/api/lessons/${lesson.id}`,
+      cookies: { fonat_session: cookie },
+    });
+    expect(
+      read.json().value.slides.map((slide: { id: string }) => slide.id),
+    ).toEqual(["activity.intro", "activity.quiz", "activity.homework"]);
+    expect(read.json().value.teacherNotes).toBe("Csak a tanár láthatja.");
+  });
 });

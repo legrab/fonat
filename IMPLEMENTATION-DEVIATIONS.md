@@ -9,6 +9,7 @@ This is a substantial runnable MVP modernized against the Version 4 specificatio
 - all six guided exercise types with Milkdown Crepe prompt/solution editors and learner preview;
 - atomic blank-workspace onboarding for the first Subject, Group, learners, Location, Course, and Enrollments, plus guided organization editors;
 - guided Concept/Resource material editing, actionable Library rows, named Relation management, and an Exercise catalogue with structured choice answers and Concept/evidence metadata;
+- guided Annual Plan phases/coverage and a complete Lesson activity editor with explicit Exercise selection, teacher-only notes, scheduling fields, diagnostics, preview, and all presentation slide types;
 - 24 Grade 8 concepts, 18 authored exercises, five learner fixtures, multiple lessons, evidence, findings, assignments, assessment blueprint, and the complete ten-slide demo sequence;
 - live join code, scoped participant token, idempotent answer acceptance, polling, response table, teacher reveal, privacy-safe nickname leaderboard;
 - mutable assignment draft, immutable attempts, return/resubmit/accept flow;
