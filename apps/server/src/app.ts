@@ -11,6 +11,7 @@ import fastifyStatic from "@fastify/static";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import bcrypt from "bcryptjs";
+import { z } from "zod";
 import {
   authenticate,
   createDemoState,
@@ -63,6 +64,30 @@ const collectionMap = {
   projects: "projects",
 } as const;
 type CollectionRoute = keyof typeof collectionMap;
+type AssessmentSlot = {
+  id: string;
+  conceptId: string;
+  points?: number;
+  difficultyMin?: number;
+  difficultyMax?: number;
+};
+
+const eligibleForSlot = (state: WorkspaceState, slot: AssessmentSlot) =>
+  state.exercises.filter(
+    (exercise) =>
+      exercise.lifecycle === "published" &&
+      exercise.conceptIds.includes(slot.conceptId) &&
+      (slot.difficultyMin == null ||
+        exercise.difficulty >= slot.difficultyMin) &&
+      (slot.difficultyMax == null || exercise.difficulty <= slot.difficultyMax),
+  );
+
+const stableIndex = (value: string, length: number) => {
+  let hash = 0;
+  for (const character of value)
+    hash = (hash * 31 + character.charCodeAt(0)) >>> 0;
+  return length ? hash % length : 0;
+};
 const publicPrefixes = [
   "/api/auth/status",
   "/api/auth/bootstrap",
@@ -312,6 +337,113 @@ export async function createApp(
   app.get("/api/workspace/summary", async () =>
     ok(summarize(store.snapshot())),
   );
+  app.get("/api/onboarding/status", async () => {
+    const state = store.snapshot();
+    return ok({
+      complete:
+        state.courses.length > 0 &&
+        state.learnerGroups.length > 0 &&
+        state.learners.length > 0,
+      counts: {
+        subjects: state.subjects.length,
+        groups: state.learnerGroups.length,
+        learners: state.learners.length,
+        locations: state.locations.length,
+        courses: state.courses.length,
+      },
+    });
+  });
+  app.post("/api/onboarding/complete", async (req, reply) => {
+    const parsed = z
+      .object({
+        subjectTitle: z.string().min(2),
+        groupTitle: z.string().min(1),
+        schoolYear: z.string().min(4),
+        learnerNames: z.array(z.string().min(1)).min(1),
+        locationTitle: z.string().min(2),
+        room: z.string().optional(),
+        courseTitle: z.string().min(2),
+        timezone: z.string().min(1).default(config.SCHOOL_TIMEZONE),
+      })
+      .safeParse(req.body);
+    if (!parsed.success)
+      return reply
+        .code(400)
+        .send(
+          err(
+            "VALIDATION",
+            "onboarding.invalid",
+            false,
+            parsed.error.flatten().fieldErrors as Record<string, string[]>,
+          ),
+        );
+    const created = await store.mutate((state) => {
+      const now = clock.now().toISOString();
+      const subject = {
+        id: id("subject"),
+        title: parsed.data.subjectTitle,
+        concurrencyVersion: 1,
+        createdAt: now,
+        updatedAt: now,
+      };
+      const group = {
+        id: id("group"),
+        title: parsed.data.groupTitle,
+        schoolYear: parsed.data.schoolYear,
+        concurrencyVersion: 1,
+        createdAt: now,
+        updatedAt: now,
+      };
+      const location = {
+        id: id("location"),
+        title: parsed.data.locationTitle,
+        room: parsed.data.room,
+        concurrencyVersion: 1,
+        createdAt: now,
+        updatedAt: now,
+      };
+      const learners = parsed.data.learnerNames.map((name) => ({
+        id: id("learner"),
+        title: name,
+        displayPseudonym: name,
+        administrativeIdentity: {},
+        concurrencyVersion: 1,
+        createdAt: now,
+        updatedAt: now,
+      }));
+      const course = {
+        id: id("course"),
+        title: parsed.data.courseTitle,
+        subjectId: subject.id,
+        learnerGroupIds: [group.id],
+        defaultLocationId: location.id,
+        timezone: parsed.data.timezone,
+        status: "active",
+        concurrencyVersion: 1,
+        createdAt: now,
+        updatedAt: now,
+      };
+      const enrollments = learners.map((learner) => ({
+        id: id("enrollment"),
+        title: `${learner.title} – ${group.title}`,
+        learnerId: learner.id,
+        learnerGroupId: group.id,
+        status: "active",
+        startDate: now.slice(0, 10),
+        concurrencyVersion: 1,
+        createdAt: now,
+        updatedAt: now,
+      }));
+      state.subjects.push(subject);
+      state.learnerGroups.push(group);
+      state.locations.push(location);
+      state.learners.push(...learners);
+      state.enrollments.push(...enrollments);
+      state.courses.push(course);
+      return { subject, group, location, learners, course };
+    });
+    return reply.code(201).send(ok(created));
+  });
   app.get("/api/today", async () => {
     const state = store.snapshot();
     return ok({
@@ -399,6 +531,58 @@ export async function createApp(
         body.options = parsed.data.options;
         Object.assign(body, parsed.data);
       }
+      if (route === "relations") {
+        const result = await store.mutate((state) => {
+          const sourceId = String(body.sourceId || "");
+          const targetId = String(body.targetId || "");
+          const relationType = String(body.type || "");
+          const relationTypes = new Set([
+            "requires",
+            "covers",
+            "alternative-to",
+            "extends",
+          ]);
+          const nodeIds = new Set(state.nodes.map((node) => node.id));
+          if (
+            !sourceId ||
+            !targetId ||
+            !relationTypes.has(relationType) ||
+            sourceId === targetId ||
+            !nodeIds.has(sourceId) ||
+            !nodeIds.has(targetId)
+          )
+            return err("VALIDATION", "relation.invalid", false, {
+              targetId: ["Choose a different existing material"],
+            });
+          if (
+            state.relations.some(
+              (relation) =>
+                relation.sourceId === sourceId &&
+                relation.targetId === targetId &&
+                relation.type === relationType &&
+                relation.lifecycle !== "archived",
+            )
+          )
+            return err("VALIDATION", "relation.duplicate", false, {
+              targetId: ["This active relation already exists"],
+            });
+          const value = {
+            ...body,
+            id: body.id || id("relation"),
+            sourceId,
+            targetId,
+            type: relationType,
+            concurrencyVersion: 1,
+            createdAt: clock.now().toISOString(),
+            updatedAt: clock.now().toISOString(),
+          };
+          state.relations.push(value);
+          return ok(value);
+        });
+        return result.ok
+          ? reply.code(201).send(result)
+          : reply.code(400).send(result);
+      }
       const item = await store.mutate((state) => {
         const value = {
           ...body,
@@ -423,19 +607,44 @@ export async function createApp(
         const current = list[index]!;
         if (expected && Number(current.concurrencyVersion) !== expected)
           return err("CONFLICT", "common.staleWrite", true);
-        const next = {
+        const candidate = {
           ...current,
           ...(req.body as any),
           id: current.id,
           concurrencyVersion: Number(current.concurrencyVersion || 1) + 1,
           updatedAt: clock.now().toISOString(),
         };
-        list[index] = next;
-        return ok(next);
+        if (route === "exercises") {
+          const parsed = exerciseSchema.safeParse(candidate);
+          if (!parsed.success)
+            return err(
+              "VALIDATION",
+              "exercise.invalid",
+              false,
+              parsed.error.flatten().fieldErrors as Record<string, string[]>,
+            );
+          Object.assign(candidate, parsed.data);
+          if (
+            current.lifecycle !== "published" &&
+            candidate.lifecycle === "published"
+          )
+            candidate.currentRevision =
+              Number(current.currentRevision || 0) + 1;
+        }
+        list[index] = candidate;
+        return ok(candidate);
       });
       return result.ok
         ? result
-        : reply.code(result.error.code === "CONFLICT" ? 409 : 404).send(result);
+        : reply
+            .code(
+              result.error.code === "CONFLICT"
+                ? 409
+                : result.error.code === "VALIDATION"
+                  ? 400
+                  : 404,
+            )
+            .send(result);
     });
   }
 
@@ -795,8 +1004,57 @@ export async function createApp(
   });
   app.get("/api/submissions", async () => ok(store.snapshot().submissions));
 
+  app.post("/api/assessments/preview", async (req, reply) => {
+    const blueprintId = String((req.body as any)?.blueprintId || "");
+    const state = store.snapshot();
+    const blueprint = state.assessmentBlueprints.find(
+      (item) => item.id === blueprintId,
+    ) as any;
+    if (!blueprint)
+      return reply
+        .code(404)
+        .send(err("NOT_FOUND", "assessment.blueprintNotFound"));
+    const slots = (blueprint.slots || []) as AssessmentSlot[];
+    return ok({
+      blueprintId,
+      totalPoints: slots.reduce(
+        (total, slot) => total + Number(slot.points || 0),
+        0,
+      ),
+      slots: slots.map((slot) => {
+        const eligible = eligibleForSlot(state, slot);
+        return {
+          ...slot,
+          eligibleCount: eligible.length,
+          candidateTitles: eligible
+            .slice(0, 5)
+            .map((exercise) => exercise.title),
+          shortfall: eligible.length === 0,
+        };
+      }),
+    });
+  });
+
   app.post("/api/assessments/generate", async (req, reply) => {
     const b = req.body as any;
+    const source = store.snapshot();
+    const sourceBlueprint = source.assessmentBlueprints.find(
+      (item) => item.id === String(b.blueprintId),
+    ) as any;
+    if (!sourceBlueprint)
+      return reply
+        .code(404)
+        .send(err("NOT_FOUND", "assessment.blueprintNotFound"));
+    const sourceSlots = (sourceBlueprint.slots || []) as AssessmentSlot[];
+    const shortfalls = sourceSlots.filter(
+      (slot) => eligibleForSlot(source, slot).length === 0,
+    );
+    if (shortfalls.length)
+      return reply.code(400).send(
+        err("VALIDATION", "assessment.slotShortfall", false, {
+          slots: shortfalls.map((slot) => slot.id),
+        }),
+      );
     const generated = await store.mutate((state) => {
       const blueprint = state.assessmentBlueprints.find(
         (x) => x.id === String(b.blueprintId),
@@ -816,9 +1074,18 @@ export async function createApp(
       const learnerIds = (b.learnerIds ||
         state.learners.slice(0, 2).map((x) => x.id)) as string[];
       const deliveries = learnerIds.map((learnerId, index) => {
-        const exerciseIds = state.exercises
-          .slice(index, index + 6)
-          .map((e) => e.id);
+        const slots = (blueprint.slots || []) as AssessmentSlot[];
+        const selectedExercises = slots.length
+          ? slots.map((slot, slotIndex) => {
+              const eligible = eligibleForSlot(state, slot);
+              return eligible[
+                stableIndex(
+                  `${assessment.seed}:${learnerId}:${index}:${slotIndex}`,
+                  eligible.length,
+                )
+              ];
+            })
+          : state.exercises.slice(index, index + 6);
         const d = {
           id: id("delivery"),
           title: `${assessment.title} ${index % 2 ? "B" : "A"}`,
@@ -826,8 +1093,9 @@ export async function createApp(
           learnerId,
           variant: index % 2 ? "B" : "A",
           seed: `${assessment.seed}:${learnerId}`,
-          exerciseSnapshots: exerciseIds.map((eid) =>
-            structuredClone(state.exercises.find((e) => e.id === eid)),
+          blueprintSnapshot: structuredClone(blueprint),
+          exerciseSnapshots: selectedExercises.map((exercise) =>
+            structuredClone(exercise),
           ),
           answers: {},
           status: "available",
@@ -870,6 +1138,7 @@ export async function createApp(
     },
   );
   app.post("/api/assessment-deliveries/:id/grade", async (req, reply) => {
+    const body = req.body as any;
     const result = await store.mutate((state) => {
       const d = state.assessmentDeliveries.find(
         (x) => x.id === (req.params as any).id,
@@ -878,10 +1147,32 @@ export async function createApp(
       let correct = 0;
       for (const ex of d.exerciseSnapshots as Exercise[])
         if (gradeExercise(ex, d.answers?.[ex.id]) === true) correct++;
+      const automaticPercent = Math.round(
+        (100 * correct) / Math.max(1, d.exerciseSnapshots.length),
+      );
+      const manualPercent =
+        body.manualPercent == null ? undefined : Number(body.manualPercent);
+      if (
+        manualPercent != null &&
+        (!Number.isFinite(manualPercent) ||
+          manualPercent < 0 ||
+          manualPercent > 100 ||
+          !String(body.overrideReason || "").trim())
+      )
+        return err("VALIDATION", "assessment.overrideInvalid", false, {
+          overrideReason: ["Required for manual override"],
+        });
       d.score = {
         correct,
         total: d.exerciseSnapshots.length,
-        percent: Math.round((100 * correct) / d.exerciseSnapshots.length),
+        percent: manualPercent ?? automaticPercent,
+        automaticPercent,
+        ...(manualPercent != null
+          ? {
+              manualOverride: true,
+              overrideReason: String(body.overrideReason),
+            }
+          : {}),
       };
       d.status = "graded";
       state.grades.push({
@@ -901,9 +1192,23 @@ export async function createApp(
                   : 1,
         recordedAt: clock.now().toISOString(),
       });
+      state.findings.push({
+        id: id("finding"),
+        title:
+          d.score.percent < 50
+            ? `${d.title}: utánkövetés javasolt`
+            : `${d.title}: értékelés elkészült`,
+        deliveryId: d.id,
+        learnerId: d.learnerId,
+        severity: d.score.percent < 50 ? "warning" : "info",
+        explanation: `${d.score.percent}% eredmény ${d.exerciseSnapshots.length} feladat alapján.`,
+        createdAt: clock.now().toISOString(),
+      });
       return ok(d);
     });
-    return result.ok ? result : reply.code(404).send(result);
+    return result.ok
+      ? result
+      : reply.code(result.error.code === "VALIDATION" ? 400 : 404).send(result);
   });
 
   app.post("/api/packages/demo-reset", async (req) => {
@@ -923,26 +1228,6 @@ export async function createApp(
     );
     return store.snapshot();
   });
-  app.get("/api/guide", async () =>
-    ok({
-      title: "Fonat Guide",
-      sections: [
-        {
-          title: "Első lépések",
-          body: "A Today oldalról nyisd meg a bemutató órát, vagy hozz létre saját tartalmat a Könyvtárban.",
-        },
-        {
-          title: "Élő óra",
-          body: "A tanári vezérlő kódját a tanulók a /join oldalon adják meg.",
-        },
-        {
-          title: "Biztonság",
-          body: "A Kilépés megszünteti a szerveroldali munkamenetet.",
-        },
-      ],
-    }),
-  );
-
   const webDist = path.resolve(process.cwd(), "apps/web/dist");
   if (existsSync(webDist)) {
     await app.register(fastifyStatic, { root: webDist, prefix: "/" });

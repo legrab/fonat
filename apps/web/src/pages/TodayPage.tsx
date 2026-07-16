@@ -7,6 +7,10 @@ export function TodayPage() {
     queryFn: () => api<any>("/api/today"),
     refetchInterval: 5000,
   });
+  const onboarding = useQuery({
+    queryKey: ["onboarding-status"],
+    queryFn: () => api<any>("/api/onboarding/status"),
+  });
   if (q.isLoading) return <div className="loading">Betöltés…</div>;
   const d = q.data;
   return (
@@ -20,9 +24,38 @@ export function TodayPage() {
             munkafelületen.
           </p>
         </div>
-        <Link className="button" to="/presentation/lesson.demo-presentation">
-          Pitagorasz-bemutató
-        </Link>
+        {onboarding.data?.complete ? (
+          <Link className="button" to="/lessons/new">
+            Új óraterv
+          </Link>
+        ) : (
+          <Link className="button" to="/setup">
+            Beállítás befejezése
+          </Link>
+        )}
+      </section>
+      <section className="panel">
+        <div className="section-head">
+          <h2>Gyors kezdés</h2>
+          <Link to="/guide/getting-started">Első lépések</Link>
+        </div>
+        <div className="card-row">
+          <Link className="metric-card" to="/library/new?type=concept">
+            <span className="eyebrow">Tartalom</span>
+            <strong>Új fogalom</strong>
+            <small>Definíció és kapcsolatok</small>
+          </Link>
+          <Link className="metric-card" to="/exercises/new">
+            <span className="eyebrow">Gyakorlás</span>
+            <strong>Új gyakorlófeladat</strong>
+            <small>Hat támogatott feladattípus</small>
+          </Link>
+          <Link className="metric-card" to="/lessons/new">
+            <span className="eyebrow">Tervezés</span>
+            <strong>Új óraterv</strong>
+            <small>Tananyag, feladat és élő ellenőrzés</small>
+          </Link>
+        </div>
       </section>
       <div className="dashboard-grid">
         <section className="panel">

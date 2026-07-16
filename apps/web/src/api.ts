@@ -9,15 +9,56 @@ export type Result<T> =
         retryable: boolean;
       };
     };
+
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    readonly code: string,
+    readonly status: number,
+    readonly retryable: boolean,
+    readonly fieldErrors: Record<string, string[]> = {},
+    readonly technicalReference?: string,
+  ) {
+    super(message);
+    this.name = "ApiError";
+  }
+}
+
 export async function api<T>(
   path: string,
   options: RequestInit = {},
 ): Promise<T> {
-  const response = await fetch(path, {
-    credentials: "include",
-    headers: { "content-type": "application/json", ...(options.headers || {}) },
-    ...options,
-  });
+  if (typeof navigator !== "undefined" && navigator.onLine === false) {
+    throw new ApiError(
+      "Nincs hálózati kapcsolat. A módosítások nem lettek mentve.",
+      "OFFLINE",
+      0,
+      true,
+    );
+  }
+
+  let response: Response;
+  try {
+    response = await fetch(path, {
+      credentials: "include",
+      headers: {
+        "content-type": "application/json",
+        ...(options.headers || {}),
+      },
+      ...options,
+    });
+  } catch (error) {
+    if (error instanceof DOMException && error.name === "AbortError")
+      throw error;
+    throw new ApiError(
+      "A szerver nem érhető el. Ellenőrizd a kapcsolatot, majd próbáld újra.",
+      "NETWORK",
+      0,
+      true,
+      {},
+      error instanceof Error ? error.message : undefined,
+    );
+  }
   const data = await response.json().catch(() => ({
     ok: false,
     error: {
@@ -26,8 +67,17 @@ export async function api<T>(
       retryable: true,
     },
   }));
-  if (!response.ok || data?.ok === false)
-    throw new Error(data?.error?.messageKey || `HTTP ${response.status}`);
+  if (!response.ok || data?.ok === false) {
+    const error = data?.error;
+    throw new ApiError(
+      error?.messageKey || `HTTP ${response.status}`,
+      error?.code || "HTTP",
+      response.status,
+      Boolean(error?.retryable),
+      error?.fieldErrors || {},
+      error?.technicalReference,
+    );
+  }
   return data?.ok === true ? data.value : data;
 }
 export const post = <T>(path: string, body: unknown) =>

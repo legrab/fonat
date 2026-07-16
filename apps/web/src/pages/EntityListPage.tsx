@@ -1,12 +1,13 @@
 import { useMemo, useState } from "react";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { api, post } from "../api";
+import { Link } from "react-router-dom";
+import { api } from "../api";
 const titles: Record<string, string> = {
   nodes: "Könyvtár",
   lessons: "Óratervek",
@@ -15,11 +16,29 @@ const titles: Record<string, string> = {
   learners: "Tanulók",
   locations: "Helyszínek",
   "annual-plans": "Éves tervek",
+  exercises: "Gyakorlófeladatok",
 };
+const statusLabels: Record<string, string> = {
+  draft: "Piszkozat",
+  published: "Közzétett",
+  archived: "Archivált",
+  active: "Aktív",
+};
+
+const detailPath = (route: string, id: string) => {
+  if (route === "nodes") return `/library/${id}`;
+  if (route === "learner-groups") return `/groups/${id}`;
+  return `/${route}/${id}`;
+};
+
+const createPath = (route: string) => {
+  if (route === "nodes") return "/library/new";
+  if (route === "learner-groups") return "/groups/new";
+  return `/${route}/new`;
+};
+
 export function EntityListPage({ route }: { route: string }) {
   const [search, setSearch] = useState("");
-  const [newTitle, setNewTitle] = useState("");
-  const qc = useQueryClient();
   const q = useQuery({
     queryKey: [route, search],
     queryFn: () =>
@@ -27,38 +46,34 @@ export function EntityListPage({ route }: { route: string }) {
         `/api/${route}?search=${encodeURIComponent(search)}&limit=100`,
       ),
   });
-  const create = useMutation({
-    mutationFn: () =>
-      post(
-        `/api/${route}`,
-        route === "nodes"
-          ? { title: newTitle, type: "concept", lifecycle: "draft" }
-          : { title: newTitle, name: newTitle, status: "draft" },
-      ),
-    onSuccess: () => {
-      setNewTitle("");
-      qc.invalidateQueries({ queryKey: [route] });
-    },
-  });
   const helper = createColumnHelper<any>();
   const columns = useMemo(
     () => [
       helper.accessor((row) => row.title || row.name || row.id, {
         id: "title",
         header: "Megnevezés",
-        cell: (i) => <strong>{i.getValue()}</strong>,
+        cell: (i) => (
+          <Link to={detailPath(route, i.row.original.id)}>
+            <strong>{i.getValue()}</strong>
+          </Link>
+        ),
       }),
       helper.accessor("lifecycle", {
         header: "Állapot",
         cell: (i) => (
           <span className="chip">
-            {i.getValue() || i.row.original.status || "aktív"}
+            {statusLabels[
+              String(i.getValue() || i.row.original.status || "active")
+            ] || String(i.getValue() || i.row.original.status || "Aktív")}
           </span>
         ),
       }),
-      helper.accessor("id", {
-        header: "Azonosító",
-        cell: (i) => <code>{i.getValue()}</code>,
+      helper.display({
+        id: "actions",
+        header: "Művelet",
+        cell: (i) => (
+          <Link to={detailPath(route, i.row.original.id)}>Megnyitás</Link>
+        ),
       }),
     ],
     [route],
@@ -75,6 +90,9 @@ export function EntityListPage({ route }: { route: string }) {
           <span className="eyebrow">Szerkeszthető gyűjtemény</span>
           <h1>{titles[route] || route}</h1>
         </div>
+        <Link className="button" to={createPath(route)}>
+          Új elem
+        </Link>
       </div>
       <section className="panel">
         <div className="toolbar">
@@ -83,19 +101,7 @@ export function EntityListPage({ route }: { route: string }) {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <div className="inline-form">
-            <input
-              placeholder="Új elem neve"
-              value={newTitle}
-              onChange={(e) => setNewTitle(e.target.value)}
-            />
-            <button
-              disabled={!newTitle.trim() || create.isPending}
-              onClick={() => create.mutate()}
-            >
-              Létrehozás
-            </button>
-          </div>
+          <span className="muted">{q.data?.length || 0} találat</span>
         </div>
         <div className="table-wrap">
           <table>

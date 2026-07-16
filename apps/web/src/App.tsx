@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { api } from "./api";
+import { ApiError, api } from "./api";
 import { Shell } from "./components/Shell";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { LoginPage } from "./pages/LoginPage";
@@ -22,6 +22,10 @@ import { ProjectsPage } from "./pages/ProjectsPage";
 import { GuidePage } from "./pages/GuidePage";
 import { MathPlotPage } from "./pages/MathPlotPage";
 import { NodeDetailPage } from "./pages/NodeDetailPage";
+import { MaterialEditorPage } from "./pages/MaterialEditorPage";
+import { OrganizationEditorPage } from "./pages/OrganizationEditorPage";
+import { SetupPage } from "./pages/SetupPage";
+import { AnnualPlanEditorPage } from "./pages/AnnualPlanEditorPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 function Protected() {
   const location = useLocation();
@@ -31,8 +35,25 @@ function Protected() {
     retry: false,
   });
   if (me.isLoading) return <div className="app-loading">Fonat betöltése…</div>;
-  if (me.error)
-    return <Navigate to="/login" state={{ from: location }} replace />;
+  if (me.error) {
+    if (!(me.error instanceof ApiError)) throw me.error;
+    const authenticationFailed = [401, 403].includes(me.error.status);
+    if (authenticationFailed)
+      return <Navigate to="/login" state={{ from: location }} replace />;
+    return (
+      <div className="app-loading connection-recovery" role="alert">
+        <span className="eyebrow">Kapcsolódás szünetel</span>
+        <h1>A Fonat most nem éri el a szervert</h1>
+        <p>
+          A munkamenetedet nem tekintjük lejártnak hálózati vagy szerverhiba
+          miatt. Ellenőrizd a kapcsolatot, majd próbáld újra.
+        </p>
+        <button disabled={me.isFetching} onClick={() => void me.refetch()}>
+          {me.isFetching ? "Újracsatlakozás…" : "Újracsatlakozás"}
+        </button>
+      </div>
+    );
+  }
   return <Shell />;
 }
 export function App() {
@@ -53,9 +74,16 @@ export function App() {
         <Route path="/presentation/:lessonId" element={<PresentationPage />} />
         <Route element={<Protected />}>
           <Route index element={<TodayPage />} />
+          <Route path="setup" element={<SetupPage />} />
           <Route path="timetable" element={<TimetablePage />} />
           <Route path="library" element={<EntityListPage route="nodes" />} />
+          <Route path="library/new" element={<MaterialEditorPage />} />
+          <Route path="library/:id/edit" element={<MaterialEditorPage />} />
           <Route path="library/:id" element={<NodeDetailPage />} />
+          <Route
+            path="exercises"
+            element={<EntityListPage route="exercises" />}
+          />
           <Route path="exercises/new" element={<ExerciseEditorPage />} />
           <Route path="exercises/:id" element={<ExerciseEditorPage />} />
           <Route path="lessons" element={<EntityListPage route="lessons" />} />
@@ -63,21 +91,55 @@ export function App() {
           <Route path="lessons/:id" element={<LessonEditorPage />} />
           <Route path="courses" element={<EntityListPage route="courses" />} />
           <Route
+            path="courses/new"
+            element={<OrganizationEditorPage route="courses" />}
+          />
+          <Route
+            path="courses/:id"
+            element={<OrganizationEditorPage route="courses" />}
+          />
+          <Route
             path="groups"
             element={<EntityListPage route="learner-groups" />}
+          />
+          <Route
+            path="groups/new"
+            element={<OrganizationEditorPage route="learner-groups" />}
+          />
+          <Route
+            path="groups/:id"
+            element={<OrganizationEditorPage route="learner-groups" />}
           />
           <Route
             path="learners"
             element={<EntityListPage route="learners" />}
           />
           <Route
+            path="learners/new"
+            element={<OrganizationEditorPage route="learners" />}
+          />
+          <Route
+            path="learners/:id"
+            element={<OrganizationEditorPage route="learners" />}
+          />
+          <Route
             path="locations"
             element={<EntityListPage route="locations" />}
+          />
+          <Route
+            path="locations/new"
+            element={<OrganizationEditorPage route="locations" />}
+          />
+          <Route
+            path="locations/:id"
+            element={<OrganizationEditorPage route="locations" />}
           />
           <Route
             path="annual-plans"
             element={<EntityListPage route="annual-plans" />}
           />
+          <Route path="annual-plans/new" element={<AnnualPlanEditorPage />} />
+          <Route path="annual-plans/:id" element={<AnnualPlanEditorPage />} />
           <Route path="assignments" element={<AssignmentsPage />} />
           <Route path="assessments" element={<AssessmentsPage />} />
           <Route path="insights" element={<InsightsPage />} />
@@ -85,6 +147,7 @@ export function App() {
           <Route path="math-plot" element={<MathPlotPage />} />
           <Route path="admin" element={<AdminPage />} />
           <Route path="guide" element={<GuidePage />} />
+          <Route path="guide/:slug" element={<GuidePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

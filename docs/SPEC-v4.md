@@ -110,7 +110,7 @@ This section is a release gate, not a preference. It exists to prevent an implem
 
 - Node.js **24 LTS** is the required implementation and deployment major. Version 4 was authored against Node.js `24.18.0`; the repository MAY move to a newer `24.x` patch after verification, but MUST NOT move back to Node.js 22.
 - Node.js 22 MAY be used only as a temporary bootstrap fallback when the execution environment cannot initially provide Node.js 24. It MUST NOT remain in the delivered `engines`, version files, Docker image, CI, Vercel, Render, documentation, or verification evidence.
-- The exact tested Node.js version MUST be aligned across `.nvmrc`, `.node-version`, `package.json#engines`, the root Dockerfile, CI, Vercel, Render, and README examples.
+- The exact tested Node.js version MUST be aligned across `.nvmrc`, `.node-version`, the root Dockerfile, CI, and README examples. `package.json#engines` MUST select the supported Node 24 major (`24.x`) because hosted platforms such as Vercel choose their own supported patch release.
 - The exact tested npm version MUST be recorded in `package.json#packageManager`. Do not rely on whichever npm happens to be preinstalled.
 - The implementation agent MUST record `node --version`, `npm --version`, `npm config get registry`, platform, and architecture before installing dependencies.
 - `.npmrc` SHOULD enforce the selected engine with `engine-strict=true`, but MUST NOT commit registry credentials, authentication tokens, or an agent-specific registry URL.
@@ -1808,7 +1808,7 @@ The committed configuration and README MUST state actual verified values. Expect
 - SPA rewrite to frontend;
 - MongoDB Atlas;
 - hosted restricted asset profile;
-- exact pinned Node.js 24 version, matching `.nvmrc`, `.node-version`, `engines`, Docker, CI, and Render.
+- exact pinned Node.js 24 version for `.nvmrc`, `.node-version`, Docker, and CI, with a compatible `24.x` package engine for hosted runtimes.
 
 The README MUST explain Atlas user/network setup, environment variables, Preview isolation, health check, bootstrap, logs, ephemeral filesystem, and rollback/redeploy.
 

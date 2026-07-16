@@ -81,6 +81,24 @@
         }
       }
     },
+    "/api/onboarding/status": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/api/onboarding/complete": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
     "/api/today": {
       "get": {
         "responses": {
@@ -1439,6 +1457,15 @@
         }
       }
     },
+    "/api/assessments/preview": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
     "/api/assessments/generate": {
       "post": {
         "responses": {
@@ -1515,15 +1542,6 @@
       }
     },
     "/api/packages/export": {
-      "get": {
-        "responses": {
-          "200": {
-            "description": "Default Response"
-          }
-        }
-      }
-    },
-    "/api/guide": {
       "get": {
         "responses": {
           "200": {

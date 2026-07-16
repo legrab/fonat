@@ -20,10 +20,10 @@ if (actualNpm && actualNpm !== expectedNpm)
   problems.push(`npm ${actualNpm}; expected ${expectedNpm}`);
 if (packageJson.packageManager !== `npm@${expectedNpm}`)
   problems.push("packageManager is not exact");
-if (packageJson.engines?.node !== expectedNode.slice(1))
-  problems.push("engines.node is not exact");
-if (packageJson.engines?.npm !== expectedNpm)
-  problems.push("engines.npm is not exact");
+if (packageJson.engines?.node !== `${expectedNode.split(".")[0].slice(1)}.x`)
+  problems.push("engines.node must select the supported major");
+if (packageJson.engines?.npm !== undefined)
+  problems.push("engines.npm must not reject hosted npm patch versions");
 for (const file of [".nvmrc", ".node-version"]) {
   if (
     fs.readFileSync(new URL(`../${file}`, import.meta.url), "utf8").trim() !==

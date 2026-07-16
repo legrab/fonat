@@ -1,5 +1,6 @@
-import { test, expect } from "@playwright/test";
-test("login, presentation escape, and logout", async ({ page }) => {
+import { test, expect, type Page } from "@playwright/test";
+
+async function login(page: Page) {
   await page.goto("/login");
   await page.getByLabel("E-mail").fill("admin@fonat.local");
   await page.getByLabel("Jelszó").fill("fonat-demo");
@@ -7,6 +8,10 @@ test("login, presentation escape, and logout", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: /Ma a szálak/ }),
   ).toBeVisible();
+}
+
+test("login, presentation escape, and logout", async ({ page }) => {
+  await login(page);
   await page.getByRole("link", { name: "Pitagorasz-bemutató" }).click();
   await expect(
     page.getByRole("button", { name: "Szünet és kilépés" }),
@@ -15,5 +20,104 @@ test("login, presentation escape, and logout", async ({ page }) => {
   await page.getByRole("button", { name: "Kilépés" }).click();
   await expect(
     page.getByRole("heading", { name: "Belépés a munkatérbe" }),
+  ).toBeVisible();
+});
+
+test("existing exercise Markdown hydrates the rich editor", async ({
+  page,
+}) => {
+  await login(page);
+  await page.goto("/exercises/exercise.missing-hypotenuse-6-8");
+  const promptEditor = page.locator(".content-editor").first();
+  await expect(promptEditor).toContainText(
+    "A befogók 6 cm és 8 cm. Mekkora az átfogó?",
+  );
+  await expect(promptEditor).not.toContainText("Írd ide a feladat szövegét.");
+});
+
+test("manual search and contextual editor help stay connected", async ({
+  page,
+}) => {
+  await login(page);
+  await page.goto("/guide");
+  await page.getByLabel("Keresés az útmutatóban").fill("tolerancia");
+  await expect(
+    page.getByRole("link", { name: /Gyakorlófeladat készítése/ }),
+  ).toBeVisible();
+  await page.getByRole("link", { name: /Gyakorlófeladat készítése/ }).click();
+  await expect(
+    page.getByRole("heading", { name: "Tolerancia példa" }),
+  ).toBeVisible();
+
+  await page.goto("/exercises/new");
+  await page.getByRole("link", { name: "Súgó" }).click();
+  await expect(
+    page.getByRole("heading", { name: "Gyakorlófeladat készítése" }),
+  ).toBeVisible();
+});
+
+test("unsaved editor changes can be kept, discarded, or saved", async ({
+  page,
+}) => {
+  await login(page);
+  await page.goto("/library/new?type=concept");
+  await page.getByLabel("Cím").fill("Őrzött fogalom");
+  await page.getByRole("link", { name: "Könyvtár" }).click();
+  await expect(
+    page.getByRole("heading", { name: "Nem mentett módosítások" }),
+  ).toBeVisible();
+
+  await page.getByRole("button", { name: "Maradok és mentek" }).click();
+  await expect(page).toHaveURL(/\/library\/new/);
+  await expect(page.getByLabel("Cím")).toHaveValue("Őrzött fogalom");
+
+  await page.getByRole("link", { name: "Könyvtár" }).click();
+  await page.getByRole("button", { name: "Módosítások elvetése" }).click();
+  await expect(page).toHaveURL(/\/library$/);
+
+  await page.goto("/library/new?type=concept");
+  await page.getByLabel("Cím").fill("Mentett fogalom");
+  await page.getByRole("button", { name: "Piszkozat mentése" }).click();
+  await expect(page).toHaveURL(/\/library\/node\./);
+  await expect(
+    page.getByRole("heading", { name: "Mentett fogalom" }),
+  ).toBeVisible();
+
+  await page.goto("/lessons/lesson.grade8.3");
+  await page.getByLabel("Cím").fill("Mentett óra őrzési próba");
+  await page.getByRole("button", { name: "Piszkozat mentése" }).click();
+  await page.getByRole("link", { name: "Óratervek" }).click();
+  await expect(page).toHaveURL(/\/lessons$/);
+  await expect(
+    page.getByRole("heading", { name: "Nem mentett módosítások" }),
+  ).toHaveCount(0);
+});
+
+test("connection loss keeps unsaved work and allows a safe retry", async ({
+  page,
+  context,
+}) => {
+  await login(page);
+  await page.goto("/library/new?type=concept");
+  await page.getByLabel("Cím").fill("Kapcsolatbiztos fogalom");
+  await expect(page.getByText("Nem mentett módosítások")).toBeVisible();
+
+  await context.setOffline(true);
+  await expect(page.getByText("Nincs hálózati kapcsolat.")).toBeVisible();
+  await expect(
+    page.getByText("Nincs kapcsolat — a módosítások még nincsenek mentve."),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Piszkozat mentése" }).click();
+  await expect(page.getByLabel("Cím")).toHaveValue("Kapcsolatbiztos fogalom");
+  await expect(page.getByRole("alert")).toContainText(
+    "A módosítások nem lettek mentve",
+  );
+
+  await context.setOffline(false);
+  await expect(page.getByText("Nincs hálózati kapcsolat.")).toHaveCount(0);
+  await page.getByRole("button", { name: "Piszkozat mentése" }).click();
+  await expect(page).toHaveURL(/\/library\/node\./);
+  await expect(
+    page.getByRole("heading", { name: "Kapcsolatbiztos fogalom" }),
   ).toBeVisible();
 });

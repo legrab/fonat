@@ -356,6 +356,8 @@ export async function createDemoState(
     difficulty: Math.min(5, 2 + (i % 4)),
     lifecycle: "published",
     conceptIds: [concepts[Math.min(i, concepts.length - 1)]!.id],
+    evidencePolicy: "light",
+    contributionLevel: "practices",
     concurrencyVersion: 1,
     currentRevision: 1,
     ...(e.options ? { options: e.options } : {}),

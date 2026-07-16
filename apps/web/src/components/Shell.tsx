@@ -7,20 +7,45 @@ import {
 } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { post } from "../api";
+import { ConnectionStatus } from "./ConnectionStatus";
 import { Logo } from "./Logo";
-const nav: Array<[string, string]> = [
-  ["/", "Ma"],
-  ["/timetable", "Órarend"],
-  ["/library", "Könyvtár"],
-  ["/exercises/new", "Új feladat"],
-  ["/lessons", "Óratervek"],
-  ["/assignments", "Feladatok"],
-  ["/assessments", "Felmérések"],
-  ["/insights", "Elemzések"],
-  ["/projects", "Projektek"],
-  ["/admin", "Admin"],
-  ["/guide", "Útmutató"],
-];
+const nav = [
+  {
+    label: "Napi munka",
+    items: [
+      ["/", "Ma"],
+      ["/timetable", "Órarend"],
+      ["/lessons", "Óratervek"],
+      ["/assignments", "Kiosztások"],
+      ["/assessments", "Felmérések"],
+      ["/insights", "Elemzések"],
+    ],
+  },
+  {
+    label: "Tartalom",
+    items: [
+      ["/library", "Könyvtár"],
+      ["/exercises", "Gyakorlófeladatok"],
+      ["/annual-plans", "Éves tervek"],
+      ["/projects", "Projektek"],
+    ],
+  },
+  {
+    label: "Munkatér",
+    items: [
+      ["/courses", "Kurzusok"],
+      ["/groups", "Csoportok"],
+      ["/learners", "Tanulók"],
+      ["/locations", "Helyszínek"],
+      ["/admin", "Admin"],
+      ["/guide", "Útmutató"],
+    ],
+  },
+] satisfies Array<{ label: string; items: Array<[string, string]> }>;
+
+const routeLabels: Record<string, string> = Object.fromEntries(
+  nav.flatMap((group) => group.items),
+);
 export function Shell() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -37,14 +62,20 @@ export function Shell() {
           <Logo />
         </Link>
         <nav>
-          {nav.map(([to, label]) => (
-            <NavLink
-              key={to}
-              to={to}
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              {label}
-            </NavLink>
+          {nav.map((group) => (
+            <div className="nav-group" key={group.label}>
+              <span>{group.label}</span>
+              {group.items.map(([to, label]) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  end={to === "/"}
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
+                  {label}
+                </NavLink>
+              ))}
+            </div>
           ))}
         </nav>
         <div className="aside-footer">
@@ -59,7 +90,14 @@ export function Shell() {
           <div>
             <span className="eyebrow">Aktuális hely</span>
             <strong>
-              {location.pathname === "/" ? "Ma" : location.pathname}
+              {location.pathname === "/"
+                ? "Ma"
+                : routeLabels[
+                    Object.keys(routeLabels).find(
+                      (route) =>
+                        route !== "/" && location.pathname.startsWith(route),
+                    ) || ""
+                  ] || "Szerkesztés"}
             </strong>
           </div>
           <Link
@@ -69,6 +107,7 @@ export function Shell() {
             Bemutató indítása
           </Link>
         </header>
+        <ConnectionStatus />
         <div className="page">
           <Outlet />
         </div>

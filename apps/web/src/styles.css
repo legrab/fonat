@@ -118,6 +118,8 @@ label {
   position: sticky;
   top: 0;
   height: 100vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 1.15rem;
   display: flex;
   flex-direction: column;
@@ -154,8 +156,20 @@ label {
 }
 nav {
   display: grid;
-  gap: 0.18rem;
+  gap: 1rem;
   margin-top: 2rem;
+}
+.nav-group {
+  display: grid;
+  gap: 0.18rem;
+}
+.nav-group > span {
+  padding: 0 0.75rem 0.25rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 nav a {
   padding: 0.65rem 0.75rem;
@@ -173,6 +187,24 @@ nav a.active {
   display: grid;
   gap: 0.5rem;
 }
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgb(22 18 28 / 55%);
+  backdrop-filter: blur(4px);
+}
+.unsaved-dialog {
+  width: min(100%, 480px);
+  border: 1px solid var(--line);
+}
+.unsaved-dialog h2,
+.unsaved-dialog p {
+  margin: 0;
+}
 .topbar {
   height: 76px;
   padding: 0 2rem;
@@ -188,6 +220,39 @@ nav a.active {
 }
 .topbar > div {
   display: grid;
+}
+.connection-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  color: var(--text);
+  background: color-mix(in srgb, var(--warning) 16%, var(--surface));
+  border-bottom: 1px solid color-mix(in srgb, var(--warning) 45%, var(--line));
+  text-align: center;
+}
+.editor-save-status {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 1.25rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.editor-save-status > span {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: currentColor;
+}
+.editor-save-status.warning {
+  color: var(--warning);
+}
+.editor-save-status.saved {
+  color: var(--success);
 }
 .page {
   max-width: 1440px;
@@ -389,6 +454,25 @@ pre {
 .content-editor .milkdown {
   min-height: 220px;
 }
+.option-editor {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem;
+}
+.option-editor legend {
+  padding: 0 0.35rem;
+  font-weight: 750;
+}
+.option-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.6rem;
+}
+.option-row input[type="checkbox"],
+.option-row input[type="radio"] {
+  width: auto;
+}
 .button-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -405,6 +489,34 @@ pre {
   color: var(--muted);
   cursor: grab;
   padding: 0.35rem;
+}
+.slide-summary {
+  min-width: 0;
+  display: grid;
+  justify-items: start;
+  gap: 0.2rem;
+  padding: 0;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+}
+.slide-summary small {
+  max-width: 62ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.slide-row.selected {
+  background: var(--surface-2);
+  border-radius: 10px;
+  padding-inline: 0.5rem;
+}
+.slide-editor,
+.phase-editor {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
 }
 .presentation-controller {
   min-height: 100vh;
@@ -570,6 +682,15 @@ pre {
   padding: 1rem 0;
   border-bottom: 1px solid var(--line);
 }
+.slot-editor {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 100px auto;
+  align-items: end;
+  gap: 0.6rem;
+  padding: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
 .grade {
   display: grid;
   place-items: center;
@@ -597,6 +718,67 @@ pre {
 .guide-card {
   min-height: 170px;
 }
+.guide-card {
+  color: var(--text);
+}
+.guide-card h3 {
+  margin: 0.5rem 0;
+}
+.manual-search {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.manual-search label {
+  width: min(680px, 100%);
+}
+.manual-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 1.2rem;
+  align-items: start;
+}
+.manual-toc {
+  position: sticky;
+  top: 96px;
+  display: grid;
+  gap: 1rem;
+}
+.manual-toc > div {
+  display: grid;
+  gap: 0.35rem;
+}
+.manual-toc span {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.manual-toc a {
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+}
+.manual-toc a.active {
+  background: var(--surface-2);
+  color: var(--text);
+  font-weight: 750;
+}
+.manual-article {
+  max-width: 920px;
+}
+.manual-article .markdown > h1:first-child {
+  display: none;
+}
+.manual-article .markdown h2,
+.manual-article .markdown h3 {
+  scroll-margin-top: 100px;
+}
+.manual-article footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
 .center-card,
 .app-loading,
 .presentation-loading {
@@ -605,6 +787,19 @@ pre {
   place-content: center;
   text-align: center;
   padding: 2rem;
+}
+.connection-recovery {
+  justify-items: center;
+  gap: 0.75rem;
+}
+.connection-recovery h1,
+.connection-recovery p {
+  margin: 0;
+}
+.connection-recovery p {
+  max-width: 560px;
+  color: var(--muted);
+  line-height: 1.6;
 }
 .loading {
   padding: 2rem;
@@ -629,7 +824,7 @@ pre {
     border-bottom: 1px solid var(--line);
   }
   nav {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .aside-footer {
     margin-top: 1rem;
@@ -640,8 +835,12 @@ pre {
   }
   .editor-grid,
   .controller-grid,
-  .project-hero {
+  .project-hero,
+  .manual-layout {
     grid-template-columns: 1fr;
+  }
+  .manual-toc {
+    position: static;
   }
   .preview {
     position: static;
@@ -687,7 +886,7 @@ pre {
     grid-template-columns: 1fr;
   }
   nav {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .controller-grid {
     display: block;
@@ -702,7 +901,27 @@ pre {
   .row-actions {
     flex-wrap: wrap;
   }
+  .slot-editor {
+    grid-template-columns: 1fr;
+  }
   .inline-form input {
     max-width: none;
+  }
+}
+@media print {
+  .app-shell aside,
+  .topbar,
+  .page-title .row-actions,
+  button {
+    display: none !important;
+  }
+  .app-shell,
+  .dashboard-grid,
+  .editor-grid {
+    display: block;
+  }
+  .panel {
+    box-shadow: none;
+    break-inside: avoid;
   }
 }
