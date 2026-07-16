@@ -110,7 +110,7 @@ Beyond the five core analyzers, explore cohort comparison, item-quality history,
 
 #### F-PROD-04 — Print and offline classroom resilience (S2)
 
-Complete print layouts for lessons, teacher sheets, assignments, assessments, and answer keys. Explore graceful offline/read-only lesson access and reconnect messaging without promising offline writes before conflict behavior is designed.
+Reconnect messaging, typed network failures, retained editor state after failed saves, and an authentication-safe retry screen are implemented. Complete print layouts for lessons, teacher sheets, assignments, assessments, and answer keys. Explore graceful offline/read-only lesson access without promising offline writes before conflict behavior is designed.
 
 #### F-PROD-05 — Project capability (S3)
 
@@ -136,7 +136,7 @@ The web app extensively uses `api<any>`, generic tables, and open records. Gener
 
 #### F-ARCH-03 — API error and concurrency client (S1)
 
-The client currently collapses typed server errors into `Error(messageKey)`. Preserve error code, retryability, field errors, technical reference, and HTTP status. Add helpers for conditional writes and explicit conflict recovery. Centralize session-expiry handling without masking other 401/403 cases.
+The client preserves error code, retryability, field errors, technical reference, and HTTP status; it also normalizes offline and transport failures and no longer treats those failures as expired authentication. Add helpers for conditional writes and explicit conflict recovery. Centralize the remaining session-expiry behavior across public and protected workflows without masking other 401/403 cases.
 
 #### F-ARCH-04 — Collection-specific validation (S1)
 

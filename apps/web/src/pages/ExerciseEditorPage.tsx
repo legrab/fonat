@@ -5,6 +5,7 @@ import { z } from "zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ApiError, api, patch, post } from "../api";
+import { EditorSaveStatus } from "../components/ConnectionStatus";
 import { ContentEditor } from "../components/ContentEditor";
 import { Markdown } from "../components/Markdown";
 import { useUnsavedChanges } from "../components/UnsavedChangesGuard";
@@ -430,6 +431,11 @@ export function ExerciseEditorPage() {
               Közzététel
             </button>
           </div>
+          <EditorSaveStatus
+            dirty={dirty || form.formState.isDirty}
+            pending={save.isPending}
+            saved={save.isSuccess}
+          />
           {Object.keys(form.formState.errors).length > 0 && (
             <div className="error">Ellenőrizd a megjelölt mezőket.</div>
           )}

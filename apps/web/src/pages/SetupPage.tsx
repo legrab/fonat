@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
 import { ApiError, post } from "../api";
+import { EditorSaveStatus } from "../components/ConnectionStatus";
 import { useUnsavedChanges } from "../components/UnsavedChangesGuard";
 
 export function SetupPage() {
@@ -138,6 +139,11 @@ export function SetupPage() {
               óratervet. A demo tartalom nem kerül bele ebbe a munkatérbe.
             </p>
           </div>
+          <EditorSaveStatus
+            dirty={dirty}
+            pending={setup.isPending}
+            saved={setup.isSuccess}
+          />
           {setup.error && (
             <div className="error" role="alert">
               {setup.error instanceof ApiError &&

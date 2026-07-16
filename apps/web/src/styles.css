@@ -221,6 +221,39 @@ nav a.active {
 .topbar > div {
   display: grid;
 }
+.connection-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  color: var(--text);
+  background: color-mix(in srgb, var(--warning) 16%, var(--surface));
+  border-bottom: 1px solid color-mix(in srgb, var(--warning) 45%, var(--line));
+  text-align: center;
+}
+.editor-save-status {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 1.25rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.editor-save-status > span {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: currentColor;
+}
+.editor-save-status.warning {
+  color: var(--warning);
+}
+.editor-save-status.saved {
+  color: var(--success);
+}
 .page {
   max-width: 1440px;
   margin: auto;
@@ -754,6 +787,19 @@ pre {
   place-content: center;
   text-align: center;
   padding: 2rem;
+}
+.connection-recovery {
+  justify-items: center;
+  gap: 0.75rem;
+}
+.connection-recovery h1,
+.connection-recovery p {
+  margin: 0;
+}
+.connection-recovery p {
+  max-width: 560px;
+  color: var(--muted);
+  line-height: 1.6;
 }
 .loading {
   padding: 2rem;

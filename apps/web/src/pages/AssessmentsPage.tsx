@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { ApiError, api, patch, post } from "../api";
+import { EditorSaveStatus } from "../components/ConnectionStatus";
 import { useUnsavedChanges } from "../components/UnsavedChangesGuard";
 
 type NamedEntity = { id: string; title: string; type?: string };
@@ -291,6 +292,11 @@ export function AssessmentsPage() {
             Összpontszám:{" "}
             {slots.reduce((total, slot) => total + slot.points, 0)}
           </strong>
+          <EditorSaveStatus
+            dirty={dirty}
+            pending={saveBlueprint.isPending}
+            saved={saveBlueprint.isSuccess}
+          />
           {saveBlueprint.error && (
             <div className="error" role="alert">
               {saveBlueprint.error.message}
@@ -299,13 +305,19 @@ export function AssessmentsPage() {
           <div className="row-actions">
             <button
               className="secondary"
-              disabled={!title.trim() || !courseId || !slots.length}
+              disabled={
+                saveBlueprint.isPending ||
+                !title.trim() ||
+                !courseId ||
+                !slots.length
+              }
               onClick={() => saveBlueprint.mutate("draft")}
             >
               Piszkozat mentése
             </button>
             <button
               disabled={
+                saveBlueprint.isPending ||
                 !title.trim() ||
                 !courseId ||
                 !slots.length ||

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { ApiError, api, patch, post } from "../api";
+import { EditorSaveStatus } from "../components/ConnectionStatus";
 import { Markdown } from "../components/Markdown";
 import { useUnsavedChanges } from "../components/UnsavedChangesGuard";
 
@@ -257,6 +258,11 @@ export function AssignmentsPage() {
               </select>
             </label>
           </div>
+          <EditorSaveStatus
+            dirty={dirty}
+            pending={save.isPending}
+            saved={save.isSuccess}
+          />
           {save.error && (
             <div className="error" role="alert">
               {save.error instanceof ApiError

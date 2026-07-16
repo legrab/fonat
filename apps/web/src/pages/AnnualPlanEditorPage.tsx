@@ -3,6 +3,7 @@ import { arrayMove } from "@dnd-kit/sortable";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ApiError, api, patch, post } from "../api";
+import { EditorSaveStatus } from "../components/ConnectionStatus";
 import { useUnsavedChanges } from "../components/UnsavedChangesGuard";
 
 type NamedEntity = { id: string; title: string; type?: string };
@@ -114,11 +115,15 @@ export function AnnualPlanEditorPage() {
           <Link className="button secondary" to="/annual-plans">
             Mégse
           </Link>
-          <button className="secondary" onClick={() => save.mutate("draft")}>
+          <button
+            className="secondary"
+            disabled={save.isPending}
+            onClick={() => save.mutate("draft")}
+          >
             Piszkozat mentése
           </button>
           <button
-            disabled={!courseId || !phases.length}
+            disabled={save.isPending || !courseId || !phases.length}
             onClick={() => save.mutate("published")}
           >
             Közzététel
@@ -162,6 +167,11 @@ export function AnnualPlanEditorPage() {
               fogalom · {phases.length} tanulási szakasz
             </p>
           </div>
+          <EditorSaveStatus
+            dirty={dirty}
+            pending={save.isPending}
+            saved={save.isSuccess}
+          />
           {save.error && (
             <div className="error" role="alert">
               {save.error instanceof ApiError && save.error.code === "CONFLICT"

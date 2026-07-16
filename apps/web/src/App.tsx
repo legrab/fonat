@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { api } from "./api";
+import { ApiError, api } from "./api";
 import { Shell } from "./components/Shell";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { LoginPage } from "./pages/LoginPage";
@@ -35,8 +35,25 @@ function Protected() {
     retry: false,
   });
   if (me.isLoading) return <div className="app-loading">Fonat betöltése…</div>;
-  if (me.error)
-    return <Navigate to="/login" state={{ from: location }} replace />;
+  if (me.error) {
+    if (!(me.error instanceof ApiError)) throw me.error;
+    const authenticationFailed = [401, 403].includes(me.error.status);
+    if (authenticationFailed)
+      return <Navigate to="/login" state={{ from: location }} replace />;
+    return (
+      <div className="app-loading connection-recovery" role="alert">
+        <span className="eyebrow">Kapcsolódás szünetel</span>
+        <h1>A Fonat most nem éri el a szervert</h1>
+        <p>
+          A munkamenetedet nem tekintjük lejártnak hálózati vagy szerverhiba
+          miatt. Ellenőrizd a kapcsolatot, majd próbáld újra.
+        </p>
+        <button disabled={me.isFetching} onClick={() => void me.refetch()}>
+          {me.isFetching ? "Újracsatlakozás…" : "Újracsatlakozás"}
+        </button>
+      </div>
+    );
+  }
   return <Shell />;
 }
 export function App() {

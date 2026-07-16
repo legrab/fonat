@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { post } from "../api";
+import { ConnectionStatus } from "./ConnectionStatus";
 import { Logo } from "./Logo";
 const nav = [
   {
@@ -106,6 +107,7 @@ export function Shell() {
             Bemutató indítása
           </Link>
         </header>
+        <ConnectionStatus />
         <div className="page">
           <Outlet />
         </div>

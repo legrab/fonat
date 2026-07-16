@@ -23,6 +23,8 @@
 
 ## Biztonságos munkavégzés
 
+- Figyeld a szerkesztő mentési állapotát; navigálás előtt várd meg a **Minden változtatás mentve** jelzést vagy a mentett elem megnyitását.
+- Kapcsolatvesztéskor hagyd nyitva a lapot, majd a felső figyelmeztetés eltűnése után ismételd meg kézzel a mentést. Így te döntöd el, melyik változat kerüljön a szerverre.
 - Közzététel előtt nézd meg a tanulói előnézetet.
 - Archiválj a történeti tartalom törlése helyett.
 - Élő eredményt csak pedagógiailag megfelelő pillanatban fedj fel.

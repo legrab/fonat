@@ -24,7 +24,7 @@ The development profile uses memory persistence when `MONGODB_URI` is empty. Set
 
 ## Teacher workflow
 
-After login, a blank workspace opens the guided setup for the first subject, group, learners, location, course, and enrollments. The main navigation then provides guided editors for learning materials, all six exercise types, annual plans, lessons, assignments, assessment blueprints, grading, and findings. Core teacher editors protect unsaved work with explicit stay/discard actions and a refresh/close warning. The built-in **Útmutató** is a searchable Markdown manual; each core editor links to its matching how-to article. See `IMPLEMENTATION-DEVIATIONS.md` for the intentionally deferred depth beyond this teacher-usable MVP.
+After login, a blank workspace opens the guided setup for the first subject, group, learners, location, course, and enrollments. The main navigation then provides guided editors for learning materials, all six exercise types, annual plans, lessons, assignments, assessment blueprints, grading, and findings. Core teacher editors protect unsaved work with explicit stay/discard actions and a refresh/close warning. They also expose consistent save progress, prevent duplicate writes, retain local form state after a failed save, and distinguish connection outages from expired authentication without attempting offline writes. The built-in **Útmutató** is a searchable Markdown manual; each core editor links to its matching how-to article. See `IMPLEMENTATION-DEVIATIONS.md` for the intentionally deferred depth beyond this teacher-usable MVP.
 
 ## Root commands
 

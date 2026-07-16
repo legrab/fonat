@@ -11,6 +11,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ApiError, api, patch, post } from "../api";
 import { ContentEditor } from "../components/ContentEditor";
+import { EditorSaveStatus } from "../components/ConnectionStatus";
 import { Markdown } from "../components/Markdown";
 import { useUnsavedChanges } from "../components/UnsavedChangesGuard";
 
@@ -384,6 +385,11 @@ export function LessonEditorPage() {
               <p>Az óraterv közzétehető.</p>
             )}
           </div>
+          <EditorSaveStatus
+            dirty={dirty}
+            pending={save.isPending}
+            saved={save.isSuccess}
+          />
           {save.error && (
             <div className="error" role="alert">
               {save.error instanceof ApiError && save.error.code === "CONFLICT"

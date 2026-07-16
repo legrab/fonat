@@ -92,3 +92,32 @@ test("unsaved editor changes can be kept, discarded, or saved", async ({
     page.getByRole("heading", { name: "Nem mentett módosítások" }),
   ).toHaveCount(0);
 });
+
+test("connection loss keeps unsaved work and allows a safe retry", async ({
+  page,
+  context,
+}) => {
+  await login(page);
+  await page.goto("/library/new?type=concept");
+  await page.getByLabel("Cím").fill("Kapcsolatbiztos fogalom");
+  await expect(page.getByText("Nem mentett módosítások")).toBeVisible();
+
+  await context.setOffline(true);
+  await expect(page.getByText("Nincs hálózati kapcsolat.")).toBeVisible();
+  await expect(
+    page.getByText("Nincs kapcsolat — a módosítások még nincsenek mentve."),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Piszkozat mentése" }).click();
+  await expect(page.getByLabel("Cím")).toHaveValue("Kapcsolatbiztos fogalom");
+  await expect(page.getByRole("alert")).toContainText(
+    "A módosítások nem lettek mentve",
+  );
+
+  await context.setOffline(false);
+  await expect(page.getByText("Nincs hálózati kapcsolat.")).toHaveCount(0);
+  await page.getByRole("button", { name: "Piszkozat mentése" }).click();
+  await expect(page).toHaveURL(/\/library\/node\./);
+  await expect(
+    page.getByRole("heading", { name: "Kapcsolatbiztos fogalom" }),
+  ).toBeVisible();
+});

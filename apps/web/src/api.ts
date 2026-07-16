@@ -28,11 +28,37 @@ export async function api<T>(
   path: string,
   options: RequestInit = {},
 ): Promise<T> {
-  const response = await fetch(path, {
-    credentials: "include",
-    headers: { "content-type": "application/json", ...(options.headers || {}) },
-    ...options,
-  });
+  if (typeof navigator !== "undefined" && navigator.onLine === false) {
+    throw new ApiError(
+      "Nincs hálózati kapcsolat. A módosítások nem lettek mentve.",
+      "OFFLINE",
+      0,
+      true,
+    );
+  }
+
+  let response: Response;
+  try {
+    response = await fetch(path, {
+      credentials: "include",
+      headers: {
+        "content-type": "application/json",
+        ...(options.headers || {}),
+      },
+      ...options,
+    });
+  } catch (error) {
+    if (error instanceof DOMException && error.name === "AbortError")
+      throw error;
+    throw new ApiError(
+      "A szerver nem érhető el. Ellenőrizd a kapcsolatot, majd próbáld újra.",
+      "NETWORK",
+      0,
+      true,
+      {},
+      error instanceof Error ? error.message : undefined,
+    );
+  }
   const data = await response.json().catch(() => ({
     ok: false,
     error: {

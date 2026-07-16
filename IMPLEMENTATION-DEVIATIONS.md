@@ -21,6 +21,7 @@ This is a substantial runnable MVP modernized against the Version 4 specificatio
 - Docker, Vercel, Render, OpenAPI generation, package manifests, brand assets, and required documentation set.
 - file-backed searchable Markdown manual with GFM, KaTeX, stable contextual-help routes, complete teacher terminology, workflow guides, troubleshooting, tips, and link/glossary validation tests;
 - accessible unsaved-change protection for setup and the core organization, material, exercise, annual-plan, lesson, assignment, and assessment editors, including refresh/close protection and explicit stay/discard actions;
+- centralized connection and editor save-state feedback, typed retryable offline/network failures, duplicate-save prevention, and an authentication-safe reconnect screen without automatic offline writes;
 
 ## Partial or deferred from the specification
 
@@ -33,7 +34,7 @@ This is a substantial runnable MVP modernized against the Version 4 specificatio
 7. **Content package volume:** the runtime demo contains the important Grade 8 catalogue. The on-disk packages are contract examples rather than complete exported mirrors of every fixture.
 8. **Authorization and CSRF:** role data, protected routes, secure cookie policy, origin checks, and rate limits exist. Fine-grained capabilities and an explicit CSRF token mechanism are incomplete.
 9. **Server route decomposition:** feature ownership folders are present, but the Fastify application factory remains large. Extract routes/use cases when a second implementation cycle begins.
-10. **Real Mongo and browser verification:** configuration and tests are included. Docker was unavailable in the generation environment. Playwright’s bundled Chromium is not installed and could not be downloaded because external DNS was unavailable, so the checked-in Playwright suite could not launch here. The same rendered path was manually verified with the in-app browser for login, exercise hydration, manual search and contextual help, presentation pause/escape, and logout; the production server was also smoke-tested over HTTP for health, static delivery, authenticated Today data, and session cookies.
+10. **Real Mongo and browser verification:** configuration and tests are included. Docker was unavailable in the generation environment. Playwright’s bundled Chromium is not installed and could not be downloaded because external DNS was unavailable, so the checked-in Playwright suite could not launch here. The same rendered path was manually verified with the in-app browser for login, exercise hydration, manual search and contextual help, presentation pause/escape, logout, unsaved-change handling, and online save-state feedback; the production server was also smoke-tested over HTTP for health, static delivery, authenticated Today data, and session cookies. The checked-in Playwright connection-loss scenario covers offline indication, retained form state, failed-save feedback, reconnection, and retry, but could only be listed rather than launched in this environment.
 11. **Localization:** Hungarian UI is the default, with English content fields in package contracts. Full i18next namespaces and complete English UI are not implemented.
 12. **Assets:** bundled SVG and external-link records work. Local filesystem rich-media provider and YouTube structured record are only documented foundations.
 
