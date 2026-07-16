@@ -28,7 +28,10 @@ export function NodeDetailPage() {
         sourceId: id,
         targetId: target,
       }),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["relations"] }),
+    onSuccess: () => {
+      setTarget("");
+      return qc.invalidateQueries({ queryKey: ["relations"] });
+    },
   });
   const archiveRelation = useMutation({
     mutationFn: (relation: any) =>
@@ -103,7 +106,17 @@ export function NodeDetailPage() {
               >
                 <option value="">Válassz</option>
                 {nodes.data
-                  ?.filter((n) => n.id !== id)
+                  ?.filter(
+                    (n) =>
+                      n.id !== id &&
+                      !connected.some(
+                        (relation) =>
+                          relation.lifecycle !== "archived" &&
+                          relation.sourceId === id &&
+                          relation.targetId === n.id &&
+                          relation.type === type,
+                      ),
+                  )
                   .map((n) => (
                     <option key={n.id} value={n.id}>
                       {n.title}
@@ -114,6 +127,12 @@ export function NodeDetailPage() {
             <button disabled={!target} onClick={() => add.mutate()}>
               Kapcsolat hozzáadása
             </button>
+            {add.error && (
+              <p className="error" role="alert">
+                Ez az aktív kapcsolat már létezik, vagy a kiválasztott elem nem
+                érvényes.
+              </p>
+            )}
           </div>
         </section>
       </div>

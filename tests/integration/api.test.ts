@@ -203,6 +203,40 @@ describe("critical API workflow", () => {
     ).toEqual(["activity.intro", "activity.quiz", "activity.homework"]);
     expect(read.json().value.teacherNotes).toBe("Csak a tanár láthatja.");
   });
+  it("rejects duplicate and self-referencing material relations", async () => {
+    const cookie = await login();
+    const relation = {
+      type: "requires",
+      sourceId: "concept.1",
+      targetId: "concept.2",
+    };
+    const first = await ctx.app.inject({
+      method: "POST",
+      url: "/api/relations",
+      cookies: { fonat_session: cookie },
+      payload: relation,
+    });
+    expect(first.statusCode).toBe(201);
+    const duplicate = await ctx.app.inject({
+      method: "POST",
+      url: "/api/relations",
+      cookies: { fonat_session: cookie },
+      payload: relation,
+    });
+    expect(duplicate.statusCode).toBe(400);
+    expect(duplicate.json().error.code).toBe("VALIDATION");
+    const selfReference = await ctx.app.inject({
+      method: "POST",
+      url: "/api/relations",
+      cookies: { fonat_session: cookie },
+      payload: {
+        type: "requires",
+        sourceId: "concept.1",
+        targetId: "concept.1",
+      },
+    });
+    expect(selfReference.statusCode).toBe(400);
+  });
   it("previews assessment slots and records explained manual grading", async () => {
     const cookie = await login();
     const blueprint = await ctx.app.inject({

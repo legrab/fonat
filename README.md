@@ -22,6 +22,10 @@ Open `http://localhost:5173`. Demo login:
 
 The development profile uses memory persistence when `MONGODB_URI` is empty. Set a MongoDB replica-set URI to exercise persistent compare-and-swap storage.
 
+## Teacher workflow
+
+After login, a blank workspace opens the guided setup for the first subject, group, learners, location, course, and enrollments. The main navigation then provides guided editors for learning materials, all six exercise types, annual plans, lessons, assignments, assessment blueprints, grading, and findings. The built-in **Útmutató** is a searchable Markdown manual; each core editor links to its matching how-to article. See `IMPLEMENTATION-DEVIATIONS.md` for the intentionally deferred depth beyond this teacher-usable MVP.
+
 ## Root commands
 
 | Command                    | Purpose                                                                      |

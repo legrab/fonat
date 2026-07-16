@@ -531,6 +531,58 @@ export async function createApp(
         body.options = parsed.data.options;
         Object.assign(body, parsed.data);
       }
+      if (route === "relations") {
+        const result = await store.mutate((state) => {
+          const sourceId = String(body.sourceId || "");
+          const targetId = String(body.targetId || "");
+          const relationType = String(body.type || "");
+          const relationTypes = new Set([
+            "requires",
+            "covers",
+            "alternative-to",
+            "extends",
+          ]);
+          const nodeIds = new Set(state.nodes.map((node) => node.id));
+          if (
+            !sourceId ||
+            !targetId ||
+            !relationTypes.has(relationType) ||
+            sourceId === targetId ||
+            !nodeIds.has(sourceId) ||
+            !nodeIds.has(targetId)
+          )
+            return err("VALIDATION", "relation.invalid", false, {
+              targetId: ["Choose a different existing material"],
+            });
+          if (
+            state.relations.some(
+              (relation) =>
+                relation.sourceId === sourceId &&
+                relation.targetId === targetId &&
+                relation.type === relationType &&
+                relation.lifecycle !== "archived",
+            )
+          )
+            return err("VALIDATION", "relation.duplicate", false, {
+              targetId: ["This active relation already exists"],
+            });
+          const value = {
+            ...body,
+            id: body.id || id("relation"),
+            sourceId,
+            targetId,
+            type: relationType,
+            concurrencyVersion: 1,
+            createdAt: clock.now().toISOString(),
+            updatedAt: clock.now().toISOString(),
+          };
+          state.relations.push(value);
+          return ok(value);
+        });
+        return result.ok
+          ? reply.code(201).send(result)
+          : reply.code(400).send(result);
+      }
       const item = await store.mutate((state) => {
         const value = {
           ...body,

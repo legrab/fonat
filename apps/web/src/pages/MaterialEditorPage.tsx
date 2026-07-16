@@ -84,12 +84,17 @@ export function MaterialEditorPage() {
           <span className="eyebrow">Tananyag-szerkesztő</span>
           <h1>{id ? "Tananyag módosítása" : "Új tananyag"}</h1>
         </div>
-        <Link
-          className="button secondary"
-          to={id ? `/library/${id}` : "/library"}
-        >
-          Mégse
-        </Link>
+        <div className="row-actions">
+          <Link className="button secondary" to="/guide/create-materials">
+            Súgó
+          </Link>
+          <Link
+            className="button secondary"
+            to={id ? `/library/${id}` : "/library"}
+          >
+            Mégse
+          </Link>
+        </div>
       </div>
       <div className="editor-grid">
         <section className="panel stack">

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ApiError, api, patch, post } from "../api";
 import { ContentEditor } from "../components/ContentEditor";
 import { Markdown } from "../components/Markdown";
@@ -158,9 +158,14 @@ export function ExerciseEditorPage() {
           <span className="eyebrow">Vezetett szerkesztő</span>
           <h1>{id ? "Feladat módosítása" : "Új feladat"}</h1>
         </div>
-        <button className="secondary" onClick={() => nav(-1)}>
-          Mégse
-        </button>
+        <div className="row-actions">
+          <Link className="button secondary" to="/guide/create-exercises">
+            Súgó
+          </Link>
+          <button className="secondary" onClick={() => nav(-1)}>
+            Mégse
+          </button>
+        </div>
       </div>
       <form
         className="editor-grid"

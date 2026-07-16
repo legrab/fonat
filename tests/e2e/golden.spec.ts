@@ -34,3 +34,24 @@ test("existing exercise Markdown hydrates the rich editor", async ({
   );
   await expect(promptEditor).not.toContainText("Írd ide a feladat szövegét.");
 });
+
+test("manual search and contextual editor help stay connected", async ({
+  page,
+}) => {
+  await login(page);
+  await page.goto("/guide");
+  await page.getByLabel("Keresés az útmutatóban").fill("tolerancia");
+  await expect(
+    page.getByRole("link", { name: /Gyakorlófeladat készítése/ }),
+  ).toBeVisible();
+  await page.getByRole("link", { name: /Gyakorlófeladat készítése/ }).click();
+  await expect(
+    page.getByRole("heading", { name: "Tolerancia példa" }),
+  ).toBeVisible();
+
+  await page.goto("/exercises/new");
+  await page.getByRole("link", { name: "Súgó" }).click();
+  await expect(
+    page.getByRole("heading", { name: "Gyakorlófeladat készítése" }),
+  ).toBeVisible();
+});

@@ -118,6 +118,8 @@ label {
   position: sticky;
   top: 0;
   height: 100vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 1.15rem;
   display: flex;
   flex-direction: column;

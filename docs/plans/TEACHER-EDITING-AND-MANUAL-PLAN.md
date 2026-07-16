@@ -1,8 +1,14 @@
 # Teacher editing and manual plan
 
-Status: proposed implementation plan  
+Status: implemented MVP baseline on 2026-07-16; remaining depth is tracked in `IMPLEMENTATION-DEVIATIONS.md`
 Primary audience: product and engineering  
 Scope: the first useful teacher journey and the editing surfaces required to repeat it safely
+
+## Implementation record
+
+The plan was delivered in focused vertical slices: rich-content hydration safety; onboarding and authoring; lesson and annual-plan editing; assignment and assessment workflows; and the file-backed Markdown manual. The current implementation covers the first teacher flow with named selectors and guided controls while preserving immutable submissions/deliveries and the existing logout, live-answer, and presentation-exit behavior.
+
+The evidence table below records the state at planning time. The implemented result and honest residual gaps are maintained in `IMPLEMENTATION-DEVIATIONS.md`; the generated API reference is `docs/openapi.json`, and manual authoring rules are in `docs/CONTENT-AUTHORING.md`.
 
 ## 1. Outcome
 
