@@ -123,4 +123,35 @@ describe("critical API workflow", () => {
     expect(second.json().value.attemptNumber).toBe(2);
     expect(ctx.store.snapshot().submissions).toHaveLength(2);
   });
+  it("creates the first real course atomically without demo identifiers", async () => {
+    const cookie = await login();
+    const reset = await ctx.app.inject({
+      method: "POST",
+      url: "/api/packages/demo-reset",
+      cookies: { fonat_session: cookie },
+      payload: { mode: "blank" },
+    });
+    expect(reset.statusCode).toBe(200);
+    const onboarding = await ctx.app.inject({
+      method: "POST",
+      url: "/api/onboarding/complete",
+      cookies: { fonat_session: cookie },
+      payload: {
+        subjectTitle: "Biológia",
+        groupTitle: "7. b",
+        schoolYear: "2026/27",
+        learnerNames: ["Anna", "Bence"],
+        locationTitle: "Természettudományi terem",
+        room: "T2",
+        courseTitle: "7. b biológia",
+        timezone: "Europe/Budapest",
+      },
+    });
+    expect(onboarding.statusCode).toBe(201);
+    const state = ctx.store.snapshot();
+    expect(state.courses).toHaveLength(1);
+    expect(state.learners).toHaveLength(2);
+    expect(state.enrollments).toHaveLength(2);
+    expect(JSON.stringify(onboarding.json().value)).not.toContain("demo");
+  });
 });

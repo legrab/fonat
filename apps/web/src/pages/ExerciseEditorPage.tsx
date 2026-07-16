@@ -26,10 +26,16 @@ const schema = z.object({
   acceptedUnit: z.string().optional(),
   correctValue: z.string().optional(),
   acceptedVariants: z.string().optional(),
-  optionsText: z.string().optional(),
-  correctOptionIds: z.string().optional(),
+  normalization: z.enum(["trim-casefold", "exact"]).default("trim-casefold"),
+  responseGuidance: z.string().optional(),
+  rubricMarkdown: z.string().optional(),
+  evidencePolicy: z.enum(["none", "light", "deep"]).default("light"),
+  contributionLevel: z
+    .enum(["introduces", "practices", "assesses"])
+    .default("practices"),
 });
 type Form = z.infer<typeof schema>;
+type ExerciseOption = { id: string; text: string };
 export function ExerciseEditorPage() {
   const { id } = useParams();
   const nav = useNavigate();
@@ -38,9 +44,20 @@ export function ExerciseEditorPage() {
     queryFn: () => api<any>(`/api/exercises/${id}`),
     enabled: Boolean(id),
   });
+  const concepts = useQuery({
+    queryKey: ["concepts", "exercise-selector"],
+    queryFn: () => api<any[]>("/api/nodes?search=&limit=100"),
+    select: (nodes) => nodes.filter((node) => node.type === "concept"),
+  });
   const [prompt, setPrompt] = useState("Írd ide a feladat szövegét.");
   const [solution, setSolution] = useState("");
   const [hydrated, setHydrated] = useState(!id);
+  const [options, setOptions] = useState<ExerciseOption[]>([
+    { id: crypto.randomUUID(), text: "Első lehetőség" },
+    { id: crypto.randomUUID(), text: "Második lehetőség" },
+  ]);
+  const [correctOptionIds, setCorrectOptionIds] = useState<string[]>([]);
+  const [conceptIds, setConceptIds] = useState<string[]>([]);
   const form = useForm<any>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -49,8 +66,9 @@ export function ExerciseEditorPage() {
       expectedMinutes: 5,
       difficulty: 2,
       lifecycle: "draft",
-      optionsText: "Első lehetőség\nMásodik lehetőség",
-      correctOptionIds: "a",
+      normalization: "trim-casefold",
+      evidencePolicy: "light",
+      contributionLevel: "practices",
     },
   });
   useEffect(() => {
@@ -58,14 +76,27 @@ export function ExerciseEditorPage() {
       const e = existing.data;
       setPrompt(e.promptMarkdown || "");
       setSolution(e.solutionMarkdown || "");
+      setOptions(
+        e.options?.length
+          ? e.options
+          : [
+              { id: crypto.randomUUID(), text: "Első lehetőség" },
+              { id: crypto.randomUUID(), text: "Második lehetőség" },
+            ],
+      );
+      setCorrectOptionIds(e.correctOptionIds || []);
+      setConceptIds(e.conceptIds || []);
       form.reset({
         ...e,
         expectedValue: e.expectedValue,
         absoluteTolerance: e.absoluteTolerance,
         correctValue: String(e.correctValue ?? ""),
         acceptedVariants: (e.acceptedVariants || []).join("\n"),
-        optionsText: (e.options || []).map((o: any) => o.text).join("\n"),
-        correctOptionIds: (e.correctOptionIds || []).join(","),
+        normalization: e.normalization || "trim-casefold",
+        responseGuidance: e.responseGuidance || "",
+        rubricMarkdown: e.rubricMarkdown || "",
+        evidencePolicy: e.evidencePolicy || "light",
+        contributionLevel: e.contributionLevel || "practices",
       });
       setHydrated(true);
     }
@@ -73,10 +104,6 @@ export function ExerciseEditorPage() {
   const selected = form.watch("exerciseType");
   const save = useMutation({
     mutationFn: async (v: Form) => {
-      const options = (v.optionsText || "")
-        .split("\n")
-        .filter(Boolean)
-        .map((text, i) => ({ id: String.fromCharCode(97 + i), text }));
       const body: any = {
         title: v.title,
         exerciseType: v.exerciseType,
@@ -85,12 +112,17 @@ export function ExerciseEditorPage() {
         expectedMinutes: Number(v.expectedMinutes),
         difficulty: Number(v.difficulty),
         lifecycle: v.lifecycle,
-        conceptIds: [],
-        options,
-        correctOptionIds: (v.correctOptionIds || "")
-          .split(",")
-          .map((x) => x.trim())
-          .filter(Boolean),
+        conceptIds,
+        options:
+          v.exerciseType === "single-choice" ||
+          v.exerciseType === "multiple-choice"
+            ? options.filter((option) => option.text.trim())
+            : undefined,
+        correctOptionIds:
+          v.exerciseType === "single-choice" ||
+          v.exerciseType === "multiple-choice"
+            ? correctOptionIds
+            : undefined,
         correctValue: v.correctValue === "true",
         expectedValue: v.expectedValue,
         absoluteTolerance: v.absoluteTolerance,
@@ -98,7 +130,11 @@ export function ExerciseEditorPage() {
         acceptedVariants: (v.acceptedVariants || "")
           .split("\n")
           .filter(Boolean),
-        normalization: "trim-casefold",
+        normalization: v.normalization,
+        responseGuidance: v.responseGuidance,
+        rubricMarkdown: v.rubricMarkdown,
+        evidencePolicy: v.evidencePolicy,
+        contributionLevel: v.contributionLevel,
         concurrencyVersion: existing.data?.concurrencyVersion,
       };
       return id
@@ -177,16 +213,70 @@ export function ExerciseEditorPage() {
             />
           </label>
           {(selected === "single-choice" || selected === "multiple-choice") && (
-            <>
-              <label>
-                Válaszlehetőségek, soronként
-                <textarea rows={5} {...form.register("optionsText")} />
-              </label>
-              <label>
-                Helyes betűk, vesszővel
-                <input {...form.register("correctOptionIds")} />
-              </label>
-            </>
+            <fieldset className="stack option-editor">
+              <legend>Válaszlehetőségek és helyes válasz</legend>
+              {options.map((option, index) => (
+                <div className="option-row" key={option.id}>
+                  <input
+                    aria-label={`${index + 1}. lehetőség helyes`}
+                    type={selected === "single-choice" ? "radio" : "checkbox"}
+                    name="correct-option"
+                    checked={correctOptionIds.includes(option.id)}
+                    onChange={(event) =>
+                      setCorrectOptionIds((current) =>
+                        selected === "single-choice"
+                          ? event.target.checked
+                            ? [option.id]
+                            : []
+                          : event.target.checked
+                            ? [...current, option.id]
+                            : current.filter((value) => value !== option.id),
+                      )
+                    }
+                  />
+                  <input
+                    aria-label={`${index + 1}. válaszlehetőség`}
+                    value={option.text}
+                    onChange={(event) =>
+                      setOptions((current) =>
+                        current.map((item) =>
+                          item.id === option.id
+                            ? { ...item, text: event.target.value }
+                            : item,
+                        ),
+                      )
+                    }
+                  />
+                  <button
+                    type="button"
+                    className="ghost danger"
+                    disabled={options.length <= 2}
+                    onClick={() => {
+                      setOptions((current) =>
+                        current.filter((item) => item.id !== option.id),
+                      );
+                      setCorrectOptionIds((current) =>
+                        current.filter((value) => value !== option.id),
+                      );
+                    }}
+                  >
+                    Törlés
+                  </button>
+                </div>
+              ))}
+              <button
+                type="button"
+                className="secondary"
+                onClick={() =>
+                  setOptions((current) => [
+                    ...current,
+                    { id: crypto.randomUUID(), text: "" },
+                  ])
+                }
+              >
+                Válaszlehetőség hozzáadása
+              </button>
+            </fieldset>
           )}
           {selected === "boolean" && (
             <label>
@@ -222,11 +312,73 @@ export function ExerciseEditorPage() {
             </div>
           )}
           {selected === "accepted-text" && (
-            <label>
-              Elfogadott változatok, soronként
-              <textarea rows={4} {...form.register("acceptedVariants")} />
-            </label>
+            <>
+              <label>
+                Elfogadott változatok, soronként
+                <textarea rows={4} {...form.register("acceptedVariants")} />
+              </label>
+              <label>
+                Összehasonlítás
+                <select {...form.register("normalization")}>
+                  <option value="trim-casefold">
+                    Szóköz- és kis/nagybetű-tűrő
+                  </option>
+                  <option value="exact">Pontos egyezés</option>
+                </select>
+              </label>
+            </>
           )}
+          {selected === "manual-response" && (
+            <>
+              <label>
+                Válaszadási útmutató
+                <textarea rows={3} {...form.register("responseGuidance")} />
+              </label>
+              <label>
+                Rövid értékelési szempontok (Markdown)
+                <textarea rows={4} {...form.register("rubricMarkdown")} />
+              </label>
+            </>
+          )}
+          <label>
+            Kapcsolódó fogalmak
+            <select
+              multiple
+              value={conceptIds}
+              onChange={(event) =>
+                setConceptIds(
+                  Array.from(
+                    event.currentTarget.selectedOptions,
+                    (option) => option.value,
+                  ),
+                )
+              }
+            >
+              {concepts.data?.map((concept) => (
+                <option key={concept.id} value={concept.id}>
+                  {concept.title}
+                </option>
+              ))}
+            </select>
+          </label>
+          <div className="two-cols">
+            <label>
+              Pedagógiai szerep
+              <select {...form.register("contributionLevel")}>
+                <option value="introduces">Bevezet</option>
+                <option value="practices">Gyakoroltat</option>
+                <option value="assesses">Ellenőriz</option>
+              </select>
+            </label>
+            <label>
+              Bizonyíték mélysége
+              <select {...form.register("evidencePolicy")}>
+                <option value="none">Nem gyűjt</option>
+                <option value="light">Rövid</option>
+                <option value="deep">Részletes</option>
+              </select>
+            </label>
+          </div>
           <label>
             Mentési állapot
             <select {...form.register("lifecycle")}>
@@ -234,9 +386,29 @@ export function ExerciseEditorPage() {
               <option value="published">Közzétett</option>
             </select>
           </label>
-          <button disabled={save.isPending}>
-            {save.isPending ? "Mentés…" : "Feladat mentése"}
-          </button>
+          <div className="row-actions">
+            <button
+              type="button"
+              className="secondary"
+              disabled={save.isPending}
+              onClick={() => {
+                form.setValue("lifecycle", "draft");
+                void form.handleSubmit((value) => save.mutate(value as Form))();
+              }}
+            >
+              Piszkozat mentése
+            </button>
+            <button
+              type="button"
+              disabled={save.isPending}
+              onClick={() => {
+                form.setValue("lifecycle", "published");
+                void form.handleSubmit((value) => save.mutate(value as Form))();
+              }}
+            >
+              Közzététel
+            </button>
+          </div>
           {Object.keys(form.formState.errors).length > 0 && (
             <div className="error">Ellenőrizd a megjelölt mezőket.</div>
           )}
@@ -257,16 +429,15 @@ export function ExerciseEditorPage() {
               <textarea placeholder="Tanulói válasz" rows={5} />
             )}{" "}
             {(selected === "single-choice" || selected === "multiple-choice") &&
-              (form.watch("optionsText") || "")
-                .split("\n")
-                .filter(Boolean)
-                .map((x: string, i: number) => (
-                  <label key={i}>
+              options
+                .filter((option) => option.text.trim())
+                .map((option) => (
+                  <label key={option.id}>
                     <input
                       type={selected === "single-choice" ? "radio" : "checkbox"}
                       disabled
                     />{" "}
-                    {x}
+                    {option.text}
                   </label>
                 ))}{" "}
             {selected === "boolean" && (

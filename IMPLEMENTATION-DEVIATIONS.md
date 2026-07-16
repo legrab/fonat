@@ -7,6 +7,8 @@ This is a substantial runnable MVP modernized against the Version 4 specificatio
 - login, first-run bootstrap endpoint, server sessions, visible logout, cookie invalidation, disabled-user session invalidation;
 - stable shell, explicit presentation leave/complete actions, 404 recovery;
 - all six guided exercise types with Milkdown Crepe prompt/solution editors and learner preview;
+- atomic blank-workspace onboarding for the first Subject, Group, learners, Location, Course, and Enrollments, plus guided organization editors;
+- guided Concept/Resource material editing, actionable Library rows, named Relation management, and an Exercise catalogue with structured choice answers and Concept/evidence metadata;
 - 24 Grade 8 concepts, 18 authored exercises, five learner fixtures, multiple lessons, evidence, findings, assignments, assessment blueprint, and the complete ten-slide demo sequence;
 - live join code, scoped participant token, idempotent answer acceptance, polling, response table, teacher reveal, privacy-safe nickname leaderboard;
 - mutable assignment draft, immutable attempts, return/resubmit/accept flow;
@@ -20,8 +22,8 @@ This is a substantial runnable MVP modernized against the Version 4 specificatio
 1. **Persistence granularity:** MongoDB stores a bounded optimistic workspace snapshot, not separate aggregate collections with transaction-specific repositories. This is the largest architectural deviation. It preserves end-to-end behavior but is unsuitable for large collections and high concurrency.
 2. **Package ZIP staging:** manifests and validation exist, but safe ZIP expansion, MIME checks, staging diff, transactional package update, and round-trip export are not complete.
 3. **Revision model:** published exercise revision counters and immutable assessment snapshots exist. Full canonical revision records, scheduled impact notices, package-owned forks, and cross-workflow revision resolution are incomplete.
-4. **Blank onboarding UI:** an Admin reset can create a blank workspace, and CRUD surfaces can rebuild it. A dedicated step-by-step onboarding wizard with foundation-package application is incomplete.
-5. **Organization depth:** group/course/location creation works through generic guided forms, but historical course roster resolution, explicit inclusion/exclusion, and full timetable recurrence/override editing are simplified.
+4. **Blank onboarding depth:** the guided setup creates the first real Subject, Group, learners, Location, Course, and Enrollments atomically without demo IDs. Foundation-package application and embedding the first Concept, Exercise, and Lesson directly in the wizard remain incomplete; the Today quick-start actions lead into their real editors instead.
+5. **Organization depth:** guided Group, learner, Course, and Location editors work, but historical roster resolution, explicit inclusion/exclusion, bulk roster correction, and full timetable recurrence/override editing remain simplified.
 6. **Assessment sophistication:** deterministic delivery, A/B labels, grading, and grades work. Slot ranking, meaningful equivalent alternatives, shortfall remediation UI, regrade preview, print stylesheet, and five analyzers are incomplete.
 7. **Content package volume:** the runtime demo contains the important Grade 8 catalogue. The on-disk packages are contract examples rather than complete exported mirrors of every fixture.
 8. **Authorization and CSRF:** role data, protected routes, secure cookie policy, origin checks, and rate limits exist. Fine-grained capabilities and an explicit CSRF token mechanism are incomplete.

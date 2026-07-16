@@ -154,8 +154,20 @@ label {
 }
 nav {
   display: grid;
-  gap: 0.18rem;
+  gap: 1rem;
   margin-top: 2rem;
+}
+.nav-group {
+  display: grid;
+  gap: 0.18rem;
+}
+.nav-group > span {
+  padding: 0 0.75rem 0.25rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 nav a {
   padding: 0.65rem 0.75rem;
@@ -388,6 +400,25 @@ pre {
 }
 .content-editor .milkdown {
   min-height: 220px;
+}
+.option-editor {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem;
+}
+.option-editor legend {
+  padding: 0 0.35rem;
+  font-weight: 750;
+}
+.option-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.6rem;
+}
+.option-row input[type="checkbox"],
+.option-row input[type="radio"] {
+  width: auto;
 }
 .button-grid {
   display: grid;
@@ -629,7 +660,7 @@ pre {
     border-bottom: 1px solid var(--line);
   }
   nav {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .aside-footer {
     margin-top: 1rem;
@@ -687,7 +718,7 @@ pre {
     grid-template-columns: 1fr;
   }
   nav {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .controller-grid {
     display: block;

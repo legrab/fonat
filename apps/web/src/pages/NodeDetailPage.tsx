@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
-import { api, post } from "../api";
+import { Link, useParams } from "react-router-dom";
+import { api, patch, post } from "../api";
 import { Markdown } from "../components/Markdown";
 export function NodeDetailPage() {
   const { id } = useParams();
@@ -30,6 +30,14 @@ export function NodeDetailPage() {
       }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["relations"] }),
   });
+  const archiveRelation = useMutation({
+    mutationFn: (relation: any) =>
+      patch(`/api/relations/${relation.id}`, {
+        lifecycle: "archived",
+        concurrencyVersion: relation.concurrencyVersion,
+      }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["relations"] }),
+  });
   if (!node.data) return <p>Betöltés…</p>;
   const connected =
     relations.data?.filter((r) => r.sourceId === id || r.targetId === id) || [];
@@ -40,6 +48,9 @@ export function NodeDetailPage() {
           <span className="eyebrow">{node.data.type || "node"}</span>
           <h1>{node.data.title}</h1>
         </div>
+        <Link className="button" to={`/library/${id}/edit`}>
+          Szerkesztés
+        </Link>
       </div>
       <div className="dashboard-grid">
         <section className="panel">
@@ -48,18 +59,32 @@ export function NodeDetailPage() {
               node.data.summary ||
               "Nincs hosszabb leírás."}
           </Markdown>
-          <pre>{JSON.stringify(node.data, null, 2)}</pre>
+          {node.data.summary && <p className="muted">{node.data.summary}</p>}
         </section>
         <section className="panel">
           <h2>Kapcsolatok</h2>
-          {connected.map((r) => (
-            <article className="list-card" key={r.id}>
-              <strong>{r.type}</strong>
-              <small>
-                {r.sourceId} → {r.targetId}
-              </small>
-            </article>
-          ))}
+          {connected
+            .filter((r) => r.lifecycle !== "archived")
+            .map((r) => (
+              <article className="list-card" key={r.id}>
+                <div>
+                  <strong>{r.type}</strong>
+                  <small>
+                    {nodes.data?.find((n) => n.id === r.sourceId)?.title ||
+                      "Ismeretlen elem"}{" "}
+                    →{` `}
+                    {nodes.data?.find((n) => n.id === r.targetId)?.title ||
+                      "Ismeretlen elem"}
+                  </small>
+                </div>
+                <button
+                  className="ghost danger"
+                  onClick={() => archiveRelation.mutate(r)}
+                >
+                  Eltávolítás
+                </button>
+              </article>
+            ))}
           <div className="stack">
             <label>
               Típus

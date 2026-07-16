@@ -22,6 +22,9 @@ import { ProjectsPage } from "./pages/ProjectsPage";
 import { GuidePage } from "./pages/GuidePage";
 import { MathPlotPage } from "./pages/MathPlotPage";
 import { NodeDetailPage } from "./pages/NodeDetailPage";
+import { MaterialEditorPage } from "./pages/MaterialEditorPage";
+import { OrganizationEditorPage } from "./pages/OrganizationEditorPage";
+import { SetupPage } from "./pages/SetupPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 function Protected() {
   const location = useLocation();
@@ -53,9 +56,16 @@ export function App() {
         <Route path="/presentation/:lessonId" element={<PresentationPage />} />
         <Route element={<Protected />}>
           <Route index element={<TodayPage />} />
+          <Route path="setup" element={<SetupPage />} />
           <Route path="timetable" element={<TimetablePage />} />
           <Route path="library" element={<EntityListPage route="nodes" />} />
+          <Route path="library/new" element={<MaterialEditorPage />} />
+          <Route path="library/:id/edit" element={<MaterialEditorPage />} />
           <Route path="library/:id" element={<NodeDetailPage />} />
+          <Route
+            path="exercises"
+            element={<EntityListPage route="exercises" />}
+          />
           <Route path="exercises/new" element={<ExerciseEditorPage />} />
           <Route path="exercises/:id" element={<ExerciseEditorPage />} />
           <Route path="lessons" element={<EntityListPage route="lessons" />} />
@@ -63,16 +73,48 @@ export function App() {
           <Route path="lessons/:id" element={<LessonEditorPage />} />
           <Route path="courses" element={<EntityListPage route="courses" />} />
           <Route
+            path="courses/new"
+            element={<OrganizationEditorPage route="courses" />}
+          />
+          <Route
+            path="courses/:id"
+            element={<OrganizationEditorPage route="courses" />}
+          />
+          <Route
             path="groups"
             element={<EntityListPage route="learner-groups" />}
+          />
+          <Route
+            path="groups/new"
+            element={<OrganizationEditorPage route="learner-groups" />}
+          />
+          <Route
+            path="groups/:id"
+            element={<OrganizationEditorPage route="learner-groups" />}
           />
           <Route
             path="learners"
             element={<EntityListPage route="learners" />}
           />
           <Route
+            path="learners/new"
+            element={<OrganizationEditorPage route="learners" />}
+          />
+          <Route
+            path="learners/:id"
+            element={<OrganizationEditorPage route="learners" />}
+          />
+          <Route
             path="locations"
             element={<EntityListPage route="locations" />}
+          />
+          <Route
+            path="locations/new"
+            element={<OrganizationEditorPage route="locations" />}
+          />
+          <Route
+            path="locations/:id"
+            element={<OrganizationEditorPage route="locations" />}
           />
           <Route
             path="annual-plans"

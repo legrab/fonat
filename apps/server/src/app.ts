@@ -11,6 +11,7 @@ import fastifyStatic from "@fastify/static";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import bcrypt from "bcryptjs";
+import { z } from "zod";
 import {
   authenticate,
   createDemoState,
@@ -312,6 +313,113 @@ export async function createApp(
   app.get("/api/workspace/summary", async () =>
     ok(summarize(store.snapshot())),
   );
+  app.get("/api/onboarding/status", async () => {
+    const state = store.snapshot();
+    return ok({
+      complete:
+        state.courses.length > 0 &&
+        state.learnerGroups.length > 0 &&
+        state.learners.length > 0,
+      counts: {
+        subjects: state.subjects.length,
+        groups: state.learnerGroups.length,
+        learners: state.learners.length,
+        locations: state.locations.length,
+        courses: state.courses.length,
+      },
+    });
+  });
+  app.post("/api/onboarding/complete", async (req, reply) => {
+    const parsed = z
+      .object({
+        subjectTitle: z.string().min(2),
+        groupTitle: z.string().min(1),
+        schoolYear: z.string().min(4),
+        learnerNames: z.array(z.string().min(1)).min(1),
+        locationTitle: z.string().min(2),
+        room: z.string().optional(),
+        courseTitle: z.string().min(2),
+        timezone: z.string().min(1).default(config.SCHOOL_TIMEZONE),
+      })
+      .safeParse(req.body);
+    if (!parsed.success)
+      return reply
+        .code(400)
+        .send(
+          err(
+            "VALIDATION",
+            "onboarding.invalid",
+            false,
+            parsed.error.flatten().fieldErrors as Record<string, string[]>,
+          ),
+        );
+    const created = await store.mutate((state) => {
+      const now = clock.now().toISOString();
+      const subject = {
+        id: id("subject"),
+        title: parsed.data.subjectTitle,
+        concurrencyVersion: 1,
+        createdAt: now,
+        updatedAt: now,
+      };
+      const group = {
+        id: id("group"),
+        title: parsed.data.groupTitle,
+        schoolYear: parsed.data.schoolYear,
+        concurrencyVersion: 1,
+        createdAt: now,
+        updatedAt: now,
+      };
+      const location = {
+        id: id("location"),
+        title: parsed.data.locationTitle,
+        room: parsed.data.room,
+        concurrencyVersion: 1,
+        createdAt: now,
+        updatedAt: now,
+      };
+      const learners = parsed.data.learnerNames.map((name) => ({
+        id: id("learner"),
+        title: name,
+        displayPseudonym: name,
+        administrativeIdentity: {},
+        concurrencyVersion: 1,
+        createdAt: now,
+        updatedAt: now,
+      }));
+      const course = {
+        id: id("course"),
+        title: parsed.data.courseTitle,
+        subjectId: subject.id,
+        learnerGroupIds: [group.id],
+        defaultLocationId: location.id,
+        timezone: parsed.data.timezone,
+        status: "active",
+        concurrencyVersion: 1,
+        createdAt: now,
+        updatedAt: now,
+      };
+      const enrollments = learners.map((learner) => ({
+        id: id("enrollment"),
+        title: `${learner.title} – ${group.title}`,
+        learnerId: learner.id,
+        learnerGroupId: group.id,
+        status: "active",
+        startDate: now.slice(0, 10),
+        concurrencyVersion: 1,
+        createdAt: now,
+        updatedAt: now,
+      }));
+      state.subjects.push(subject);
+      state.learnerGroups.push(group);
+      state.locations.push(location);
+      state.learners.push(...learners);
+      state.enrollments.push(...enrollments);
+      state.courses.push(course);
+      return { subject, group, location, learners, course };
+    });
+    return reply.code(201).send(ok(created));
+  });
   app.get("/api/today", async () => {
     const state = store.snapshot();
     return ok({
@@ -423,19 +531,44 @@ export async function createApp(
         const current = list[index]!;
         if (expected && Number(current.concurrencyVersion) !== expected)
           return err("CONFLICT", "common.staleWrite", true);
-        const next = {
+        const candidate = {
           ...current,
           ...(req.body as any),
           id: current.id,
           concurrencyVersion: Number(current.concurrencyVersion || 1) + 1,
           updatedAt: clock.now().toISOString(),
         };
-        list[index] = next;
-        return ok(next);
+        if (route === "exercises") {
+          const parsed = exerciseSchema.safeParse(candidate);
+          if (!parsed.success)
+            return err(
+              "VALIDATION",
+              "exercise.invalid",
+              false,
+              parsed.error.flatten().fieldErrors as Record<string, string[]>,
+            );
+          Object.assign(candidate, parsed.data);
+          if (
+            current.lifecycle !== "published" &&
+            candidate.lifecycle === "published"
+          )
+            candidate.currentRevision =
+              Number(current.currentRevision || 0) + 1;
+        }
+        list[index] = candidate;
+        return ok(candidate);
       });
       return result.ok
         ? result
-        : reply.code(result.error.code === "CONFLICT" ? 409 : 404).send(result);
+        : reply
+            .code(
+              result.error.code === "CONFLICT"
+                ? 409
+                : result.error.code === "VALIDATION"
+                  ? 400
+                  : 404,
+            )
+            .send(result);
     });
   }
 
