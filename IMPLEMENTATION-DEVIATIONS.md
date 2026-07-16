@@ -13,7 +13,9 @@ This is a substantial runnable MVP modernized against the Version 4 specificatio
 - 24 Grade 8 concepts, 18 authored exercises, five learner fixtures, multiple lessons, evidence, findings, assignments, assessment blueprint, and the complete ten-slide demo sequence;
 - live join code, scoped participant token, idempotent answer acceptance, polling, response table, teacher reveal, privacy-safe nickname leaderboard;
 - mutable assignment draft, immutable attempts, return/resubmit/accept flow;
+- guided Assignment draft/issue editing with real Course/Exercise selectors, attempt policy, formatted review, editable feedback, and named learner context;
 - deterministic A/B assessment delivery with copied question snapshots, submission, grading, and grade entry;
+- guided Assessment Blueprint slots, eligibility/shortfall preview, selected learner delivery, deterministic Concept-based filling, explained manual overrides, print styling, and linked follow-up findings;
 - feature-toggled Project route and original Mushroom Yard fixture;
 - React/Vite, Fastify, Zod, official MongoDB driver, TanStack Query/Table, React Hook Form, Milkdown Crepe, KaTeX, Mafs, dnd-kit, Playwright configuration;
 - Docker, Vercel, Render, OpenAPI generation, package manifests, brand assets, and required documentation set.
@@ -25,7 +27,7 @@ This is a substantial runnable MVP modernized against the Version 4 specificatio
 3. **Revision model:** published exercise revision counters and immutable assessment snapshots exist. Full canonical revision records, scheduled impact notices, package-owned forks, and cross-workflow revision resolution are incomplete.
 4. **Blank onboarding depth:** the guided setup creates the first real Subject, Group, learners, Location, Course, and Enrollments atomically without demo IDs. Foundation-package application and embedding the first Concept, Exercise, and Lesson directly in the wizard remain incomplete; the Today quick-start actions lead into their real editors instead.
 5. **Organization depth:** guided Group, learner, Course, and Location editors work, but historical roster resolution, explicit inclusion/exclusion, bulk roster correction, and full timetable recurrence/override editing remain simplified.
-6. **Assessment sophistication:** deterministic delivery, A/B labels, grading, and grades work. Slot ranking, meaningful equivalent alternatives, shortfall remediation UI, regrade preview, print stylesheet, and five analyzers are incomplete.
+6. **Assessment sophistication:** deterministic Concept-slot delivery, A/B labels, shortfall preview, grading, explained manual override, Grade Entries, print styling, and basic follow-up Findings work. Broader source filters, meaningful equivalent ranking beyond deterministic eligible selection, interactive shortfall remediation, regrade impact preview, and the full five-analyzer cohort pipeline remain incomplete.
 7. **Content package volume:** the runtime demo contains the important Grade 8 catalogue. The on-disk packages are contract examples rather than complete exported mirrors of every fixture.
 8. **Authorization and CSRF:** role data, protected routes, secure cookie policy, origin checks, and rate limits exist. Fine-grained capabilities and an explicit CSRF token mechanism are incomplete.
 9. **Server route decomposition:** feature ownership folders are present, but the Fastify application factory remains large. Extract routes/use cases when a second implementation cycle begins.

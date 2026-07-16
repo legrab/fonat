@@ -64,6 +64,30 @@ const collectionMap = {
   projects: "projects",
 } as const;
 type CollectionRoute = keyof typeof collectionMap;
+type AssessmentSlot = {
+  id: string;
+  conceptId: string;
+  points?: number;
+  difficultyMin?: number;
+  difficultyMax?: number;
+};
+
+const eligibleForSlot = (state: WorkspaceState, slot: AssessmentSlot) =>
+  state.exercises.filter(
+    (exercise) =>
+      exercise.lifecycle === "published" &&
+      exercise.conceptIds.includes(slot.conceptId) &&
+      (slot.difficultyMin == null ||
+        exercise.difficulty >= slot.difficultyMin) &&
+      (slot.difficultyMax == null || exercise.difficulty <= slot.difficultyMax),
+  );
+
+const stableIndex = (value: string, length: number) => {
+  let hash = 0;
+  for (const character of value)
+    hash = (hash * 31 + character.charCodeAt(0)) >>> 0;
+  return length ? hash % length : 0;
+};
 const publicPrefixes = [
   "/api/auth/status",
   "/api/auth/bootstrap",
@@ -928,8 +952,57 @@ export async function createApp(
   });
   app.get("/api/submissions", async () => ok(store.snapshot().submissions));
 
+  app.post("/api/assessments/preview", async (req, reply) => {
+    const blueprintId = String((req.body as any)?.blueprintId || "");
+    const state = store.snapshot();
+    const blueprint = state.assessmentBlueprints.find(
+      (item) => item.id === blueprintId,
+    ) as any;
+    if (!blueprint)
+      return reply
+        .code(404)
+        .send(err("NOT_FOUND", "assessment.blueprintNotFound"));
+    const slots = (blueprint.slots || []) as AssessmentSlot[];
+    return ok({
+      blueprintId,
+      totalPoints: slots.reduce(
+        (total, slot) => total + Number(slot.points || 0),
+        0,
+      ),
+      slots: slots.map((slot) => {
+        const eligible = eligibleForSlot(state, slot);
+        return {
+          ...slot,
+          eligibleCount: eligible.length,
+          candidateTitles: eligible
+            .slice(0, 5)
+            .map((exercise) => exercise.title),
+          shortfall: eligible.length === 0,
+        };
+      }),
+    });
+  });
+
   app.post("/api/assessments/generate", async (req, reply) => {
     const b = req.body as any;
+    const source = store.snapshot();
+    const sourceBlueprint = source.assessmentBlueprints.find(
+      (item) => item.id === String(b.blueprintId),
+    ) as any;
+    if (!sourceBlueprint)
+      return reply
+        .code(404)
+        .send(err("NOT_FOUND", "assessment.blueprintNotFound"));
+    const sourceSlots = (sourceBlueprint.slots || []) as AssessmentSlot[];
+    const shortfalls = sourceSlots.filter(
+      (slot) => eligibleForSlot(source, slot).length === 0,
+    );
+    if (shortfalls.length)
+      return reply.code(400).send(
+        err("VALIDATION", "assessment.slotShortfall", false, {
+          slots: shortfalls.map((slot) => slot.id),
+        }),
+      );
     const generated = await store.mutate((state) => {
       const blueprint = state.assessmentBlueprints.find(
         (x) => x.id === String(b.blueprintId),
@@ -949,9 +1022,18 @@ export async function createApp(
       const learnerIds = (b.learnerIds ||
         state.learners.slice(0, 2).map((x) => x.id)) as string[];
       const deliveries = learnerIds.map((learnerId, index) => {
-        const exerciseIds = state.exercises
-          .slice(index, index + 6)
-          .map((e) => e.id);
+        const slots = (blueprint.slots || []) as AssessmentSlot[];
+        const selectedExercises = slots.length
+          ? slots.map((slot, slotIndex) => {
+              const eligible = eligibleForSlot(state, slot);
+              return eligible[
+                stableIndex(
+                  `${assessment.seed}:${learnerId}:${index}:${slotIndex}`,
+                  eligible.length,
+                )
+              ];
+            })
+          : state.exercises.slice(index, index + 6);
         const d = {
           id: id("delivery"),
           title: `${assessment.title} ${index % 2 ? "B" : "A"}`,
@@ -959,8 +1041,9 @@ export async function createApp(
           learnerId,
           variant: index % 2 ? "B" : "A",
           seed: `${assessment.seed}:${learnerId}`,
-          exerciseSnapshots: exerciseIds.map((eid) =>
-            structuredClone(state.exercises.find((e) => e.id === eid)),
+          blueprintSnapshot: structuredClone(blueprint),
+          exerciseSnapshots: selectedExercises.map((exercise) =>
+            structuredClone(exercise),
           ),
           answers: {},
           status: "available",
@@ -1003,6 +1086,7 @@ export async function createApp(
     },
   );
   app.post("/api/assessment-deliveries/:id/grade", async (req, reply) => {
+    const body = req.body as any;
     const result = await store.mutate((state) => {
       const d = state.assessmentDeliveries.find(
         (x) => x.id === (req.params as any).id,
@@ -1011,10 +1095,32 @@ export async function createApp(
       let correct = 0;
       for (const ex of d.exerciseSnapshots as Exercise[])
         if (gradeExercise(ex, d.answers?.[ex.id]) === true) correct++;
+      const automaticPercent = Math.round(
+        (100 * correct) / Math.max(1, d.exerciseSnapshots.length),
+      );
+      const manualPercent =
+        body.manualPercent == null ? undefined : Number(body.manualPercent);
+      if (
+        manualPercent != null &&
+        (!Number.isFinite(manualPercent) ||
+          manualPercent < 0 ||
+          manualPercent > 100 ||
+          !String(body.overrideReason || "").trim())
+      )
+        return err("VALIDATION", "assessment.overrideInvalid", false, {
+          overrideReason: ["Required for manual override"],
+        });
       d.score = {
         correct,
         total: d.exerciseSnapshots.length,
-        percent: Math.round((100 * correct) / d.exerciseSnapshots.length),
+        percent: manualPercent ?? automaticPercent,
+        automaticPercent,
+        ...(manualPercent != null
+          ? {
+              manualOverride: true,
+              overrideReason: String(body.overrideReason),
+            }
+          : {}),
       };
       d.status = "graded";
       state.grades.push({
@@ -1034,9 +1140,23 @@ export async function createApp(
                   : 1,
         recordedAt: clock.now().toISOString(),
       });
+      state.findings.push({
+        id: id("finding"),
+        title:
+          d.score.percent < 50
+            ? `${d.title}: utánkövetés javasolt`
+            : `${d.title}: értékelés elkészült`,
+        deliveryId: d.id,
+        learnerId: d.learnerId,
+        severity: d.score.percent < 50 ? "warning" : "info",
+        explanation: `${d.score.percent}% eredmény ${d.exerciseSnapshots.length} feladat alapján.`,
+        createdAt: clock.now().toISOString(),
+      });
       return ok(d);
     });
-    return result.ok ? result : reply.code(404).send(result);
+    return result.ok
+      ? result
+      : reply.code(result.error.code === "VALIDATION" ? 400 : 404).send(result);
   });
 
   app.post("/api/packages/demo-reset", async (req) => {
