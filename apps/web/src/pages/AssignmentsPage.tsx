@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { ApiError, api, patch, post } from "../api";
 import { Markdown } from "../components/Markdown";
+import { useUnsavedChanges } from "../components/UnsavedChangesGuard";
 
 type NamedEntity = { id: string; title: string; lifecycle?: string };
 type Assignment = NamedEntity & {
@@ -58,10 +59,13 @@ export function AssignmentsPage() {
   const [feedbackRelease, setFeedbackRelease] = useState("after-review");
   const [evidencePolicy, setEvidencePolicy] = useState("light");
   const [feedback, setFeedback] = useState<Record<string, string>>({});
+  const [dirty, setDirty] = useState(false);
+  const unsaved = useUnsavedChanges(dirty);
   useEffect(() => {
     if (!courseId && courses.data?.[0]) setCourseId(courses.data[0].id);
   }, [courseId, courses.data]);
   const resetForm = () => {
+    setDirty(false);
     setEditingId(undefined);
     setTitle("Új gyakorló kiosztás");
     setInstructionsMarkdown("");
@@ -72,6 +76,7 @@ export function AssignmentsPage() {
     setEvidencePolicy("light");
   };
   const edit = (assignment: Assignment) => {
+    setDirty(false);
     setEditingId(assignment.id);
     setTitle(assignment.title);
     setInstructionsMarkdown(assignment.instructionsMarkdown || "");
@@ -146,11 +151,14 @@ export function AssignmentsPage() {
         </div>
       </div>
       <div className="dashboard-grid">
-        <section className="panel stack">
+        <section className="panel stack" onChangeCapture={() => setDirty(true)}>
           <div className="section-head">
             <h2>{editingId ? "Kiosztás szerkesztése" : "Új kiosztás"}</h2>
             {editingId && (
-              <button className="ghost" onClick={resetForm}>
+              <button
+                className="ghost"
+                onClick={() => unsaved.requestDiscard(resetForm)}
+              >
                 Mégse
               </button>
             )}
@@ -284,7 +292,10 @@ export function AssignmentsPage() {
                   {assignment.status}
                 </small>
               </div>
-              <button className="secondary" onClick={() => edit(assignment)}>
+              <button
+                className="secondary"
+                onClick={() => unsaved.requestDiscard(() => edit(assignment))}
+              >
                 Szerkesztés
               </button>
             </article>
@@ -375,6 +386,7 @@ export function AssignmentsPage() {
           )}
         </section>
       </div>
+      {unsaved.confirmation}
     </>
   );
 }

@@ -6,7 +6,7 @@ Scope: the first useful teacher journey and the editing surfaces required to rep
 
 ## Implementation record
 
-The plan was delivered in focused vertical slices: rich-content hydration safety; onboarding and authoring; lesson and annual-plan editing; assignment and assessment workflows; and the file-backed Markdown manual. The current implementation covers the first teacher flow with named selectors and guided controls while preserving immutable submissions/deliveries and the existing logout, live-answer, and presentation-exit behavior.
+The plan was delivered in focused vertical slices: rich-content hydration safety; onboarding and authoring; lesson and annual-plan editing; assignment and assessment workflows; the file-backed Markdown manual; and reusable unsaved-change protection for the core teacher editors. The current implementation covers the first teacher flow with named selectors and guided controls while preserving immutable submissions/deliveries and the existing logout, live-answer, and presentation-exit behavior.
 
 The evidence table below records the state at planning time. The implemented result and honest residual gaps are maintained in `IMPLEMENTATION-DEVIATIONS.md`; the generated API reference is `docs/openapi.json`, and manual authoring rules are in `docs/CONTENT-AUTHORING.md`.
 

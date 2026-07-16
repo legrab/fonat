@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { ApiError, api, patch, post } from "../api";
+import { useUnsavedChanges } from "../components/UnsavedChangesGuard";
 
 type NamedEntity = { id: string; title: string; type?: string };
 type BlueprintSlot = {
@@ -73,12 +74,15 @@ export function AssessmentsPage() {
   const [overrideReason, setOverrideReason] = useState<Record<string, string>>(
     {},
   );
+  const [dirty, setDirty] = useState(false);
+  const unsaved = useUnsavedChanges(dirty);
   useEffect(() => {
     if (!courseId && courses.data?.[0]) setCourseId(courses.data[0].id);
     if (!selectedBlueprintId && blueprints.data?.[0])
       setSelectedBlueprintId(blueprints.data[0].id);
   }, [courseId, selectedBlueprintId, courses.data, blueprints.data]);
   const edit = (blueprint: Blueprint) => {
+    setDirty(false);
     setEditingId(blueprint.id);
     setTitle(blueprint.title);
     setCourseId(blueprint.courseId || "");
@@ -86,6 +90,7 @@ export function AssessmentsPage() {
     setSlots(blueprint.slots || []);
   };
   const reset = () => {
+    setDirty(false);
     setEditingId(undefined);
     setTitle("Új felmérési terv");
     setInstructionsMarkdown("");
@@ -165,11 +170,18 @@ export function AssessmentsPage() {
         </div>
       </div>
       <div className="dashboard-grid assessment-workspace">
-        <section className="panel stack">
+        <section
+          className="panel stack"
+          onChangeCapture={() => setDirty(true)}
+          onClickCapture={() => setDirty(true)}
+        >
           <div className="section-head">
             <h2>{editingId ? "Sablon szerkesztése" : "Új felmérési sablon"}</h2>
             {editingId && (
-              <button className="ghost" onClick={reset}>
+              <button
+                className="ghost"
+                onClick={() => unsaved.requestDiscard(reset)}
+              >
                 Mégse
               </button>
             )}
@@ -311,7 +323,10 @@ export function AssessmentsPage() {
                 <strong>{blueprint.title}</strong>
                 <small>{blueprint.slots?.length || 0} követelményhely</small>
               </div>
-              <button className="secondary" onClick={() => edit(blueprint)}>
+              <button
+                className="secondary"
+                onClick={() => unsaved.requestDiscard(() => edit(blueprint))}
+              >
                 Szerkesztés
               </button>
             </article>
@@ -479,6 +494,7 @@ export function AssessmentsPage() {
           )}
         </section>
       </div>
+      {unsaved.confirmation}
     </>
   );
 }

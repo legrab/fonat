@@ -16,7 +16,14 @@ Más mentett az általad megnyitott változat óta. Töltsd újra és vesd össz
 
 ## Lejárt munkamenet
 
-Jelentkezz be újra. A szerveren mentett tanulói piszkozat megmarad; egy még el nem mentett tanári űrlap helyi változása elveszhet.
+Jelentkezz be újra. A szerveren mentett tanulói piszkozat megmarad. A fő tanári szerkesztők figyelmeztetnek, ha nem mentett módosítással navigálsz el vagy zárod be az oldalt; munkamenet-lejárat vagy böngészőhiba előtt azonban továbbra is érdemes rendszeresen piszkozatot menteni.
+
+## „Nem mentett módosítások” ablak
+
+- **Maradok és mentek:** bezárja a figyelmeztetést, és minden beírt adat a szerkesztőben marad.
+- **Módosítások elvetése:** folytatja a kért navigációt, a helyi változtatások elvesznek.
+- Az `Esc` billentyű a biztonságos „maradok” művelettel azonos.
+- Sikeres mentés után a Fonat figyelmeztetés nélkül nyitja meg a mentett elemet.
 
 ## Kikapcsolt funkció
 

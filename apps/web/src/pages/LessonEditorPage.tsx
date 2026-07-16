@@ -12,6 +12,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { ApiError, api, patch, post } from "../api";
 import { ContentEditor } from "../components/ContentEditor";
 import { Markdown } from "../components/Markdown";
+import { useUnsavedChanges } from "../components/UnsavedChangesGuard";
 
 type NamedEntity = { id: string; title: string; lifecycle?: string };
 type Slide = {
@@ -148,6 +149,8 @@ export function LessonEditorPage() {
   const [status, setStatus] = useState("draft");
   const [slides, setSlides] = useState<Slide[]>([]);
   const [selectedSlideId, setSelectedSlideId] = useState<string>();
+  const [dirty, setDirty] = useState(false);
+  const unsaved = useUnsavedChanges(dirty);
   useEffect(() => {
     if (!existing.data) return;
     setTitle(existing.data.title);
@@ -163,12 +166,14 @@ export function LessonEditorPage() {
     if (!id && !courseId && courses.data?.[0]) setCourseId(courses.data[0].id);
   }, [id, courseId, courses.data]);
   const selectedSlide = slides.find((slide) => slide.id === selectedSlideId);
-  const updateSelected = (changes: Partial<Slide>) =>
+  const updateSelected = (changes: Partial<Slide>) => {
+    setDirty(true);
     setSlides((current) =>
       current.map((slide) =>
         slide.id === selectedSlideId ? { ...slide, ...changes } : slide,
       ),
     );
+  };
   const add = (type: string) => {
     const slide: Slide = {
       id: crypto.randomUUID(),
@@ -179,6 +184,7 @@ export function LessonEditorPage() {
         ? { durationSeconds: 60, timerEndBehavior: "advance" }
         : {}),
     };
+    setDirty(true);
     setSlides((current) => [...current, slide]);
     setSelectedSlideId(slide.id);
   };
@@ -226,17 +232,23 @@ export function LessonEditorPage() {
         ? patch<Lesson>(`/api/lessons/${id}`, body)
         : post<Lesson>("/api/lessons", body);
     },
-    onSuccess: (lesson) => navigate(`/lessons/${lesson.id || id}`),
+    onSuccess: (lesson) => {
+      setDirty(false);
+      unsaved.allowNavigation();
+      navigate(`/lessons/${lesson.id || id}`);
+    },
   });
   const move = (index: number, delta: number) => {
     const next = index + delta;
     if (next < 0 || next >= slides.length) return;
+    setDirty(true);
     setSlides(arrayMove(slides, index, next));
   };
   const drag = (event: DragEndEvent) => {
     if (!event.over || event.active.id === event.over.id) return;
     const from = slides.findIndex((slide) => slide.id === event.active.id);
     const to = slides.findIndex((slide) => slide.id === event.over!.id);
+    setDirty(true);
     setSlides(arrayMove(slides, from, to));
   };
   if (id && existing.isLoading)
@@ -272,7 +284,10 @@ export function LessonEditorPage() {
           </button>
         </div>
       </div>
-      <div className="editor-grid lesson-editor-grid">
+      <div
+        className="editor-grid lesson-editor-grid"
+        onChangeCapture={() => setDirty(true)}
+      >
         <section className="panel stack">
           <label>
             Cím
@@ -394,6 +409,7 @@ export function LessonEditorPage() {
                   selected={slide.id === selectedSlideId}
                   onSelect={() => setSelectedSlideId(slide.id)}
                   onRemove={() => {
+                    setDirty(true);
                     setSlides((current) =>
                       current.filter((item) => item.id !== slide.id),
                     );
@@ -503,6 +519,7 @@ export function LessonEditorPage() {
           )}
         </section>
       </div>
+      {unsaved.confirmation}
     </>
   );
 }

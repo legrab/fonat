@@ -187,6 +187,24 @@ nav a.active {
   display: grid;
   gap: 0.5rem;
 }
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgb(22 18 28 / 55%);
+  backdrop-filter: blur(4px);
+}
+.unsaved-dialog {
+  width: min(100%, 480px);
+  border: 1px solid var(--line);
+}
+.unsaved-dialog h2,
+.unsaved-dialog p {
+  margin: 0;
+}
 .topbar {
   height: 76px;
   padding: 0 2rem;

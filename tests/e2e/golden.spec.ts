@@ -55,3 +55,40 @@ test("manual search and contextual editor help stay connected", async ({
     page.getByRole("heading", { name: "Gyakorlófeladat készítése" }),
   ).toBeVisible();
 });
+
+test("unsaved editor changes can be kept, discarded, or saved", async ({
+  page,
+}) => {
+  await login(page);
+  await page.goto("/library/new?type=concept");
+  await page.getByLabel("Cím").fill("Őrzött fogalom");
+  await page.getByRole("link", { name: "Könyvtár" }).click();
+  await expect(
+    page.getByRole("heading", { name: "Nem mentett módosítások" }),
+  ).toBeVisible();
+
+  await page.getByRole("button", { name: "Maradok és mentek" }).click();
+  await expect(page).toHaveURL(/\/library\/new/);
+  await expect(page.getByLabel("Cím")).toHaveValue("Őrzött fogalom");
+
+  await page.getByRole("link", { name: "Könyvtár" }).click();
+  await page.getByRole("button", { name: "Módosítások elvetése" }).click();
+  await expect(page).toHaveURL(/\/library$/);
+
+  await page.goto("/library/new?type=concept");
+  await page.getByLabel("Cím").fill("Mentett fogalom");
+  await page.getByRole("button", { name: "Piszkozat mentése" }).click();
+  await expect(page).toHaveURL(/\/library\/node\./);
+  await expect(
+    page.getByRole("heading", { name: "Mentett fogalom" }),
+  ).toBeVisible();
+
+  await page.goto("/lessons/lesson.grade8.3");
+  await page.getByLabel("Cím").fill("Mentett óra őrzési próba");
+  await page.getByRole("button", { name: "Piszkozat mentése" }).click();
+  await page.getByRole("link", { name: "Óratervek" }).click();
+  await expect(page).toHaveURL(/\/lessons$/);
+  await expect(
+    page.getByRole("heading", { name: "Nem mentett módosítások" }),
+  ).toHaveCount(0);
+});

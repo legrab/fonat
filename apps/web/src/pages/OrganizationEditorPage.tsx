@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ApiError, api, patch, post } from "../api";
+import { useUnsavedChanges } from "../components/UnsavedChangesGuard";
 
 type OrganizationRoute =
   "courses" | "learner-groups" | "learners" | "locations";
@@ -52,6 +53,8 @@ export function OrganizationEditorPage({
   const [locationId, setLocationId] = useState("");
   const [timezone, setTimezone] = useState("Europe/Budapest");
   const [status, setStatus] = useState("active");
+  const [dirty, setDirty] = useState(false);
+  const unsaved = useUnsavedChanges(dirty);
   useEffect(() => {
     if (!existing.data) return;
     const entity = existing.data;
@@ -111,6 +114,8 @@ export function OrganizationEditorPage({
         : post(`/api/${route}`, body),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: [route] });
+      setDirty(false);
+      unsaved.allowNavigation();
       navigate(`/${route}`);
     },
   });
@@ -132,6 +137,7 @@ export function OrganizationEditorPage({
       </div>
       <form
         className="panel stack"
+        onChangeCapture={() => setDirty(true)}
         onSubmit={(event) => {
           event.preventDefault();
           save.mutate();
@@ -270,6 +276,7 @@ export function OrganizationEditorPage({
           {save.isPending ? "Mentés…" : "Mentés"}
         </button>
       </form>
+      {unsaved.confirmation}
     </>
   );
 }

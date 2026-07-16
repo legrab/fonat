@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
 import { ApiError, post } from "../api";
+import { useUnsavedChanges } from "../components/UnsavedChangesGuard";
 
 export function SetupPage() {
   const navigate = useNavigate();
@@ -13,6 +14,8 @@ export function SetupPage() {
   const [locationTitle, setLocationTitle] = useState("");
   const [room, setRoom] = useState("");
   const [courseTitle, setCourseTitle] = useState("");
+  const [dirty, setDirty] = useState(false);
+  const unsaved = useUnsavedChanges(dirty);
   const setup = useMutation({
     mutationFn: () =>
       post<{ course: { id: string } }>("/api/onboarding/complete", {
@@ -30,6 +33,8 @@ export function SetupPage() {
       }),
     onSuccess: async ({ course }) => {
       await queryClient.invalidateQueries();
+      setDirty(false);
+      unsaved.allowNavigation();
       navigate(`/courses/${course.id}`);
     },
   });
@@ -56,6 +61,7 @@ export function SetupPage() {
       </div>
       <form
         className="editor-grid"
+        onChangeCapture={() => setDirty(true)}
         onSubmit={(event) => {
           event.preventDefault();
           setup.mutate();
@@ -145,6 +151,7 @@ export function SetupPage() {
           </button>
         </section>
       </form>
+      {unsaved.confirmation}
     </>
   );
 }

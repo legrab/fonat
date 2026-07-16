@@ -3,6 +3,7 @@
 ## Mi változhat?
 
 - A piszkozat mentése ugyanazt a munkaváltozatot frissíti.
+- A fő szerkesztők elhagyás előtt jelzik a még nem mentett helyi módosításokat; ez nem revízió, amíg nem választod a mentést.
 - A közzététel számozott revíziót készíthet.
 - Egy még nem kézbesített terv explicit módon frissíthető új revízióra.
 

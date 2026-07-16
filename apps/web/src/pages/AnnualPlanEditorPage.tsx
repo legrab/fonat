@@ -3,6 +3,7 @@ import { arrayMove } from "@dnd-kit/sortable";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ApiError, api, patch, post } from "../api";
+import { useUnsavedChanges } from "../components/UnsavedChangesGuard";
 
 type NamedEntity = { id: string; title: string; type?: string };
 type Phase = {
@@ -51,6 +52,8 @@ export function AnnualPlanEditorPage() {
   const [schoolYear, setSchoolYear] = useState("2026/27");
   const [status, setStatus] = useState("draft");
   const [phases, setPhases] = useState<Phase[]>([]);
+  const [dirty, setDirty] = useState(false);
+  const unsaved = useUnsavedChanges(dirty);
   useEffect(() => {
     if (!existing.data) return;
     setTitle(existing.data.title);
@@ -66,12 +69,18 @@ export function AnnualPlanEditorPage() {
   useEffect(() => {
     if (!id && !courseId && courses.data?.[0]) setCourseId(courses.data[0].id);
   }, [id, courseId, courses.data]);
-  const updatePhase = (phaseId: string, changes: Partial<Phase>) =>
+  const updatePhase = (phaseId: string, changes: Partial<Phase>) => {
+    setDirty(true);
     setPhases((current) =>
       current.map((phase) =>
         phase.id === phaseId ? { ...phase, ...changes } : phase,
       ),
     );
+  };
+  const changePhases = (update: (current: Phase[]) => Phase[]) => {
+    setDirty(true);
+    setPhases(update);
+  };
   const save = useMutation({
     mutationFn: (nextStatus?: string) => {
       const body = {
@@ -86,7 +95,11 @@ export function AnnualPlanEditorPage() {
         ? patch<AnnualPlan>(`/api/annual-plans/${id}`, body)
         : post<AnnualPlan>("/api/annual-plans", body);
     },
-    onSuccess: (plan) => navigate(`/annual-plans/${plan.id || id}`),
+    onSuccess: (plan) => {
+      setDirty(false);
+      unsaved.allowNavigation();
+      navigate(`/annual-plans/${plan.id || id}`);
+    },
   });
   if (id && existing.isLoading)
     return <div className="loading">Éves terv betöltése…</div>;
@@ -112,7 +125,7 @@ export function AnnualPlanEditorPage() {
           </button>
         </div>
       </div>
-      <div className="editor-grid">
+      <div className="editor-grid" onChangeCapture={() => setDirty(true)}>
         <section className="panel stack">
           <label>
             Terv címe
@@ -163,7 +176,7 @@ export function AnnualPlanEditorPage() {
             <button
               type="button"
               onClick={() =>
-                setPhases((current) => [
+                changePhases((current) => [
                   ...current,
                   {
                     id: crypto.randomUUID(),
@@ -186,7 +199,7 @@ export function AnnualPlanEditorPage() {
                     className="ghost"
                     disabled={index === 0}
                     onClick={() =>
-                      setPhases((current) =>
+                      changePhases((current) =>
                         arrayMove(current, index, index - 1),
                       )
                     }
@@ -198,7 +211,7 @@ export function AnnualPlanEditorPage() {
                     className="ghost"
                     disabled={index === phases.length - 1}
                     onClick={() =>
-                      setPhases((current) =>
+                      changePhases((current) =>
                         arrayMove(current, index, index + 1),
                       )
                     }
@@ -209,7 +222,7 @@ export function AnnualPlanEditorPage() {
                     type="button"
                     className="ghost danger"
                     onClick={() =>
-                      setPhases((current) =>
+                      changePhases((current) =>
                         current.filter((item) => item.id !== phase.id),
                       )
                     }
@@ -277,6 +290,7 @@ export function AnnualPlanEditorPage() {
           )}
         </section>
       </div>
+      {unsaved.confirmation}
     </>
   );
 }

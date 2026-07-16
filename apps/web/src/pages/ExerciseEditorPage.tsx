@@ -7,6 +7,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { ApiError, api, patch, post } from "../api";
 import { ContentEditor } from "../components/ContentEditor";
 import { Markdown } from "../components/Markdown";
+import { useUnsavedChanges } from "../components/UnsavedChangesGuard";
 const types = [
   ["manual-response", "Kifejtős / magyarázat"],
   ["single-choice", "Egyszeres választás"],
@@ -58,6 +59,7 @@ export function ExerciseEditorPage() {
   ]);
   const [correctOptionIds, setCorrectOptionIds] = useState<string[]>([]);
   const [conceptIds, setConceptIds] = useState<string[]>([]);
+  const [dirty, setDirty] = useState(false);
   const form = useForm<any>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -71,6 +73,7 @@ export function ExerciseEditorPage() {
       contributionLevel: "practices",
     },
   });
+  const unsaved = useUnsavedChanges(dirty || form.formState.isDirty);
   useEffect(() => {
     if (existing.data) {
       const e = existing.data;
@@ -141,7 +144,11 @@ export function ExerciseEditorPage() {
         ? patch(`/api/exercises/${id}`, body)
         : post("/api/exercises", body);
     },
-    onSuccess: () => nav("/library"),
+    onSuccess: () => {
+      setDirty(false);
+      unsaved.allowNavigation();
+      nav("/exercises");
+    },
   });
   if (id && (existing.isLoading || !hydrated))
     return <div className="loading">Feladat betöltése…</div>;
@@ -169,6 +176,7 @@ export function ExerciseEditorPage() {
       </div>
       <form
         className="editor-grid"
+        onChangeCapture={() => setDirty(true)}
         onSubmit={form.handleSubmit((v) => save.mutate(v as Form))}
       >
         <section className="panel stack">
@@ -205,7 +213,10 @@ export function ExerciseEditorPage() {
             Feladatszöveg
             <ContentEditor
               value={prompt}
-              onChange={setPrompt}
+              onChange={(value) => {
+                setDirty(true);
+                setPrompt(value);
+              }}
               ariaLabel="Feladatszöveg szerkesztő"
             />
           </label>
@@ -213,7 +224,10 @@ export function ExerciseEditorPage() {
             Megoldás / magyarázat
             <ContentEditor
               value={solution}
-              onChange={setSolution}
+              onChange={(value) => {
+                setDirty(true);
+                setSolution(value);
+              }}
               ariaLabel="Megoldás szerkesztő"
             />
           </label>
@@ -257,6 +271,7 @@ export function ExerciseEditorPage() {
                     className="ghost danger"
                     disabled={options.length <= 2}
                     onClick={() => {
+                      setDirty(true);
                       setOptions((current) =>
                         current.filter((item) => item.id !== option.id),
                       );
@@ -272,12 +287,13 @@ export function ExerciseEditorPage() {
               <button
                 type="button"
                 className="secondary"
-                onClick={() =>
+                onClick={() => {
+                  setDirty(true);
                   setOptions((current) => [
                     ...current,
                     { id: crypto.randomUUID(), text: "" },
-                  ])
-                }
+                  ]);
+                }}
               >
                 Válaszlehetőség hozzáadása
               </button>
@@ -462,6 +478,7 @@ export function ExerciseEditorPage() {
           </div>
         </section>
       </form>
+      {unsaved.confirmation}
     </>
   );
 }

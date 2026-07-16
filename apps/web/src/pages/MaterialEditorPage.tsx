@@ -9,6 +9,7 @@ import {
 import { ApiError, api, patch, post } from "../api";
 import { ContentEditor } from "../components/ContentEditor";
 import { Markdown } from "../components/Markdown";
+import { useUnsavedChanges } from "../components/UnsavedChangesGuard";
 
 type MaterialType = "concept" | "resource";
 type Material = {
@@ -43,6 +44,8 @@ export function MaterialEditorPage() {
   const [provider, setProvider] = useState("markdown");
   const [url, setUrl] = useState("");
   const [lifecycle, setLifecycle] = useState("draft");
+  const [dirty, setDirty] = useState(false);
+  const unsaved = useUnsavedChanges(dirty);
   useEffect(() => {
     if (!existing.data) return;
     setTitle(existing.data.title);
@@ -72,6 +75,8 @@ export function MaterialEditorPage() {
     onSuccess: async (saved: unknown) => {
       await queryClient.invalidateQueries({ queryKey: ["nodes"] });
       const savedId = (saved as { id?: string }).id || id;
+      setDirty(false);
+      unsaved.allowNavigation();
       navigate(`/library/${savedId}`);
     },
   });
@@ -96,7 +101,7 @@ export function MaterialEditorPage() {
           </Link>
         </div>
       </div>
-      <div className="editor-grid">
+      <div className="editor-grid" onChangeCapture={() => setDirty(true)}>
         <section className="panel stack">
           <label>
             Típus
@@ -152,7 +157,10 @@ export function MaterialEditorPage() {
             Tartalom
             <ContentEditor
               value={markdown}
-              onChange={setMarkdown}
+              onChange={(value) => {
+                setDirty(true);
+                setMarkdown(value);
+              }}
               ariaLabel="Tananyag tartalomszerkesztő"
             />
           </label>
@@ -200,6 +208,7 @@ export function MaterialEditorPage() {
           {url && <a href={url}>Külső forrás megnyitása</a>}
         </section>
       </div>
+      {unsaved.confirmation}
     </>
   );
 }
