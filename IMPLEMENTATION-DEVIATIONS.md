@@ -19,6 +19,7 @@ This is a substantial runnable MVP modernized against the Version 4 specificatio
 - feature-toggled Project route and original Mushroom Yard fixture;
 - React/Vite, Fastify, Zod, official MongoDB driver, TanStack Query/Table, React Hook Form, Milkdown Crepe, KaTeX, Mafs, dnd-kit, Playwright configuration;
 - Docker, Vercel, Render, OpenAPI generation, package manifests, brand assets, and required documentation set.
+- file-backed searchable Markdown manual with GFM, KaTeX, stable contextual-help routes, complete teacher terminology, workflow guides, troubleshooting, tips, and link/glossary validation tests;
 
 ## Partial or deferred from the specification
 

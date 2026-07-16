@@ -1176,26 +1176,6 @@ export async function createApp(
     );
     return store.snapshot();
   });
-  app.get("/api/guide", async () =>
-    ok({
-      title: "Fonat Guide",
-      sections: [
-        {
-          title: "Első lépések",
-          body: "A Today oldalról nyisd meg a bemutató órát, vagy hozz létre saját tartalmat a Könyvtárban.",
-        },
-        {
-          title: "Élő óra",
-          body: "A tanári vezérlő kódját a tanulók a /join oldalon adják meg.",
-        },
-        {
-          title: "Biztonság",
-          body: "A Kilépés megszünteti a szerveroldali munkamenetet.",
-        },
-      ],
-    }),
-  );
-
   const webDist = path.resolve(process.cwd(), "apps/web/dist");
   if (existsSync(webDist)) {
     await app.register(fastifyStatic, { root: webDist, prefix: "/" });

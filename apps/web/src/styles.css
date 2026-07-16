@@ -665,6 +665,67 @@ pre {
 .guide-card {
   min-height: 170px;
 }
+.guide-card {
+  color: var(--text);
+}
+.guide-card h3 {
+  margin: 0.5rem 0;
+}
+.manual-search {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.manual-search label {
+  width: min(680px, 100%);
+}
+.manual-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 1.2rem;
+  align-items: start;
+}
+.manual-toc {
+  position: sticky;
+  top: 96px;
+  display: grid;
+  gap: 1rem;
+}
+.manual-toc > div {
+  display: grid;
+  gap: 0.35rem;
+}
+.manual-toc span {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.manual-toc a {
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+}
+.manual-toc a.active {
+  background: var(--surface-2);
+  color: var(--text);
+  font-weight: 750;
+}
+.manual-article {
+  max-width: 920px;
+}
+.manual-article .markdown > h1:first-child {
+  display: none;
+}
+.manual-article .markdown h2,
+.manual-article .markdown h3 {
+  scroll-margin-top: 100px;
+}
+.manual-article footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
 .center-card,
 .app-loading,
 .presentation-loading {
@@ -708,8 +769,12 @@ pre {
   }
   .editor-grid,
   .controller-grid,
-  .project-hero {
+  .project-hero,
+  .manual-layout {
     grid-template-columns: 1fr;
+  }
+  .manual-toc {
+    position: static;
   }
   .preview {
     position: static;

@@ -130,6 +130,7 @@ export function App() {
           <Route path="math-plot" element={<MathPlotPage />} />
           <Route path="admin" element={<AdminPage />} />
           <Route path="guide" element={<GuidePage />} />
+          <Route path="guide/:slug" element={<GuidePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
