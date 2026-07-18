@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useBeforeUnload, useBlocker } from "react-router-dom";
+import { useI18n } from "../i18n";
 
 export function useUnsavedChanges(when: boolean) {
+  const { t } = useI18n();
   const allowNavigationRef = useRef(false);
   const stayButtonRef = useRef<HTMLButtonElement>(null);
   const [pendingDiscard, setPendingDiscard] = useState<(() => void) | null>(
@@ -77,17 +79,14 @@ export function useUnsavedChanges(when: boolean) {
           aria-labelledby="unsaved-dialog-title"
           aria-describedby="unsaved-dialog-description"
         >
-          <h2 id="unsaved-dialog-title">Nem mentett módosítások</h2>
-          <p id="unsaved-dialog-description">
-            Ha elhagyod ezt az oldalt, a még el nem mentett változtatások
-            elvesznek.
-          </p>
+          <h2 id="unsaved-dialog-title">{t("unsaved.title")}</h2>
+          <p id="unsaved-dialog-description">{t("unsaved.body")}</p>
           <div className="row-actions">
             <button ref={stayButtonRef} onClick={stay}>
-              Maradok és mentek
+              {t("unsaved.stay")}
             </button>
             <button className="danger secondary" onClick={discard}>
-              Módosítások elvetése
+              {t("unsaved.discard")}
             </button>
           </div>
         </section>

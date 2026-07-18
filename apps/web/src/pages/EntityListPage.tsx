@@ -8,21 +8,23 @@ import {
 } from "@tanstack/react-table";
 import { Link } from "react-router-dom";
 import { api } from "../api";
-const titles: Record<string, string> = {
-  nodes: "Könyvtár",
-  lessons: "Óratervek",
-  courses: "Kurzusok",
-  "learner-groups": "Tanulócsoportok",
-  learners: "Tanulók",
-  locations: "Helyszínek",
-  "annual-plans": "Éves tervek",
-  exercises: "Gyakorlófeladatok",
+import { useI18n, type TranslationKey } from "../i18n";
+
+const titleKeys: Record<string, TranslationKey> = {
+  nodes: "entity.nodes",
+  lessons: "entity.lessons",
+  courses: "entity.courses",
+  "learner-groups": "entity.learnerGroups",
+  learners: "entity.learners",
+  locations: "entity.locations",
+  "annual-plans": "entity.annualPlans",
+  exercises: "entity.exercises",
 };
-const statusLabels: Record<string, string> = {
-  draft: "Piszkozat",
-  published: "Közzétett",
-  archived: "Archivált",
-  active: "Aktív",
+const statusKeys: Record<string, TranslationKey> = {
+  draft: "entity.statusDraft",
+  published: "entity.statusPublished",
+  archived: "entity.statusArchived",
+  active: "entity.statusActive",
 };
 
 const detailPath = (route: string, id: string) => {
@@ -38,6 +40,7 @@ const createPath = (route: string) => {
 };
 
 export function EntityListPage({ route }: { route: string }) {
+  const { t } = useI18n();
   const [search, setSearch] = useState("");
   const q = useQuery({
     queryKey: [route, search],
@@ -51,7 +54,7 @@ export function EntityListPage({ route }: { route: string }) {
     () => [
       helper.accessor((row) => row.title || row.name || row.id, {
         id: "title",
-        header: "Megnevezés",
+        header: t("entity.name"),
         cell: (i) => (
           <Link to={detailPath(route, i.row.original.id)}>
             <strong>{i.getValue()}</strong>
@@ -59,24 +62,29 @@ export function EntityListPage({ route }: { route: string }) {
         ),
       }),
       helper.accessor("lifecycle", {
-        header: "Állapot",
-        cell: (i) => (
-          <span className="chip">
-            {statusLabels[
-              String(i.getValue() || i.row.original.status || "active")
-            ] || String(i.getValue() || i.row.original.status || "Aktív")}
-          </span>
-        ),
+        header: t("entity.status"),
+        cell: (i) => {
+          const status = String(
+            i.getValue() || i.row.original.status || "active",
+          );
+          return (
+            <span className="chip">
+              {statusKeys[status] ? t(statusKeys[status]) : status}
+            </span>
+          );
+        },
       }),
       helper.display({
         id: "actions",
-        header: "Művelet",
+        header: t("entity.action"),
         cell: (i) => (
-          <Link to={detailPath(route, i.row.original.id)}>Megnyitás</Link>
+          <Link to={detailPath(route, i.row.original.id)}>
+            {t("entity.open")}
+          </Link>
         ),
       }),
     ],
-    [route],
+    [route, t],
   );
   const table = useReactTable({
     data: q.data || [],
@@ -87,21 +95,23 @@ export function EntityListPage({ route }: { route: string }) {
     <>
       <div className="page-title">
         <div>
-          <span className="eyebrow">Szerkeszthető gyűjtemény</span>
-          <h1>{titles[route] || route}</h1>
+          <span className="eyebrow">{t("entity.eyebrow")}</span>
+          <h1>{titleKeys[route] ? t(titleKeys[route]) : route}</h1>
         </div>
         <Link className="button" to={createPath(route)}>
-          Új elem
+          {t("entity.new")}
         </Link>
       </div>
       <section className="panel">
         <div className="toolbar">
           <input
-            placeholder="Keresés"
+            placeholder={t("entity.search")}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <span className="muted">{q.data?.length || 0} találat</span>
+          <span className="muted">
+            {t("entity.results", { count: q.data?.length || 0 })}
+          </span>
         </div>
         <div className="table-wrap">
           <table>

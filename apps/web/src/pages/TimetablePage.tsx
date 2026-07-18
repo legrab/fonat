@@ -1,6 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "../api";
+import { useI18n } from "../i18n";
+
 export function TimetablePage() {
+  const { t } = useI18n();
   const q = useQuery({
     queryKey: ["timetable"],
     queryFn: () => api<any[]>("/api/timetable"),
@@ -13,8 +16,8 @@ export function TimetablePage() {
     <>
       <div className="page-title">
         <div>
-          <span className="eyebrow">Heti nézet</span>
-          <h1>Órarend</h1>
+          <span className="eyebrow">{t("timetable.eyebrow")}</span>
+          <h1>{t("timetable.title")}</h1>
         </div>
       </div>
       {Object.entries(byDate).map(([date, items]) => (
@@ -34,7 +37,9 @@ export function TimetablePage() {
                   {x.courseId} · {x.locationId}
                 </small>
               </div>
-              {x.overlap && <span className="chip warning">Átfedés</span>}
+              {x.overlap && (
+                <span className="chip warning">{t("timetable.overlap")}</span>
+              )}
             </article>
           ))}
         </section>

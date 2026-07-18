@@ -1,4 +1,5 @@
 import { useSyncExternalStore } from "react";
+import { useI18n } from "../i18n";
 
 function subscribeToConnectionStatus(onStoreChange: () => void) {
   if (typeof window === "undefined") return () => undefined;
@@ -24,15 +25,13 @@ export function useOnlineStatus() {
 
 export function ConnectionStatus() {
   const online = useOnlineStatus();
+  const { t } = useI18n();
   if (online) return null;
 
   return (
     <div className="connection-status" role="status" aria-live="polite">
-      <strong>Nincs hálózati kapcsolat.</strong>
-      <span>
-        A nem mentett változtatások a szerkesztőben maradnak. Mentéshez várd
-        meg, amíg helyreáll a kapcsolat.
-      </span>
+      <strong>{t("connection.offlineTitle")}</strong>
+      <span>{t("connection.offlineBody")}</span>
     </div>
   );
 }
@@ -49,17 +48,15 @@ export function EditorSaveStatus({
   saved,
 }: EditorSaveStatusProps) {
   const online = useOnlineStatus();
+  const { t } = useI18n();
   const status = pending
-    ? { label: "Mentés folyamatban…", tone: "pending" }
+    ? { label: t("save.pending"), tone: "pending" }
     : dirty && !online
-      ? {
-          label: "Nincs kapcsolat — a módosítások még nincsenek mentve.",
-          tone: "warning",
-        }
+      ? { label: t("save.offlineDirty"), tone: "warning" }
       : dirty
-        ? { label: "Nem mentett módosítások", tone: "dirty" }
+        ? { label: t("save.dirty"), tone: "dirty" }
         : saved
-          ? { label: "Minden változtatás mentve", tone: "saved" }
+          ? { label: t("save.saved"), tone: "saved" }
           : null;
 
   if (!status) return null;
