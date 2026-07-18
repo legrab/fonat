@@ -1,4 +1,6 @@
 import { Component, type ErrorInfo, type ReactNode } from "react";
+import { translateCurrent } from "../i18n";
+
 export class ErrorBoundary extends Component<
   { children: ReactNode },
   { error?: Error }
@@ -14,10 +16,10 @@ export class ErrorBoundary extends Component<
     if (this.state.error)
       return (
         <div className="center-card">
-          <h1>Az oldal nem tölthető be</h1>
+          <h1>{translateCurrent("error.title")}</h1>
           <p>{this.state.error.message}</p>
           <a className="button" href="/">
-            Vissza a Today oldalra
+            {translateCurrent("error.back")}
           </a>
         </div>
       );

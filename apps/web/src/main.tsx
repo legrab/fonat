@@ -10,6 +10,7 @@ import "@milkdown/crepe/theme/common/style.css";
 import "@milkdown/crepe/theme/frame.css";
 import "./styles.css";
 import { App } from "./App";
+import { I18nProvider } from "./i18n";
 const client = new QueryClient({
   defaultOptions: { queries: { retry: 1, staleTime: 2_000 } },
 });
@@ -22,9 +23,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       grayColor="mauve"
       radius="large"
     >
-      <QueryClientProvider client={client}>
-        <RouterProvider router={router} />
-      </QueryClientProvider>
+      <I18nProvider>
+        <QueryClientProvider client={client}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
+      </I18nProvider>
     </Theme>
   </React.StrictMode>,
 );

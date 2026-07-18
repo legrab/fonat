@@ -7,49 +7,55 @@ import {
 } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { post } from "../api";
+import { useI18n, type TranslationKey } from "../i18n";
 import { ConnectionStatus } from "./ConnectionStatus";
 import { Logo } from "./Logo";
+
 const nav = [
   {
-    label: "Napi munka",
+    label: "shell.dailyWork",
     items: [
-      ["/", "Ma"],
-      ["/timetable", "Órarend"],
-      ["/lessons", "Óratervek"],
-      ["/assignments", "Kiosztások"],
-      ["/assessments", "Felmérések"],
-      ["/insights", "Elemzések"],
+      ["/", "shell.today"],
+      ["/timetable", "shell.timetable"],
+      ["/lessons", "shell.lessons"],
+      ["/assignments", "shell.assignments"],
+      ["/assessments", "shell.assessments"],
+      ["/insights", "shell.insights"],
     ],
   },
   {
-    label: "Tartalom",
+    label: "shell.content",
     items: [
-      ["/library", "Könyvtár"],
-      ["/exercises", "Gyakorlófeladatok"],
-      ["/annual-plans", "Éves tervek"],
-      ["/projects", "Projektek"],
+      ["/library", "shell.library"],
+      ["/exercises", "shell.exercises"],
+      ["/annual-plans", "shell.annualPlans"],
+      ["/projects", "shell.projects"],
     ],
   },
   {
-    label: "Munkatér",
+    label: "shell.workspace",
     items: [
-      ["/courses", "Kurzusok"],
-      ["/groups", "Csoportok"],
-      ["/learners", "Tanulók"],
-      ["/locations", "Helyszínek"],
-      ["/admin", "Admin"],
-      ["/guide", "Útmutató"],
+      ["/courses", "shell.courses"],
+      ["/groups", "shell.groups"],
+      ["/learners", "shell.learners"],
+      ["/locations", "shell.locations"],
+      ["/admin", "shell.admin"],
+      ["/guide", "shell.guide"],
     ],
   },
-] satisfies Array<{ label: string; items: Array<[string, string]> }>;
+] satisfies Array<{
+  label: TranslationKey;
+  items: Array<[string, TranslationKey]>;
+}>;
 
-const routeLabels: Record<string, string> = Object.fromEntries(
-  nav.flatMap((group) => group.items),
-);
 export function Shell() {
   const location = useLocation();
   const navigate = useNavigate();
   const qc = useQueryClient();
+  const { t } = useI18n();
+  const routeLabels = Object.fromEntries(
+    nav.flatMap((group) => group.items.map(([route, key]) => [route, t(key)])),
+  );
   const logout = async () => {
     await post("/api/auth/logout", {});
     qc.clear();
@@ -64,7 +70,7 @@ export function Shell() {
         <nav>
           {nav.map((group) => (
             <div className="nav-group" key={group.label}>
-              <span>{group.label}</span>
+              <span>{t(group.label)}</span>
               {group.items.map(([to, label]) => (
                 <NavLink
                   key={to}
@@ -72,39 +78,39 @@ export function Shell() {
                   end={to === "/"}
                   className={({ isActive }) => (isActive ? "active" : "")}
                 >
-                  {label}
+                  {t(label)}
                 </NavLink>
               ))}
             </div>
           ))}
         </nav>
         <div className="aside-footer">
-          <Link to="/join">Tanulói csatlakozás</Link>
+          <Link to="/join">{t("shell.studentJoin")}</Link>
           <button className="ghost" onClick={logout}>
-            Kilépés
+            {t("shell.logout")}
           </button>
         </div>
       </aside>
       <main>
         <header className="topbar">
           <div>
-            <span className="eyebrow">Aktuális hely</span>
+            <span className="eyebrow">{t("shell.currentLocation")}</span>
             <strong>
               {location.pathname === "/"
-                ? "Ma"
+                ? t("shell.today")
                 : routeLabels[
                     Object.keys(routeLabels).find(
                       (route) =>
                         route !== "/" && location.pathname.startsWith(route),
                     ) || ""
-                  ] || "Szerkesztés"}
+                  ] || t("shell.editing")}
             </strong>
           </div>
           <Link
             className="button secondary"
             to="/presentation/lesson.demo-presentation"
           >
-            Bemutató indítása
+            {t("shell.startPresentation")}
           </Link>
         </header>
         <ConnectionStatus />

@@ -27,14 +27,17 @@ import { OrganizationEditorPage } from "./pages/OrganizationEditorPage";
 import { SetupPage } from "./pages/SetupPage";
 import { AnnualPlanEditorPage } from "./pages/AnnualPlanEditorPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { useI18n } from "./i18n";
 function Protected() {
   const location = useLocation();
+  const { t } = useI18n();
   const me = useQuery({
     queryKey: ["me"],
     queryFn: () => api<any>("/api/auth/me"),
     retry: false,
   });
-  if (me.isLoading) return <div className="app-loading">Fonat betöltése…</div>;
+  if (me.isLoading)
+    return <div className="app-loading">{t("app.loading")}</div>;
   if (me.error) {
     if (!(me.error instanceof ApiError)) throw me.error;
     const authenticationFailed = [401, 403].includes(me.error.status);
@@ -42,14 +45,11 @@ function Protected() {
       return <Navigate to="/login" state={{ from: location }} replace />;
     return (
       <div className="app-loading connection-recovery" role="alert">
-        <span className="eyebrow">Kapcsolódás szünetel</span>
-        <h1>A Fonat most nem éri el a szervert</h1>
-        <p>
-          A munkamenetedet nem tekintjük lejártnak hálózati vagy szerverhiba
-          miatt. Ellenőrizd a kapcsolatot, majd próbáld újra.
-        </p>
+        <span className="eyebrow">{t("app.connectionEyebrow")}</span>
+        <h1>{t("app.connectionTitle")}</h1>
+        <p>{t("app.connectionBody")}</p>
         <button disabled={me.isFetching} onClick={() => void me.refetch()}>
-          {me.isFetching ? "Újracsatlakozás…" : "Újracsatlakozás"}
+          {me.isFetching ? t("app.reconnecting") : t("app.reconnect")}
         </button>
       </div>
     );

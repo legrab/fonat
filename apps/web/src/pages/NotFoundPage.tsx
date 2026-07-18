@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
+import { useI18n } from "../i18n";
+
 export function NotFoundPage() {
+  const { t } = useI18n();
   return (
     <div className="center-card">
       <span className="eyebrow">404</span>
-      <h1>Ez a szál megszakadt.</h1>
-      <p>Az útvonal nem található, de a munkatérből nem záródtál ki.</p>
+      <h1>{t("notFound.title")}</h1>
+      <p>{t("notFound.body")}</p>
       <Link className="button" to="/">
-        Vissza a Today oldalra
+        {t("notFound.back")}
       </Link>
     </div>
   );
